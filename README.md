@@ -21,6 +21,9 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 14. [ ] Liên kết thẻ
 15. [ ] Đổi điểm
 16. [ ] Lịch sử đổi điểm
+17. [ ] Quản lý thông báo
+18. [ ] Tìm xung quanh
+19. [ ] Giỏ hàng
 
 ## Available Components
 
