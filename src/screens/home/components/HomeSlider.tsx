@@ -29,8 +29,8 @@ export const HomeSlider = () => {
     return (
         <Box position="relative">
             <ImageStatic resizeMode="cover" position="absolute" top={0} left={0} width={sliderWidth+2} height={sliderWidth/2.198}  uri={StaticImages.banner_background}/>
+
             <Carousel
-                layout={'default'}
                 loop={true} //  back to first slide when finish the end slide
                 autoplay={true}
                 autoplayInterval={3000}

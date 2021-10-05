@@ -2,6 +2,7 @@ import React from 'react';
 import {StatusBar} from 'native-base';
 import {HomeHeader} from "./components/HomeHeader";
 import {HomeSlider} from "./components/HomeSlider";
+import {Categories} from "./components/Categories";
 
 const HomeScreen = () => {
 
@@ -12,6 +13,8 @@ const HomeScreen = () => {
             <HomeHeader/>
 
             <HomeSlider/>
+
+            <Categories/>
         </>
     )
 }
