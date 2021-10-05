@@ -4,14 +4,14 @@ import {Colors, ScreenName} from "../share";
 import HomeScreen from "./home";
 import NotificationsScreen from "./notifications";
 import NearByScreen from "./nearby";
-import {AccountIcon, CartIcon, HomeIcon, NearByIcon, NotificationIcon} from "../components/atoms/bottom-nav-icons";
+import {AccountIcon, CartIcon, HomeIcon, NearByIcon, NotificationIcon} from "../components/atoms/icons/BottomNavIcons";
 import CartScreen from "./cart";
 import AccountScreen from "./account";
 import {Text} from "native-base";
 
 const Tab = createBottomTabNavigator();
 
-const BottomTab = () => {
+const TabScreens = () => {
 
     return (
         <Tab.Navigator
@@ -31,7 +31,7 @@ const BottomTab = () => {
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
-                    <HomeIcon active={focused} size={size}/>)
+                    <HomeIcon active={focused} size={focused ? size-2 : size}/>)
             }}/>
 
             <Tab.Screen name={ScreenName.NOTIFICATION_SCREEN} component={NotificationsScreen} options={{
@@ -79,4 +79,4 @@ const BottomTab = () => {
     );
 }
 
-export default BottomTab
+export default TabScreens

@@ -28,9 +28,7 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 ## Available Components
 
 ### Atoms
-- [x] Alert
 - [x] Button
-- [x] Box: A white box that contain any child components, [example](https://mui.com/components/paper/)
 - [x] Image: Need for caching or add loading image
 - [x] Select
 - [x] Text: typography text, need for custom multiple languages

@@ -10,7 +10,7 @@ import {Colors, ScreenName} from "../share";
 import NearByScreen from "./nearby";
 import AccountScreen from "./account";
 import BUDetailScreen from "./BU-detail";
-import BottomTab from "./BottomTab";
+import TabScreens from "./TabScreens";
 
 const Stack = createNativeStackNavigator();
 
@@ -51,7 +51,7 @@ const AppNavigation = () => {
 
             <Stack.Navigator>
                 {/* Tab screens */}
-                <Stack.Screen name={ScreenName.MAIN_SCREEN} component={BottomTab} options={{headerShown: false}}/>
+                <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{headerShown: false}}/>
 
                 {/* End Tab screens */}
 

@@ -2,14 +2,9 @@ import {Icon} from 'native-base';
 import {Circle, Path, Rect} from 'react-native-svg';
 import React from "react";
 import {Colors} from "../../../share";
+import {IconTypes} from "./icon.types";
 
-type IconProps = {
-    active?: boolean
-    size?: number,
-    fill?: string
-}
-
-export const HomeIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
+export const HomeIcon: React.FC<IconTypes> = ({active = false, size = 20}) => {
 
     if (active) {
         return (
@@ -30,7 +25,7 @@ export const HomeIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
     )
 }
 
-export const NotificationIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
+export const NotificationIcon: React.FC<IconTypes> = ({active = false, size = 20}) => {
     if (active) {
         return (
             <Icon viewBox="0 0 16 20" fill="none" size={size}>
@@ -50,7 +45,7 @@ export const NotificationIcon: React.FC<IconProps> = ({active = false, size = 20
     )
 }
 
-export const NearByIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
+export const NearByIcon: React.FC<IconTypes> = ({active = false, size = 20}) => {
     if (active) {
         return (
             <Icon viewBox="0 0 24 24" fill="none" size={size}>
@@ -82,7 +77,7 @@ export const NearByIcon: React.FC<IconProps> = ({active = false, size = 20}) => 
     )
 }
 
-export const CartIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
+export const CartIcon: React.FC<IconTypes> = ({active = false, size = 20}) => {
     if (active) {
         return (
             <Icon viewBox="0 0 24 24" fill="none" size={size}>
@@ -107,7 +102,7 @@ export const CartIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
     )
 }
 
-export const AccountIcon: React.FC<IconProps> = ({active = false, size = 20}) => {
+export const AccountIcon: React.FC<IconTypes> = ({active = false, size = 20}) => {
     if (active) {
         return (
             <Icon viewBox="0 0 24 24" fill="none" size={size}>
