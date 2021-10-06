@@ -1,8 +1,9 @@
 import React from 'react';
-import {StatusBar} from 'native-base';
+import {ScrollView, StatusBar} from 'native-base';
 import {HomeHeader} from "./components/HomeHeader";
 import {HomeSlider} from "./components/HomeSlider";
 import {Categories} from "./components/Categories";
+import {MembershipCards} from "./components/MembershipCards";
 
 const HomeScreen = () => {
 
@@ -10,11 +11,15 @@ const HomeScreen = () => {
         <>
             <StatusBar backgroundColor="primary.500" barStyle="light-content"/>
 
-            <HomeHeader/>
+            <ScrollView bgColor="white">
+                <HomeHeader/>
 
-            <HomeSlider/>
+                <HomeSlider/>
 
-            <Categories/>
+                <Categories/>
+
+                <MembershipCards/>
+            </ScrollView>
         </>
     )
 }
