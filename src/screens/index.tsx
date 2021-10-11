@@ -1,16 +1,14 @@
 import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useRef} from 'react';
-import HomeScreen from "./home";
-import CartScreen from "./cart";
-import NotificationsScreen from "./notifications";
 
-import {Colors, ScreenName} from "../share";
-import NearByScreen from "./nearby";
-import AccountScreen from "./account";
+import {ScreenName} from "../share";
 import BUDetailScreen from "./BU-detail";
 import TabScreens from "./TabScreens";
+import {PhoneInputScreen} from "./auth/PhoneInputScreen";
+import {LoginScreen} from "./auth/LoginScreen";
+import {OtpScreen} from "./auth/OtpScreen";
+import {RegisterScreen} from "./auth/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,12 +48,22 @@ const AppNavigation = () => {
             onStateChange={handleScreenTracking}>
 
             <Stack.Navigator>
+
+
                 {/* Tab screens */}
                 <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{headerShown: false}}/>
-
                 {/* End Tab screens */}
 
+                <Stack.Screen name={ScreenName.REGISTER_SCREEN} component={RegisterScreen}
+                              options={{headerShown: false}}/>
+                <Stack.Screen name={ScreenName.PHONE_INPUT_SCREEN} component={PhoneInputScreen}
+                              options={{headerShown: false}}/>
+
+                <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{headerShown: false}}/>
+                <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{headerShown: false}}/>
+
                 <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen}/>
+
             </Stack.Navigator>
 
         </NavigationContainer>

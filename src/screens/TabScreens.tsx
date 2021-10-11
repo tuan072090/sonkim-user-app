@@ -14,12 +14,7 @@ const Tab = createBottomTabNavigator();
 const TabScreens = () => {
 
     return (
-        <Tab.Navigator
-            // @ts-ignore
-            tabBarOptions={{
-                activeTintColor: "primary.500",
-                inactiveTintColor: "gray.400",
-            }}>
+        <Tab.Navigator>
 
             <Tab.Screen name={ScreenName.HOME_SCREEN} component={HomeScreen} options={{
                 unmountOnBlur: true,
@@ -27,7 +22,7 @@ const TabScreens = () => {
                 tabBarShowLabel: true,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color={color}>Trang chủ</Text>;
+                        return <Text fontSize="xs" color="primary.500">Trang chủ</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -37,7 +32,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.NOTIFICATION_SCREEN} component={NotificationsScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color={color}>Thông báo</Text>;
+                        return <Text fontSize="xs" color="primary.500">Thông báo</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -47,7 +42,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.NEAR_BY_SCREEN} component={NearByScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color={color}>Quanh đây</Text>;
+                        return <Text fontSize="xs" color="primary.500">Quanh đây</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -58,7 +53,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.CART_SCREEN} component={CartScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color={color}>Đơn hàng</Text>;
+                        return <Text fontSize="xs" color="primary.500">Đơn hàng</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -68,7 +63,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.ACCOUNT_SCREEN} component={AccountScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color={color}>Tài khoản</Text>;
+                        return <Text fontSize="xs" color="primary.500">Tài khoản</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (

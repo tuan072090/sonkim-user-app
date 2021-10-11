@@ -5,12 +5,12 @@ This project was bootstrapped with ``react-native init`` with typescript templat
 The UI in this project is build on top of by [Native base](https://docs.nativebase.io/)
 
 ## Pages
-1. [ ] Onboarding
-2. [ ] Login
-3. [ ] Register
+1. [x] Onboarding
+2. [x] Login
+3. [x] Register
 4. [ ] Forgot password
 5. [ ] Update user profile
-6. [ ] Home page
+6. [x] Home page
 7. [ ] BU detail
 8. [ ] BU detail
 9. [ ] Store/restaurant detail
@@ -34,10 +34,10 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 - [x] Text: typography text, need for custom multiple languages
 - [x] TextInput
 - [x] Switch button: [example](https://mui.com/components/switches/)
-- [ ] Checkbox
-- [ ] Loading: [example](https://mui.com/components/progress/)
-- [ ] Radio button
-- [ ] Avatar: View [example](https://mui.com/components/avatars/)
+- [x] Checkbox
+- [x] Loading: [example](https://mui.com/components/progress/)
+- [x] Radio button
+- [x] Avatar: View [example](https://mui.com/components/avatars/)
 - [ ] Backdrop: [example](https://mui.com/components/backdrop/)
 
 ### Molecules
@@ -52,7 +52,6 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 - [ ] Pagination: [example](https://mui.com/components/pagination/)
 - [ ] Rating: [example](https://mui.com/components/rating/)
 - [ ] Upload file button
-- [ ] Drag & Drop files zone
 
 ### Organisms
 - [x] Modal
@@ -63,7 +62,7 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 - [x] Card: [example](https://mui.com/components/cards/)
 - [ ] Drawer: [example](https://mui.com/components/drawers/)
 - [ ] ItemSelect: A select with custom item, [example](https://mui.com/components/selects/)
-- [ ] Datepicker
+- [x] Datepicker
 - [ ] Timepicker: [example](https://mui.com/components/time-picker/)
 - [ ] DateTimepicker
 - [ ] DateRangePicker
@@ -71,5 +70,4 @@ The UI in this project is build on top of by [Native base](https://docs.nativeba
 
 ### Templates
 - [x] Layout
-- [x] Table
 - [ ] TabContainer: [example](https://mui.com/components/tabs/)

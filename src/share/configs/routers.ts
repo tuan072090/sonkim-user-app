@@ -5,9 +5,11 @@ export const ScreenName = {
     NEAR_BY_SCREEN: "NearBy",
     CART_SCREEN: "Cart",
     NOTIFICATION_SCREEN: "Notification",
+    PHONE_INPUT_SCREEN: "PhoneInput",
     LOGIN_SCREEN: "Login",
     REGISTER_SCREEN: "Register",
-    AUTH_SCREEN: "Auth",
+    OTP_SCREEN: "OtpScreen",
+    RESET_PASSWORD_SCREEN: "ResetPassword",
     ACCOUNT_SCREEN: "Account",
     BU_DETAIL_SCREEN: "BUDetail"
 }
@@ -19,6 +21,7 @@ export const ScreenTitle = {
     [ScreenName.ACCOUNT_SCREEN]: "Tài khoản",
     [ScreenName.LOGIN_SCREEN]: "Đăng nhập",
     [ScreenName.REGISTER_SCREEN]: "Đăng ký",
+    [ScreenName.RESET_PASSWORD_SCREEN]: "Đổi mật khẩu",
     [ScreenName.BU_DETAIL_SCREEN]: "Chi tiết BU"
 }
 
@@ -34,14 +37,14 @@ export const Deeplink = {
             }
         },
 
-        [ScreenName.AUTH_SCREEN]:{
-            path: 'auth'
-        },
         [ScreenName.LOGIN_SCREEN]:{
             path: 'login'
         },
         [ScreenName.REGISTER_SCREEN]:{
             path: 'register'
+        },
+        [ScreenName.RESET_PASSWORD_SCREEN]:{
+            path: "forgotpass"
         },
 
         [ScreenName.BU_DETAIL_SCREEN]: {

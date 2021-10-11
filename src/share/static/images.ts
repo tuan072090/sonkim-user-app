@@ -23,12 +23,16 @@ const StaticImages = {
     frame5: require("../../../static/imgs/card_frame/frame5.png"),
 
     //  images for app
+    logo_white: require("../../../static/imgs/logo_white.png"),
     banner_background: require("../../../static/imgs/banner_background.jpg"),
     register_card: require("../../../static/imgs/categories/dang-ky-the.png"),
     transfer_point: require("../../../static/imgs/categories/doi-diem.png"),
     earn_point: require("../../../static/imgs/categories/tich-diem.png"),
     link_card: require("../../../static/imgs/categories/lien-ket-the.png"),
 
+    //  background auth page
+    auth_background: require("../../../static/imgs/auth_background.jpg"),
+    otp_background: require("../../../static/imgs/otp_background.jpg"),
 }
 
 export default StaticImages
