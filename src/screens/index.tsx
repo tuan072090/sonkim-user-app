@@ -49,7 +49,6 @@ const AppNavigation = () => {
 
             <Stack.Navigator>
 
-
                 {/* Tab screens */}
                 <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{headerShown: false}}/>
                 {/* End Tab screens */}
