@@ -9,7 +9,8 @@ import FullScreenLoader from './atoms/loader/FullScreenLoader';
 import Picker from './molecules/picker'
 
 //  Organisms
-import {DatePicker} from './organisms/datepicker'
+import DatePicker from './organisms/datepicker'
+import FeatureItems from './organisms/feature-item'
 
 //  templates
 import OnBoarding from './templates/onboarding'
@@ -27,7 +28,7 @@ export {
     Picker,
     //  Organisms
     DatePicker,
-
+    FeatureItems,
     //  Templates
     OnBoarding,
     AuthComponent

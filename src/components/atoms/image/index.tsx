@@ -1,6 +1,7 @@
 import React from "react";
 import {Image as ImageNative} from 'native-base'
 import {ImageTypes} from "./image.types";
+import {StaticImages} from "../../../share";
 
 const Image: React.FC<ImageTypes> = ({uri, size, alt = "error", resizeMode="contain", borderRadius = 0, ...props}) => {
 
@@ -14,9 +15,7 @@ const Image: React.FC<ImageTypes> = ({uri, size, alt = "error", resizeMode="cont
             source={{
                 uri: uri
             }}
-            fallbackSource={{
-                uri: "https://www.w3schools.com/css/img_lights.jpg",
-            }}
+            fallbackSource={StaticImages.fallback_img}
         />
     )
 }

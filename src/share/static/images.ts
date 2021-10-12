@@ -29,6 +29,7 @@ const StaticImages = {
     transfer_point: require("../../../static/imgs/categories/doi-diem.png"),
     earn_point: require("../../../static/imgs/categories/tich-diem.png"),
     link_card: require("../../../static/imgs/categories/lien-ket-the.png"),
+    fallback_img: require("../../../static/imgs/fallback_img.jpg"),
 
     //  background auth page
     auth_background: require("../../../static/imgs/auth_background.jpg"),

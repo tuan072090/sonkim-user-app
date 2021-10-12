@@ -1,6 +1,6 @@
 import React from "react";
 import {Box, Pressable, Stack, Text} from "native-base";
-import {ImageStatic} from "../../../components";
+import {FeatureItems, ImageStatic} from "../../../components";
 import {StaticImages} from "../../../share";
 
 export const Categories = () => {
@@ -8,25 +8,13 @@ export const Categories = () => {
     return (
         <>
             <Stack direction="row"  mt={4} p={4} width="100%" >
-                <Pressable flex={1} flexDirection="column" alignItems="center">
-                    <ImageStatic uri={StaticImages.earn_point} width={16} height={16} borderRadius={100}/>
-                    <Text mt={2} textTransform="uppercase" textAlign="center">Tích, Dùng điểm</Text>
-                </Pressable>
+                <FeatureItems.UsePoint flex={1}/>
 
-                <Pressable flex={1} flexDirection="column" alignItems="center">
-                    <ImageStatic uri={StaticImages.register_card} width={16} height={16} borderRadius={100}/>
-                    <Text mt={2} textTransform="uppercase" textAlign="center">Đăng ký thẻ</Text>
-                </Pressable>
+                <FeatureItems.RegisterMembership flex={1}/>
 
-                <Pressable flex={1} flexDirection="column" alignItems="center">
-                    <ImageStatic uri={StaticImages.link_card} width={16} height={16} borderRadius={100}/>
-                    <Text mt={2} textTransform="uppercase" textAlign="center">Liên kết thẻ</Text>
-                </Pressable>
+                <FeatureItems.LinkMembership flex={1}/>
 
-                <Pressable flex={1} flexDirection="column" alignItems="center">
-                    <ImageStatic uri={StaticImages.transfer_point} width={16} height={16} borderRadius={100}/>
-                    <Text mt={2} textTransform="uppercase" textAlign="center">Đổi điểm</Text>
-                </Pressable>
+                <FeatureItems.TransferPoint flex={1}/>
             </Stack>
 
             <Box width="100%" alignItems="center">

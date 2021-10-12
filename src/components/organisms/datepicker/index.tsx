@@ -4,7 +4,7 @@ import {Pressable, Text, ChevronDownIcon} from "native-base";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {DatepickerTypes} from "./datepicker.types";
 
-export const DatePicker:React.FC<DatepickerTypes> = ({onChange, value, ...props}) => {
+const DatePicker:React.FC<DatepickerTypes> = ({onChange, value, ...props}) => {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [date, setDate] = useState<Date|null>(null)
 
@@ -44,3 +44,5 @@ export const DatePicker:React.FC<DatepickerTypes> = ({onChange, value, ...props}
         </>
     )
 }
+
+export default DatePicker
