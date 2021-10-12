@@ -6,7 +6,7 @@ const UPDATE_ACCESS_TOKEN = "UPDATE_ACCESS_TOKEN";
 const UPDATE_REFRESH_TOKEN = "UPDATE_REFRESH_TOKEN";
 const LOGOUT = "LOGOUT";
 
-type ActionType = {
+export type ActionType = {
     data: any;
     type: string;
 };
@@ -61,7 +61,6 @@ const reducer = (state: any, action: ActionType) => {
 const AppProvider = (props: React.PropsWithChildren<any>) => {
     const accessToken = LocalStorageService.GetAccessToken();
     const refreshToken = LocalStorageService.GetRefreshToken();
-
 
     const initData = {
         ...initState,

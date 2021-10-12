@@ -1,16 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {ScrollView, StatusBar} from 'native-base';
 import {HomeHeader} from "./components/HomeHeader";
 import {HomeSlider} from "./components/HomeSlider";
 import {Categories} from "./components/Categories";
-import {MembershipCards} from "./components/MembershipCards";
+import {MembershipCardList} from "./components/MembershipCardList";
 import { useNavigation } from '@react-navigation/native';
-import {ScreenName} from "../../share";
+import LanguageProvider from "../../share/context/Language";
 
 const HomeScreen = () => {
+    const {language, setLanguage} = useContext(LanguageProvider.context)
     const navigation = useNavigation();
 
+    console.log("language...", language)
+
     useEffect(() => {
+        setLanguage("en")
         // setTimeout(function(){
         //     // @ts-ignore
         //     navigation.navigate(ScreenName.REGISTER_SCREEN)
@@ -28,7 +32,7 @@ const HomeScreen = () => {
 
                 <Categories/>
 
-                <MembershipCards/>
+                <MembershipCardList/>
             </ScrollView>
         </>
     )

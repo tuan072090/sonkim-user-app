@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {NativeBaseProvider, extendTheme} from 'native-base';
+import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
-import {Colors} from "./src/share";
+import {Colors, LocalStorageService} from "./src/share";
 import AppProvider from "./src/share/context";
-import {LocalStorageService} from "./src/share";
 import {Alert} from "react-native";
 import {FullScreenLoader, OnBoarding} from "./src/components";
+import LanguageProvider from "./src/share/context/Language";
 
 const configs = {
     colors: Colors
@@ -14,19 +14,15 @@ const configs = {
 const theme = extendTheme(configs);
 
 const App = () => {
-    const [isFirstOpen, setFirstOpen] = useState<boolean|null>(null)
+    const [isFirstOpen, setFirstOpen] = useState<boolean | null>(null)
 
     useEffect(() => {
-        LocalStorageService.GetData("firstOpen").then(res => {
-            if(res === null){
-                setFirstOpen(true)
-            }else {
-                setFirstOpen(false)
-            }
+        LocalStorageService.SynsData().then(res => {
+            setFirstOpen(LocalStorageService.GetFirstOpen())
         }).catch(err => {
             Alert.alert("Có lỗi xảy ra", err.message)
         })
-    },[])
+    }, [])
 
     const _finishOnboarding = () => {
         LocalStorageService.StoreData("firstOpen", "yes")
@@ -35,13 +31,15 @@ const App = () => {
 
     return (
         <NativeBaseProvider theme={theme}>
-            {
-                isFirstOpen === null ? <FullScreenLoader/>
-                    : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
-                    : <AppProvider>
-                        <AppNavigation/>
-                    </AppProvider>
-            }
+            <LanguageProvider>
+                {
+                    isFirstOpen === null ? <FullScreenLoader/>
+                        : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
+                        : <AppProvider>
+                            <AppNavigation/>
+                        </AppProvider>
+                }
+            </LanguageProvider>
         </NativeBaseProvider>
     );
 };

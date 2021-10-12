@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyError from "../error";
+import {LanguageType} from "../../context/Language";
 
 class LocalStorage {
 
@@ -8,12 +9,15 @@ class LocalStorage {
     public Keys = {
         ACCESS_TOKEN_KEY: "accessToken",
         REFRESH_TOKEN_KEY: "refreshToken",
-        FIRST_OPEN_KEY: "firstOpen"
+        FIRST_OPEN_KEY: "firstOpen",
+        LANGUAGE_KEY: "language"
     }
 
     private accessToken: string = "";
     private refreshToken: string = "";
     private firstOpen = true;
+    //  @ts-ignore
+    private language: LanguageType
 
     public static GetInstance(): LocalStorage {
         if (!LocalStorage.instance) {
@@ -22,17 +26,20 @@ class LocalStorage {
         return LocalStorage.instance
     }
 
-    public async SynsData(){
+    public async SynsData() {
         try {
             const accessToken = await this.GetData(this.Keys.ACCESS_TOKEN_KEY)
             const refreshToken = await this.GetData(this.Keys.REFRESH_TOKEN_KEY)
             const firstOpen = await this.GetData(this.Keys.FIRST_OPEN_KEY)
+            const lang = await this.GetData(this.Keys.LANGUAGE_KEY)
 
             //  set data
             this.accessToken = accessToken || ""
             this.refreshToken = refreshToken || ""
             this.firstOpen = firstOpen === "true"
-        } catch (err){
+            //  @ts-ignore
+            this.language = lang
+        } catch (err) {
             throw new MyError(err.status, err.message)
         }
     }
@@ -54,20 +61,32 @@ class LocalStorage {
         }
     }
 
-    public GetAccessToken(){
+    public GetAccessToken() {
         return this.accessToken
     }
 
-    public SetAccessToken(accessToken:string){
+    public SetAccessToken(accessToken: string) {
         this.accessToken = accessToken
     }
 
-    public GetRefreshToken(){
+    public GetRefreshToken() {
         return this.accessToken
     }
 
-    public SetRefreshToken(refreshToken:string){
+    public SetRefreshToken(refreshToken: string) {
         this.refreshToken = refreshToken
+    }
+
+    public GetFirstOpen():boolean {
+        return this.firstOpen
+    }
+
+    public GetLanguage() {
+        return this.language
+    }
+
+    public SetLanguage(lang: LanguageType) {
+        this.language = lang
     }
 }
 

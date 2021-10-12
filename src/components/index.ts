@@ -11,6 +11,7 @@ import Picker from './molecules/picker'
 //  Organisms
 import DatePicker from './organisms/datepicker'
 import FeatureItems from './organisms/feature-item'
+import MembershipCards from './organisms/membership-cards'
 
 //  templates
 import OnBoarding from './templates/onboarding'
@@ -23,12 +24,16 @@ export {
     Image,
     ImageStatic,
     FullScreenLoader,
+
     //  Molecules
     Avatar,
     Picker,
+
     //  Organisms
     DatePicker,
     FeatureItems,
+    MembershipCards,
+
     //  Templates
     OnBoarding,
     AuthComponent
