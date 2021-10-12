@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
 import {Colors, LocalStorageService} from "./src/share";
@@ -14,10 +14,14 @@ const configs = {
 const theme = extendTheme(configs);
 
 const App = () => {
+    const {setLanguage} = useContext(LanguageProvider.context)
     const [isFirstOpen, setFirstOpen] = useState<boolean | null>(null)
 
     useEffect(() => {
         LocalStorageService.SynsData().then(res => {
+
+            setLanguage(LocalStorageService.GetLanguage())
+
             setFirstOpen(LocalStorageService.GetFirstOpen())
         }).catch(err => {
             Alert.alert("Có lỗi xảy ra", err.message)
@@ -25,7 +29,7 @@ const App = () => {
     }, [])
 
     const _finishOnboarding = () => {
-        LocalStorageService.StoreData("firstOpen", "yes")
+        LocalStorageService.SetFirstOpen("no")
         setFirstOpen(false)
     }
 

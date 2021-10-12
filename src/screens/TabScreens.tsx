@@ -1,17 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {Colors, ScreenName} from "../share";
+import {Colors, ScreenName, Translate} from "../share";
 import HomeScreen from "./home";
 import NotificationsScreen from "./notifications";
 import NearByScreen from "./nearby";
-import {AccountIcon, CartIcon, HomeIcon, NearByIcon, NotificationIcon} from "../components/atoms/icons/BottomNavIcons";
+import {AccountIcon, CartIcon, HomeIcon, NearByIcon, NotificationIcon} from "../components";
 import CartScreen from "./cart";
 import AccountScreen from "./account";
 import {Text} from "native-base";
+import LanguageProvider from "../share/context/Language";
 
 const Tab = createBottomTabNavigator();
 
 const TabScreens = () => {
+    const {language:lang} = useContext(LanguageProvider.context)
 
     return (
         <Tab.Navigator>
@@ -22,7 +24,7 @@ const TabScreens = () => {
                 tabBarShowLabel: true,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color="primary.500">Trang chủ</Text>;
+                        return <Text fontSize="xs" color="primary.500">{Translate[lang].home}</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -32,7 +34,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.NOTIFICATION_SCREEN} component={NotificationsScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color="primary.500">Thông báo</Text>;
+                        return <Text fontSize="xs" color="primary.500">{Translate[lang].notifications}</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -40,9 +42,11 @@ const TabScreens = () => {
             }}/>
 
             <Tab.Screen name={ScreenName.NEAR_BY_SCREEN} component={NearByScreen} options={{
+                unmountOnBlur: true,
+                headerShown: false,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color="primary.500">Quanh đây</Text>;
+                        return <Text fontSize="xs" color="primary.500">{Translate[lang].nearby}</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -53,7 +57,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.CART_SCREEN} component={CartScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color="primary.500">Đơn hàng</Text>;
+                        return <Text fontSize="xs" color="primary.500">{Translate[lang].orders}</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (
@@ -63,7 +67,7 @@ const TabScreens = () => {
             <Tab.Screen name={ScreenName.ACCOUNT_SCREEN} component={AccountScreen} options={{
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
-                        return <Text fontSize="xs" color="primary.500">Tài khoản</Text>;
+                        return <Text fontSize="xs" color="primary.500">{Translate[lang].account}</Text>;
                     return null
                 },
                 tabBarIcon: ({focused, color, size}) => (

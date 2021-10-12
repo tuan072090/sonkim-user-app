@@ -34,6 +34,9 @@ const StaticImages = {
     //  background auth page
     auth_background: require("../../../static/imgs/auth_background.jpg"),
     otp_background: require("../../../static/imgs/otp_background.jpg"),
+
+    //  icons
+    shop_icon: require("../../../static/imgs/icons/shop.png")
 }
 
 export default StaticImages

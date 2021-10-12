@@ -6,24 +6,24 @@ import {Categories} from "./components/Categories";
 import {MembershipCardList} from "./components/MembershipCardList";
 import { useNavigation } from '@react-navigation/native';
 import LanguageProvider from "../../share/context/Language";
+import {ScreenName} from "../../share";
 
 const HomeScreen = () => {
     const {language, setLanguage} = useContext(LanguageProvider.context)
     const navigation = useNavigation();
 
-    console.log("language...", language)
-
     useEffect(() => {
-        setLanguage("en")
-        // setTimeout(function(){
-        //     // @ts-ignore
-        //     navigation.navigate(ScreenName.REGISTER_SCREEN)
-        // },1000)
+        setTimeout(function(){
+            // @ts-ignore
+            navigation.navigate(ScreenName.NEAR_BY_SCREEN)
+
+            // setLanguage("en")
+        },1000)
     },[])
 
     return (
         <>
-            <StatusBar backgroundColor="primary.500" barStyle="light-content"/>
+            <StatusBar backgroundColor="#086981" barStyle="light-content"/>
 
             <ScrollView bgColor="white">
                 <HomeHeader/>

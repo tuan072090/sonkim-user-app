@@ -36,9 +36,9 @@ class LocalStorage {
             //  set data
             this.accessToken = accessToken || ""
             this.refreshToken = refreshToken || ""
-            this.firstOpen = firstOpen === "true"
+            this.firstOpen = firstOpen === "yes"
             //  @ts-ignore
-            this.language = lang
+            this.language = lang || "vi"
         } catch (err) {
             throw new MyError(err.status, err.message)
         }
@@ -66,6 +66,8 @@ class LocalStorage {
     }
 
     public SetAccessToken(accessToken: string) {
+        this.StoreData(this.Keys.ACCESS_TOKEN_KEY, accessToken)
+
         this.accessToken = accessToken
     }
 
@@ -74,6 +76,8 @@ class LocalStorage {
     }
 
     public SetRefreshToken(refreshToken: string) {
+        this.StoreData(this.Keys.REFRESH_TOKEN_KEY, refreshToken)
+
         this.refreshToken = refreshToken
     }
 
@@ -81,11 +85,17 @@ class LocalStorage {
         return this.firstOpen
     }
 
-    public GetLanguage() {
+    public SetFirstOpen(firstOpen:string):boolean {
+        this.StoreData(this.Keys.FIRST_OPEN_KEY, firstOpen)
+        return this.firstOpen
+    }
+
+    public GetLanguage():LanguageType {
         return this.language
     }
 
     public SetLanguage(lang: LanguageType) {
+        this.StoreData(this.Keys.LANGUAGE_KEY, lang)
         this.language = lang
     }
 }

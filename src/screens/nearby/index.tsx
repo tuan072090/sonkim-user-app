@@ -1,17 +1,17 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {Box} from 'native-base'
+import {SearchHeader} from "./components/SearchHeader";
+import {MapContent} from "./components/MapContent";
 
 const NearByScreen = () => {
 
     return (
-        <View style={styles.wrap}>
-            <Text>Near by Screen</Text>
-        </View>
+        <Box flex={1}>
+            <SearchHeader/>
+            <MapContent/>
+        </Box>
     )
 }
 
-const styles = StyleSheet.create({
-    wrap: {}
-})
 
 export default NearByScreen
