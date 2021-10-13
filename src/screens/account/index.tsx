@@ -1,4 +1,4 @@
-import { Box, Button, Center, Switch } from "native-base";
+import { Box, Button, Center, Pressable, Switch } from "native-base";
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
 import { ChevronRightIcon, FriendIcon, LocationIcon, NotificationIcon, NotificationOutlineIcon, TranslateIcon } from "../../components";
@@ -24,7 +24,7 @@ const sampleData=[
     {
         startIcon:<NotificationOutlineIcon size={8}></NotificationOutlineIcon>,
         title:'Lịch sử đổi điểm',
-        endIcon:<Switch size={8}></Switch>,
+        endIcon:<Switch size={8} onTrackColor="success.500" onThumbColor="white"></Switch>,
     },
 ]
 
@@ -37,21 +37,23 @@ const AccountScreen = () => {
                 {sampleData.map((item,index)=>(
                     <AccountItem key={index} item={item}></AccountItem>
                 ))}
-                <Center bgColor="#08698133"
-                mt={2}
-                height={12}
-                borderRadius={12}
-                _text={{
-                    fontStyle:'normal',
-                    fontWeight:'bold',
-                    fontSize:'md',
-                    lineHeight:'lg',
-                    letterSpacing:'lg',
-                    color:'#086981'
-                }}
-                >
-                    Đăng xuất
-                </Center>
+                <Pressable>
+                    <Center bgColor="#08698133"
+                    mt={2}
+                    height={12}
+                    borderRadius={12}
+                    _text={{
+                        fontStyle:'normal',
+                        fontWeight:'bold',
+                        fontSize:'md',
+                        lineHeight:'lg',
+                        letterSpacing:'lg',
+                        color:'#086981'
+                    }}
+                    >
+                        Đăng xuất
+                    </Center>
+                </Pressable>
                 
             </Box>
             
