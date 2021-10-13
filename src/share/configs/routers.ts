@@ -11,7 +11,8 @@ export const ScreenName = {
     OTP_SCREEN: "OtpScreen",
     RESET_PASSWORD_SCREEN: "ResetPassword",
     ACCOUNT_SCREEN: "Account",
-    BU_DETAIL_SCREEN: "BUDetail"
+    BU_DETAIL_SCREEN: "BUDetail",
+    USER_LIST_CARD: "UserListCard"
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -22,7 +23,9 @@ export const ScreenTitle = {
     [ScreenName.LOGIN_SCREEN]: "Đăng nhập",
     [ScreenName.REGISTER_SCREEN]: "Đăng ký",
     [ScreenName.RESET_PASSWORD_SCREEN]: "Đổi mật khẩu",
-    [ScreenName.BU_DETAIL_SCREEN]: "Chi tiết BU"
+    [ScreenName.BU_DETAIL_SCREEN]: "Chi tiết BU",
+    [ScreenName.USER_LIST_CARD]: "Danh sách thẻ"
+
 }
 
 export const Deeplink = {
@@ -37,13 +40,13 @@ export const Deeplink = {
             }
         },
 
-        [ScreenName.LOGIN_SCREEN]:{
+        [ScreenName.LOGIN_SCREEN]: {
             path: 'login'
         },
-        [ScreenName.REGISTER_SCREEN]:{
+        [ScreenName.REGISTER_SCREEN]: {
             path: 'register'
         },
-        [ScreenName.RESET_PASSWORD_SCREEN]:{
+        [ScreenName.RESET_PASSWORD_SCREEN]: {
             path: "forgotpass"
         },
 
