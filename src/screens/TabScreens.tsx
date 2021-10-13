@@ -32,6 +32,8 @@ const TabScreens = () => {
             }}/>
 
             <Tab.Screen name={ScreenName.NOTIFICATION_SCREEN} component={NotificationsScreen} options={{
+                unmountOnBlur: true,
+                headerShown: false,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
                         return <Text fontSize="xs" color="primary.500">{Translate[lang].notifications}</Text>;
@@ -55,6 +57,8 @@ const TabScreens = () => {
             }}/>
 
             <Tab.Screen name={ScreenName.CART_SCREEN} component={CartScreen} options={{
+                unmountOnBlur: true,
+                headerShown: false,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
                         return <Text fontSize="xs" color="primary.500">{Translate[lang].orders}</Text>;
@@ -65,6 +69,8 @@ const TabScreens = () => {
 
             }}/>
             <Tab.Screen name={ScreenName.ACCOUNT_SCREEN} component={AccountScreen} options={{
+                unmountOnBlur: false,
+                headerShown: false,
                 tabBarLabel: ({focused, color}) => {
                     if(focused)
                         return <Text fontSize="xs" color="primary.500">{Translate[lang].account}</Text>;

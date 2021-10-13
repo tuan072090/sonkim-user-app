@@ -1,20 +1,18 @@
-import React, {useState} from "react";
-import {View, StyleSheet} from "react-native";
-import {Text} from "native-base";
+import React, {useContext} from "react";
+import {Box} from "native-base";
+import ScreenHeader from "../../components/organisms/screen-header";
+import {Translate} from "../../share";
+import LanguageProvider from "../../share/context/Language";
 
 const NotificationsScreen = () => {
+    const {language} = useContext(LanguageProvider.context)
 
-  return (
-    <View style={styles.wrap}>
-      <Text fontSize={"xl"}>Notifications Screen</Text>
-    </View>
-  )
+    return (
+        <Box flex={1} >
+            <ScreenHeader hasBackButton={true} title={Translate[language].notifications} bgColor="primary.500"/>
+        </Box>
+    )
 }
 
-const styles = StyleSheet.create({
-  wrap:{
-
-  }
-})
 
 export default NotificationsScreen

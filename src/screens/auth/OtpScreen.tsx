@@ -1,9 +1,6 @@
-import { Box, StatusBar } from 'native-base'
 import React from 'react'
-import { AuthComponent, ImageStatic } from '../../components'
-import ScreenHeader from '../../components/organisms/screen-header'
-import { StaticImages } from '../../share'
-import { AuthLayout } from './components/Layout'
+import {AuthComponent} from '../../components'
+
 import {LayoutWithBackButton} from "./components/LayoutWithBackButton";
 
 const OtpScreen = () => {
