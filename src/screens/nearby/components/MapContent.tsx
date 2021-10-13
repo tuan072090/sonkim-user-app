@@ -21,7 +21,7 @@ export const MapContent = () => {
             <MapboxGL.MapView style={{flex: 1}} localizeLabels={true} zoomEnabled={true}>
                 <MapboxGL.Camera
                     centerCoordinate={[106.6960296, 10.7724091]}
-                    zoomLevel={15}/>
+                    zoomLevel={12}/>
                 <MapboxGL.UserLocation visible={true} animated={true}/>
 
                 {
