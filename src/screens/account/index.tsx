@@ -54,9 +54,7 @@ const AccountScreen = () => {
                         Đăng xuất
                     </Center>
                 </Pressable>
-                
             </Box>
-            
         </View>
     )
 }
