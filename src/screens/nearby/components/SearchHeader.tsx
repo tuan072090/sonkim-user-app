@@ -1,12 +1,12 @@
 import React from "react";
-import {Box, Pressable, SearchIcon, Text} from "native-base";
+import {Box, Pressable, ScrollView, SearchIcon, Text} from "native-base";
 import {ListIcon} from "../../../components";
 // import {SearchIcon} from "../../../components";
 
 export const SearchHeader = () => {
 
     return (
-        <Box bgColor="primary.500" width="100%">
+        <Box bgColor="primary.500" width="100%" roundedBottom="xl">
 
             <Box flexDirection="row" safeAreaTop={true} p={3}>
                 <Pressable bgColor="rgba(255,255,255,0.3)"
@@ -36,6 +36,39 @@ export const SearchHeader = () => {
                 </Pressable>
             </Box>
 
+            <Box width="100%" pt={2} pb={1} >
+                <ScrollView horizontal={true}>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1} borderBottomWidth={1} borderBottomColor="white"><Text color="white">LAZADA</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">CGV</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">JOCKEY</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">VERA</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">CGV</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">JOCKEY</Text></Box>
+                    </Pressable>
+
+                    <Pressable px={3} pb={2}>
+                        <Box p={1}><Text color="white">VERA</Text></Box>
+                    </Pressable>
+
+                </ScrollView>
+            </Box>
         </Box>
     )
 }
