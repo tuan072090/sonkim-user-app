@@ -18,7 +18,7 @@ const BUDetailScreen = () => {
                 hasBackButton={true}
                 title={Translate[language].buDetail}
                 bgColor="primary.500"
-            ></ScreenHeader>
+            />
             <Box position="relative">
 
                 <ImageStatic
