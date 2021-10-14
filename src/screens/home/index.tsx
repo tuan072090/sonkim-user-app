@@ -23,8 +23,6 @@ const HomeScreen = () => {
 
     return (
         <>
-            <StatusBar backgroundColor="#086981" barStyle="light-content"/>
-
             <ScrollView bgColor="white">
                 <HomeHeader/>
 

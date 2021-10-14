@@ -10,6 +10,7 @@ import { PhoneInputScreen } from "./auth/PhoneInputScreen";
 import { LoginScreen } from "./auth/LoginScreen";
 import { OtpScreen } from "./auth/OtpScreen";
 import { RegisterScreen } from "./auth/RegisterScreen";
+import {StatusBar} from "native-base";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,28 +44,31 @@ const AppNavigation = () => {
     }
 
     return (
-        <NavigationContainer
-            ref={navigationRef}
-            onReady={onReadyNav}
-            onStateChange={handleScreenTracking}>
+        <>
+            <StatusBar backgroundColor="#086981" barStyle="light-content"/>
+            <NavigationContainer
+                ref={navigationRef}
+                onReady={onReadyNav}
+                onStateChange={handleScreenTracking}>
 
-            <Stack.Navigator>
+                <Stack.Navigator>
 
-                {/* Tab screens */}
-                <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
-                {/* End Tab screens */}
-                <Stack.Screen name={ScreenName.REGISTER_SCREEN} component={RegisterScreen}
-                    options={{ headerShown: false }} />
-                <Stack.Screen name={ScreenName.PHONE_INPUT_SCREEN} component={PhoneInputScreen}
-                    options={{ headerShown: false }} />
-                <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
-                <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
+                    {/* Tab screens */}
+                    <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
+                    {/* End Tab screens */}
+                    <Stack.Screen name={ScreenName.REGISTER_SCREEN} component={RegisterScreen}
+                                  options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.PHONE_INPUT_SCREEN} component={PhoneInputScreen}
+                                  options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
 
-                <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
-                <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
-            </Stack.Navigator>
+                    <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
+                </Stack.Navigator>
 
-        </NavigationContainer>
+            </NavigationContainer>
+        </>
     )
 }
 
