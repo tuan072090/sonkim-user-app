@@ -3,9 +3,10 @@ import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
 import {Colors, LocalStorageService} from "./src/share";
 import AppProvider from "./src/share/context";
-import {Alert} from "react-native";
+import {Alert, Platform} from "react-native";
 import {FullScreenLoader, OnBoarding} from "./src/components";
 import LanguageProvider from "./src/share/context/Language";
+import SplashScreen from 'react-native-splash-screen'
 
 const configs = {
     colors: Colors
@@ -23,6 +24,9 @@ const App = () => {
             setLanguage(LocalStorageService.GetLanguage())
 
             setFirstOpen(LocalStorageService.GetFirstOpen())
+            if(Platform.OS === 'android'){
+                SplashScreen.hide()
+            }
         }).catch(err => {
             Alert.alert("Có lỗi xảy ra", err.message)
         })
