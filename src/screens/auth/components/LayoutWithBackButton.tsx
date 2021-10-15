@@ -12,7 +12,7 @@ export const LayoutWithBackButton: React.FC = ({children}) => {
             <ImageStatic resizeMode="cover" position="absolute" bottom={0} left={0} width="100%" height="100%"
                          uri={StaticImages.otp_background}/>
 
-            <Box flex={1} width="100%" bgColor="rgba(8, 105, 129, 0.8)" safeAreaTop>
+            <Box flex={1} width="100%" bgColor="rgba(8, 105, 129, 0.8)">
                 <ScreenHeader/>
 
                 {children}

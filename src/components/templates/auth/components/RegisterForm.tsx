@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Box, Button, Heading, Input, Pressable, ScrollView, Text} from 'native-base'
 import {useNavigation} from '@react-navigation/native';
 import {ScreenName} from "../../../../share";
-import {DatePicker} from "../../../organisms/datepicker";
+import DatePicker from "../../../organisms/datepicker";
 import {Picker} from "../../../index";
 
 export const RegisterForm = () => {

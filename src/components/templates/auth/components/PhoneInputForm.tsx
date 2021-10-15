@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Box, Button, Heading, Input, Text } from 'native-base'
 import { useNavigation } from '@react-navigation/native';
 import { ScreenName, Validator } from "../../../../share";
+import auth from '@react-native-firebase/auth';
 
 export const PhoneInputForm = () => {
     const navigation = useNavigation();
@@ -12,7 +13,7 @@ export const PhoneInputForm = () => {
         phoneValue.current = text;
     }
 
-    const _submitPhone = () => {
+    const _submitPhone = async (text: string) => {
         // validate phone
         const isPhoneValid = Validator.isValidPhone(phoneValue.current);
 
