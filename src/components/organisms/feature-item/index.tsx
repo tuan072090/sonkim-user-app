@@ -1,11 +1,18 @@
 import React from "react";
-import { StaticImages } from "../../../share";
+import { ScreenName, StaticImages } from "../../../share";
 import { Pressable, Text } from "native-base";
 import ImageStatic from "../../atoms/image/ImageStatic";
 import { FeatureItemTypes } from "./featureItem.types";
+import { useNavigation } from "@react-navigation/core";
 
 const FeatureItem: React.FC<FeatureItemTypes> = ({ name, ...props }) => {
-    const _onPressHandler = () => { };
+    const navigation = useNavigation();
+
+    const _onPressHandler = (name: string) => {
+        // @ts-ignore
+        navigation.navigate(name)
+
+    };
 
     const itemImage =
         name === "UsePoint"
@@ -39,7 +46,7 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({ name, ...props }) => {
 
     return (
         <Pressable
-            onPress={_onPressHandler}
+            onPress={() => _onPressHandler(name)}
             _pressed={{ opacity: 0.5 }}
             flexDirection="column"
             alignItems="center"

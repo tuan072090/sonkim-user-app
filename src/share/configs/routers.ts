@@ -12,7 +12,11 @@ export const ScreenName = {
     RESET_PASSWORD_SCREEN: "ResetPassword",
     ACCOUNT_SCREEN: "Account",
     BU_DETAIL_SCREEN: "BUDetail",
-    USER_LIST_CARD: "UserListCard"
+    USER_LIST_CARD: "UserListCard",
+    REGISTER_MEMBERSHIP: "RegisterMembership",
+    LINK_MEMBERSHIP: 'LinkMembership'
+
+
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -24,7 +28,9 @@ export const ScreenTitle = {
     [ScreenName.REGISTER_SCREEN]: "Đăng ký",
     [ScreenName.RESET_PASSWORD_SCREEN]: "Đổi mật khẩu",
     [ScreenName.BU_DETAIL_SCREEN]: "Chi tiết BU",
-    [ScreenName.USER_LIST_CARD]: "Danh sách thẻ"
+    [ScreenName.USER_LIST_CARD]: "Danh sách thẻ",
+    [ScreenName.REGISTER_MEMBERSHIP]: "Đăng ký thẻ",
+    [ScreenName.LINK_MEMBERSHIP]: "Liên kết thẻ",
 
 }
 
@@ -49,6 +55,13 @@ export const Deeplink = {
         [ScreenName.RESET_PASSWORD_SCREEN]: {
             path: "forgotpass"
         },
+        [ScreenName.REGISTER_MEMBERSHIP]: {
+            path: "registerMemberShip"
+        },
+        [ScreenName.LINK_MEMBERSHIP]: {
+            path: "linkMembership"
+        },
+
 
         [ScreenName.BU_DETAIL_SCREEN]: {
             path: 'bu/:id',

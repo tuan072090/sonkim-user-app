@@ -10,7 +10,9 @@ import { PhoneInputScreen } from "./auth/PhoneInputScreen";
 import { LoginScreen } from "./auth/LoginScreen";
 import { OtpScreen } from "./auth/OtpScreen";
 import { RegisterScreen } from "./auth/RegisterScreen";
-import {StatusBar} from "native-base";
+import { StatusBar } from "native-base";
+import RegisterMembership from './register-membership';
+import LinkMembership from './link-membership';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +47,7 @@ const AppNavigation = () => {
 
     return (
         <>
-            <StatusBar backgroundColor="#086981" barStyle="light-content"/>
+            <StatusBar backgroundColor="#086981" barStyle="light-content" />
             <NavigationContainer
                 ref={navigationRef}
                 onReady={onReadyNav}
@@ -57,14 +59,17 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
                     {/* End Tab screens */}
                     <Stack.Screen name={ScreenName.REGISTER_SCREEN} component={RegisterScreen}
-                                  options={{ headerShown: false }} />
+                        options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.PHONE_INPUT_SCREEN} component={PhoneInputScreen}
-                                  options={{ headerShown: false }} />
+                        options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
 
                     <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP} component={RegisterMembership} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
+
                 </Stack.Navigator>
 
             </NavigationContainer>

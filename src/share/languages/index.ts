@@ -7,7 +7,9 @@ const languages = {
         account: "Tài khoản",
         orders: "Đơn hàng",
         userListCard: "Danh sách thẻ",
-        buDetail: "Thông tin thẻ"
+        buDetail: "Thông tin thẻ",
+        registerMembership: 'Đăng ký thẻ',
+        linkMembership: 'Liên kết thẻ',
 
     },
     en: {
@@ -18,7 +20,9 @@ const languages = {
         account: "Account",
         orders: "Orders",
         userListCard: "List Card",
-        buDetail: "Card Information"
+        buDetail: "Card Information",
+        registerMembership: 'Register membership',
+        linkMembership: 'Link membership',
     }
 }
 

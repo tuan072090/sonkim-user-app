@@ -14,6 +14,8 @@ const StaticImages = {
     jockey: require("../../../static/imgs/brands/jockey.png"),
     kyo_watamin: require("../../../static/imgs/brands/kyo_watamin.png"),
     vera: require("../../../static/imgs/brands/vera.png"),
+    cgv: require("../../../static/imgs/brands/cgv.png"),
+
 
     //  Frames for membership card
     frame1: require("../../../static/imgs/card_frame/frame1.png"),
