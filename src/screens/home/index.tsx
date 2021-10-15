@@ -1,36 +1,36 @@
-import React, {useContext, useEffect} from 'react';
-import {ScrollView, StatusBar} from 'native-base';
-import {HomeHeader} from "./components/HomeHeader";
-import {HomeSlider} from "./components/HomeSlider";
-import {Categories} from "./components/Categories";
-import {MembershipCardList} from "./components/MembershipCardList";
+import React, { useContext, useEffect } from 'react';
+import { ScrollView, StatusBar } from 'native-base';
+import { HomeHeader } from "./components/HomeHeader";
+import { HomeSlider } from "./components/HomeSlider";
+import { Categories } from "./components/Categories";
+import { MembershipCardList } from "./components/MembershipCardList";
 import { useNavigation } from '@react-navigation/native';
 import LanguageProvider from "../../share/context/Language";
-import {ScreenName} from "../../share";
+import { ScreenName } from "../../share";
 
 const HomeScreen = () => {
-    const {language, setLanguage} = useContext(LanguageProvider.context)
+    const { language, setLanguage } = useContext(LanguageProvider.context)
     const navigation = useNavigation();
 
     useEffect(() => {
-        setTimeout(function(){
+        setTimeout(function () {
             // @ts-ignore
             // navigation.navigate(ScreenName.BU_DETAIL_SCREEN)
 
             // setLanguage("en")
-        },1000)
-    },[])
+        }, 1000)
+    }, [])
 
     return (
         <>
             <ScrollView bgColor="white">
-                <HomeHeader/>
+                <HomeHeader />
 
-                <HomeSlider/>
+                <HomeSlider />
 
-                <Categories/>
+                <Categories />
 
-                <MembershipCardList/>
+                <MembershipCardList />
             </ScrollView>
         </>
     )

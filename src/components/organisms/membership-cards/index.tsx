@@ -28,7 +28,6 @@ const MembershipCard: React.FC<MembershipCardTypes> = ({ name, ...props }) => {
             <ImageBackground source={cardBackgroundSample} resizeMode="cover" style={styles.image}>
                 <ImageStatic mt={2} mx={3} uri={cardLogoSample} width={12} height={6} />
                 <Text px={3} color="white" fontSize="md" fontWeight="semibold">{memberArchiveSample}</Text>
-
                 <Box p={3} flexDirection="row" justifyContent="space-between">
                     <Text color="white" fontSize="lg">GS25_12345</Text>
                     <Text color="primary.600" fontSize="lg">120 điểm</Text>
