@@ -3,12 +3,17 @@ import React, {useState} from 'react'
 import {Platform} from "react-native";
 import {useNavigation} from "@react-navigation/native";
 import {ScreenName} from "../../../../share";
+import auth from '@react-native-firebase/auth';
 
 export const OtpForm = () => {
     const [otp, setOtp] = useState("")
     const navigation = useNavigation();
 
-    const _submitOTP = () => {
+    const _submitOTP = async () => {
+        const confirmation = await auth().signInWithPhoneNumber("+84966499006");
+
+        console.log("confirmation....", confirmation)
+
         //  @ts-ignore
         navigation.navigate(ScreenName.REGISTER_SCREEN)
     }

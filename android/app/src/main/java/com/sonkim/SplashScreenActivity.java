@@ -1,4 +1,4 @@
-package com.sonkim_user_app;
+package com.sonkim;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;

@@ -10,9 +10,10 @@ import { PhoneInputScreen } from "./auth/PhoneInputScreen";
 import { LoginScreen } from "./auth/LoginScreen";
 import { OtpScreen } from "./auth/OtpScreen";
 import { RegisterScreen } from "./auth/RegisterScreen";
-import { StatusBar } from "native-base";
 import RegisterMembership from './register-membership';
 import LinkMembership from './link-membership';
+import { StatusBar } from "native-base";
+import analytics from '@react-native-firebase/analytics';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,10 @@ const AppNavigation = () => {
 
             if (previousRouteName !== currentRouteName) {
                 //  add tracking
+                analytics().logScreenView({
+                    screen_name: currentRouteName,
+                    screen_class: currentRouteName,
+                });
             }
 
             // Save the current route name for later comparison

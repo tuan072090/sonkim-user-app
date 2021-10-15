@@ -15,7 +15,7 @@ const HomeScreen = () => {
     useEffect(() => {
         setTimeout(function () {
             // @ts-ignore
-            // navigation.navigate(ScreenName.BU_DETAIL_SCREEN)
+            // navigation.navigate(ScreenName.PHONE_INPUT_SCREEN)
 
             // setLanguage("en")
         }, 1000)
