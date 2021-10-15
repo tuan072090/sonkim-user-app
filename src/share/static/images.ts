@@ -29,6 +29,9 @@ const StaticImages = {
     filter_bu: require("../../../static/imgs/filter_bu.jpg"),
     register_card: require("../../../static/imgs/categories/dang-ky-the.png"),
     transfer_point: require("../../../static/imgs/categories/doi-diem.png"),
+    history_point: require("../../../static/imgs/categories/lich-su.png"),
+    rank_point: require("../../../static/imgs/categories/thu-hang-diem.png"),
+
     earn_point: require("../../../static/imgs/categories/tich-diem.png"),
     link_card: require("../../../static/imgs/categories/lien-ket-the.png"),
     fallback_img: require("../../../static/imgs/fallback_img.jpg"),

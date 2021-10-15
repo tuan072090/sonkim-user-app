@@ -1,14 +1,14 @@
 import React from 'react'
-import {AuthComponent} from '../../components'
+import { AuthComponent } from '../../components'
 
-import {LayoutWithBackButton} from "./components/LayoutWithBackButton";
+import { LayoutWithBackButton } from "./components/LayoutWithBackButton";
 
 const OtpScreen = () => {
     return (
         <LayoutWithBackButton>
-            <AuthComponent display="otp"/>
+            <AuthComponent display="otp" />
         </LayoutWithBackButton>
     )
 }
 
-export {OtpScreen}
+export { OtpScreen }
