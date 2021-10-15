@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "608087697006",
+    "firebase_url": "https://sample-1f530.firebaseio.com",
+    "project_id": "sample-1f530",
+    "storage_bucket": "sample-1f530.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608087697006:android:24b6fc2528250565f8687f",
+        "android_client_info": {
+          "package_name": "com.faceid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608087697006-ntk1vh3mtbdh5c2me9qig2jatsoajkqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQvrvEBQ8OLh3GL33ZVSiEGGzGPUEfeSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608087697006-ntk1vh3mtbdh5c2me9qig2jatsoajkqq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "608087697006-3n8p2nh4rq8ibhv7sqi3f85cdmt2p2a6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "debug.meete.co"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608087697006:android:18c097c6f8c6b2b8f8687f",
+        "android_client_info": {
+          "package_name": "com.sonkim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "608087697006-op0u74nrmeikkpkr72q857hk3n9vlnv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sonkim",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "608087697006-ntk1vh3mtbdh5c2me9qig2jatsoajkqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQvrvEBQ8OLh3GL33ZVSiEGGzGPUEfeSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "608087697006-ntk1vh3mtbdh5c2me9qig2jatsoajkqq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "608087697006-3n8p2nh4rq8ibhv7sqi3f85cdmt2p2a6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "debug.meete.co"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

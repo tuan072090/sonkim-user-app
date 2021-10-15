@@ -1,4 +1,4 @@
-package com.sonkim_user_app;
+package com.sonkim;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen; // here
