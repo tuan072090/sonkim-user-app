@@ -3,26 +3,15 @@ import React from "react";
 import { Heading, SimpleGrid, Text, VStack } from "native-base";
 import CardBU from "./index";
 import { StaticImages } from "../../../share";
+import { ListCardBuType } from "./cardBU.types";
 
-
-const ListCardBU = () => {
+const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
     const listBU = [
         {
             url: StaticImages.gs25,
             name: "GS25",
         },
-        {
-            url: StaticImages.lazada,
-            name: "Lazada",
-        },
-        {
-            url: StaticImages.vera,
-            name: "CGV cinema",
-        },
-        {
-            url: StaticImages.kyo_watamin,
-            name: "Kyo watami",
-        },
+
         {
             url: StaticImages.health_spa,
             name: "Health Spa",
@@ -53,6 +42,12 @@ const ListCardBU = () => {
         },
     ];
 
+    const _choiseBu = (name: string) => {
+        setChoise(name);
+    };
+
+    console.log(choise);
+
     return (
         <VStack space={3} mt="4">
             <Heading size="xl">
@@ -60,7 +55,15 @@ const ListCardBU = () => {
             </Heading>
             <SimpleGrid columns={3} spacingY={3} spacingX={3}>
                 {listBU.map((item) => {
-                    return <CardBU key={item.name} url={item.url} name={item.name} />;
+                    return (
+                        <CardBU
+                            onPress={() => _choiseBu(item.name)}
+                            active={choise === item.name ? true : false}
+                            key={item.name}
+                            url={item.url}
+                            name={item.name}
+                        />
+                    );
                 })}
             </SimpleGrid>
         </VStack>

@@ -9,13 +9,15 @@ const fullWidth = ScreenSize.vw;
 const cardRegisterWidht = fullWidth / 3.5;
 const cardRegisterHeight = fullWidth / 2.5;
 
-const CardBU: React.FC<cardBuType> = ({ url, name }) => {
+const CardBU: React.FC<cardBuType> = ({ onPress, url, name, active = true, ...pross }) => {
     return (
         <Pressable
             borderRadius={16}
+            onPress={onPress}
+            {...pross}
             overflow="hidden"
-            borderWidth={2}
-            borderColor="muted.300"
+            borderWidth={!active ? 2 : 3}
+            borderColor={!active ? 'muted.300' : 'primary.900'}
             py={3}
             width={cardRegisterWidht}
             height={cardRegisterHeight}

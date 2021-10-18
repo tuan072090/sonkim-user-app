@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Box, ScrollView } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { Translate } from "../../share";
@@ -7,6 +7,7 @@ import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
 
 const RegisterMembership = () => {
     const { language } = useContext(LanguageProvider.context);
+    const [choise, setChoise] = useState('')
 
     return (
         <Box flex={1}>
@@ -16,7 +17,7 @@ const RegisterMembership = () => {
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
-                <ListCardBU></ListCardBU>
+                <ListCardBU choise={choise} setChoise={setChoise}> </ListCardBU>
                 <Box mt={20}></Box>
             </ScrollView>
         </Box>
