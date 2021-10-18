@@ -14,6 +14,8 @@ import RegisterMembership from './register-membership';
 import LinkMembership from './link-membership';
 import { StatusBar } from "native-base";
 import analytics from '@react-native-firebase/analytics';
+import RegisterMembershipForm from './register-membership/RegisterMembershipForm';
+import LinkMembershipForm from './link-membership/LinkMemberShipForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -57,9 +59,7 @@ const AppNavigation = () => {
                 ref={navigationRef}
                 onReady={onReadyNav}
                 onStateChange={handleScreenTracking}>
-
                 <Stack.Navigator>
-
                     {/* Tab screens */}
                     <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
                     {/* End Tab screens */}
@@ -74,6 +74,8 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP} component={RegisterMembership} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
 

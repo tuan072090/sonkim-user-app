@@ -14,9 +14,10 @@ export const ScreenName = {
     BU_DETAIL_SCREEN: "BUDetail",
     USER_LIST_CARD: "UserListCard",
     REGISTER_MEMBERSHIP: "RegisterMembership",
-    LINK_MEMBERSHIP: 'LinkMembership'
+    LINK_MEMBERSHIP: 'LinkMembership',
+    LINK_MEMBERSHIP_FORM: 'LinkMembershipForm',
 
-
+    REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -31,6 +32,8 @@ export const ScreenTitle = {
     [ScreenName.USER_LIST_CARD]: "Danh sách thẻ",
     [ScreenName.REGISTER_MEMBERSHIP]: "Đăng ký thẻ",
     [ScreenName.LINK_MEMBERSHIP]: "Liên kết thẻ",
+    [ScreenName.REGISTER_MEMBERSHIP_FORM]: "Điền form đăng ký",
+    [ScreenName.LINK_MEMBERSHIP_FORM]: 'Điền form Liên kết thẻ',
 
 }
 
@@ -58,10 +61,12 @@ export const Deeplink = {
         [ScreenName.REGISTER_MEMBERSHIP]: {
             path: "registerMemberShip"
         },
+        [ScreenName.REGISTER_MEMBERSHIP_FORM]: {
+            path: "RegisterMembershipForm"
+        },
         [ScreenName.LINK_MEMBERSHIP]: {
             path: "linkMembership"
         },
-
 
         [ScreenName.BU_DETAIL_SCREEN]: {
             path: 'bu/:id',

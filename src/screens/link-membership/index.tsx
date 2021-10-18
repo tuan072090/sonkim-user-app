@@ -1,13 +1,21 @@
 import React, { useContext, useState } from "react";
 import { Box, Center, Icon, NativeBaseProvider, Pressable, ScrollView, Text, Button } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { Translate } from "../../share";
+import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
+import { useNavigation } from "@react-navigation/core";
 
 const LinkMembership = () => {
     const { language } = useContext(LanguageProvider.context);
+
+    const navigation = useNavigation();
+
     const [choise, setChoise] = useState('')
+    const _navigateForm = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM)
+    }
 
     return (
         <Box flex={1}>
@@ -21,8 +29,8 @@ const LinkMembership = () => {
                 <Box mt={20}></Box>
             </ScrollView>
             <Box width="100%" bgColor="white" padding={3} flexDirection="row" justifyContent='center' alignContent="center" px={2} safeAreaTop={true}>
-                <Button w="100%" rounded="lg" py={3} size="lg" colorScheme="primary">
-                    Chọn
+                <Button w="100%" onPress={_navigateForm} rounded="lg" py={3} size="lg" colorScheme="primary">
+                    CHỌN
                 </Button>
             </Box>
         </Box>
