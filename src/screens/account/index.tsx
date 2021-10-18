@@ -13,7 +13,7 @@ const sampleData = [
     },
     {
         startIcon: <FriendIcon size={6}/>,
-        title: 'Friend refferal',
+        title: 'Mời bạn',
         endIcon: <ChevronRightIcon size={6}/>
     },
     {
@@ -23,7 +23,7 @@ const sampleData = [
     },
     {
         startIcon: <NotificationOutlineIcon size={6}/>,
-        title: 'Lịch sử đổi điểm',
+        title: 'Thông báo',
         endIcon: <Switch size="md" onTrackColor="success.500" onThumbColor="white"/>,
     },
 ]
