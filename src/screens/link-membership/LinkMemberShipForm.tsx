@@ -49,8 +49,7 @@ const LinkMembershipForm = () => {
                 />
                 <Heading
                     color="white"
-                    size="xs"
-                    fontWeight="medium"
+                    fontSize="md" fontWeight="semibold"
                     mb={6}
                     textAlign="center"
                 >

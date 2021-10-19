@@ -43,8 +43,10 @@ const StaticImages = {
     otp_background: require("../../../static/imgs/otp_background.jpg"),
 
 
-    //  link membership backgroud
+    //  membership backgroud
     link_membership_backgroud: require("../../../static/imgs/link_membership_backgroud.png"),
+    reg_membership_backgroud: require("../../../static/imgs/reg_membership_backgroud.png"),
+
 
 
     //  icons
