@@ -15,6 +15,7 @@ const HomeScreen = () => {
     useEffect(() => {
         setTimeout(function () {
             // @ts-ignore
+            //  sonkim://store/:id
             // navigation.navigate(ScreenName.PHONE_INPUT_SCREEN)
 
             // setLanguage("en")

@@ -16,7 +16,6 @@ export const ScreenName = {
     REGISTER_MEMBERSHIP: "RegisterMembership",
     LINK_MEMBERSHIP: 'LinkMembership',
     LINK_MEMBERSHIP_FORM: 'LinkMembershipForm',
-
     REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
 }
 export const ScreenTitle = {
