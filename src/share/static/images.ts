@@ -43,7 +43,12 @@ const StaticImages = {
     otp_background: require("../../../static/imgs/otp_background.jpg"),
 
     //  icons
-    shop_icon: require("../../../static/imgs/icons/shop.png")
+    shop_icon: require("../../../static/imgs/icons/shop.png"),
+
+    //voucher image
+    voucher1: require("../../../static/imgs/voucher1.jpg"),
+    voucher2: require("../../../static/imgs/voucher2.jpg"),
+    voucher3: require("../../../static/imgs/voucher3.jpg"),
 }
 
 export default StaticImages
