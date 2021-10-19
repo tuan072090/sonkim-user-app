@@ -2,21 +2,9 @@ import { useNavigation } from '@react-navigation/core'
 import { Box, HStack, VStack,Text, Center, Button, Pressable } from 'native-base'
 import React from 'react'
 import { CheckStoreIcon, HistoryIcon, ImageStatic } from '../../../components'
-import { StaticImages } from '../../../share'
 import { FormatVND } from '../../../share/utils/formatter'
-type VoucherItemType={
-    item: ItemType,
-}
+import { VoucherItemType } from './VoucherType'
 
-type ItemType={
-    imageUri: any,
-    title:string,
-    applied:number,
-    due:string,
-    status:string,
-    point?:number,
-    price?:number,
-}
 
 const VoucherItem:React.FC<VoucherItemType> = ({item,...props}) => {
     const navigation=useNavigation();
