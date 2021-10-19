@@ -42,6 +42,11 @@ const StaticImages = {
     auth_background: require("../../../static/imgs/auth_background.jpg"),
     otp_background: require("../../../static/imgs/otp_background.jpg"),
 
+
+    //  link membership backgroud
+    link_membership_backgroud: require("../../../static/imgs/link_membership_backgroud.png"),
+
+
     //  icons
     shop_icon: require("../../../static/imgs/icons/shop.png")
 }
