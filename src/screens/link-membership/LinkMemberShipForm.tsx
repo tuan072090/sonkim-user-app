@@ -85,7 +85,7 @@ const LinkMembershipForm = () => {
                     Mã thẻ thành viên
                 </Text>
                 <Box flexDirection='row'>
-                    {listImgBU.map(item => <ImageStatic mr={3} resizeMode="cover" uri={item} width={88} height={88} mb={8} />
+                    {listImgBU.map(item => <ImageStatic mr={3} key={item} resizeMode="cover" uri={item} width={88} height={88} mb={8} />
                     )}
                 </Box>
 

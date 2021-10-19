@@ -16,6 +16,7 @@ import { StatusBar } from "native-base";
 import analytics from '@react-native-firebase/analytics';
 import RegisterMembershipForm from './register-membership/RegisterMembershipForm';
 import LinkMembershipForm from './link-membership/LinkMemberShipForm';
+import UsePoint from './use-point';
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +77,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
 

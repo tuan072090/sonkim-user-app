@@ -10,7 +10,7 @@ const languages = {
         buDetail: "Thông tin thẻ",
         registerMembership: 'Đăng ký thẻ',
         linkMembership: 'Liên kết thẻ',
-
+        usePoint: 'Tích và dùng điểm'
     },
     en: {
         //  Tab navigator
@@ -23,6 +23,8 @@ const languages = {
         buDetail: "Card Information",
         registerMembership: 'Register membership',
         linkMembership: 'Link membership',
+        usePoint: 'Tích và dùng điểm'
+
     }
 }
 
