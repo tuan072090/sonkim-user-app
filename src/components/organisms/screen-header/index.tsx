@@ -13,7 +13,7 @@ const ScreenHeader:React.FC<ScreenHeaderTypes> = ({title, hasBackButton=true,chi
             {/* left content */}
             <Box width={10}>
                 {hasBackButton && <Pressable onPress={() => navigation.goBack()} py={3} width="100%">
-                    <ChevronLeftIcon size={8}/>
+                    <ChevronLeftIcon size={6}/>
                 </Pressable>}
             </Box>
 
