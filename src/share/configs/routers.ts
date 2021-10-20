@@ -17,6 +17,7 @@ export const ScreenName = {
     LINK_MEMBERSHIP: 'LinkMembership',
     LINK_MEMBERSHIP_FORM: 'LinkMembershipForm',
     REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
+    USEPOINT: 'UsePoint',
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -33,6 +34,9 @@ export const ScreenTitle = {
     [ScreenName.LINK_MEMBERSHIP]: "Liên kết thẻ",
     [ScreenName.REGISTER_MEMBERSHIP_FORM]: "Điền form đăng ký",
     [ScreenName.LINK_MEMBERSHIP_FORM]: 'Điền form Liên kết thẻ',
+    [ScreenName.USEPOINT]: 'Tích và dùng điểm',
+
+
 
 }
 

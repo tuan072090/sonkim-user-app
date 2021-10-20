@@ -99,3 +99,19 @@ export const NotificationOutlineIcon: React.FC<IconTypes> = ({size = 20, fill = 
         </Icon>
     )
 }
+
+export const CheckStoreIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
+    return (
+        <Icon viewBox="0 0 24 24" fill="none" size={size}>
+            <Path d="M19 22H5C4.44772 22 4 21.5523 4 21V11.357C4.01549 11.112 4.11964 10.8809 4.293 10.707L11.293 3.70701C11.4806 3.51924 11.7351 3.41373 12.0005 3.41373C12.2659 3.41373 12.5204 3.51924 12.708 3.70701L19.708 10.707C19.8957 10.8943 20.0009 11.1488 20 11.414V21C20 21.5523 19.5523 22 19 22ZM12 5.82801L6 11.828V20H18V11.828L12 5.82801ZM10.5 18.559L7.794 15.859L9.2 14.441L10.5 15.733L14.8 11.441L16.212 12.857L10.5 18.558V18.559Z" fill="#1B1B1B"/>
+        </Icon>
+    )
+}
+
+export const HistoryIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
+    return (
+        <Icon viewBox="0 0 24 24" fill="none" size={size}>
+            <Path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C19.995 7.58378 16.4162 4.00496 12 4ZM17 13H11V7H13V11H17V13Z" fill="#1B1B1B"/>
+        </Icon>
+    )
+}

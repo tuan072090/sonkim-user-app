@@ -25,13 +25,8 @@ export const MembershipCardList = () => {
             <MembershipCards.Lazada mt={4} />
 
             <MembershipCards.Jardin mt={4} />
-            <Pressable
-                _pressed={{ opacity: 0.5 }}
-                onPress={_navigateForm}
-                _focus={{ opacity: 0.5 }}
-            >
-                <MembershipCards.NotRegister mt={4} />
-            </Pressable>
+
+            <MembershipCards.NotRegister mt={4} />
         </Box>
     );
 };
