@@ -14,6 +14,7 @@ const NotificationsScreen = () => {
             <ScreenHeader hasBackButton={true} title={Translate[language].notifications} bgColor="primary.500" rightIcon={<CheckAllIcon size={6} />}/>
             <ScrollView>
                 <NotificationCard></NotificationCard>
+                <NotificationCard></NotificationCard>
             </ScrollView>
         </Box>
     )

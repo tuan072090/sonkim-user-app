@@ -8,7 +8,7 @@ type NotificationCardType={
 
 const NotificationCard:React.FC<NotificationCardType> = () => {
     return (
-        <HStack alignItems="flex-start" m={4} mb={2} borderRadius={8} bgColor="white">
+        <HStack alignItems="flex-start" mt={4} mx={4} borderRadius={12} bgColor="white">
             <ImageStatic uri={StaticImages.lazada} width={8} height={8} my={4} ml={3}></ImageStatic>
             <VStack justifyContent="center" my={4} mx={3}>
                 <HStack justifyContent="space-between">
