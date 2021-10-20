@@ -7,6 +7,7 @@ import ImageStatic from './atoms/image/ImageStatic'
 import Avatar from './molecules/avatar'
 import FullScreenLoader from './atoms/loader/FullScreenLoader';
 import Picker from './molecules/picker'
+import QrCode from './molecules/qr-code'
 
 //  Organisms
 import DatePicker from './organisms/datepicker'
@@ -36,6 +37,7 @@ export {
     //  Molecules
     Avatar,
     Picker,
+    QrCode,
 
     //  Organisms
     DatePicker,

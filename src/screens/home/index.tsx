@@ -7,6 +7,7 @@ import { MembershipCardList } from "./components/MembershipCardList";
 import { useNavigation } from '@react-navigation/native';
 import LanguageProvider from "../../share/context/Language";
 import { ScreenName } from "../../share";
+import {QrCode} from "../../components";
 
 const HomeScreen = () => {
     const { language, setLanguage } = useContext(LanguageProvider.context)
@@ -25,9 +26,12 @@ const HomeScreen = () => {
     return (
         <>
             <ScrollView bgColor="white">
+
                 <HomeHeader />
 
                 <HomeSlider />
+
+                <QrCode code={"Something"} size={100} alignItems="center" logoUri="https://sonkim.s3.ap-southeast-1.amazonaws.com/lazada_d75ab18c1c.png?61505.40000000037"/>
 
                 <Categories />
 
