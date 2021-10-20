@@ -1,24 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Heading, Input, ScrollView, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, StaticImages, Translate } from "../../share";
-import LanguageProvider from "../../share/context/Language";
-import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
-import { useNavigation } from "@react-navigation/core";
+import { StaticImages } from "../../share";
 import { ImageStatic } from "../../components";
 import DialogMemberShip from "../../components/organisms/dialog-membership";
 
 const RegisterMembershipForm = () => {
-    const { language } = useContext(LanguageProvider.context);
-    const navigation = useNavigation();
-
-
     const [open, setOpen] = useState(false);
-
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
-    };
 
     return (
         <Box flex={1} position="relative" alignItems="center">
@@ -57,7 +45,8 @@ const RegisterMembershipForm = () => {
                         placeholderTextColor="white"
                         bgColor="rgba(255,255,255,0.5)"
                         variant="filled"
-                        p={3} mb={1}
+                        p={3}
+                        mb={1}
                         size="2xl"
                         rounded="xl"
                         placeholder="Nhập mã thẻ thành viên"
@@ -72,7 +61,8 @@ const RegisterMembershipForm = () => {
                         placeholderTextColor="white"
                         bgColor="rgba(255,255,255,0.5)"
                         variant="filled"
-                        p={3} mb={1}
+                        p={3}
+                        mb={1}
                         size="2xl"
                         rounded="xl"
                         placeholder="Nhập số điện thoại"
@@ -145,11 +135,13 @@ const RegisterMembershipForm = () => {
             >
                 <Button
                     w="100%"
-                    onPress={() => { setOpen(true) }}
+                    onPress={() => {
+                        setOpen(true);
+                    }}
                     rounded="xl"
                     py={3}
                     size="lg"
-                    color='primary.500'
+                    color="primary.500"
                 // colorScheme="primary"
                 >
                     Đăng ký thẻ

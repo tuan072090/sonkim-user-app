@@ -1,23 +1,12 @@
-import React, { useContext, useState } from "react";
-import {
-    Box,
-    Button,
-    Heading,
-    Input,
-    ScrollView,
-    StatusBar,
-    Text,
-} from "native-base";
+import React, { useState } from "react";
+import { Box, Button, Heading, Input, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, StaticImages, Translate } from "../../share";
-import LanguageProvider from "../../share/context/Language";
-import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
+import { ScreenName, StaticImages } from "../../share";
 import { useNavigation } from "@react-navigation/core";
 import { ImageStatic } from "../../components";
 import DialogMemberShip from "../../components/organisms/dialog-membership";
 
 const LinkMembershipForm = () => {
-    const { language } = useContext(LanguageProvider.context);
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
 
@@ -119,8 +108,8 @@ const LinkMembershipForm = () => {
                             key={item}
                             resizeMode="cover"
                             uri={item}
-                            width={'56px'}
-                            height={'56px'}
+                            width={"56px"}
+                            height={"56px"}
                             mb={8}
                         />
                     ))}

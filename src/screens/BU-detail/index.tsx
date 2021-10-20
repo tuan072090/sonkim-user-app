@@ -7,6 +7,7 @@ import { ImageStatic, MembershipCards } from "../../components";
 import { ImageBackground, StyleSheet } from "react-native";
 import { Categories } from "./components/Categories";
 import { VoucherList } from "./components/VoucherList";
+import CardStore from "../../components/molecules/card-store";
 
 const fullWidth = ScreenSize.vw;
 const ImgWidth = fullWidth - 30;
@@ -15,14 +16,13 @@ const BUDetailScreen = () => {
     const { language } = useContext(LanguageProvider.context);
 
     return (
-        <Box>
+        <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
             <ScreenHeader
                 hasBackButton={true}
                 title={Translate[language].buDetail}
                 bgColor="primary.500"
             />
             <ScrollView bgColor="white">
-
                 <Box position="relative">
                     <ImageStatic
                         width={fullWidth}
@@ -39,7 +39,8 @@ const BUDetailScreen = () => {
                             style={styles.image}
                         >
                             <ImageStatic
-                                mx={3} mt={2}
+                                mx={3}
+                                mt={2}
                                 uri={StaticImages.health_spa_nopadding}
                                 width={12}
                                 height={6}
@@ -47,7 +48,12 @@ const BUDetailScreen = () => {
                             <Text mx={3} color="tertiary.600" fontSize="lg">
                                 Thành viên kim cương
                             </Text>
-                            <Box p={3} mt="4" flexDirection="row" justifyContent="space-between">
+                            <Box
+                                p={3}
+                                mt="4"
+                                flexDirection="row"
+                                justifyContent="space-between"
+                            >
                                 <Text color="white" fontSize="lg">
                                     GS25_12345
                                 </Text>
@@ -56,8 +62,8 @@ const BUDetailScreen = () => {
                                 </Text>
                             </Box>
                         </ImageBackground>
-                        <Box mt='4'>
-                            <Text fontSize="xl" color="white" >
+                        <Box mt="4">
+                            <Text fontSize="xl" color="white">
                                 Thông tin chủ thẻ
                             </Text>
                             <Text fontSize="lg" color="white">
@@ -69,11 +75,36 @@ const BUDetailScreen = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Categories ></Categories>
-                <VoucherList ></VoucherList>
-            </ScrollView >
+                <Categories></Categories>
+                <VoucherList></VoucherList>
+                <Box>
+                    <Box p={5} flexDirection="row">
+                        <CardStore></CardStore>
+                        <CardStore></CardStore>
+                    </Box>
+                    <Text
+                        pb={5}
+                        underline
+                        fontSize="md"
+                        color="red.400"
+                        textAlign="center"
+                    >
+                        Xem lịch sử quét mã
+                    </Text>
+                </Box>
+                <Box flex={1} width={"100%"} p={5} alignItems="center">
+                    <Button
+                        width={"45%"}
+                        rounded="xl"
+                        bgColor="info.100"
+                        _text={{ color: "primary.500" }}
+                    >
+                        Lên đầu trang
+                    </Button>
+                </Box>
+                <Box mb={50}></Box>
+            </ScrollView>
         </Box>
-
     );
 };
 

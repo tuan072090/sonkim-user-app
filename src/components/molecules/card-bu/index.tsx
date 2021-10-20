@@ -17,7 +17,7 @@ const CardBU: React.FC<cardBuType> = ({ onPress, url, name, active = true, ...pr
             {...pross}
             overflow="hidden"
             borderWidth={!active ? 2 : 3}
-            borderColor={!active ? 'muted.300' : 'primary.500'}
+            borderColor={!active ? 'muted.300' : 'info.700'}
             py={3}
             width={cardRegisterWidht}
             height={cardRegisterHeight}

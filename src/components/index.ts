@@ -1,5 +1,5 @@
-import {HomeIcon, NotificationIcon,NearByIcon,CartIcon,AccountIcon,} from "./atoms/icons/BottomNavIcons";
-import {VoucherIcons, ChevronLeftIcon,ListIcon, LocationIcon,FriendIcon,TranslateIcon,ChevronRightIcon,NotificationOutlineIcon,CheckStoreIcon,HistoryIcon,CheckAllIcon} from "./atoms/icons/CommonIcons"
+import { HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, } from "./atoms/icons/BottomNavIcons";
+import { VoucherIcons, ChevronLeftIcon, ListIcon, LocationIcon, FriendIcon, TranslateIcon, ChevronRightIcon, NotificationOutlineIcon, CheckStoreIcon, HistoryIcon, CheckAllIcon, PhoneIcon } from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
 
@@ -19,7 +19,7 @@ import OnBoarding from './templates/onboarding'
 import AuthComponent from './templates/auth'
 export {
     //  Atoms
-    HomeIcon,NotificationIcon,NearByIcon,CartIcon,AccountIcon,
+    HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon,
     VoucherIcons,
     ChevronLeftIcon,
     ListIcon,
@@ -30,7 +30,7 @@ export {
     NotificationOutlineIcon,
     CheckStoreIcon,
     HistoryIcon,
-    CheckAllIcon,
+    CheckAllIcon, PhoneIcon,
     Image,
     ImageStatic,
     FullScreenLoader,

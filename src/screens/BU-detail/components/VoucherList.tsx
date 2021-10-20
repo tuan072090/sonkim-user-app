@@ -1,11 +1,10 @@
 import React from "react";
 import { Box, Text } from "native-base";
-import { MembershipCards } from "../../../components";
 import VoucherItem from "./VoucherItem";
 import { StaticImages } from '../../../share'
 
 
-const sampleVoucherData=[
+const sampleVoucherData = [
     {
         imageUri: StaticImages.voucher1,
         title: 'Voucher giảm giá 20% cho dịch vụ massage vào tháng 10',
@@ -19,7 +18,7 @@ const sampleVoucherData=[
         applied: 1,
         due: '12/12/2021',
         status: 'point',
-        point:10000
+        point: 10000
     },
     {
         imageUri: StaticImages.voucher3,
@@ -27,7 +26,7 @@ const sampleVoucherData=[
         applied: 3,
         due: '12/12/2021',
         status: 'currency',
-        price:10000
+        price: 10000
     },
 ]
 
@@ -41,7 +40,7 @@ export const VoucherList = () => {
                 Danh sách voucher hot nhất hiện nay của shop
             </Text>
             {
-                sampleVoucherData.map((item,index)=>(
+                sampleVoucherData.map((item, index) => (
                     <VoucherItem item={item} key={index}></VoucherItem>
                 ))
             }

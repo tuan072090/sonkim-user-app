@@ -24,10 +24,10 @@ const DialogMemberShip: React.FC<DialogMemberShipType> = ({ onClose, isOpen, tit
                 </Modal.Body>
                 <Modal.Footer mb={2} bgColor='white'>
                     {!footer ? <Button.Group space={5}>
-                        <Button width={'45%'} onPress={_navigateHome} rounded="xl" bgColor='primary.100' _text={{ color: "primary.500" }}>
+                        <Button width={'45%'} onPress={_navigateHome} rounded="xl" bgColor="info.100" _text={{ color: "primary.500" }}>
                             Về trang chủ
                         </Button>
-                        <Button width={'45%'} rounded="xl">
+                        <Button width={'45%'} rounded="xl" >
                             Xem thẻ
                         </Button>
                     </Button.Group> : footer}

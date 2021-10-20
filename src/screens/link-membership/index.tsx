@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Center, Icon, NativeBaseProvider, Pressable, ScrollView, Text, Button } from "native-base";
+import { Box, ScrollView, Button } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
