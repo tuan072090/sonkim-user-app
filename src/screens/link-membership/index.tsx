@@ -21,7 +21,7 @@ const LinkMembership = () => {
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].registerMembership}
+                title={Translate[language].linkMembership}
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
@@ -29,7 +29,7 @@ const LinkMembership = () => {
                 <Box mt={20}></Box>
             </ScrollView>
             <Box width="100%" bgColor="white" padding={3} flexDirection="row" justifyContent='center' alignContent="center" px={2} safeAreaTop={true}>
-                <Button w="100%" onPress={_navigateForm} rounded="lg" py={3} size="lg" colorScheme="primary">
+                <Button w="100%" onPress={_navigateForm} rounded="xl" py={3} size="lg" colorScheme="primary">
                     CHỌN
                 </Button>
             </Box>

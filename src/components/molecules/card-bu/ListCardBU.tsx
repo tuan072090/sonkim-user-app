@@ -46,7 +46,7 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
         setChoise(name);
     };
 
-    console.log(choise);
+
 
     return (
         <VStack space={3} mt="4">

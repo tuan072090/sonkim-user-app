@@ -1,5 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Box, Center, Icon, NativeBaseProvider, Pressable, ScrollView, Text, Button } from "native-base";
+import {
+    Box,
+    Center,
+    Icon,
+    NativeBaseProvider,
+    Pressable,
+    ScrollView,
+    Text,
+    Button,
+} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
@@ -11,11 +20,12 @@ const UsePoint = () => {
 
     const navigation = useNavigation();
 
-    const [choise, setChoise] = useState('')
+    const [choise, setChoise] = useState("");
+
     const _navigateForm = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM)
-    }
+        navigation.navigate(ScreenName.USEPOINTQR);
+    };
 
     return (
         <Box flex={1}>

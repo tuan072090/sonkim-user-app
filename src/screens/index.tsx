@@ -17,6 +17,7 @@ import analytics from '@react-native-firebase/analytics';
 import RegisterMembershipForm from './register-membership/RegisterMembershipForm';
 import LinkMembershipForm from './link-membership/LinkMemberShipForm';
 import UsePoint from './use-point';
+import UsePointQR from './use-point/UserPointQR';
 
 const Stack = createNativeStackNavigator();
 
@@ -78,6 +79,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
 

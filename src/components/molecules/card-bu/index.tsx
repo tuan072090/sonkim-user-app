@@ -17,7 +17,7 @@ const CardBU: React.FC<cardBuType> = ({ onPress, url, name, active = true, ...pr
             {...pross}
             overflow="hidden"
             borderWidth={!active ? 2 : 3}
-            borderColor={!active ? 'muted.300' : 'primary.900'}
+            borderColor={!active ? 'muted.300' : 'primary.500'}
             py={3}
             width={cardRegisterWidht}
             height={cardRegisterHeight}
@@ -27,7 +27,7 @@ const CardBU: React.FC<cardBuType> = ({ onPress, url, name, active = true, ...pr
             alignItems="center"
         >
             <ImageStatic uri={url} width={16} height={16} borderRadius={100} />
-            <Text mt={2} fontSize="xl" textTransform="uppercase" textAlign="center">
+            <Text mt={2} fontSize="md" textAlign="center">
                 {name}
             </Text>
         </Pressable>

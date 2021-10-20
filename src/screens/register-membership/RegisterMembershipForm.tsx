@@ -6,12 +6,15 @@ import LanguageProvider from "../../share/context/Language";
 import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
 import { useNavigation } from "@react-navigation/core";
 import { ImageStatic } from "../../components";
+import DialogMemberShip from "../../components/organisms/dialog-membership";
 
 const RegisterMembershipForm = () => {
     const { language } = useContext(LanguageProvider.context);
     const navigation = useNavigation();
 
-    const [choise, setChoise] = useState("");
+
+    const [open, setOpen] = useState(false);
+
     const _navigateForm = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
@@ -122,6 +125,14 @@ const RegisterMembershipForm = () => {
                 </Box>
                 <Box mt={50}></Box>
             </ScrollView>
+            <DialogMemberShip
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                logoUri={StaticImages.health_spa}
+                title="Tạo thẻ thành viên thành công"
+                messenge="Chúc mừng bạn đã tạo thành công
+                thẻ thành viên Health Spa"
+            ></DialogMemberShip>
             <Box
                 width="100%"
                 bgColor="white"
@@ -134,11 +145,12 @@ const RegisterMembershipForm = () => {
             >
                 <Button
                     w="100%"
-                    onPress={_navigateForm}
-                    rounded="lg"
+                    onPress={() => { setOpen(true) }}
+                    rounded="xl"
                     py={3}
                     size="lg"
-                    colorScheme="primary"
+                    color='primary.500'
+                // colorScheme="primary"
                 >
                     Đăng ký thẻ
                 </Button>
