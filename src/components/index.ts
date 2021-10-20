@@ -1,5 +1,5 @@
 import {HomeIcon, NotificationIcon,NearByIcon,CartIcon,AccountIcon,} from "./atoms/icons/BottomNavIcons";
-import {VoucherIcons, ChevronLeftIcon,ListIcon, LocationIcon,FriendIcon,TranslateIcon,ChevronRightIcon,NotificationOutlineIcon,CheckStoreIcon,HistoryIcon} from "./atoms/icons/CommonIcons"
+import {VoucherIcons, ChevronLeftIcon,ListIcon, LocationIcon,FriendIcon,TranslateIcon,ChevronRightIcon,NotificationOutlineIcon,CheckStoreIcon,HistoryIcon,CheckAllIcon} from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
 
@@ -30,6 +30,7 @@ export {
     NotificationOutlineIcon,
     CheckStoreIcon,
     HistoryIcon,
+    CheckAllIcon,
     Image,
     ImageStatic,
     FullScreenLoader,

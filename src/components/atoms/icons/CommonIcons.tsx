@@ -115,3 +115,11 @@ export const HistoryIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => 
         </Icon>
     )
 }
+
+export const CheckAllIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
+    return (
+        <Icon viewBox="0 0 24 24" fill="none" size={size}>
+            <Path d="M11.6461 18.01L6.69613 13.061L8.10913 11.646L11.6461 15.183L20.1311 6.69699L21.5451 8.11099L11.6451 18.011L11.6461 18.01ZM7.40312 18.01L2.45312 13.061L3.86713 11.646L8.81712 16.596L7.40413 18.01H7.40312ZM11.6461 13.768L10.2311 12.354L16.5951 5.98999L18.0101 7.40399L11.6461 13.767V13.768Z" fill="white"/>
+        </Icon>
+    )
+}
