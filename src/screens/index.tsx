@@ -18,6 +18,8 @@ import RegisterMembershipForm from './register-membership/RegisterMembershipForm
 import LinkMembershipForm from './link-membership/LinkMemberShipForm';
 import UsePoint from './use-point';
 import UsePointQR from './use-point/UserPointQR';
+import AccountSetting from "./account/AccountSetting";
+import {ResetPasswordScreen} from "./auth/ResetPasswordScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -71,6 +73,9 @@ const AppNavigation = () => {
                         options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.RESET_PASSWORD_SCREEN} component={ResetPasswordScreen} options={{ headerShown: false }} />
+
+                    <Stack.Screen name={ScreenName.ACCOUNT_SETTING_SCREEN} component={AccountSetting} options={{ headerShown: false }} />
 
                     <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />

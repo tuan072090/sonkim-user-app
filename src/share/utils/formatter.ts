@@ -13,6 +13,20 @@ export const FormatVND = (pnumber:number) => {
     return result;
 };
 
+export const FormatPhoneNumber = (phone:string) => {
+    //Filter only numbers from the input
+    let cleaned = ('' + phone).replace(/\D/g, '');
+
+    //Check if the input is of correct length
+    let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + ' ' + match[3]
+    }
+
+    return null
+}
+
 export const RemoveAscent = (str:string):string => {
     if (str === null || str === undefined) return str;
     str = str.toLowerCase();
@@ -59,3 +73,12 @@ export const ChangeToSlug = (plainText: string): string => {
 
     return slug;
 };
+
+const Formatter = {
+    FormatPhoneNumber,
+    FormatVND,
+    ChangeToSlug,
+    RemoveAscent
+}
+
+export default Formatter

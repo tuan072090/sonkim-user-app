@@ -1,20 +1,50 @@
-import React, {useState} from "react";
-import {Box, Button, Heading, Input, Text} from 'native-base'
+import React, {useContext, useEffect, useState} from "react";
+import {Box, Button, Heading, Input, Pressable, Text} from 'native-base'
 import {useNavigation} from "@react-navigation/native";
-import {ScreenName} from "../../../../share";
+import {ScreenName, SonkimApiService, useLocalStorage, Validator} from "../../../../share";
+import {Alert} from "react-native";
+import MyError from "../../../../share/services/error";
+import AppProvider from "../../../../share/context";
 
 export const LoginForm = () => {
+    const {dispatch} = useContext(AppProvider.context)
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation();
+    const [phoneLocal, savePhoneLocal] = useLocalStorage("phone", "")
 
-    const _submitPhone = () => {
+    useEffect(() => {
+        if(phoneLocal !== null){
+            setPhone(phoneLocal)
+        }
+    },[phoneLocal])
 
+    const _submitPhone = async () => {
+        try {
+            //  validate
+            if(!Validator.isValidPhone(phone) || !password || password.length < 6){
+                throw new MyError(400, "Điện thoại hoặc mật khẩu không hợp lệ")
+            }
+            const {jwt, user} = await SonkimApiService.Login({phone, password})
+            dispatch({
+                type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
+                data: jwt
+            })
+            Alert.alert("Đăng nhập thành công")
+            navigation.goBack()
+        } catch (err) {
+            Alert.alert(err.message)
+        }
     }
 
     const _navToRegister = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.REGISTER_SCREEN)
+        navigation.navigate(ScreenName.REGISTER_SCREEN, {phone: phone})
+    }
+
+    const _navToResetPass = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.RESET_PASSWORD_SCREEN, {phone: phone})
     }
 
     return (
@@ -54,11 +84,11 @@ export const LoginForm = () => {
                 placeholder="Nhập mật khẩu"
             />
 
-            <Box alignItems="flex-end">
+            <Pressable onPress={_navToResetPass} alignItems="flex-end">
                 <Text pt={1} pb={5} color="white" underline>Quên mật khẩu?</Text>
-            </Box>
+            </Pressable>
             <Button onPress={_submitPhone} my={5} p={3} rounded="xl" size="lg" bgColor="white"
-                    _text={{color: "gray.500"}} opacity={70}>Đăng ký</Button>
+                    _text={{color: "gray.500"}} opacity={70}>Đăng nhập</Button>
 
             <Box flexDirection="row" alignItems="center" justifyContent="center">
                 <Text color="white">Chưa có tài khoản?</Text>

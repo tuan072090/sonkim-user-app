@@ -17,6 +17,9 @@ import MembershipCards from './organisms/membership-cards'
 //  templates
 import OnBoarding from './templates/onboarding'
 import AuthComponent from './templates/auth'
+import MainLayout from "./templates/layout/MainLayout";
+import {PageProps} from './templates/layout/mainLayoutProps.types'
+
 export {
     //  Atoms
     HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon,
@@ -47,5 +50,8 @@ export {
 
     //  Templates
     OnBoarding,
-    AuthComponent
+    AuthComponent,
+    MainLayout
 }
+
+export type {PageProps}

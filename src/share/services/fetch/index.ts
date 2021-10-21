@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
 import {AuthResponseType} from "../../data-types/user";
-import {API_URI} from "../../configs";
+import {API_URI} from "../../configs/apiUris";
 
 type MethodType = "GET" | "POST" | "PUT"
 
