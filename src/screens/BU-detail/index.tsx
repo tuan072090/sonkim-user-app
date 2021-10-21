@@ -1,20 +1,26 @@
 import React, { useContext } from "react";
 import { Text, Box, Pressable, Button, ScrollView } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenSize, StaticImages, Translate } from "../../share";
+import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import { ImageStatic, MembershipCards } from "../../components";
 import { ImageBackground, StyleSheet } from "react-native";
 import { Categories } from "./components/Categories";
 import { VoucherList } from "./components/VoucherList";
 import CardStore from "../../components/molecules/card-store";
+import { useNavigation } from "@react-navigation/core";
 
 const fullWidth = ScreenSize.vw;
 const ImgWidth = fullWidth - 30;
 
 const BUDetailScreen = () => {
     const { language } = useContext(LanguageProvider.context);
+    const navigation = useNavigation();
 
+    const _navigateStorepage = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.STORE);
+    };
     return (
         <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
             <ScreenHeader
@@ -88,8 +94,9 @@ const BUDetailScreen = () => {
                         fontSize="md"
                         color="red.400"
                         textAlign="center"
+                        onPress={_navigateStorepage}
                     >
-                        Xem lịch sử quét mã
+                        Xem tất cả
                     </Text>
                 </Box>
                 <Box flex={1} width={"100%"} p={5} alignItems="center">

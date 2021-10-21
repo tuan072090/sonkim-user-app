@@ -19,7 +19,9 @@ import LinkMembershipForm from './link-membership/LinkMemberShipForm';
 import UsePoint from './use-point';
 import UsePointQR from './use-point/UserPointQR';
 import AccountSetting from "./account/AccountSetting";
-import {ResetPasswordScreen} from "./auth/ResetPasswordScreen";
+import { ResetPasswordScreen } from "./auth/ResetPasswordScreen";
+import TransferPointPage from './transfer-point';
+import StorePage from './store';
 
 const Stack = createNativeStackNavigator();
 
@@ -85,6 +87,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.STORE} component={StorePage} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
 

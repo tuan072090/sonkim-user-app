@@ -1,75 +1,83 @@
 # Sơn Kim user app
 
-This project was bootstrapped with ``react-native init`` with typescript template
+This project was bootstrapped with `react-native init` with typescript template
 
 The UI in this project is build on top of by [Native base](https://docs.nativebase.io/)
+
 ## API Documentation
 
-API uri: ``https://api.sonkim.upme.dev``
+API uri: `https://api.sonkim.upme.dev`
 
 #### Auth
-- GET ``/firebase-auth/check?phone=:phone``
-- POST ``/firebase-auth/login``
-    
-    ``Body
-    
+
+- GET `/firebase-auth/check?phone=:phone`
+- POST `/firebase-auth/login`
+  ``Body
         "phone": "0966499006",
         "password": "123123"
-    ``
-    
-- POST ``/firebase-auth/register``
+  ``
+- POST `/firebase-auth/register`
 
-    ``Body
-    
-        "idToken":"xx123132123", 
-        "password":"123123", 
+  ``Body
+
+        "idToken":"xx123132123",
+        "password":"123123",
         "fullName": "Nguyen Manh Tuan",
         "email":"tuan@meete.co"
-    }``
-- POST ``/firebase-auth/reset-password``
 
-    `` Body
-    
-        "idToken":"123132123", 
-        "password":"123123", 
+  }``
+
+- POST `/firebase-auth/reset-password`
+
+  `` Body
+
+        "idToken":"123132123",
+        "password":"123123",
+
   ``
 
 #### Article
-- GET ``/user-api/articles``
-- GET ``/user-api/articles/:id``
+
+- GET `/user-api/articles`
+- GET `/user-api/articles/:id`
 
 #### Branches
-- GET ``/user-api/branches``
-- GET ``/user-api/branches/:id``
+
+- GET `/user-api/branches`
+- GET `/user-api/branches/:id`
 
 #### Loyalty Programs
-- GET ``/user-api/loyalty-programs``
-- GET ``/user-api/loyalty-programs/:id``
+
+- GET `/user-api/loyalty-programs`
+- GET `/user-api/loyalty-programs/:id`
 
 #### Stores
-- GET ``/user-api/stores``
-- GET ``/user-api/stores/:id``
+
+- GET `/user-api/stores`
+- GET `/user-api/stores/:id`
 
 #### Promotions
-- GET ``/user-api/promotions``
-- GET ``/user-api/promotions/:id``
+
+- GET `/user-api/promotions`
+- GET `/user-api/promotions/:id`
 
 ## Pages
+
 1. [x] Onboarding
 2. [x] Login
 3. [x] Register
 4. [ ] Forgot password
 5. [ ] Update user profile
 6. [x] Home page
-7. [ ] BU detail
+7. [x] BU detail
 8. [ ] BU detail
 9. [ ] Store/restaurant detail
 10. [ ] Danh sách ưu đãi
 11. [ ] Voucher detail
-12. [ ] Tích điểm và dùng điểm
-13. [ ] Quét mã
-14. [ ] Đăng ký thẻ
-15. [ ] Liên kết thẻ
+12. [x] Tích điểm và dùng điểm
+13. [x] Quét mã
+14. [x] Đăng ký thẻ
+15. [x] Liên kết thẻ
 16. [ ] Đổi điểm
 17. [ ] Lịch sử đổi điểm
 18. [ ] Quản lý thông báo
@@ -79,6 +87,7 @@ API uri: ``https://api.sonkim.upme.dev``
 ## Available Components
 
 ### Atoms
+
 - [x] Button
 - [x] Image: Need for caching or add loading image
 - [x] Select
@@ -92,6 +101,7 @@ API uri: ``https://api.sonkim.upme.dev``
 - [ ] Backdrop: [example](https://mui.com/components/backdrop/)
 
 ### Molecules
+
 - [x] Category item: Item điều hướng ở trang home
 - [ ] MenuIcon: A menu with only icon component
 - [ ] Toggle button: [example](https://mui.com/components/toggle-button/)
@@ -104,6 +114,7 @@ API uri: ``https://api.sonkim.upme.dev``
 - [ ] Upload file button
 
 ### Organisms
+
 - [x] Modal
 - [x] PageHeader
 - [x] Sidebar
@@ -121,4 +132,5 @@ API uri: ``https://api.sonkim.upme.dev``
 - [ ] Filter: [example](https://mui.com/components/data-grid/filtering/)
 
 ### Templates
+
 - [x] Layout

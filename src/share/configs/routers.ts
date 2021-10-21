@@ -20,7 +20,8 @@ export const ScreenName = {
     REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
     USEPOINT: 'UsePoint',
     USEPOINTQR: 'UsePointQR',
-
+    TRANSFERPOINT: 'TransferPoint',
+    STORE: "Store",
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -40,8 +41,8 @@ export const ScreenTitle = {
     [ScreenName.LINK_MEMBERSHIP_FORM]: 'Điền form Liên kết thẻ',
     [ScreenName.USEPOINT]: 'Tích và dùng điểm',
     [ScreenName.USEPOINTQR]: 'Tích và dùng điểm',
-
-
+    [ScreenName.TRANSFERPOINT]: 'Đổi điểm',
+    [ScreenName.STORE]: 'Danh sách store',
 
 }
 
