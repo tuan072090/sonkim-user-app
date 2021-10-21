@@ -8,41 +8,42 @@ import { CardStoreType } from "./cardStore.types";
 
 const fullWidth = ScreenSize.vw;
 const cardWidth = fullWidth / 2.3;
+const cardHeight = fullWidth / 2.1;
+
 
 const CardStore: React.FC<CardStoreType> = ({
-    address, id, name, phone, url
+    address = '129 Nguyễn Đình Chính, Phú Nhuận, HCM', id, name, phone, url
 }) => {
     return (
         <VStack
-            mr={4}
             width={cardWidth}
             bgColor="white"
             borderRadius={16}
+            height={cardHeight}
             shadow={3}
-            p={3}
+            p={2}
         >
-            <Box borderRadius={6} mb={3} height="20">
+            <Box borderRadius={6} mb={3} >
                 <ImageStatic
                     resizeMode="cover"
-                    uri={url}
+                    uri={url ? url : StaticImages.banner_bu_detail}
                     borderRadius={16}
                     width={"100%"}
                     height={82}
                 ></ImageStatic>
             </Box>
             <HStack>
-                <PhoneIcon size={6} ></PhoneIcon>
-                <Text ml={2} fontSize="md" color="muted.500">
+                <PhoneIcon size={4} ></PhoneIcon>
+                <Text ml={2} fontSize="sm" color="muted.500">
                     0123456789
                 </Text>
             </HStack>
             <HStack>
-                <LocationIcon size={6}></LocationIcon>
-                <Text ml={2} fontSize="md" color="muted.500">
+                <LocationIcon size={4}></LocationIcon>
+                <Text ml={2} fontSize="sm" color="muted.500" noOfLines={2}>
                     {address}
                 </Text>
             </HStack>
-
         </VStack>
     );
 };

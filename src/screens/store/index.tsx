@@ -1,50 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Alert } from "react-native";
-
-import { Box, Button, Heading, Input, Text } from "native-base";
+import React from "react";
+import { Box, ScrollView } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, StaticImages } from "../../share";
-import { useNavigation } from "@react-navigation/core";
+import { StaticImages } from "../../share";
 import { ImageStatic } from "../../components";
-import DialogMemberShip from "../../components/organisms/dialog-membership";
-import { getAllStore } from "../../share/services/sonkim-api/stores";
-import CardStore from "../../components/molecules/card-store";
+import ListCardStore from "../../components/molecules/card-store/ListCardStore";
 
 const StorePage = () => {
-    const navigation = useNavigation();
-    const [open, setOpen] = useState(false);
-    const [store, setStore] = useState<any[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
-    };
-
-    const _getAllStore = () => {
-        setLoading(true);
-        getAllStore().then(({ data }) => {
-            let formatData: any[] = [];
-            data.forEach((item: any) => {
-                formatData.push({
-                    id: item.id,
-                    name: item.name,
-                    avatar: item.avatar.formats.thumbnail.url,
-                    address: item.location.address,
-                });
-            });
-            setStore(formatData);
-            setLoading(false);
-        }).catch(err => Alert.alert(err.message));
-    };
-
-    useEffect(() => {
-        _getAllStore();
-    }, []);
-
-    if (!!loading) {
-        return null
-    }
     return (
         <Box flex={1} position="relative" alignItems="center">
             <ImageStatic
@@ -62,12 +23,10 @@ const StorePage = () => {
                     title={"Cửa hàng Healthspa"}
                     bgColor="primary.500"
                 />
-
-                <Box p={5} flexDirection="row">
-                    {store.map((item) => (
-                        <CardStore address={item.address} url={{ uri: item.avatar }} key={item.id}></CardStore>
-                    ))}
-                </Box>
+                <ScrollView p={5}>
+                    <ListCardStore></ListCardStore>
+                    <Box mb={50}></Box>
+                </ScrollView>
             </Box>
         </Box>
     );
