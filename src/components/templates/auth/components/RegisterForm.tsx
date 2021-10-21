@@ -113,8 +113,7 @@ export const RegisterForm = () => {
     return (
         <KeyboardAvoidingView
             keyboardVerticalOffset={keyboardVerticalOffset}
-            behavior="position"
-        >
+            behavior="position">
             <ScrollView p={4}>
                 <Box flex={1} px={3}>
                     <Heading color="white" size="md" fontWeight="medium" mb={6} textTransform="uppercase"
