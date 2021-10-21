@@ -1,16 +1,23 @@
-import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {useRef} from 'react';
-import HomeScreen from "./home";
-import CartScreen from "./cart";
-import NotificationsScreen from "./notifications";
+import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { useRef } from 'react';
 
-import {Colors, ScreenName} from "../share";
-import NearByScreen from "./nearby";
-import AccountScreen from "./account";
+import { ScreenName } from "../share";
+import UserListCard from './user-list-card';
 import BUDetailScreen from "./BU-detail";
-import BottomTab from "./BottomTab";
+import TabScreens from "./TabScreens";
+import { PhoneInputScreen } from "./auth/PhoneInputScreen";
+import { LoginScreen } from "./auth/LoginScreen";
+import { OtpScreen } from "./auth/OtpScreen";
+import { RegisterScreen } from "./auth/RegisterScreen";
+import RegisterMembership from './register-membership';
+import LinkMembership from './link-membership';
+import { StatusBar } from "native-base";
+import analytics from '@react-native-firebase/analytics';
+import RegisterMembershipForm from './register-membership/RegisterMembershipForm';
+import LinkMembershipForm from './link-membership/LinkMemberShipForm';
+import UsePoint from './use-point';
+import UsePointQR from './use-point/UserPointQR';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +36,10 @@ const AppNavigation = () => {
 
             if (previousRouteName !== currentRouteName) {
                 //  add tracking
+                analytics().logScreenView({
+                    screen_name: currentRouteName,
+                    screen_class: currentRouteName,
+                });
             }
 
             // Save the current route name for later comparison
@@ -44,21 +55,36 @@ const AppNavigation = () => {
     }
 
     return (
-        <NavigationContainer
-            ref={navigationRef}
-            onReady={onReadyNav}
-            onStateChange={handleScreenTracking}>
+        <>
+            <StatusBar backgroundColor="#086981" barStyle="light-content" />
+            <NavigationContainer
+                ref={navigationRef}
+                onReady={onReadyNav}
+                onStateChange={handleScreenTracking}>
+                <Stack.Navigator>
+                    {/* Tab screens */}
+                    <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
+                    {/* End Tab screens */}
+                    <Stack.Screen name={ScreenName.REGISTER_SCREEN} component={RegisterScreen}
+                        options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.PHONE_INPUT_SCREEN} component={PhoneInputScreen}
+                        options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
 
-            <Stack.Navigator>
-                {/* Tab screens */}
-                <Stack.Screen name={ScreenName.MAIN_SCREEN} component={BottomTab} options={{headerShown: false}}/>
+                    <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP} component={RegisterMembership} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
 
-                {/* End Tab screens */}
+                </Stack.Navigator>
 
-                <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen}/>
-            </Stack.Navigator>
-
-        </NavigationContainer>
+            </NavigationContainer>
+        </>
     )
 }
 

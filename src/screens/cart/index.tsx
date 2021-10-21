@@ -1,19 +1,17 @@
-import React, {useState} from "react";
-import {Text, View, StyleSheet} from "react-native";
+import React, {useContext, useState} from "react";
+import {Box} from "native-base";
+import ScreenHeader from "../../components/organisms/screen-header";
+import {Translate} from "../../share";
+import LanguageProvider from "../../share/context/Language";
 
 const CartScreen = () => {
+  const {language} = useContext(LanguageProvider.context)
 
   return (
-    <View style={styles.wrap}>
-      <Text>Cart Screen</Text>
-    </View>
+      <Box flex={1} >
+        <ScreenHeader hasBackButton={true} title={Translate[language].orders} bgColor="primary.500"/>
+      </Box>
   )
 }
-
-const styles = StyleSheet.create({
-  wrap:{
-
-  }
-})
 
 export default CartScreen

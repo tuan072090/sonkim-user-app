@@ -1,8 +1,12 @@
-import React from 'react';
-import {NativeBaseProvider, extendTheme} from 'native-base';
+import React, {useContext, useEffect, useState} from 'react';
+import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
-import {Colors} from "./src/share";
-
+import {Colors, LocalStorageService} from "./src/share";
+import AppProvider from "./src/share/context";
+import {Alert, Platform} from "react-native";
+import {FullScreenLoader, OnBoarding} from "./src/components";
+import LanguageProvider from "./src/share/context/Language";
+import SplashScreen from 'react-native-splash-screen'
 
 const configs = {
     colors: Colors
@@ -11,9 +15,39 @@ const configs = {
 const theme = extendTheme(configs);
 
 const App = () => {
+    const {setLanguage} = useContext(LanguageProvider.context)
+    const [isFirstOpen, setFirstOpen] = useState<boolean | null>(null)
+
+    useEffect(() => {
+        LocalStorageService.SynsData().then(res => {
+
+            setLanguage(LocalStorageService.GetLanguage())
+
+            setFirstOpen(LocalStorageService.GetFirstOpen())
+            if(Platform.OS === 'android'){
+                SplashScreen.hide()
+            }
+        }).catch(err => {
+            Alert.alert("Có lỗi xảy ra", err.message)
+        })
+    }, [])
+
+    const _finishOnboarding = () => {
+        LocalStorageService.SetFirstOpen("no")
+        setFirstOpen(false)
+    }
+
     return (
         <NativeBaseProvider theme={theme}>
-            <AppNavigation/>
+            <LanguageProvider>
+                {
+                    isFirstOpen === null ? <FullScreenLoader/>
+                        : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
+                        : <AppProvider>
+                            <AppNavigation/>
+                        </AppProvider>
+                }
+            </LanguageProvider>
         </NativeBaseProvider>
     );
 };
