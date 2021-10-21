@@ -3,6 +3,56 @@
 This project was bootstrapped with ``react-native init`` with typescript template
 
 The UI in this project is build on top of by [Native base](https://docs.nativebase.io/)
+## API Documentation
+
+API uri: ``https://api.sonkim.upme.dev``
+
+#### Auth
+- GET ``/firebase-auth/check?phone=:phone``
+- POST ``/firebase-auth/login``
+    
+    ``Body
+    
+        "phone": "0966499006",
+        "password": "123123"
+    ``
+    
+- POST ``/firebase-auth/register``
+
+    ``Body
+    
+        "idToken":"xx123132123", 
+        "password":"123123", 
+        "fullName": "Nguyen Manh Tuan",
+        "email":"tuan@meete.co"
+    }``
+- POST ``/firebase-auth/reset-password``
+
+    `` Body
+    
+        "idToken":"123132123", 
+        "password":"123123", 
+  ``
+
+#### Article
+- GET ``/user-api/articles``
+- GET ``/user-api/articles/:id``
+
+#### Branches
+- GET ``/user-api/branches``
+- GET ``/user-api/branches/:id``
+
+#### Loyalty Programs
+- GET ``/user-api/loyalty-programs``
+- GET ``/user-api/loyalty-programs/:id``
+
+#### Stores
+- GET ``/user-api/stores``
+- GET ``/user-api/stores/:id``
+
+#### Promotions
+- GET ``/user-api/promotions``
+- GET ``/user-api/promotions/:id``
 
 ## Pages
 1. [x] Onboarding
