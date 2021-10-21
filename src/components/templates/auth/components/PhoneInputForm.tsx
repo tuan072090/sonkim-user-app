@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Box, Button, Heading, Input, Text } from 'native-base'
 import { useNavigation } from '@react-navigation/native';
-import { ScreenName, Validator } from "../../../../share";
-import auth from '@react-native-firebase/auth';
+import { ScreenName, Validator, SonkimApiService } from "../../../../share";
+import {Alert} from "react-native";
 
 export const PhoneInputForm = () => {
     const navigation = useNavigation();
@@ -13,7 +13,7 @@ export const PhoneInputForm = () => {
         phoneValue.current = text;
     }
 
-    const _submitPhone = async (text: string) => {
+    const _submitPhone = async () => {
         // validate phone
         const isPhoneValid = Validator.isValidPhone(phoneValue.current);
 
@@ -22,8 +22,14 @@ export const PhoneInputForm = () => {
             return
         }
 
-        // @ts-ignore
-        navigation.navigate(ScreenName.OTP_SCREEN)
+        const isPhoneExist = await SonkimApiService.CheckPhone(phoneValue.current)
+        console.log("isPhoneExist....", isPhoneExist)
+        if(isPhoneExist){
+            Alert.alert("Số điện thoại đã tồn tại")
+        }else {
+            // @ts-ignore
+            navigation.navigate(ScreenName.OTP_SCREEN)
+        }
     }
 
     const _navToLogin = () => {

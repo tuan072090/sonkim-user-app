@@ -5,8 +5,16 @@ import StaticImages from './static/images'
 import {ScreenSize} from './utils/sizes'
 import LocalStorageService from "./services/local-storage";
 import Validator from './utils/validators'
-
 import Translate from './languages'
+
+//  services
+import FetchDataService from "./services/fetch";
+import {CheckPhone} from "./services/sonkim-api/auth";
+
+const SonkimApiService = {
+    CheckPhone
+}
+
 
 export {
     Colors,
@@ -16,5 +24,8 @@ export {
     LocalStorageService,
     Validator,
     Translate,
-    MAPBOX_ACCESS_TOKEN
+    MAPBOX_ACCESS_TOKEN,
+    //  services
+    FetchDataService,
+    SonkimApiService
 }

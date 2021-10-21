@@ -2,8 +2,8 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
 import {AuthResponseType} from "../../data-types/user";
+import {API_URI} from "../../configs";
 
-const API_URI = process.env.REACT_APP_API_URI;
 type MethodType = "GET" | "POST" | "PUT"
 
 class FetchData {
@@ -32,30 +32,30 @@ class FetchData {
         });
 
         //  auto refresh token when 401 error
-        this.axiosInstance.interceptors.response.use((response) => {
-            return response;
-        }, async (error: AxiosError) => {
-            try  {
-                const status = error.response ? error.response.status : null
-
-                if (status === 401 && accessToken && accessToken.length > 0) {
-                    await this.RefreshToken()
-                    //  retry request
-                    const originalRequest = error.config
-
-                    return this.axiosInstance.request({...originalRequest, headers:{
-                            Authorization: "Bearer " + LocalStorage.GetAccessToken()
-                        }})
-                }
-
-                return Promise.reject(error);
-            } catch (err){
-                return Promise.reject(err);
-            }
-        });
+        // this.axiosInstance.interceptors.response.use((response) => {
+        //     return response;
+        // }, async (error: AxiosError) => {
+        //     try  {
+        //         const status = error.response ? error.response.status : null
+        //
+        //         if (status === 401 && accessToken && accessToken.length > 0) {
+        //             await this.RefreshToken()
+        //             //  retry request
+        //             const originalRequest = error.config
+        //
+        //             return this.axiosInstance.request({...originalRequest, headers:{
+        //                     Authorization: "Bearer " + LocalStorage.GetAccessToken()
+        //                 }})
+        //         }
+        //
+        //         return Promise.reject(error);
+        //     } catch (err){
+        //         return Promise.reject(err);
+        //     }
+        // });
     }
 
-    private handleData = function (res: AxiosResponse) {
+    private handleData = function (res: AxiosResponse<any>) {
         return res.data;
     }
 
