@@ -1,11 +1,30 @@
-import React from "react";
+import React, {memo, useContext, useEffect} from "react";
 import {Box, Pressable, Text, useNativeBase} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
-import {ScreenName} from "../../../share";
+import {ScreenName, SonkimApiService} from "../../../share";
+import AppProvider from "../../../share/context";
+import {Alert} from "react-native";
 
-export const HomeHeader = () => {
+export const HomeHeader = memo(() => {
     const navigation = useNavigation()
+    const {dispatch, user} = useContext(AppProvider.context)
+
+    useEffect(() => {
+        _fetchProfile()
+    },[])
+
+    const _fetchProfile = async () => {
+        try{
+            const profile = await SonkimApiService.GetUserProfile()
+            dispatch({
+                type: AppProvider.actions.UPDATE_USER_INFO,
+                data: profile
+            })
+        } catch (err){
+            // Alert.alert(err.message)
+        }
+    }
 
     const _navToAccount = () => {
         // @ts-ignore
@@ -16,9 +35,19 @@ export const HomeHeader = () => {
         <Box bgColor="primary.500" px={4} py={3} flexDirection="row" alignItems="center" justifyContent="space-between"
              safeAreaTop>
             <Pressable onPress={_navToAccount} flexDirection="row">
-                <Avatar uri={"https://pbs.twimg.com/profile_images/1352844693151731713/HKO7cnlW_400x400.jpg"}
-                        size="sm"/>
-                <Text ml={3} fontSize="lg" color="white">Chào bạn Lâm</Text>
+                {
+                    user
+                        ?<>
+                            <Avatar uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name} size="sm"/>
+                            <Text ml={3} fontSize="lg" color="white">Chào {user.name}</Text>
+                        </>
+                        :
+                        <>
+                            <Avatar uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=user"} size="sm"/>
+                            <Text ml={3} fontSize="lg" color="white">Chào bạn</Text>
+                        </>
+                }
+
             </Pressable>
 
             <Box position="relative" flexDirection="row" alignItems="center" px={4} py={2}>
@@ -29,4 +58,4 @@ export const HomeHeader = () => {
             </Box>
         </Box>
     )
-}
+})

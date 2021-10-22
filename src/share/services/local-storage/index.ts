@@ -39,6 +39,8 @@ class LocalStorage {
             this.firstOpen = firstOpen === "yes"
             //  @ts-ignore
             this.language = lang || "vi"
+
+            return this
         } catch (err) {
             throw new MyError(err.status, err.message)
         }

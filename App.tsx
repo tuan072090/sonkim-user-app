@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
-import {Colors, LocalStorageService} from "./src/share";
+import {Colors, FetchDataService, LocalStorageService} from "./src/share";
 import AppProvider from "./src/share/context";
 import {Alert, Platform} from "react-native";
 import {FullScreenLoader, OnBoarding} from "./src/components";
@@ -20,10 +20,13 @@ const App = () => {
 
     useEffect(() => {
         LocalStorageService.SynsData().then(res => {
+            console.log("sync data.....")
+
+            FetchDataService.RefreshToken()
 
             setLanguage(LocalStorageService.GetLanguage())
-
             setFirstOpen(LocalStorageService.GetFirstOpen())
+
             if(Platform.OS === 'android'){
                 SplashScreen.hide()
             }

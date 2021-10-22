@@ -4,6 +4,7 @@ import LocalStorageService from "../services/local-storage";
 
 const UPDATE_ACCESS_TOKEN = "UPDATE_ACCESS_TOKEN";
 const UPDATE_REFRESH_TOKEN = "UPDATE_REFRESH_TOKEN";
+const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 const LOGOUT = "LOGOUT";
 
 export type ActionType = {
@@ -14,6 +15,7 @@ export type ActionType = {
 type initialStateType = {
     accessToken: string;
     refreshToken: string;
+    user?: any,
     dispatch: Dispatch<ActionType>;
 };
 
@@ -42,6 +44,10 @@ const reducer = (state: any, action: ActionType) => {
         case UPDATE_REFRESH_TOKEN:
             LocalStorageService.SetRefreshToken(data)
             newData = {...state, refreshToken: data};
+            break;
+
+        case UPDATE_USER_INFO:
+            newData = {...state, user: data};
             break;
 
         case LOGOUT:
@@ -81,6 +87,7 @@ AppProvider.context = appContext
 AppProvider.actions = {
     UPDATE_ACCESS_TOKEN,
     UPDATE_REFRESH_TOKEN,
+    UPDATE_USER_INFO,
     LOGOUT,
 }
 

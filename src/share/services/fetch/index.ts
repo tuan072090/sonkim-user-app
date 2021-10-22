@@ -3,6 +3,7 @@ import MyError from "../error";
 import LocalStorage from "../local-storage";
 import {AuthResponseType} from "../../data-types/user";
 import {API_URI} from "../../configs/apiUris";
+import {err} from "react-native-svg/lib/typescript/xml";
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -61,11 +62,14 @@ class FetchData {
 
     private handleError = function (error: AxiosError|any) {
         try {
+            console.log("error...", {...error})
+
+            const errorResponse = error.response.data
             //  Need optimize
-            const message = error.response?.data?.message || "Something error"
-            const status = error.response?.status || 500
-            const code = error.response?.data?.code || 500
-            const errors = error.response?.data?.errors || []
+            const message = errorResponse.message || "Something error"
+            const status = error.response.status || 500
+            const code = errorResponse.code || 500
+            const errors = errorResponse.errors || []
 
             throw new MyError(status, message, code, errors)
         }catch (err){
@@ -92,6 +96,11 @@ class FetchData {
     public async RefreshToken() {
         try {
             const accessToken = LocalStorage.GetAccessToken()
+            this.SetAccessToken(accessToken)
+
+            return;
+
+            //  debug sau
 
             if(!accessToken || accessToken.length === 0) throw new MyError(400, "access token not found")
 
@@ -125,6 +134,9 @@ class FetchData {
     }
 
     private executeRequest = (method: MethodType, route: string, params = {}) => {
+
+        console.log("route....", route)
+        console.log("header request...", this.headers)
 
         switch (method) {
             case "GET":
