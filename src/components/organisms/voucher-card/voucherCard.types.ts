@@ -1,8 +1,8 @@
-export type VoucherItemType={
-    item: ItemType,
+export type VoucherCardType={
+    voucher: VoucherType,
 }
 
-export type ItemType={
+export type VoucherType={
     imageUri: any,
     title:string,
     applied:number,

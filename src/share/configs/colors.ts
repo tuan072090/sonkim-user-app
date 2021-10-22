@@ -21,5 +21,6 @@ export const Colors = {
         700: '#AC7C15',
         800: '#8A600D',
         900: '#724B08',
-    }
+    },
+    pressed: 'rgba(8,105,129, 0.5)'
 }

@@ -11,10 +11,11 @@ import Translate from './languages'
 //  services
 import FetchDataService from "./services/fetch";
 import {CheckPhone, Register, Login, Logout, ResetPassword} from "./services/sonkim-api/auth";
+import {getVouchers} from "./services/sonkim-api/vouchers";
 import {GetUserProfile} from './services/sonkim-api/user'
 
 const SonkimApiService = {
-    CheckPhone,Register, Login, ResetPassword, Logout,GetUserProfile
+    CheckPhone,Register, Login, ResetPassword, Logout,GetUserProfile, getVouchers
 }
 import FirebaseService from "./services/firebase";
 

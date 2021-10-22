@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import VoucherCard from "../../components/organisms/voucher-card";
 import {Box, Text} from "native-base";
-import {StaticImages} from '../../../share'
-import VoucherCard from "../../../components/organisms/voucher-card";
+import {SonkimApiService, StaticImages} from "../../share";
+import {Alert} from "react-native";
 
 
 const sampleVoucherData = [
@@ -30,7 +31,22 @@ const sampleVoucherData = [
     },
 ]
 
-export const VoucherList = () => {
+const VouchersScreen = () => {
+    const [vouchers, setVouchers] = useState(null)
+
+    useEffect(() => {
+        _fetchVouchers()
+    }, [])
+
+    const _fetchVouchers = async () => {
+        try {
+            const data = await SonkimApiService.getVouchers()
+            console.log("data...", data)
+        } catch (err) {
+            Alert.alert(err.message)
+        }
+    }
+
     return (
         <Box p={4} mt={4}>
             <Text fontSize="xl" color="primary.500">
@@ -45,5 +61,7 @@ export const VoucherList = () => {
                 ))
             }
         </Box>
-    );
-};
+    )
+}
+
+export default VouchersScreen

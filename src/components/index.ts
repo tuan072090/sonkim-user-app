@@ -13,6 +13,7 @@ import QrCode from './molecules/qr-code'
 import DatePicker from './organisms/datepicker'
 import FeatureItems from './organisms/feature-item'
 import MembershipCards from './organisms/membership-cards'
+import VoucherCard from "./organisms/voucher-card";
 
 //  templates
 import OnBoarding from './templates/onboarding'

@@ -22,6 +22,7 @@ export const ScreenName = {
     USEPOINTQR: 'UsePointQR',
     TRANSFERPOINT: 'TransferPoint',
     STORE: "Store",
+    VOUCHERS_SCREEN: "Vouchers"
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -43,7 +44,7 @@ export const ScreenTitle = {
     [ScreenName.USEPOINTQR]: 'Tích và dùng điểm',
     [ScreenName.TRANSFERPOINT]: 'Đổi điểm',
     [ScreenName.STORE]: 'Danh sách store',
-
+    [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
 }
 
 export const Deeplink = {

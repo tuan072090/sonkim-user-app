@@ -1,9 +1,8 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
 import {AuthResponseType} from "../../data-types/user";
 import {API_URI} from "../../configs/apiUris";
-import {err} from "react-native-svg/lib/typescript/xml";
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -22,8 +21,8 @@ class FetchData {
     constructor() {
         const accessToken = LocalStorage.GetAccessToken();
 
-        if(accessToken && accessToken.length > 0){
-            this.headers = {Authorization: "Bearer " + accessToken }
+        if (accessToken && accessToken.length > 0) {
+            this.headers = {Authorization: "Bearer " + accessToken}
         }
 
         this.axiosInstance = axios.create({
@@ -60,10 +59,8 @@ class FetchData {
         return res.data;
     }
 
-    private handleError = function (error: AxiosError|any) {
+    private handleError = function (error: AxiosError | any) {
         try {
-            console.log("error...", {...error})
-
             const errorResponse = error.response.data
             //  Need optimize
             const message = errorResponse.message || "Something error"
@@ -72,13 +69,13 @@ class FetchData {
             const errors = errorResponse.errors || []
 
             throw new MyError(status, message, code, errors)
-        }catch (err){
+        } catch (err) {
             throw new MyError(500, "Unknown error", 500, [])
         }
     }
 
     public SetAccessToken(accessToken = "") {
-        this.headers = accessToken.length > 0 ? { Authorization: "Bearer " + accessToken } : {}
+        this.headers = accessToken.length > 0 ? {Authorization: "Bearer " + accessToken} : {}
     }
 
     public GET(route: string, params = {}) {
@@ -102,7 +99,7 @@ class FetchData {
 
             //  debug sau
 
-            if(!accessToken || accessToken.length === 0) throw new MyError(400, "access token not found")
+            if (!accessToken || accessToken.length === 0) throw new MyError(400, "access token not found")
 
             const res = await axios.post(API_URI + "/account/security/refresh",
                 {
@@ -110,7 +107,7 @@ class FetchData {
                         "refresh_token": LocalStorage.GetRefreshToken()
                     }
                 },
-                {headers: { Authorization: "Bearer " + LocalStorage.GetAccessToken() }}
+                {headers: {Authorization: "Bearer " + LocalStorage.GetAccessToken()}}
             )
 
             // @ts-ignore
@@ -134,9 +131,6 @@ class FetchData {
     }
 
     private executeRequest = (method: MethodType, route: string, params = {}) => {
-
-        console.log("route....", route)
-        console.log("header request...", this.headers)
 
         switch (method) {
             case "GET":
