@@ -74,26 +74,26 @@ API uri: `https://api.sonkim.upme.dev`
 
 ## Pages
 
-1. [x] Onboarding
-2. [x] Login
-3. [x] Register
-4. [x] Forgot password
-5. [ ] Update user profile
-6. [x] Home page
-7. [x] BU detail
-8. [ ] BU detail
-9. [ ] Store/restaurant detail
-10. [ ] Danh sách ưu đãi
-11. [ ] Voucher detail
-12. [x] Tích điểm và dùng điểm
-13. [x] Quét mã
-14. [x] Đăng ký thẻ
-15. [x] Liên kết thẻ
-16. [ ] Đổi điểm
-17. [ ] Lịch sử đổi điểm
-18. [ ] Quản lý thông báo
-19. [x] Tìm xung quanh
-20. [ ] Giỏ hàng
+-  [x] Onboarding
+-  [x] Login
+-  [x] Register
+-  [x] Forgot password
+-  [ ] Update user profile  //  Tài
+-  [x] Home page
+-  [x] BU detail
+-  [ ] Store/restaurant detail  //  Khánh
+-  [x] Danh sách ưu đãi
+-  [ ] Voucher detail  //  Tài
+-  [ ] Tích điểm và dùng điểm  //  Khánh
+-  [x] Quét mã     //  Khánh
+-  [x] Đăng ký thẻ
+-  [x] Liên kết thẻ
+-  [ ] Đổi điểm    // Khánh
+-  [ ] Lịch sử đổi điểm    // Khánh
+-  [ ] Quản lý thông báo // Tài
+-  [x] Tìm xung quanh
+-  [ ] Giỏ hàng
+-  [ ] Gift Cards   //  Tài
 
 ## Available Components
 
