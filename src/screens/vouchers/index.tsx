@@ -52,9 +52,7 @@ const VouchersScreen = () => {
             <Text fontSize="xl" color="primary.500">
                 Danh sách khuyến mãi
             </Text>
-            <Text fontSize="md" color="gray.400">
-                Danh sách voucher hot nhất hiện nay của shop
-            </Text>
+
             {
                 sampleVoucherData.map((item, index) => (
                     <VoucherCard voucher={item} key={index}/>

@@ -12,29 +12,31 @@ API uri: `https://api.sonkim.upme.dev`
 
 - GET `/firebase-auth/check?phone=:phone`
 - POST `/firebase-auth/login`
-  ``Body
-        "phone": "0966499006",
-        "password": "123123"
-  ``
+  
+  Body
+  
+  ```
+    "phone": "0966499006",
+    "password": "123123"
+    ```
+  
 - POST `/firebase-auth/register`
 
-  ``Body
-
-        "idToken":"xx123132123",
-        "password":"123123",
-        "fullName": "Nguyen Manh Tuan",
-        "email":"tuan@meete.co"
-
-  }``
+    Body
+    ```
+    "idToken":"xx123132123",
+    "password":"123123",
+    "fullName": "Nguyen Manh Tuan",
+    "email":"tuan@meete.co"
+    ```
 
 - POST `/firebase-auth/reset-password`
 
-  `` Body
-
-        "idToken":"123132123",
-        "password":"123123",
-
-  ``
+    Body
+    ```
+    "idToken":"123132123",
+    "password":"123123",
+    ```
 
 #### Article
 
@@ -61,12 +63,21 @@ API uri: `https://api.sonkim.upme.dev`
 - GET `/user-api/promotions`
 - GET `/user-api/promotions/:id`
 
+#### Upload
+- POST `/user-upload/presignedurl`
+
+    Body
+    ```
+    "fileName": "my_avatar.jpeg",
+    "fileType": "image/jpeg"
+    ```
+
 ## Pages
 
 1. [x] Onboarding
 2. [x] Login
 3. [x] Register
-4. [ ] Forgot password
+4. [x] Forgot password
 5. [ ] Update user profile
 6. [x] Home page
 7. [x] BU detail
@@ -104,7 +115,7 @@ API uri: `https://api.sonkim.upme.dev`
 
 - [x] Category item: Item điều hướng ở trang home
 - [ ] MenuIcon: A menu with only icon component
-- [ ] Toggle button: [example](https://mui.com/components/toggle-button/)
+- [x] Toggle button: [example](https://mui.com/components/toggle-button/)
 - [ ] Rating: [example](https://mui.com/components/rating/)
 - [ ] Tooltip: [example](https://mui.com/components/tooltips/)
 - [ ] Snackbar: [example](https://mui.com/components/snackbars/)
@@ -118,9 +129,9 @@ API uri: `https://api.sonkim.upme.dev`
 - [x] Modal
 - [x] PageHeader
 - [x] Sidebar
-- [ ] Voucher card
-- [ ] Membership card ở trang home
-- [ ] Membership card ở trang BU
+- [x] Voucher card
+- [x] Membership card ở trang home
+- [x] Membership card ở trang BU
 - [ ] SpeedDial: [example](https://mui.com/components/speed-dial/)
 - [ ] Accordion: [example](https://mui.com/components/accordion/)
 - [x] Card: [example](https://mui.com/components/cards/)
