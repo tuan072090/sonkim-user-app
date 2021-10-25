@@ -98,7 +98,7 @@ export const RegisterForm = () => {
             })
             Alert.alert("Đăng ký thành công")
             navigation.goBack()
-        } catch (err) {
+        } catch (err:any) {
             Alert.alert(err.message)
         }
     }

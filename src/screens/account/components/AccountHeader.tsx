@@ -12,6 +12,11 @@ const AccountHeader = () => {
         navigation.navigate(ScreenName.USER_LIST_CARD)
     }
 
+    const _navigateUserInfo = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.USER_INFO)
+    }
+
     return (
         <Box bg="primary.500" width="100%" p={4}>
 
@@ -23,7 +28,8 @@ const AccountHeader = () => {
                 </Button>
 
                 <Button flex={1} rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
-                        bgColor="rgba(255,255,255,0.5)">
+                        bgColor="rgba(255,255,255,0.5)"
+                        onPress={_navigateUserInfo}>
                     Thông tin tài khoản
                 </Button>
             </HStack>
