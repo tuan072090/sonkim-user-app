@@ -23,6 +23,7 @@ import { ResetPasswordScreen } from "./auth/ResetPasswordScreen";
 import TransferPointPage from './transfer-point';
 import StorePage from './store';
 import VouchersScreen from "./vouchers";
+import AccountInfo from './account/AccountInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -81,6 +82,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.ACCOUNT_SETTING_SCREEN} component={AccountSetting} options={{ headerShown: false }} />
 
                     <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USER_INFO} component={AccountInfo} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP} component={RegisterMembership} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
