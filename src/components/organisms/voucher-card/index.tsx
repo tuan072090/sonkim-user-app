@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/core'
 import {Box, HStack, Pressable, Text, VStack} from 'native-base'
 import React from 'react'
 import {CheckStoreIcon, HistoryIcon, ImageStatic} from '../../../components'
+import { ScreenName } from '../../../share'
 import {FormatVND} from '../../../share/utils/formatter'
 import {VoucherCardType} from './voucherCard.types'
 
@@ -12,8 +13,13 @@ const VoucherCard: React.FC<VoucherCardType> = ({voucher, ...props}) => {
     const statusLabel = voucher.status === 'free' ? 'Miễn phí' : voucher.status === 'point' ? `${voucher.point} điểm` : voucher.price ? `${FormatVND(voucher.price)}` : null;
     const voucherCTA = voucher.status === 'free' ? 'Lấy voucher' : voucher.status === 'point' ? 'Đổi voucher' : 'Mua voucher';
 
+    const _navigateVoucherDetail=()=>{
+        // @ts-ignore
+        navigation.navigate(ScreenName.VOUCHER_DETAIL);
+    }
+
     return (
-        <Pressable >
+        <Pressable onPress={_navigateVoucherDetail}>
             <VStack bgColor="white" borderRadius={8} shadow={4} mt={3}>
                 <HStack mx={3} my={2}>
                     <Box bgColor="primary.500" borderRadius={6} width="20" height="20" my={1}>

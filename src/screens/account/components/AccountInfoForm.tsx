@@ -136,7 +136,6 @@ const AccountInfoForm = () => {
                         selectedValue={sex}
                         accessibilityLabel="Chọn giới tính"
                         placeholder="Chọn giới tính"
-                        color="white"
                         fontSize="md"
                         clearButtonMode="while-editing"
                         p={3}
@@ -146,6 +145,7 @@ const AccountInfoForm = () => {
                         bgColor="rgba(255,255,255,0.5)"
                         mt={1}
                         onValueChange={(itemValue)=>setSex(itemValue)}
+                        color="white"
                     >
                         <Select.Item label="Nam" value="male"></Select.Item>
                         <Select.Item label="Nữ" value="female"></Select.Item>
