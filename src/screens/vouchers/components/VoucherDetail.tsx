@@ -21,13 +21,15 @@ const VoucherDetail = () => {
                                 <HStack>
                                     <VStack>
                                         <Text fontWeight="normal" fontStyle="normal" fontSize="sm" lineHeight="xs" letterSpacing="lg" color="#626262">Hạn sử dụng:</Text>
-                                        <Text fontWeight="normal" mt={1} fontStyle="normal" fontSize="sm" lineHeight="xs" letterSpacing="lg" color="#626262">Chi nhánh:</Text>
-                                        <Text fontWeight="normal" mt={1} fontStyle="normal" fontSize="sm" lineHeight="xs" letterSpacing="lg" color="#626262">Thương hiệu:</Text>
+                                        <Text fontWeight="normal" mt={2} fontStyle="normal" fontSize="sm" lineHeight="xs" letterSpacing="lg" color="#626262">Chi nhánh:</Text>
+                                        <Text fontWeight="normal" mt={2} fontStyle="normal" fontSize="sm" lineHeight="xs" letterSpacing="lg" color="#626262">Thương hiệu:</Text>
                                     </VStack>
                                     <VStack>
                                         <Text ml={2} fontWeight="semibold" fontStyle="normal" fontSize="sm" lineHeight="xs" color="#1b1b1b">21/12/2021</Text>
-                                        <Text ml={2} fontWeight="semibold" mt={1} fontStyle="normal" fontSize="sm" lineHeight="xs" color="#1b1b1b">Áp dụng cho 10 chi nhánh</Text>
-                                        <Text ml={2} fontWeight="semibold" mt={1} fontStyle="normal" fontSize="sm" lineHeight="xs" color="#1b1b1b">HEALTH SPA</Text>
+                                        <Text ml={2} fontWeight="semibold" mt={1} fontStyle="normal" fontSize="sm" lineHeight="xs" color="#1b1b1b"> 
+                                            Áp dụng cho <Text underline color="red.700">10 chi nhánh</Text>
+                                        </Text>
+                                        <Text ml={2} fontWeight="semibold" mt={2} fontStyle="normal" fontSize="sm" lineHeight="xs" color="#1b1b1b">HEALTH SPA</Text>
                                     </VStack>
                                 </HStack>
                             </Box>
