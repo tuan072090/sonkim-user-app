@@ -1,13 +1,14 @@
 import { HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, } from "./atoms/icons/BottomNavIcons";
-import { VoucherIcons, ChevronLeftIcon, ListIcon, LocationIcon, FriendIcon, TranslateIcon, ChevronRightIcon, NotificationOutlineIcon, CheckStoreIcon, HistoryIcon, CheckAllIcon, PhoneIcon,DropdownIcon } from "./atoms/icons/CommonIcons"
+import { VoucherIcons, ChevronLeftIcon, ListIcon, LocationIcon, FriendIcon, TranslateIcon, ChevronRightIcon, NotificationOutlineIcon, CheckStoreIcon, HistoryIcon, CheckAllIcon, PhoneIcon } from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
+import FullScreenLoader from './atoms/loader/FullScreenLoader';
 
 //  molecules
 import Avatar from './molecules/avatar'
-import FullScreenLoader from './atoms/loader/FullScreenLoader';
 import Picker from './molecules/picker'
 import QrCode from './molecules/qr-code'
+import ImagePicker from "./molecules/image-picker";
 
 //  Organisms
 import DatePicker from './organisms/datepicker'
@@ -35,7 +36,6 @@ export {
     CheckStoreIcon,
     HistoryIcon,
     CheckAllIcon, PhoneIcon,
-    DropdownIcon,
     Image,
     ImageStatic,
     FullScreenLoader,
@@ -44,6 +44,7 @@ export {
     Avatar,
     Picker,
     QrCode,
+    ImagePicker,
 
     //  Organisms
     DatePicker,

@@ -1,6 +1,5 @@
 import FetchDataService from "../fetch"
 
-
 export const getAllBranch = async () => {
     try {
         const { count, branches } = await FetchDataService.GET("/user-api/branches")

@@ -20,8 +20,7 @@ const App = () => {
 
     useEffect(() => {
         LocalStorageService.SynsData().then(res => {
-            console.log("sync data.....")
-
+            //  does not need at this time
             FetchDataService.RefreshToken()
 
             setLanguage(LocalStorageService.GetLanguage())

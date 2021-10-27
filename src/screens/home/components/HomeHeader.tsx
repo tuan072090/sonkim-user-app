@@ -2,23 +2,29 @@ import React, {memo, useContext, useEffect} from "react";
 import {Box, Pressable, Text} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
-import {Colors, ScreenName, SonkimApiService} from "../../../share";
+import {ScreenName, SonkimApiService} from "../../../share";
 import AppProvider from "../../../share/context";
 
 export const HomeHeader = memo(() => {
     const navigation = useNavigation()
-    const {dispatch, user} = useContext(AppProvider.context)
+    const {dispatch, user, accessToken} = useContext(AppProvider.context)
 
     useEffect(() => {
-        _fetchProfile()
+        console.log("accessToken....", accessToken)
+        if(accessToken && accessToken.length > 0){
+            _fetchProfile()
+        }
+
     }, [])
+
 
     const _fetchProfile = async () => {
         try {
-            const profile = await SonkimApiService.GetUserProfile()
+            const userInfo = await SonkimApiService.GetPersonalInfo()
+            console.log("userInfo....", userInfo)
             dispatch({
                 type: AppProvider.actions.UPDATE_USER_INFO,
-                data: profile
+                data: userInfo
             })
         } catch (err) {
             // Alert.alert(err.message)
@@ -27,7 +33,7 @@ export const HomeHeader = memo(() => {
 
     const _navToAccount = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.ACCOUNT_SETTING_SCREEN)
+        navigation.navigate(ScreenName.USER_INFO)
     }
 
     const _navToVouchers = () => {
@@ -42,24 +48,25 @@ export const HomeHeader = memo(() => {
                 {
                     user
                         ? <>
-                            <Avatar
-                                uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name}
-                                size="sm"/>
+                            {
+                                user.avatar ? <Avatar uri={user.avatar} size="sm"/>
+                                    : <Avatar
+                                        uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name}
+                                        size="sm"/>
+                            }
+
                             <Text ml={3} fontSize="lg" color="white">Chào {user.name}</Text>
                         </>
                         :
-                        <>
-                            <Avatar uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=user"}
-                                    size="sm"/>
-                            <Text ml={3} fontSize="lg" color="white">Chào bạn</Text>
-                        </>
+                        <Text ml={3} fontSize="lg" color="white">Chào người lạ</Text>
                 }
-
             </Pressable>
 
-            <Pressable _pressed={{opacity: 0.5}} onPress={_navToVouchers} position="relative" flexDirection="row" alignItems="center" px={4} py={2}>
+            <Pressable _pressed={{opacity: 0.5}} onPress={_navToVouchers} position="relative" flexDirection="row"
+                       alignItems="center" px={4} py={2}>
                 {/*overlay background*/}
-                <Box position="absolute" top={0} left={0} right={0} bottom={0} bgColor="white" opacity={20} rounded="2xl"/>
+                <Box position="absolute" top={0} left={0} right={0} bottom={0} bgColor="white" opacity={20}
+                     rounded="2xl"/>
                 {/*overlay background*/}
                 <VoucherIcons fill="white" size={6}/>
                 <Text ml={2} fontSize="lg" fontWeight="medium" color="white">3</Text>

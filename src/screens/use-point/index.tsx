@@ -35,6 +35,7 @@ const UsePoint = () => {
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
+                <Text mb={3} fontSize="sm" fontWeight="semibold">Chọn thẻ bạn muốn sử dụng</Text>
                 <ListCardBU choise={choise} setChoise={setChoise}> </ListCardBU>
                 <Box mt={20}></Box>
             </ScrollView>

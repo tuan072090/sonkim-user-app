@@ -52,7 +52,7 @@ export const PhoneInputForm = () => {
     return (
         <Box p={4}>
             <Heading color="white" size="md" fontWeight="medium" mb={6} textTransform="uppercase" textAlign="center">
-                ĐĂNG KÝ TÀI KHOẢN
+                ĐĂNG KÝ HOẶC ĐĂNG NHẬP
             </Heading>
 
             <Text color="secondary.500" mb={1}>Điện thoại</Text>

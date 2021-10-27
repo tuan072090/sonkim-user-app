@@ -6,9 +6,11 @@ import ScreenHeader from '../../components/organisms/screen-header'
 import { StaticImages, Translate } from '../../share'
 import LanguageProvider from '../../share/context/Language'
 import AccountInfoForm from './components/AccountInfoForm'
+import {MainLayout} from "../../components";
 
-const AccountInfo = () => {
-    const {language}=useContext(LanguageProvider.context)
+const AccountInfo: React.FC<any> = MainLayout(() => {
+    const {language} = useContext(LanguageProvider.context)
+
     return (
         <Box flex={1} position="relative" alignItems="center">
             <ImageStatic resizeMode="cover" position="absolute" bottom={0} left={0} width="100%" height="100%" uri={StaticImages.reg_membership_backgroud}></ImageStatic>
@@ -18,8 +20,9 @@ const AccountInfo = () => {
             </Box>
         </Box>
     )
-}
+})
 
+
+//  add auth require
+AccountInfo.defaultProps = {authRequire: true}
 export default AccountInfo
-
-const styles = StyleSheet.create({})

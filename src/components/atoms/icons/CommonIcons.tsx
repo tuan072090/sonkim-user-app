@@ -195,13 +195,42 @@ export const PhoneIcon: React.FC<IconTypes> = ({
     );
 };
 
-export const DropdownIcon: React.FC<IconTypes> = ({
+export const PointExchangericon: React.FC<IconTypes> = ({
     size = 20,
     fill = "none",
 }) => {
     return (
-        <Icon viewBox="0 0 24 24" fill="none" size={size}>
-            <Path d="M12 14.5L17 9.5H7L12 14.5Z" fill="white"/>
+        
+        <Icon viewBox="0 0 16 20" fill="none" size={size}>
+            <Path
+                d="M16 13L12 18L8 13H11L11 0H13L13 13H16ZM8 7H5L5 20H3L3 7H0L4 2L8 7Z"
+                fill="#095A64"
+            />
+        </Icon>
+    );
+};
+
+export const ArrowDropDownIcon: React.FC<IconTypes> = ({
+    size = 20,
+    fill = "none",
+}) => {
+    return (
+        <Icon viewBox="0 0 10 6" fill="none" size={size}>
+            <Path d="M5 5.5L10 0.5L0 0.5L5 5.5Z" fill="#626262" />
+        </Icon>
+    );
+};
+
+export const CancelIcon: React.FC<IconTypes> = ({
+    size = 20,
+    fill = "none",
+}) => {
+    return (
+        <Icon viewBox="0 0 14 14" fill="none" size={size}>
+            <Path
+                d="M12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41L12.59 0Z"
+                fill="#626262"
+            />
         </Icon>
     );
 };

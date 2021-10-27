@@ -1,8 +1,8 @@
-# @baseUrl = https://api.sonkim.upme.dev/user-api
-# @firebaseAuthUrl = https://api.sonkim.upme.dev/firebase-auth
+@baseUrl = https://api.sonkim.upme.dev/user-api
+@firebaseAuthUrl = https://api.sonkim.upme.dev/firebase-auth
 
-@baseUrl = http://localhost:1337/user-api
-@firebaseAuthUrl = http://localhost:1337/firebase-auth
+# @baseUrl = http://localhost:1337/user-api
+# @firebaseAuthUrl = http://localhost:1337/firebase-auth
 
 ### Check phone existed
 GET {{firebaseAuthUrl}}/check?phone=0966499006 HTTP/1.1
@@ -12,7 +12,7 @@ POST {{firebaseAuthUrl}}/login HTTP/1.1
 content-type: application/json
 
 {
-    "phone": "0909123321",
+    "phone": "0966499006",
     "password": "123123"
 }
 
@@ -37,6 +37,22 @@ content-type: application/json
     "passwordConfirmation": "123123"
 }
 
+### Personal Info
+GET {{baseUrl}}/personal-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1MzI0Nzk5LCJleHAiOjE2Mzc5MTY3OTl9.A4FxSA2A51Yk6A6H03B4aHz4PqxXbjErG7L8R7_76HM
+
+### Update Personal info
+PUT {{baseUrl}}/personal-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1MzI0Nzk5LCJleHAiOjE2Mzc5MTY3OTl9.A4FxSA2A51Yk6A6H03B4aHz4PqxXbjErG7L8R7_76HM
+
+{
+    "name": "Tuan Manh Tuan",
+    "gender": "female",
+    "birthday": "1990-01-07",
+    "avatar": "https://www.tuanmanh.com"
+}
 
 ### Articles
 GET {{baseUrl}}/articles?_start=0&_limit=10&_sort=id:DESC

@@ -1,27 +1,44 @@
-import React, {useRef, useState} from "react";
-import {StyleSheet} from "react-native";
-import {ImageStatic} from "../../../components";
-import {ScreenSize, StaticImages} from "../../../share";
+import React, {useEffect, useRef, useState} from "react";
+import {Alert, StyleSheet} from "react-native";
+import {Image, ImageStatic} from "../../../components";
+import {ScreenName, ScreenSize, SonkimApiService, StaticImages} from "../../../share";
 import {Box, Pressable} from "native-base";
 import Carousel from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/core';
 
 const sliderWidth = ScreenSize.vw;
 const sliderImgWidth = sliderWidth - 30
 
 export const HomeSlider = () => {
+    const [articles, setArticles] = useState([])
     const [activeSlide, setActiveSlide] = useState(0)
     const slideRef = useRef(null)
+    const navigation = useNavigation()
 
-    const _itemPress = () => {
+    useEffect(() => {
+        _fetchArticle()
+    },[])
 
+    const _fetchArticle = async () => {
+        try {
+            const {articles, count} = await SonkimApiService.GetArticles()
+            setArticles(articles)
+        }catch (err){
+            Alert.alert(err.message)
+        }
+    }
+
+    const _itemPress = (data:any) => {
+        console.log(data)
+        //  @ts-ignore
+        navigation.navigate(ScreenName.ARTICLE_SCREEN, {articleId: data.id})
     }
 
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
-            <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198} onPress={_itemPress}>
-                <ImageStatic borderRadius={26} uri={StaticImages.banner_example} width={sliderImgWidth}
-                             height={sliderImgWidth / 2.198}/>
+            <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198} onPress={() => _itemPress(item)}>
+                <Image borderRadius={26} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198} resizeMode="stretch"/>
             </Pressable>
         )
     }
@@ -30,18 +47,23 @@ export const HomeSlider = () => {
         <Box position="relative">
             <ImageStatic resizeMode="cover" position="absolute" top={0} left={0} width={sliderWidth+2} height={sliderWidth/2.198}  uri={StaticImages.banner_background}/>
 
-            <Carousel
-                loop={true} //  back to first slide when finish the end slide
-                autoplay={true}
-                autoplayInterval={3000}
-                ref={slideRef}
-                data={[1, 2, 3, 4]}
-                renderItem={_renderItem}
-                sliderWidth={sliderWidth}
-                itemWidth={sliderWidth}
-                inactiveSlideScale={1}
-                onSnapToItem={index => setActiveSlide(index)}
-            />
+            {
+                articles.length === 0
+                ? <Box width={sliderWidth} height={sliderWidth / 2.198}/>
+                :<Carousel
+                        loop={true} //  back to first slide when finish the end slide
+                        autoplay={true}
+                        autoplayInterval={3000}
+                        ref={slideRef}
+                        data={articles}
+                        renderItem={_renderItem}
+                        sliderWidth={sliderWidth}
+                        itemWidth={sliderWidth}
+                        inactiveSlideScale={1}
+                        onSnapToItem={setActiveSlide}
+                    />
+            }
+
         </Box>
     )
 }

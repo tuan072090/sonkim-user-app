@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import VoucherCard from "../../components/organisms/voucher-card";
 import {Box, Text} from "native-base";
-import {SonkimApiService, StaticImages} from "../../share";
 import {Alert} from "react-native";
+import AccountInfo from "../account/AccountInfo";
+import {MainLayout} from "../../components";
+import { SonkimApiService, StaticImages } from "../../share";
 
 
 const sampleVoucherData = [
@@ -31,7 +33,7 @@ const sampleVoucherData = [
     },
 ]
 
-const VouchersScreen = () => {
+const VouchersScreen:React.FC<any> = MainLayout(() => {
     const [vouchers, setVouchers] = useState(null)
 
     useEffect(() => {
@@ -55,11 +57,13 @@ const VouchersScreen = () => {
 
             {
                 sampleVoucherData.map((item, index) => (
-                    <VoucherCard voucher={item} key={index}/>
+                    <VoucherCard voucher={item} key={index} />
                 ))
             }
         </Box>
     )
-}
+})
+
+VouchersScreen.defaultProps = {authRequire: true}
 
 export default VouchersScreen
