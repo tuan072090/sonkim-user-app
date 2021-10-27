@@ -1,5 +1,13 @@
 import React, { useContext } from "react";
-import { Text, Box, Pressable, Button, ScrollView } from "native-base";
+import {
+    Text,
+    Box,
+    Pressable,
+    Button,
+    ScrollView,
+    VStack,
+    SimpleGrid,
+} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
@@ -22,7 +30,12 @@ const BUDetailScreen = () => {
         navigation.navigate(ScreenName.STORE);
     };
     return (
-        <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
+        <Box
+            flex={1}
+            width={"100%"}
+            alignContent="center"
+            justifyContent="center"
+        >
             <ScreenHeader
                 hasBackButton={true}
                 title={Translate[language].buDetail}
@@ -83,11 +96,13 @@ const BUDetailScreen = () => {
                 </Box>
                 <Categories></Categories>
                 <VoucherList></VoucherList>
-                <Box>
-                    <Box p={5} flexDirection="row">
-                        <CardStore></CardStore>
-                        <CardStore></CardStore>
-                    </Box>
+                <Box p={5}>
+                    <VStack space={3}>
+                        <SimpleGrid columns={2} spacingY={3} spacingX={3}>
+                            <CardStore></CardStore>
+                            <CardStore></CardStore>
+                        </SimpleGrid>
+                    </VStack>
                     <Text
                         pb={5}
                         underline

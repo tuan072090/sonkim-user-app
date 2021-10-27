@@ -6,6 +6,6 @@ export type cardBuType = {
 };
 
 export type ListCardBuType = {
-    choise: string;
+    choise?: string;
     setChoise?: any;
 };

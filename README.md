@@ -12,31 +12,33 @@ API uri: `https://api.sonkim.upme.dev`
 
 - GET `/firebase-auth/check?phone=:phone`
 - POST `/firebase-auth/login`
-  
+
   Body
-  
+
   ```
     "phone": "0966499006",
     "password": "123123"
-    ```
-  
+  ```
+
 - POST `/firebase-auth/register`
 
-    Body
-    ```
-    "idToken":"xx123132123",
-    "password":"123123",
-    "fullName": "Nguyen Manh Tuan",
-    "email":"tuan@meete.co"
-    ```
+  Body
+
+  ```
+  "idToken":"xx123132123",
+  "password":"123123",
+  "fullName": "Nguyen Manh Tuan",
+  "email":"tuan@meete.co"
+  ```
 
 - POST `/firebase-auth/reset-password`
 
-    Body
-    ```
-    "idToken":"123132123",
-    "password":"123123",
-    ```
+  Body
+
+  ```
+  "idToken":"123132123",
+  "password":"123123",
+  ```
 
 #### Article
 
@@ -64,36 +66,38 @@ API uri: `https://api.sonkim.upme.dev`
 - GET `/user-api/promotions/:id`
 
 #### Upload
+
 - POST `/user-upload/presignedurl`
 
-    Body
-    ```
-    "fileName": "my_avatar.jpeg",
-    "fileType": "image/jpeg"
-    ```
+  Body
+
+  ```
+  "fileName": "my_avatar.jpeg",
+  "fileType": "image/jpeg"
+  ```
 
 ## Pages
 
--  [x] Onboarding
--  [x] Login
--  [x] Register
--  [x] Forgot password
--  [ ] Update user profile  //  Tài
--  [x] Home page
--  [x] BU detail
--  [ ] Store/restaurant detail  //  Khánh
--  [x] Danh sách ưu đãi
--  [ ] Voucher detail  //  Tài
--  [ ] Tích điểm và dùng điểm  //  Khánh
--  [x] Quét mã     //  Khánh
--  [x] Đăng ký thẻ
--  [x] Liên kết thẻ
--  [ ] Đổi điểm    // Khánh
--  [ ] Lịch sử đổi điểm    // Khánh
--  [ ] Quản lý thông báo // Tài
--  [x] Tìm xung quanh
--  [ ] Giỏ hàng
--  [ ] Gift Cards   //  Tài
+- [x] Onboarding
+- [x] Login
+- [x] Register
+- [x] Forgot password
+- [ ] Update user profile // Tài
+- [x] Home page
+- [x] BU detail
+- [x] Store/restaurant detail // Khánh
+- [x] Danh sách ưu đãi
+- [ ] Voucher detail // Tài
+- [x] Tích điểm và dùng điểm // Khánh
+- [x] Quét mã // Khánh
+- [x] Đăng ký thẻ
+- [x] Liên kết thẻ
+- [ ] Đổi điểm // Khánh
+- [ ] Lịch sử đổi điểm // Khánh
+- [ ] Quản lý thông báo // Tài
+- [x] Tìm xung quanh
+- [ ] Giỏ hàng
+- [ ] Gift Cards // Tài
 
 ## Available Components
 

@@ -2,7 +2,7 @@ import { NavigationContainer, NavigationContainerRef } from '@react-navigation/n
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useRef } from 'react';
 
-import {Colors, ScreenName, ScreenTitle} from "../share";
+import { Colors, ScreenName, ScreenTitle } from "../share";
 import UserListCard from './user-list-card';
 import BUDetailScreen from "./BU-detail";
 import TabScreens from "./TabScreens";
@@ -67,7 +67,7 @@ const AppNavigation = () => {
                 ref={navigationRef}
                 onReady={onReadyNav}
                 onStateChange={handleScreenTracking}>
-                <Stack.Navigator screenOptions={{headerTintColor: Colors.primary["500"], headerBackTitle: "Trở về"}}>
+                <Stack.Navigator screenOptions={{ headerTintColor: Colors.primary["500"], headerBackTitle: "Trở về" }}>
                     {/* Tab screens */}
                     <Stack.Screen name={ScreenName.MAIN_SCREEN} component={TabScreens} options={{ headerShown: false }} />
                     {/* End Tab screens */}
@@ -91,7 +91,8 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.STORE} component={StorePage} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{title: ScreenTitle[ScreenName.VOUCHERS_SCREEN]}}/>
+                    <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{ title: ScreenTitle[ScreenName.VOUCHERS_SCREEN] }} />
+                    <Stack.Screen name={ScreenName.TRANSFER_POINT} component={TransferPointPage} options={{ headerShown: false }} />
 
                 </Stack.Navigator>
 

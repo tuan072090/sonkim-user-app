@@ -37,10 +37,7 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
     }, []);
 
     return (
-        <VStack space={3} mt="4">
-            <Heading size="xl">
-                <Text fontSize="xl">Bấm chọn BU cần đăng ký thẻ</Text>
-            </Heading>
+        <VStack space={3}>
             <SimpleGrid columns={3} spacingY={3} spacingX={3}>
                 {branch.map((item) => {
                     return (
