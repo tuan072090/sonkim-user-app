@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/core';
-import { Box, Heading, Input, KeyboardAvoidingView, ScrollView,Text } from 'native-base';
+import { Box, Heading, Input, KeyboardAvoidingView, ScrollView,Select,Text } from 'native-base';
 import React, { useContext, useRef, useState } from 'react'
-import { Alert, Platform, StyleSheet, View } from 'react-native'
+import { Alert, Platform, StyleSheet } from 'react-native'
+import { DatePicker } from '../../../components';
 import { Validator } from '../../../share';
 import AppProvider from '../../../share/context'
 
@@ -16,7 +17,10 @@ const AccountInfoForm = () => {
         subNameValid:"",
         dobValid:"",
         sexValid:""
-    })
+    });
+    // Handle for date and sex
+    const [date,setDate]=useState<Date>();
+    const [sex,setSex]=useState<string>();
 
     const _onInputChange=(name:"name"|"email"|"subName"|"dob"|"sex",value:string)=>{
         formRef.current[name]=value;
@@ -110,6 +114,19 @@ const AccountInfoForm = () => {
                     ></Input>
                     <Text color="red.500" fontSize="sm" mt={1}>{subNameValid}</Text>
 
+                    {/* date time picker */}    
+                    <Text color="secondary.500" my={1}>Ngày sinh</Text>
+                    <DatePicker value={new Date("2021-10-27")} onChange={(date)=>setDate(date)} />
+                    
+                    {/* sex */}    
+                    <Text color="secondary.500" my={1}>Giới tính</Text>
+                    <Select
+                        selectedValue={sex}
+                        accessibilityLabel="Chọn giới tính"
+                        placeholder="Chọn giới tính"
+                        
+                    ></Select>
+                    
                     {/* email */}    
                     <Text color="secondary.500" my={1}>Email</Text>
                     <Input onChangeText={(text)=>_onInputChange("email",text)}

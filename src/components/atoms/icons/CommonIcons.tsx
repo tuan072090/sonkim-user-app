@@ -194,3 +194,14 @@ export const PhoneIcon: React.FC<IconTypes> = ({
         </Icon>
     );
 };
+
+export const DropdownIcon: React.FC<IconTypes> = ({
+    size = 20,
+    fill = "none",
+}) => {
+    return (
+        <Icon viewBox="0 0 24 24" fill="none" size={size}>
+            <Path d="M12 14.5L17 9.5H7L12 14.5Z" fill="white"/>
+        </Icon>
+    );
+};
