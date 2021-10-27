@@ -24,8 +24,8 @@ export const ScreenName = {
     TRANSFER_POINT: 'TransferPoint',
     STORE: "Store",
     VOUCHERS_SCREEN: "Vouchers",
-    TRANSACTION_HISTORY: 'TransactionHistory'
-
+    TRANSACTION_HISTORY: 'TransactionHistory',
+    ARTICLE_SCREEN: "Article"
 
 }
 export const ScreenTitle = {
@@ -51,7 +51,6 @@ export const ScreenTitle = {
     [ScreenName.STORE]: 'Danh sách store',
     [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
     [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
-
 }
 
 export const Deeplink = {

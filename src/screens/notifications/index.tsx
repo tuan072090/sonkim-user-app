@@ -46,7 +46,7 @@ const NotificationsScreen = () => {
             <ScrollView>
                 {
                     notificationSampleData.map((item,index)=>(
-                        <NotificationCard item={item} key={index}></NotificationCard>
+                        <NotificationCard item={item} key={index}/>
                     ))
                 }
             </ScrollView>

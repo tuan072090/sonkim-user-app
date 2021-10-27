@@ -24,6 +24,7 @@ import StorePage from './store';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
 import TransactionHistory from './transaction-history';
+import {ArticleScreen} from "./article";
 
 const Stack = createNativeStackNavigator();
 
@@ -91,6 +92,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{ title: ScreenTitle[ScreenName.VOUCHERS_SCREEN] }} />
                     <Stack.Screen name={ScreenName.TRANSFER_POINT} component={TransferPointPage} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.TRANSACTION_HISTORY} component={TransactionHistory} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.ARTICLE_SCREEN} component={ArticleScreen}  options={{ headerShown: false }}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </>

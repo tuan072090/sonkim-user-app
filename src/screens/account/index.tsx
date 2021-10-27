@@ -60,11 +60,15 @@ const AccountScreen = () => {
                 <Pressable onPress={_navigateHistory}>
                     <AccountItem item={menuData[0]} />
                 </Pressable>
-                {
-                    menuData.map((item, index) => (
-                        <AccountItem key={index} item={item}/>
-                    ))
-                }
+                <Pressable onPress={_navigateHistory}>
+                    <AccountItem item={menuData[1]} />
+                </Pressable>
+                <Pressable onPress={_navigateHistory}>
+                    <AccountItem item={menuData[2]} />
+                </Pressable>
+                <Pressable onPress={_navigateHistory}>
+                    <AccountItem item={menuData[3]} />
+                </Pressable>
 
                 {
                     user && <Button onPress={_logout}
