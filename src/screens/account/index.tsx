@@ -7,7 +7,7 @@ import ScreenHeader from "../../components/organisms/screen-header";
 import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 
-const sampleData = [
+const menuData = [
     {
         startIcon: <LocationIcon size={6}/>,
         title: 'Lịch sử đổi điểm',
@@ -31,7 +31,7 @@ const sampleData = [
 ]
 
 const AccountScreen = () => {
-    const {dispatch} = useContext(AppProvider.context)
+    const {dispatch, user} = useContext(AppProvider.context)
 
     const _logout = () => {
         dispatch({
@@ -43,27 +43,31 @@ const AccountScreen = () => {
 
     return (
         <Box flex={1}>
-            <ScreenHeader hasBackButton={false} title="Nguyễn Hồng Lâm" bgColor="primary.500"/>
+
+            <ScreenHeader hasBackButton={false} title={user ? user.name : ""} bgColor="primary.500"/>
 
             <AccountHeader/>
 
             <Box p="4">
                 {
-                    sampleData.map((item, index) => (
+                    menuData.map((item, index) => (
                         <AccountItem key={index} item={item}/>
                     ))
                 }
 
-                <Button onPress={_logout}
-                        bgColor="#08698133"
-                        _pressed={{bgColor: "rgba(255,255,255,0.8)"}}
-                        mt={4}
-                        height={12}
-                        borderRadius={12}>
-                    <Text color="primary.500" fontSize="lg" fontWeight="semibold">Đăng xuất</Text>
-                </Button>
+                {
+                    user && <Button onPress={_logout}
+                                    bgColor="#08698133"
+                                    _pressed={{bgColor: "rgba(255,255,255,0.8)"}}
+                                    mt={4}
+                                    height={12}
+                                    borderRadius={12}>
+                        <Text color="primary.500" fontSize="lg" fontWeight="semibold">Đăng xuất</Text>
+                    </Button>
+                }
 
-                <Text width="100%" fontSize="sm" color="gray.300" mt={5} textAlign="center">Verion 1.0</Text>
+
+                <Text width="100%" fontSize="sm" color="gray.400" mt={5} textAlign="center">Verion 1.0</Text>
             </Box>
         </Box>
     )

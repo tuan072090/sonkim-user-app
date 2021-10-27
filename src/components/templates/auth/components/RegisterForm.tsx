@@ -11,10 +11,9 @@ export const RegisterForm = () => {
     const route = useRoute()
     const {params} = route
     const [phoneLocal] = useLocalStorage("phone", "")
-    const formRef = useRef({phone: "", fullName: "", email: "", password: "", confirmPassword: ""})
+    const formRef = useRef({phone: "", email: "", password: "", confirmPassword: ""})
     const [isProcessing, setProcessing] = useState(false)
-    const [{fullNameValid, emailValid, passwordValid, confirmPasswordValid}, setFormValid] = useState({
-        fullNameValid: "",
+    const [{emailValid, passwordValid, confirmPasswordValid}, setFormValid] = useState({
         emailValid: "",
         passwordValid: "",
         confirmPasswordValid: ""
@@ -38,9 +37,9 @@ export const RegisterForm = () => {
         }
     }, [phoneLocal])
 
-    const _onInputChange = (name: "fullName" | "password" | "confirmPassword" | "email", value: string) => {
+    const _onInputChange = (name: "password" | "confirmPassword" | "email", value: string) => {
         formRef.current[name] = value
-        const formValid = {fullNameValid, emailValid, passwordValid, confirmPasswordValid}
+        const formValid = {emailValid, passwordValid, confirmPasswordValid}
         // @ts-ignore
         formValid[name + "Valid"] = ""
         setFormValid(formValid)
@@ -50,14 +49,10 @@ export const RegisterForm = () => {
         try {
             setProcessing(true)
 
-            const {phone, email, fullName, password, confirmPassword} = formRef.current
+            const {phone, email, password, confirmPassword} = formRef.current
             //  validate
-            const formValid = {fullNameValid, emailValid, passwordValid, confirmPasswordValid}
+            const formValid = {emailValid, passwordValid, confirmPasswordValid}
             let isValid = true
-            if (!fullName || fullName.length < 6) {
-                formValid.fullNameValid = "Họ tên phải ít nhất 6 ký tự";
-                isValid = false
-            }
 
             if (!email || !Validator.isValidEmail(email)) {
                 formValid.emailValid = "Email không hợp lệ";
@@ -87,18 +82,19 @@ export const RegisterForm = () => {
 
     const _register = async () => {
         try {
-            const {phone, email, fullName, password, confirmPassword} = formRef.current
+            const {phone, email, password, confirmPassword} = formRef.current
 
             // @ts-ignore
-            const {jwt, user} = await SonkimApiService.Register({idToken: params.idToken, password, fullName, email})
+            const {jwt, user} = await SonkimApiService.Register({idToken: params.idToken, password, email})
 
             dispatch({
                 type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
                 data: jwt
             })
-            Alert.alert("Đăng ký thành công")
-            navigation.goBack()
-        } catch (err:any) {
+            Alert.alert("Đăng ký thành công, vui lòng thiết lập tài khoản")
+            // @ts-ignore
+            navigation.navigate(ScreenName.USER_INFO)
+        } catch (err) {
             Alert.alert(err.message)
         }
     }
@@ -118,26 +114,12 @@ export const RegisterForm = () => {
                 <Box flex={1} px={3}>
                     <Heading color="white" size="md" fontWeight="medium" mb={6} textTransform="uppercase"
                              textAlign="center">
-                        THIẾT LẬP TÀI KHOẢN
+                        ĐĂNG KÝ TÀI KHOẢN MỚI
                     </Heading>
 
                     <Text fontSize="md" color="secondary.500" textAlign="center" my={3} fontWeight="bold">
                         {phoneLocal ? Formatter.FormatPhoneNumber(phoneLocal) : ""}
                     </Text>
-
-                    <Text color="secondary.500" my={1}>Họ tên</Text>
-                    <Input onChangeText={(text) => _onInputChange("fullName", text)}
-                           color="white"
-                           fontSize="md"
-                           placeholderTextColor="white"
-                           clearButtonMode="while-editing"
-                           bgColor="rgba(255,255,255,0.5)"
-                           variant="filled"
-                           p={3}
-                           size="2xl" rounded="xl"
-                           placeholder="Nhập họ tên"/>
-                    <Text color="red.500" fontSize="sm" mt={1}>{fullNameValid}</Text>
-
 
                     <Text color="secondary.500" mb={1} mt={2}>Email</Text>
                     <Input onChangeText={(text) => _onInputChange("email", text)}

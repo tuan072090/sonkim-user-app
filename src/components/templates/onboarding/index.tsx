@@ -9,7 +9,6 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
     const slideRef = useRef<Carousel<any> | null>(null);
 
     const _finishOnboarding = () => {
-        Alert.alert("close onboarding")
         finish()
     }
 
@@ -29,7 +28,7 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
                     <Text color="gray.500">Bỏ qua</Text>
                 </Pressable>
 
-                <Box alignItems="center" justifyContent="center" width={48} height={48} bgColor="gray.200">
+                <Box alignItems="center" justifyContent="center" width={48} height={48} rounded={"lg"} bgColor="gray.200">
                     <Text>Image</Text>
                 </Box>
 

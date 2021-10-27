@@ -36,7 +36,7 @@ class LocalStorage {
             //  set data
             this.accessToken = accessToken || ""
             this.refreshToken = refreshToken || ""
-            this.firstOpen = firstOpen === "yes"
+            this.firstOpen = !firstOpen || firstOpen === "yes"
             //  @ts-ignore
             this.language = lang || "vi"
 

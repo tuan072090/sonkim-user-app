@@ -7,7 +7,6 @@ export const CheckPhone = async (phone: string) => {
 
         return exist
     } catch (err) {
-        console.log("check phone error.....", err)
         throw err
     }
 }
@@ -18,7 +17,6 @@ export const Login = async ({phone = "", password = ""}) => {
 
         return {jwt, user}
     } catch (err) {
-        console.log("Login error.....", err)
         throw err
     }
 }
@@ -28,20 +26,18 @@ export const Logout = async () => {
         LocalStorageService.SetAccessToken("")
         LocalStorageService.SetRefreshToken("")
     } catch (err) {
-        console.log("Logout error.....", err)
         throw err
     }
 }
 
-export const Register = async ({idToken = "", password = "", fullName="", email=""}) => {
+export const Register = async ({idToken = "", password = "", email=""}) => {
     try {
         const {jwt, user} = await FetchDataService.POST("/firebase-auth/register", {
-            idToken,password, fullName, email
+            idToken,password, email
         })
 
         return {jwt, user}
     } catch (err) {
-        console.log("Register error.....", err)
         throw err
     }
 }
@@ -54,7 +50,6 @@ export const ResetPassword = async ({idToken = "", password = "", passwordConfir
 
         return res
     } catch (err) {
-        console.log("ResetPassword error.....", err)
         throw err
     }
 }

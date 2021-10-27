@@ -1,59 +1,51 @@
-import { useNavigation } from '@react-navigation/core';
-import { Box, Heading, Input, KeyboardAvoidingView, ScrollView,Text } from 'native-base';
-import React, { useContext, useRef, useState } from 'react'
-import { Alert, Platform, StyleSheet, View } from 'react-native'
-import { Validator } from '../../../share';
+import {useNavigation} from '@react-navigation/core';
+import {Box, Button, Input, KeyboardAvoidingView, ScrollView, Text} from 'native-base';
+import React, {useContext, useRef, useState} from 'react'
+import {Alert, Platform, StyleSheet} from 'react-native'
+import {GenderList, SonkimApiService} from '../../../share';
 import AppProvider from '../../../share/context'
+import {DatePicker, ImagePicker, Picker} from "../../../components";
 
 const AccountInfoForm = () => {
-    const {dispatch}=useContext(AppProvider.context);
-    const navigation=useNavigation();
-    const formRef=useRef({name:"",subName:"",email:"",dob:"",sex:""});
-    const [loading,setLoading]=useState(false);
-    const [{nameValid,emailValid,subNameValid,dobValid,sexValid},setFormValid]=useState({
-        nameValid:"",
-        emailValid:"",
-        subNameValid:"",
-        dobValid:"",
-        sexValid:""
+    const {dispatch} = useContext(AppProvider.context);
+    const navigation = useNavigation();
+    const formRef = useRef({name: "", gender: "male", birthday: "", avatar: ""});
+    const [loading, setLoading] = useState(false);
+    const [{nameValid, genderValid, birthdayValid, avatarValid}, setFormValid] = useState({
+        nameValid: "",
+        genderValid: "",
+        birthdayValid: "",
+        avatarValid: ""
     })
 
-    const _onInputChange=(name:"name"|"email"|"subName"|"dob"|"sex",value:string)=>{
-        formRef.current[name]=value;
-        const formValid={nameValid,emailValid,subNameValid,dobValid,sexValid};
+    const _onInputChange = (name: "name" | "gender" | "birthday" | "avatar", value: string) => {
+        formRef.current[name] = value;
+        const formValid = {nameValid, genderValid, birthdayValid, avatarValid};
         //@ts-ignore
-        formValid[name+"Valid"]="";
+        formValid[name + "Valid"] = "";
         setFormValid(formValid);
     }
 
-    const _submit=async ()=>{
+    const _onBirthdayChange = (date: Date) => {
+        const birthdayFormat = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+        _onInputChange("birthday", birthdayFormat)
+    }
+
+    const _submit = async () => {
         try {
             setLoading(true);
-
-            const {email,name,subName,dob,sex}=formRef.current;
+            console.log("formRef.current...", formRef.current)
+            const {name, gender, birthday, avatar} = formRef.current;
             //validate
-            const formValid={nameValid,emailValid,subNameValid,dobValid,sexValid};
-            let isValid=true;
-            if(!name || name.length<0){
-                formValid.nameValid="Tên không được để trống";
-                isValid=false;
-            }
+            const formValid = {nameValid, genderValid, birthdayValid, avatarValid};
+            let isValid = true;
 
-            if(!subName || subName.length<0){
-                formValid.subNameValid="Họ tên đệm không được để trống";
-                isValid=false;
-            }
+            //  validate here
 
-            if(!email || !Validator.isValidEmail(email)){
-                formValid.emailValid="Email không hợp lệ";
-                isValid=false;
-            }
-
-            
             setFormValid(formValid);
             setLoading(false);
 
-            if(!isValid) return;
+            if (!isValid) return;
 
             //navigate
 
@@ -62,69 +54,77 @@ const AccountInfoForm = () => {
         }
     }
 
-    const _updateInfo=async()=>{
+    const _updateInfo = async () => {
         try {
-            const {name,email,subName,dob,sex}=formRef.current;
-            //call API
-        } catch (err:any) {
+            const {name, birthday, gender, avatar} = formRef.current;
+            // @ts-ignore
+            const userInfo = await SonkimApiService.UpdatePersonalInfo({name, birthday, gender, avatar})
+        } catch (err) {
             Alert.alert(err.message);
         }
     }
 
-    const keyboardVerticalOffset=Platform.OS==='ios'?20:0;
-
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
 
     return (
-        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position" backgroundColor="#095A64">
+        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position"
+                              backgroundColor="primary.500">
             <ScrollView p={4}>
                 <Box flex={1} px={3}>
-                    {/* name */}    
-                    <Text color="secondary.500" my={1}>Tên</Text>
-                    <Input onChangeText={(text)=>_onInputChange("name",text)}
-                        color="white"
-                        fontSize="md"
-                        placeholderTextColor="white"
-                        clearButtonMode="while-editing"
-                        bgColor="rgba(255,255,255,0.5)"
-                        variant="filled"
-                        p={3}
-                        size="2xl"
-                        rounded="xl"
-                        placeholder="Lâm"
-                    ></Input>
+                    {/* Avatar */}
+                    <Text color="secondary.500" my={1}>Ảnh đại diện</Text>
+                    <Box width="full" alignItems="center" mb={4}>
+                        <ImagePicker
+                            justifyContent="center"
+                            alignItems="center"
+                            rounded="full"
+                            width={24}
+                            height={24}
+                            bgColor="rgba(255,255,255,0.5)">
+                            <Text color="white">Chọn ảnh</Text>
+                        </ImagePicker>
+                    </Box>
+
+                    {/* name */}
+                    <Text color="secondary.500" my={1}>Họ và tên</Text>
+                    <Input onChangeText={(text) => _onInputChange("name", text)}
+                           color="white"
+                           fontSize="md"
+                           placeholderTextColor="white"
+                           clearButtonMode="while-editing"
+                           bgColor="rgba(255,255,255,0.5)"
+                           variant="filled"
+                           p={3}
+                           size="2xl"
+                           rounded="xl"
+                           placeholder="Họ và tên"
+                    />
                     <Text color="red.500" fontSize="sm" mt={1}>{nameValid}</Text>
 
-                    {/* subName */}    
-                    <Text color="secondary.500" my={1}>Họ và tên đệm</Text>
-                    <Input onChangeText={(text)=>_onInputChange("subName",text)}
-                        color="white"
-                        fontSize="md"
-                        placeholderTextColor="white"
-                        clearButtonMode="while-editing"
+                    <Text color="secondary.500" my={1}>Giới tính</Text>
+                    <Picker
                         bgColor="rgba(255,255,255,0.5)"
-                        variant="filled"
-                        p={3}
-                        size="2xl"
+                        pr={3}
                         rounded="xl"
-                        placeholder="Nguyễn H"
-                    ></Input>
-                    <Text color="red.500" fontSize="sm" mt={1}>{subNameValid}</Text>
+                        items={GenderList}
+                        value={formRef.current.gender}
+                        onChange={value => _onInputChange("gender", value)}/>
+                    <Text color="red.500" fontSize="sm" mt={1}>{genderValid}</Text>
 
-                    {/* email */}    
-                    <Text color="secondary.500" my={1}>Email</Text>
-                    <Input onChangeText={(text)=>_onInputChange("email",text)}
-                        color="white"
-                        fontSize="md"
-                        placeholderTextColor="white"
-                        clearButtonMode="while-editing"
-                        bgColor="rgba(255,255,255,0.5)"
-                        variant="filled"
+                    <Text color="secondary.500" my={1}>Ngày sinh</Text>
+                    <DatePicker
+                        height={12}
                         p={3}
-                        size="2xl"
+                        bgColor="rgba(255,255,255,0.5)"
                         rounded="xl"
-                        placeholder="lamngh@gmail.com"
-                    ></Input>
-                    <Text color="red.500" fontSize="sm" mt={1}>{emailValid}</Text>
+                        value={new Date(1990,0,1)}
+                        onChange={_onBirthdayChange}/>
+                    <Text color="red.500" fontSize="sm" mt={1}>{birthdayValid}</Text>
+
+                    <Button onPress={_submit} my={10} p={3} isLoading={loading} rounded="xl" size="lg"
+                            bgColor="white"
+                            _pressed={{bgColor: "rgba(255,255,255,0.8)"}}
+                            _text={{color: "gray.500"}} opacity={70}>Cập nhật</Button>
                 </Box>
             </ScrollView>
         </KeyboardAvoidingView>

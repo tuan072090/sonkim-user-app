@@ -3,6 +3,8 @@ import VoucherCard from "../../components/organisms/voucher-card";
 import {Box, Text} from "native-base";
 import {SonkimApiService, StaticImages} from "../../share";
 import {Alert} from "react-native";
+import AccountInfo from "../account/AccountInfo";
+import {MainLayout} from "../../components";
 
 
 const sampleVoucherData = [
@@ -31,7 +33,7 @@ const sampleVoucherData = [
     },
 ]
 
-const VouchersScreen = () => {
+const VouchersScreen:React.FC<any> = MainLayout(() => {
     const [vouchers, setVouchers] = useState(null)
 
     useEffect(() => {
@@ -60,6 +62,8 @@ const VouchersScreen = () => {
             }
         </Box>
     )
-}
+})
+
+VouchersScreen.defaultProps = {authRequire: true}
 
 export default VouchersScreen

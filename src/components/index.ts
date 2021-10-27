@@ -2,12 +2,13 @@ import { HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, } from "
 import { VoucherIcons, ChevronLeftIcon, ListIcon, LocationIcon, FriendIcon, TranslateIcon, ChevronRightIcon, NotificationOutlineIcon, CheckStoreIcon, HistoryIcon, CheckAllIcon, PhoneIcon } from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
+import FullScreenLoader from './atoms/loader/FullScreenLoader';
 
 //  molecules
 import Avatar from './molecules/avatar'
-import FullScreenLoader from './atoms/loader/FullScreenLoader';
 import Picker from './molecules/picker'
 import QrCode from './molecules/qr-code'
+import ImagePicker from "./molecules/image-picker";
 
 //  Organisms
 import DatePicker from './organisms/datepicker'
@@ -43,6 +44,7 @@ export {
     Avatar,
     Picker,
     QrCode,
+    ImagePicker,
 
     //  Organisms
     DatePicker,
