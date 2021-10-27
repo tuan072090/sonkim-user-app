@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, Button, ScrollView } from "native-base";
+import { Box, Button, ScrollView, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
@@ -24,6 +24,7 @@ const RegisterMembership = () => {
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
+                <Text mb={3} fontSize="sm" fontWeight="semibold">Chọn thẻ bạn muốn đăng ký</Text>
                 <ListCardBU choise={choise} setChoise={setChoise}> </ListCardBU>
                 <Box mt={20}></Box>
             </ScrollView>

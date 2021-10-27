@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Box, ScrollView, Button } from "native-base";
+import { Box, ScrollView, Button, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
@@ -25,6 +25,7 @@ const LinkMembership = () => {
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
+                <Text mb={3} fontSize="sm" fontWeight="semibold">Chọn thẻ bạn muốn liên kết</Text>
                 <ListCardBU choise={choise} setChoise={setChoise}> </ListCardBU>
                 <Box mt={20}></Box>
             </ScrollView>

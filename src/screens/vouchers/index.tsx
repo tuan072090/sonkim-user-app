@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import VoucherCard from "../../components/organisms/voucher-card";
 import {Box, Text} from "native-base";
-import {SonkimApiService, StaticImages} from "../../share";
 import {Alert} from "react-native";
 import AccountInfo from "../account/AccountInfo";
 import {MainLayout} from "../../components";
+import { SonkimApiService, StaticImages } from "../../share";
 
 
 const sampleVoucherData = [
@@ -57,7 +57,7 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
 
             {
                 sampleVoucherData.map((item, index) => (
-                    <VoucherCard voucher={item} key={index}/>
+                    <VoucherCard voucher={item} key={index} />
                 ))
             }
         </Box>

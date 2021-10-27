@@ -14,16 +14,19 @@ export const ScreenName = {
     ACCOUNT_SETTING_SCREEN: "AccountSetting",
     BU_DETAIL_SCREEN: "BUDetail",
     USER_LIST_CARD: "UserListCard",
-    USER_INFO:'UserInfo',
+    USER_INFO: 'UserInfo',
     REGISTER_MEMBERSHIP: "RegisterMembership",
     LINK_MEMBERSHIP: 'LinkMembership',
     LINK_MEMBERSHIP_FORM: 'LinkMembershipForm',
     REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
     USEPOINT: 'UsePoint',
     USEPOINTQR: 'UsePointQR',
-    TRANSFERPOINT: 'TransferPoint',
+    TRANSFER_POINT: 'TransferPoint',
     STORE: "Store",
-    VOUCHERS_SCREEN: "Vouchers"
+    VOUCHERS_SCREEN: "Vouchers",
+    TRANSACTION_HISTORY: 'TransactionHistory'
+
+
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -44,9 +47,11 @@ export const ScreenTitle = {
     [ScreenName.LINK_MEMBERSHIP_FORM]: 'Điền form Liên kết thẻ',
     [ScreenName.USEPOINT]: 'Tích và dùng điểm',
     [ScreenName.USEPOINTQR]: 'Tích và dùng điểm',
-    [ScreenName.TRANSFERPOINT]: 'Đổi điểm',
+    [ScreenName.TRANSFER_POINT]: 'Đổi điểm',
     [ScreenName.STORE]: 'Danh sách store',
     [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
+    [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
+
 }
 
 export const Deeplink = {

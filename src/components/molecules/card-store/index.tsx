@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Box, HStack, Text, VStack } from "native-base";
 import { ImageStatic, LocationIcon, PhoneIcon } from "../..";
 import { ScreenSize, StaticImages } from "../../../share";
@@ -10,9 +9,12 @@ const fullWidth = ScreenSize.vw;
 const cardWidth = fullWidth / 2.3;
 const cardHeight = fullWidth / 2.1;
 
-
 const CardStore: React.FC<CardStoreType> = ({
-    address = '129 Nguyễn Đình Chính, Phú Nhuận, HCM', id, name, phone, url
+    address = "129 Nguyễn Đình Chính, Phú Nhuận, HCM",
+    id,
+    name,
+    phone,
+    url,
 }) => {
     return (
         <VStack
@@ -23,7 +25,7 @@ const CardStore: React.FC<CardStoreType> = ({
             shadow={3}
             p={2}
         >
-            <Box borderRadius={6} mb={3} >
+            <Box borderRadius={6} mb={3}>
                 <ImageStatic
                     resizeMode="cover"
                     uri={url ? url : StaticImages.banner_bu_detail}
@@ -33,7 +35,7 @@ const CardStore: React.FC<CardStoreType> = ({
                 ></ImageStatic>
             </Box>
             <HStack>
-                <PhoneIcon size={4} ></PhoneIcon>
+                <PhoneIcon size={4}></PhoneIcon>
                 <Text ml={2} fontSize="sm" color="muted.500">
                     0123456789
                 </Text>
