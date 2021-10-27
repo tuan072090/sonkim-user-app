@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
-import { Box, Heading, Input, KeyboardAvoidingView, ScrollView,Select,Text } from 'native-base';
+import { Box, Button, Heading, Input, KeyboardAvoidingView, ScrollView,Select,Text } from 'native-base';
 import React, { useContext, useRef, useState } from 'react'
 import { Alert, Platform, StyleSheet } from 'react-native'
 import { DatePicker, DropdownIcon } from '../../../components';
@@ -156,8 +156,11 @@ const AccountInfoForm = () => {
                     <Text color="secondary.500" my={1}>Ngày sinh</Text>
                     <DatePicker bgColor="rgba(255,255,255,0.5)" height={12} p={3} rounded="xl" value={new Date("2021-10-27")} onChange={(date)=>setDate(date)} />
                     <Text color="red.500" fontSize="sm" mt={1}>{dobValid}</Text>
-                    
-                    
+
+
+                    {/* CTA Button */}
+
+                    <Button bgColor="rgba(255,255,255,0.5)" rounded="xl" size="lg" variant="solid" mt={16}>CẬP NHẬT</Button>
                 </Box>
                 
             </ScrollView>
