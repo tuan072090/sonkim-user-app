@@ -23,7 +23,8 @@ export const ScreenName = {
     USEPOINTQR: 'UsePointQR',
     TRANSFERPOINT: 'TransferPoint',
     STORE: "Store",
-    VOUCHERS_SCREEN: "Vouchers"
+    VOUCHERS_SCREEN: "Vouchers",
+    VOUCHER_DETAIL:"VoucherDetail"
 }
 export const ScreenTitle = {
     [ScreenName.HOME_SCREEN]: "Trang chủ",
@@ -47,6 +48,7 @@ export const ScreenTitle = {
     [ScreenName.TRANSFERPOINT]: 'Đổi điểm',
     [ScreenName.STORE]: 'Danh sách store',
     [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
+    [ScreenName.VOUCHER_DETAIL]: 'Chi tiết khuyến mãi',
 }
 
 export const Deeplink = {
@@ -78,6 +80,13 @@ export const Deeplink = {
         },
         [ScreenName.LINK_MEMBERSHIP]: {
             path: "linkMembership"
+        },
+
+        [ScreenName.VOUCHER_DETAIL]: {
+            path: 'voucher/:id',
+            parse: {
+                id: String,
+            },
         },
 
         [ScreenName.BU_DETAIL_SCREEN]: {

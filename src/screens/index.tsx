@@ -24,6 +24,7 @@ import TransferPointPage from './transfer-point';
 import StorePage from './store';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
+import VoucherDetail from './vouchers/components/VoucherDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -92,6 +93,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.STORE} component={StorePage} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{title: ScreenTitle[ScreenName.VOUCHERS_SCREEN]}}/>
+                    <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail} options={{headerShown:false}}/>
 
                 </Stack.Navigator>
 

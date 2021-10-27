@@ -78,7 +78,7 @@ API uri: `https://api.sonkim.upme.dev`
 -  [x] Login
 -  [x] Register
 -  [x] Forgot password
--  [ ] Update user profile  //  Tài
+-  [x] Update user profile  //  Tài
 -  [x] Home page
 -  [x] BU detail
 -  [ ] Store/restaurant detail  //  Khánh
@@ -90,7 +90,7 @@ API uri: `https://api.sonkim.upme.dev`
 -  [x] Liên kết thẻ
 -  [ ] Đổi điểm    // Khánh
 -  [ ] Lịch sử đổi điểm    // Khánh
--  [ ] Quản lý thông báo // Tài
+-  [x] Quản lý thông báo // Tài
 -  [x] Tìm xung quanh
 -  [ ] Giỏ hàng
 -  [ ] Gift Cards   //  Tài
