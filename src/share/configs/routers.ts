@@ -23,7 +23,8 @@ export const ScreenName = {
     USEPOINTQR: 'UsePointQR',
     TRANSFER_POINT: 'TransferPoint',
     STORE: "Store",
-    VOUCHERS_SCREEN: "Vouchers"
+    VOUCHERS_SCREEN: "Vouchers",
+    TRANSACTION_HISTORY: 'TransactionHistory'
 
 
 }
@@ -49,6 +50,8 @@ export const ScreenTitle = {
     [ScreenName.TRANSFER_POINT]: 'Đổi điểm',
     [ScreenName.STORE]: 'Danh sách store',
     [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
+    [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
+
 }
 
 export const Deeplink = {

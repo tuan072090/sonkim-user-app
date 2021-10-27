@@ -92,7 +92,7 @@ API uri: `https://api.sonkim.upme.dev`
 - [x] Quét mã // Khánh
 - [x] Đăng ký thẻ
 - [x] Liên kết thẻ
-- [ ] Đổi điểm // Khánh
+- [x] Đổi điểm // Khánh
 - [ ] Lịch sử đổi điểm // Khánh
 - [ ] Quản lý thông báo // Tài
 - [x] Tìm xung quanh

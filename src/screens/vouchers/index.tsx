@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import VoucherCard from "../../components/organisms/voucher-card";
-import {Box, Text} from "native-base";
-import {SonkimApiService, StaticImages} from "../../share";
-import {Alert} from "react-native";
+import { Box, Text } from "native-base";
+import { SonkimApiService, StaticImages } from "../../share";
+import { Alert } from "react-native";
 
 
 const sampleVoucherData = [
@@ -42,7 +42,7 @@ const VouchersScreen = () => {
         try {
             const data = await SonkimApiService.getVouchers()
             console.log("data...", data)
-        } catch (err) {
+        } catch (err: any) {
             Alert.alert(err.message)
         }
     }
@@ -55,7 +55,7 @@ const VouchersScreen = () => {
 
             {
                 sampleVoucherData.map((item, index) => (
-                    <VoucherCard voucher={item} key={index}/>
+                    <VoucherCard voucher={item} key={index} />
                 ))
             }
         </Box>

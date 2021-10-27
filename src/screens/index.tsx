@@ -24,6 +24,7 @@ import TransferPointPage from './transfer-point';
 import StorePage from './store';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
+import TransactionHistory from './transaction-history';
 
 const Stack = createNativeStackNavigator();
 
@@ -78,9 +79,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.OTP_SCREEN} component={OtpScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LOGIN_SCREEN} component={LoginScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.RESET_PASSWORD_SCREEN} component={ResetPasswordScreen} options={{ headerShown: false }} />
-
                     <Stack.Screen name={ScreenName.ACCOUNT_SETTING_SCREEN} component={AccountSetting} options={{ headerShown: false }} />
-
                     <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USER_INFO} component={AccountInfo} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
@@ -93,9 +92,8 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.STORE} component={StorePage} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{ title: ScreenTitle[ScreenName.VOUCHERS_SCREEN] }} />
                     <Stack.Screen name={ScreenName.TRANSFER_POINT} component={TransferPointPage} options={{ headerShown: false }} />
-
+                    <Stack.Screen name={ScreenName.TRANSACTION_HISTORY} component={TransactionHistory} options={{ headerShown: false }} />
                 </Stack.Navigator>
-
             </NavigationContainer>
         </>
     )
