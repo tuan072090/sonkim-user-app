@@ -79,7 +79,7 @@ const AccountInfoForm = () => {
 
 
     return (
-        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position" backgroundColor="#095A64">
+        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
             <ScrollView p={4}>
                 <Box flex={1} px={3}>
                     {/* name */}    
@@ -114,26 +114,6 @@ const AccountInfoForm = () => {
                     ></Input>
                     <Text color="red.500" fontSize="sm" mt={1}>{subNameValid}</Text>
 
-                    {/* date time picker */}    
-                    <Text color="secondary.500" my={1}>Ngày sinh</Text>
-                    <DatePicker value={new Date("2021-10-27")} onChange={(date)=>setDate(date)} />
-                    
-                    {/* sex */}    
-                    <Text color="secondary.500" my={1}>Giới tính</Text>
-                    <Select
-                        selectedValue={sex}
-                        accessibilityLabel="Chọn giới tính"
-                        placeholder="Chọn giới tính"
-                        _selectedItem={{
-                            endIcon: <DropdownIcon></DropdownIcon>
-                        }}
-                        mt={1}
-                        onValueChange={(itemValue)=>setSex(itemValue)}
-                    >
-                        <Select.Item label="Nam" value="male"></Select.Item>
-                        <Select.Item label="Nữ" value="female"></Select.Item>
-                    </Select>
-                    
                     {/* email */}    
                     <Text color="secondary.500" my={1}>Email</Text>
                     <Input onChangeText={(text)=>_onInputChange("email",text)}
@@ -149,6 +129,35 @@ const AccountInfoForm = () => {
                         placeholder="lamngh@gmail.com"
                     ></Input>
                     <Text color="red.500" fontSize="sm" mt={1}>{emailValid}</Text>
+
+                    {/* sex     */}
+                    <Text color="secondary.500" my={1}>Giới tính</Text>
+                    <Select
+                        selectedValue={sex}
+                        accessibilityLabel="Chọn giới tính"
+                        placeholder="Chọn giới tính"
+                        color="white"
+                        fontSize="md"
+                        clearButtonMode="while-editing"
+                        p={3}
+                        variant="unstyled"
+                        dropdownIcon={<DropdownIcon size={8} />}
+                        rounded="xl"
+                        bgColor="rgba(255,255,255,0.5)"
+                        mt={1}
+                        onValueChange={(itemValue)=>setSex(itemValue)}
+                    >
+                        <Select.Item label="Nam" value="male"></Select.Item>
+                        <Select.Item label="Nữ" value="female"></Select.Item>
+                    </Select>
+                    <Text color="red.500" fontSize="sm" mt={1}>{sexValid}</Text>
+
+                    {/* date time picker */}    
+                    <Text color="secondary.500" my={1}>Ngày sinh</Text>
+                    <DatePicker bgColor="rgba(255,255,255,0.5)" height={12} p={3} rounded="xl" value={new Date("2021-10-27")} onChange={(date)=>setDate(date)} />
+                    <Text color="red.500" fontSize="sm" mt={1}>{dobValid}</Text>
+                    
+                    
                 </Box>
                 
             </ScrollView>
