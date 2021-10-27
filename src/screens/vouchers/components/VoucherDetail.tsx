@@ -1,6 +1,5 @@
-import { Box, Button, Center, HStack, Pressable, ScrollView, Text, VStack } from 'native-base'
+import { Box, Button, Center, HStack, ScrollView, Text, VStack } from 'native-base'
 import React from 'react'
-import { View } from 'react-native'
 import { ImageStatic } from '../../../components'
 import ScreenHeader from '../../../components/organisms/screen-header'
 import { StaticImages } from '../../../share'

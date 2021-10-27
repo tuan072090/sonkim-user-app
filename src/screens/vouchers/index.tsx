@@ -42,7 +42,7 @@ const VouchersScreen = () => {
         try {
             const data = await SonkimApiService.getVouchers()
             console.log("data...", data)
-        } catch (err) {
+        } catch (err:any) {
             Alert.alert(err.message)
         }
     }

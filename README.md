@@ -78,12 +78,12 @@ API uri: `https://api.sonkim.upme.dev`
 -  [x] Login
 -  [x] Register
 -  [x] Forgot password
--  [x] Update user profile  //  Tài
+-  [x] Update user profile  
 -  [x] Home page
 -  [x] BU detail
 -  [ ] Store/restaurant detail  //  Khánh
 -  [x] Danh sách ưu đãi
--  [ ] Voucher detail  //  Tài
+-  [x] Voucher detail  
 -  [ ] Tích điểm và dùng điểm  //  Khánh
 -  [x] Quét mã     //  Khánh
 -  [x] Đăng ký thẻ
