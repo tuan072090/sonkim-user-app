@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/core';
 import { Box, Heading, Input, KeyboardAvoidingView, ScrollView,Select,Text } from 'native-base';
 import React, { useContext, useRef, useState } from 'react'
 import { Alert, Platform, StyleSheet } from 'react-native'
-import { DatePicker } from '../../../components';
+import { DatePicker, DropdownIcon } from '../../../components';
 import { Validator } from '../../../share';
 import AppProvider from '../../../share/context'
 
@@ -124,8 +124,15 @@ const AccountInfoForm = () => {
                         selectedValue={sex}
                         accessibilityLabel="Chọn giới tính"
                         placeholder="Chọn giới tính"
-                        
-                    ></Select>
+                        _selectedItem={{
+                            endIcon: <DropdownIcon></DropdownIcon>
+                        }}
+                        mt={1}
+                        onValueChange={(itemValue)=>setSex(itemValue)}
+                    >
+                        <Select.Item label="Nam" value="male"></Select.Item>
+                        <Select.Item label="Nữ" value="female"></Select.Item>
+                    </Select>
                     
                     {/* email */}    
                     <Text color="secondary.500" my={1}>Email</Text>
@@ -143,6 +150,7 @@ const AccountInfoForm = () => {
                     ></Input>
                     <Text color="red.500" fontSize="sm" mt={1}>{emailValid}</Text>
                 </Box>
+                
             </ScrollView>
         </KeyboardAvoidingView>
     )
