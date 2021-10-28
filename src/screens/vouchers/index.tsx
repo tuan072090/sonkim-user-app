@@ -42,7 +42,7 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
         try {
             const data = await SonkimApiService.getVouchers()
             console.log("data...", data)
-        } catch (err:any) {
+        } catch (err) {
             Alert.alert(err.message)
         }
     }

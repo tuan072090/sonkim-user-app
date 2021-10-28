@@ -17,19 +17,18 @@ export const HomeSlider = () => {
 
     useEffect(() => {
         _fetchArticle()
-    },[])
+    }, [])
 
     const _fetchArticle = async () => {
         try {
             const {articles, count} = await SonkimApiService.GetArticles()
             setArticles(articles)
-        }catch (err){
+        } catch (err) {
             Alert.alert(err.message)
         }
     }
 
-    const _itemPress = (data:any) => {
-        console.log(data)
+    const _itemPress = (data: any) => {
         //  @ts-ignore
         navigation.navigate(ScreenName.ARTICLE_SCREEN, {articleId: data.id})
     }
@@ -37,20 +36,23 @@ export const HomeSlider = () => {
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
-            <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198} onPress={() => _itemPress(item)}>
-                <Image borderRadius={26} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198} resizeMode="stretch"/>
+            <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198}
+                       onPress={() => _itemPress(item)}>
+                <Image borderRadius={26} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198}
+                       resizeMode="stretch"/>
             </Pressable>
         )
     }
 
     return (
         <Box position="relative">
-            <ImageStatic resizeMode="cover" position="absolute" top={0} left={0} width={sliderWidth+2} height={sliderWidth/2.198}  uri={StaticImages.banner_background}/>
+            <ImageStatic resizeMode="cover" position="absolute" top={0} left={0} width={sliderWidth + 2}
+                         height={sliderWidth / 2.198} uri={StaticImages.banner_background}/>
 
             {
                 articles.length === 0
-                ? <Box width={sliderWidth} height={sliderWidth / 2.198}/>
-                :<Carousel
+                    ? <Box width={sliderWidth} height={sliderWidth / 2.198}/>
+                    : <Carousel
                         loop={true} //  back to first slide when finish the end slide
                         autoplay={true}
                         autoplayInterval={3000}
