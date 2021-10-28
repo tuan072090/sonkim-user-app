@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {Alert} from "react-native";
-import {FullScreenLoader, Image, MainLayout} from "../../components";
-import {useRoute} from '@react-navigation/native';
-import {ScreenSize, SonkimApiService} from "../../share";
-import {Box, ScrollView, Text} from "native-base";
+import React, { useEffect, useState } from "react";
+import { Alert } from "react-native";
+import { FullScreenLoader, Image, MainLayout } from "../../components";
+import { useRoute } from '@react-navigation/native';
+import { ScreenSize, SonkimApiService } from "../../share";
+import { Box, ScrollView, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import Markdown from 'react-native-markdown-display';
 
 const ImgWidth = ScreenSize.vw - 30
-export const ArticleScreen = MainLayout(({navigation}) => {
+export const ArticleScreen = MainLayout(({ navigation }) => {
     const route = useRoute();
-    const {params} = route
-    const [article, setArticle] = useState<any|null>(null)
+    const { params } = route
+    const [article, setArticle] = useState<any | null>(null)
 
     useEffect(() => {
         //  @ts-ignore
@@ -26,17 +26,17 @@ export const ArticleScreen = MainLayout(({navigation}) => {
             const data = await SonkimApiService.GetArticleDetail(articleId)
             setArticle(data)
             navigation.setOptions({ title: data.title });
-        } catch (err) {
+        } catch (err: any) {
             Alert.alert(err.message)
         }
     }
 
     return (
         <Box flex={1}>
-            <ScreenHeader bgColor="primary.500" title={article ? article.title : ""}/>
+            <ScreenHeader bgColor="primary.500" title={article ? article.title : ""} />
             {
-                !article ? <FullScreenLoader/>
-                : <ScrollView>
+                !article ? <FullScreenLoader />
+                    : <ScrollView>
                         <Box p={3}>
                             <Image uri={article.avatar.url} width={ImgWidth} height={ImgWidth / 2.198} resizeMode="stretch" borderRadius={26} />
 

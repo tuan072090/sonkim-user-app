@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-
-import { Heading, SimpleGrid, Text, VStack } from "native-base";
+import { SimpleGrid, VStack } from "native-base";
 import CardBU from "./index";
-import { StaticImages } from "../../../share";
 import { ListCardBuType } from "./cardBU.types";
 import { getAllBranch } from "../../../share/services/sonkim-api/branches";
-import { width } from "styled-system";
 import { Alert } from "react-native";
 
 const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
