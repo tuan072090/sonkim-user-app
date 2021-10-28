@@ -23,7 +23,7 @@ export const LoginForm = () => {
         try {
             //  validate
             if (!Validator.isValidPhone(phone) || !password || password.length < 6) {
-                throw new MyError(400, "Điện thoại hoặc mật khẩu không hợp lệ")
+                throw new MyError("Điện thoại hoặc mật khẩu không hợp lệ", 400)
             }
             const { jwt, user } = await SonkimApiService.Login({ phone, password })
             dispatch({
@@ -32,7 +32,7 @@ export const LoginForm = () => {
             })
             Alert.alert("Đăng nhập thành công")
             navigation.goBack()
-        } catch (err: any) {
+        } catch (err) {
             Alert.alert(err.message)
         }
     }

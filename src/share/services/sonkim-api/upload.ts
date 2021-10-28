@@ -1,6 +1,5 @@
 import FetchDataService from "../fetch";
 import MyError from "../error";
-import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 
 export const GetUploadUrl = async (file_name:string, file_type:string) => {
     try {
@@ -36,6 +35,6 @@ export const UploadImage = async (photo:any, url:string) => {
         return response
     }catch (err){
         console.log("upload error...", {...err})
-        throw new MyError(err.status, "Hình không hợp lệ", 400)
+        throw new MyError("Hình không hợp lệ", 400)
     }
 }

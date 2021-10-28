@@ -1,12 +1,12 @@
 import React from "react";
-import { Icon } from "native-base";
-import { IconTypes } from "./icon.types";
-import { G, Path } from "react-native-svg";
+import {Icon} from "native-base";
+import {IconTypes} from "./icon.types";
+import {G, Path} from "react-native-svg";
 
 export const VoucherIcons: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                      size = 20,
+                                                      fill = "none",
+                                                  }) => {
     return (
         <Icon viewBox="0 0 18 18" size={size} fill="none">
             <G fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">
@@ -29,9 +29,9 @@ export const VoucherIcons: React.FC<IconTypes> = ({
 };
 
 export const ChevronLeftIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                         size = 20,
+                                                         fill = "none",
+                                                     }) => {
     return (
         <Icon viewBox="0 0 24 24" size={size} fill="none">
             <Path
@@ -43,9 +43,9 @@ export const ChevronLeftIcon: React.FC<IconTypes> = ({
 };
 
 export const ChevronRightIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                          size = 20,
+                                                          fill = "none",
+                                                      }) => {
     return (
         <Icon viewBox="0 0 24 24" size={size} fill="none">
             <Path
@@ -56,7 +56,7 @@ export const ChevronRightIcon: React.FC<IconTypes> = ({
     );
 };
 
-export const ListIcon: React.FC<IconTypes> = ({ size = 20, fill = "none" }) => {
+export const ListIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
     return (
         <Icon viewBox="0 0 18 18" fill="none" size={size}>
             <Path
@@ -68,9 +68,9 @@ export const ListIcon: React.FC<IconTypes> = ({ size = 20, fill = "none" }) => {
 };
 
 export const LocationIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                      size = 20,
+                                                      fill = "none",
+                                                  }) => {
     return (
         <Icon viewBox="0 0 14 19" fill="none" size={size}>
             <Path
@@ -82,9 +82,9 @@ export const LocationIcon: React.FC<IconTypes> = ({
 };
 
 export const FriendIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                    size = 20,
+                                                    fill = "none",
+                                                }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <G fillRule="nonzero" stroke="none" strokeWidth={1} fill="none">
@@ -110,9 +110,9 @@ export const FriendIcon: React.FC<IconTypes> = ({
 };
 
 export const TranslateIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                       size = 20,
+                                                       fill = "none",
+                                                   }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <Path
@@ -126,9 +126,9 @@ export const TranslateIcon: React.FC<IconTypes> = ({
 };
 
 export const NotificationOutlineIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                                 size = 20,
+                                                                 fill = "none",
+                                                             }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <Path
@@ -140,9 +140,9 @@ export const NotificationOutlineIcon: React.FC<IconTypes> = ({
 };
 
 export const CheckStoreIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                        size = 20,
+                                                        fill = "none",
+                                                    }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <Path
@@ -154,9 +154,9 @@ export const CheckStoreIcon: React.FC<IconTypes> = ({
 };
 
 export const HistoryIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                     size = 20,
+                                                     fill = "none",
+                                                 }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <Path
@@ -168,9 +168,9 @@ export const HistoryIcon: React.FC<IconTypes> = ({
 };
 
 export const CheckAllIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                      size = 20,
+                                                      fill = "none",
+                                                  }) => {
     return (
         <Icon viewBox="0 0 24 24" fill="none" size={size}>
             <Path
@@ -182,9 +182,9 @@ export const CheckAllIcon: React.FC<IconTypes> = ({
 };
 
 export const PhoneIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                   size = 20,
+                                                   fill = "none",
+                                               }) => {
     return (
         <Icon viewBox="0 0 14 19" fill="none" size={size}>
             <Path
@@ -196,9 +196,9 @@ export const PhoneIcon: React.FC<IconTypes> = ({
 };
 
 export const PointExchangericon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                            size = 20,
+                                                            fill = "none",
+                                                        }) => {
     return (
         <Icon viewBox="0 0 16 20" fill="none" size={size}>
             <Path
@@ -210,20 +210,20 @@ export const PointExchangericon: React.FC<IconTypes> = ({
 };
 
 export const ArrowDropDownIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                           size = 20,
+                                                           fill = "none",
+                                                       }) => {
     return (
         <Icon viewBox="0 0 10 6" fill="none" size={size}>
-            <Path d="M5 5.5L10 0.5L0 0.5L5 5.5Z" fill="#626262" />
+            <Path d="M5 5.5L10 0.5L0 0.5L5 5.5Z" fill="#626262"/>
         </Icon>
     );
 };
 
 export const CancelIcon: React.FC<IconTypes> = ({
-    size = 20,
-    fill = "none",
-}) => {
+                                                    size = 20,
+                                                    fill = "none",
+                                                }) => {
     return (
         <Icon viewBox="0 0 14 14" fill="none" size={size}>
             <Path
@@ -233,3 +233,28 @@ export const CancelIcon: React.FC<IconTypes> = ({
         </Icon>
     );
 };
+
+export const ImageIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
+    return (
+        <Icon viewBox="0 0 24 24" fill={fill}>
+            <G opacity="0.3">
+                <Path fillRule="evenodd" clipRule="evenodd"
+                      d="M7.66618 22H16.3328C19.7231 22 22 19.6219 22 16.0833V7.91672C22 4.37811 19.7231 2 16.3338 2H7.66618C4.2769 2 2 4.37811 2 7.91672V16.0833C2 19.6219 4.2769 22 7.66618 22ZM8.4988 11C7.12015 11 5.99994 9.87828 5.99994 8.50001C5.99994 7.12174 7.12015 6.00001 8.4988 6.00001C9.87643 6.00001 10.9977 7.12174 10.9977 8.50001C10.9977 9.87828 9.87643 11 8.4988 11ZM19.8208 14.934C20.1556 15.7926 19.9817 16.8246 19.6237 17.675C19.1993 18.6863 18.3868 19.452 17.3631 19.7864C16.9086 19.935 16.432 20 15.9563 20H7.5286C6.68995 20 5.94784 19.7988 5.33946 19.4242C4.95835 19.1889 4.89097 18.6461 5.17354 18.2941C5.64616 17.7059 6.11275 17.1156 6.58336 16.5202C7.48034 15.3808 8.08469 15.0506 8.75641 15.3406C9.02892 15.4603 9.30244 15.6399 9.584 15.8298C10.3342 16.3396 11.3769 17.0403 12.7506 16.2797C13.6906 15.7532 14.2358 14.8502 14.7105 14.0638L14.7185 14.0506C14.7521 13.9954 14.7855 13.9403 14.8187 13.8852C14.9783 13.6212 15.1357 13.3608 15.3138 13.1208C15.537 12.8205 16.3646 11.8813 17.4366 12.5501C18.1193 12.9711 18.6935 13.5408 19.3079 14.1507C19.5422 14.3839 19.7092 14.6492 19.8208 14.934Z"
+                      fill="#252525"/>
+            </G>
+        </Icon>
+    )
+}
+
+export const EditIcon: React.FC<IconTypes> = ({size = 20, fill = "none"}) => {
+    return (
+        <Icon size={size} viewBox="0 0 24 24" fill={fill}>
+            <Path fillRule="evenodd" clipRule="evenodd"
+                  d="M4 5C3.73478 5 3.48043 5.10536 3.29289 5.29289C3.10536 5.48043 3 5.73478 3 6V20C3 20.2652 3.10536 20.5196 3.29289 20.7071C3.48043 20.8946 3.73478 21 4 21H18C18.2652 21 18.5196 20.8946 18.7071 20.7071C18.8946 20.5196 19 20.2652 19 20V14.66C19 14.1077 19.4477 13.66 20 13.66C20.5523 13.66 21 14.1077 21 14.66V20C21 20.7957 20.6839 21.5587 20.1213 22.1213C19.5587 22.6839 18.7957 23 18 23H4C3.20435 23 2.44129 22.6839 1.87868 22.1213C1.31607 21.5587 1 20.7957 1 20V6C1 5.20435 1.31607 4.44129 1.87868 3.87868C2.44129 3.31607 3.20435 3 4 3H9.34C9.89228 3 10.34 3.44772 10.34 4C10.34 4.55228 9.89228 5 9.34 5H4Z"
+                  fill="black"/>
+            <Path fillRule="evenodd" clipRule="evenodd"
+                  d="M17.2929 1.29289C17.6834 0.902369 18.3166 0.902369 18.7071 1.29289L22.7071 5.29289C23.0976 5.68342 23.0976 6.31658 22.7071 6.70711L12.7071 16.7071C12.5196 16.8946 12.2652 17 12 17H8C7.44772 17 7 16.5523 7 16V12C7 11.7348 7.10536 11.4804 7.29289 11.2929L17.2929 1.29289ZM9 12.4142V15H11.5858L20.5858 6L18 3.41421L9 12.4142Z"
+                  fill="black"/>
+        </Icon>
+    )
+}

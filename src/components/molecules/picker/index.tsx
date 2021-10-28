@@ -1,21 +1,26 @@
-import React from "react";
+import React, {memo, useEffect} from "react";
 import {Box, ChevronDownIcon, Select} from "native-base";
 import {PickerTypes} from "./picker.types";
 
-const Picker:React.FC<PickerTypes> = ({onChange, value, items, ...props}) => {
+const Picker:React.FC<PickerTypes> = memo(({onChange, value, items, placeholder="Chọn", ...props}) => {
     let [pickerValue, setValue] = React.useState<string | undefined>(value);
+
+    useEffect(() => {
+        setValue(value)
+    },[value])
 
     const _onChange = (value:string) => {
         setValue(value)
         onChange(value)
     }
 
+    console.log("picker value...", value)
     return (
         <Box {...props}>
             <Select
                 // @ts-ignore
                 fontSize="md"
-                placeholder="Chọn giới tính"
+                placeholder={placeholder}
                 color="white"
                 placeholderTextColor="white"
                 p={3}
@@ -33,6 +38,6 @@ const Picker:React.FC<PickerTypes> = ({onChange, value, items, ...props}) => {
             </Select>
         </Box>
     )
-}
+})
 
 export default Picker

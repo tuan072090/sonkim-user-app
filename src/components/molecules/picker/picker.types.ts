@@ -7,5 +7,6 @@ type ItemType = {
 export interface PickerTypes extends IBoxProps{
     items:ItemType[],
     value?:string,
-    onChange: (val:string) => void
+    onChange: (val:string) => void,
+    placeholder?:string
 }

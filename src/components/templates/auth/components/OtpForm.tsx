@@ -43,7 +43,7 @@ export const OtpForm = () => {
     const _submitOTP = async () => {
         try {
             if (!confirmation) {
-                throw new MyError(400, "Vui lòng chờ gửi mã lại")
+                throw new MyError("Vui lòng chờ gửi mã lại", 400)
             }
             setProcessing(true)
 
