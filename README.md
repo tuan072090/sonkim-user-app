@@ -82,19 +82,19 @@ API uri: `https://api.sonkim.upme.dev`
 - [x] Login
 - [x] Register
 - [x] Forgot password
-- [ ] Update user profile // Tài
+- [x] Update user profile // Tài
 - [x] Home page
 - [x] BU detail
 - [x] Store/restaurant detail // Khánh
 - [x] Danh sách ưu đãi
-- [ ] Voucher detail // Tài
+- [x] Voucher detail // Tài
 - [x] Tích điểm và dùng điểm // Khánh
 - [x] Quét mã // Khánh
 - [x] Đăng ký thẻ
 - [x] Liên kết thẻ
 - [x] Đổi điểm // Khánh
 - [ ] Lịch sử đổi điểm // Khánh
-- [ ] Quản lý thông báo // Tài
+- [x] Quản lý thông báo // Tài
 - [x] Tìm xung quanh
 - [ ] Giỏ hàng
 - [ ] Gift Cards // Tài

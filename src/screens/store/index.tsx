@@ -18,7 +18,7 @@ const StorePage = () => {
                 uri={StaticImages.link_membership_backgroud}
             />
             <Box flex={1} width="100%">
-                <ScreenHeader
+                <ScreenHeader 
                     hasBackButton={true}
                     title={"Cửa hàng Healthspa"}
                     bgColor="primary.500"
