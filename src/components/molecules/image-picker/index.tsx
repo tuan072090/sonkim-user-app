@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
+import {ActivityIndicator} from 'react-native'
 import {Pressable} from 'native-base'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {ImagePickerTypes} from "./imagePicker.types";
 import {SonkimApiService} from "../../../share";
 import {Alert} from "react-native";
 
-const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", ...props}) => {
+const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", onChange, ...props}) => {
+    const [loading, setLoading] = useState(false);
 
     const _launchImageLibrary = () => {
         launchImageLibrary({mediaType: "photo"}, async (res) => {
@@ -19,6 +21,7 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", ...props}) =
                         Alert.alert("Hình quá lớn, vui lòng chọn hình dưới 10M")
                         return;
                     }
+                    setLoading(true)
                     //  @ts-ignore
                     const uploadData = await SonkimApiService.GetUploadUrl(file.fileName, file.type)
                     console.log("uploadData...", uploadData)
@@ -29,7 +32,8 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", ...props}) =
                     //  upload
                     const uploadResponse = await SonkimApiService.UploadImage(file, uploadData.url)
                     console.log("uploadResponse...", uploadResponse)
-                    return imageUrl
+                    onChange(imageUrl)
+                    setLoading(false)
                 }
             } catch (err) {
 
@@ -42,6 +46,7 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", ...props}) =
             console.log("launchCamera response", res)
         })
     }
+
     const _onPress = () => {
         if (from === "camera") {
             _launchCamera()
@@ -52,7 +57,9 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", ...props}) =
 
     return (
         <Pressable onPress={_onPress} {...props}>
-            {props.children}
+            {
+                loading ? <ActivityIndicator size="small" color="gray.100"/> : props.children
+            }
         </Pressable>
     )
 }

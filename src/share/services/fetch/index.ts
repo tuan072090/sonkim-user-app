@@ -60,18 +60,15 @@ class FetchData {
     }
 
     private handleError = function (error: AxiosError | any) {
-        try {
-            const errorResponse = error.response.data
-            //  Need optimize
-            const message = errorResponse.message || "Something error"
-            const status = error.response.status || 500
-            const code = errorResponse.code || 500
-            const errors = errorResponse.errors || []
+        console.log("error gốc....", {...error})
+        const errorResponse = error.response.data
+        //  Need optimize
+        const message = errorResponse.message || "Something error"
+        const status = errorResponse.status || 500
+        const code = errorResponse.code || 500
+        const errors = errorResponse.errors || []
 
-            throw new MyError(status, message, code, errors)
-        } catch (err) {
-            throw new MyError(500, "Unknown error", 500, [])
-        }
+        throw new MyError(message, status, code, errors)
     }
 
     public SetAccessToken(accessToken = "") {
@@ -99,7 +96,7 @@ class FetchData {
 
             //  debug sau
 
-            if (!accessToken || accessToken.length === 0) throw new MyError(400, "access token not found")
+            if (!accessToken || accessToken.length === 0) throw new MyError("access token not found", 400)
 
             const res = await axios.post(API_URI + "/account/security/refresh",
                 {
@@ -143,7 +140,7 @@ class FetchData {
             case "PUT":
                 return this.axiosInstance.put(route, {...params}, {headers: this.headers}).then(this.handleData).catch(this.handleError);
             default:
-                throw new MyError(400, "Unknown method")
+                throw new MyError("Unknown method", 400)
         }
     }
 }

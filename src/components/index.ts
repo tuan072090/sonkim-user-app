@@ -1,5 +1,20 @@
-import { HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, } from "./atoms/icons/BottomNavIcons";
-import { VoucherIcons, ChevronLeftIcon, ListIcon, LocationIcon, FriendIcon, TranslateIcon, ChevronRightIcon, NotificationOutlineIcon, CheckStoreIcon, HistoryIcon, CheckAllIcon, PhoneIcon } from "./atoms/icons/CommonIcons"
+import {AccountIcon, CartIcon, HomeIcon, NearByIcon, NotificationIcon,} from "./atoms/icons/BottomNavIcons";
+import {
+    CheckAllIcon,
+    CheckStoreIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    EditIcon,
+    FriendIcon,
+    HistoryIcon,
+    ImageIcon,
+    ListIcon,
+    LocationIcon,
+    NotificationOutlineIcon,
+    PhoneIcon,
+    TranslateIcon,
+    VoucherIcons
+} from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
 import FullScreenLoader from './atoms/loader/FullScreenLoader';
@@ -15,6 +30,7 @@ import DatePicker from './organisms/datepicker'
 import FeatureItems from './organisms/feature-item'
 import MembershipCards from './organisms/membership-cards'
 import VoucherCard from "./organisms/voucher-card";
+import AvatarPicker from './organisms/avatar-picker'
 
 //  templates
 import OnBoarding from './templates/onboarding'
@@ -24,7 +40,7 @@ import {PageProps} from './templates/layout/mainLayoutProps.types'
 
 export {
     //  Atoms
-    HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon,
+    HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, ImageIcon, EditIcon,
     VoucherIcons,
     ChevronLeftIcon,
     ListIcon,
@@ -50,6 +66,8 @@ export {
     DatePicker,
     FeatureItems,
     MembershipCards,
+    AvatarPicker,
+    VoucherCard,
 
     //  Templates
     OnBoarding,

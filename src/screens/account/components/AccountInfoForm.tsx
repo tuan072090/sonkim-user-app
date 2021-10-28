@@ -1,15 +1,16 @@
 import {useNavigation} from '@react-navigation/core';
 import {Box, Button, Input, KeyboardAvoidingView, ScrollView, Text} from 'native-base';
-import React, {useContext, useRef, useState} from 'react'
-import {Alert, Platform, StyleSheet} from 'react-native'
-import {GenderList, SonkimApiService} from '../../../share';
+import React, {useContext, useEffect, useState} from 'react'
+import {Alert, Platform} from 'react-native'
+import {Formatter, GenderList, SonkimApiService} from '../../../share';
 import AppProvider from '../../../share/context'
-import {DatePicker, ImagePicker, Picker} from "../../../components";
+import {AvatarPicker, DatePicker, Picker} from "../../../components";
+import {PersonalInfoType} from "../../../share/services/sonkim-api/user";
 
 const AccountInfoForm = () => {
     const {dispatch} = useContext(AppProvider.context);
     const navigation = useNavigation();
-    const formRef = useRef({name: "", gender: "male", birthday: "", avatar: ""});
+    const [formData, setFormData] = useState<PersonalInfoType>({name: "", gender: "male", birthday: "", avatar: ""});
     const [loading, setLoading] = useState(false);
     const [{nameValid, genderValid, birthdayValid, avatarValid}, setFormValid] = useState({
         nameValid: "",
@@ -18,8 +19,25 @@ const AccountInfoForm = () => {
         avatarValid: ""
     })
 
+    useEffect(() => {
+        _fetchPersonalInfo()
+    }, [])
+
+    const _fetchPersonalInfo = () => {
+        SonkimApiService.GetPersonalInfo().then(info => {
+            setFormData({
+                name: info.name || "",
+                avatar: info.avatar || "",
+                gender: info.gender || "other",
+                birthday: info.birthday || ""
+            })
+        }).catch(err => {
+            Alert.alert("Lấy thông tin lỗi", err.message)
+        })
+    }
+
     const _onInputChange = (name: "name" | "gender" | "birthday" | "avatar", value: string) => {
-        formRef.current[name] = value;
+        setFormData({...formData, [name]: value})
         const formValid = {nameValid, genderValid, birthdayValid, avatarValid};
         //@ts-ignore
         formValid[name + "Valid"] = "";
@@ -27,67 +45,68 @@ const AccountInfoForm = () => {
     }
 
     const _onBirthdayChange = (date: Date) => {
-        const birthdayFormat = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
-        _onInputChange("birthday", birthdayFormat)
+        _onInputChange("birthday", Formatter.FormatDateFromDate(date))
+    }
+
+    const _uploadImgChange = (imgUrl: string) => {
+        _onInputChange("avatar", imgUrl)
     }
 
     const _submit = async () => {
         try {
             setLoading(true);
-            console.log("formRef.current...", formRef.current)
-            const {name, gender, birthday, avatar} = formRef.current;
             //validate
             const formValid = {nameValid, genderValid, birthdayValid, avatarValid};
             let isValid = true;
 
             //  validate here
+            if (formData.name.length < 3) {
+                formValid.nameValid = "Tên quá ngắn";
+                isValid = false
+            }
+            if (["male", "female", "other"].indexOf(formData.gender) < 0) {
+                formValid.genderValid = "Giới tính không hợp lệ";
+                isValid = false
+            }
 
             setFormValid(formValid);
-            setLoading(false);
-
             if (!isValid) return;
 
-            //navigate
-
-        } catch (err) {
+            //  update personal info
+            const userInfo = await SonkimApiService.UpdatePersonalInfo(formData)
+            dispatch({
+                type: AppProvider.actions.UPDATE_USER_INFO,
+                data: userInfo
+            })
             setLoading(false);
-        }
-    }
-
-    const _updateInfo = async () => {
-        try {
-            const {name, birthday, gender, avatar} = formRef.current;
-            // @ts-ignore
-            const userInfo = await SonkimApiService.UpdatePersonalInfo({name, birthday, gender, avatar})
+            Alert.alert("Cập nhật thông tin thành công")
+            // navigate
+            navigation.goBack()
         } catch (err) {
-            Alert.alert(err.message);
+            Alert.alert(err.message)
+            setLoading(false);
         }
     }
 
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
 
+    //  birthday
+    const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)
+
     return (
-        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position"
-                              backgroundColor="primary.500">
+        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
             <ScrollView p={4}>
                 <Box flex={1} px={3}>
                     {/* Avatar */}
                     <Text color="secondary.500" my={1}>Ảnh đại diện</Text>
+
                     <Box width="full" alignItems="center" mb={4}>
-                        <ImagePicker
-                            justifyContent="center"
-                            alignItems="center"
-                            rounded="full"
-                            width={24}
-                            height={24}
-                            bgColor="rgba(255,255,255,0.5)">
-                            <Text color="white">Chọn ảnh</Text>
-                        </ImagePicker>
+                        <AvatarPicker onChange={_uploadImgChange} value={formData.avatar}/>
                     </Box>
 
                     {/* name */}
                     <Text color="secondary.500" my={1}>Họ và tên</Text>
-                    <Input onChangeText={(text) => _onInputChange("name", text)}
+                    <Input value={formData.name} onChangeText={(text) => _onInputChange("name", text)}
                            color="white"
                            fontSize="md"
                            placeholderTextColor="white"
@@ -103,11 +122,12 @@ const AccountInfoForm = () => {
 
                     <Text color="secondary.500" my={1}>Giới tính</Text>
                     <Picker
+                        placeholder="Chọn giới tính"
                         bgColor="rgba(255,255,255,0.5)"
                         pr={3}
                         rounded="xl"
                         items={GenderList}
-                        value={formRef.current.gender}
+                        value={formData.gender}
                         onChange={value => _onInputChange("gender", value)}/>
                     <Text color="red.500" fontSize="sm" mt={1}>{genderValid}</Text>
 
@@ -117,7 +137,7 @@ const AccountInfoForm = () => {
                         p={3}
                         bgColor="rgba(255,255,255,0.5)"
                         rounded="xl"
-                        value={new Date(1990,0,1)}
+                        value={dateValue}
                         onChange={_onBirthdayChange}/>
                     <Text color="red.500" fontSize="sm" mt={1}>{birthdayValid}</Text>
 
@@ -132,5 +152,3 @@ const AccountInfoForm = () => {
 }
 
 export default AccountInfoForm
-
-const styles = StyleSheet.create({})

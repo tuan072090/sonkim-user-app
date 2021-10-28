@@ -4,30 +4,28 @@ import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
 import {ScreenName, SonkimApiService} from "../../../share";
 import AppProvider from "../../../share/context";
+import {Alert} from "react-native";
 
 export const HomeHeader = memo(() => {
     const navigation = useNavigation()
     const {dispatch, user, accessToken} = useContext(AppProvider.context)
 
     useEffect(() => {
-        console.log("accessToken....", accessToken)
         if(accessToken && accessToken.length > 0){
             _fetchProfile()
         }
-
     }, [])
 
 
     const _fetchProfile = async () => {
         try {
             const userInfo = await SonkimApiService.GetPersonalInfo()
-            console.log("userInfo....", userInfo)
             dispatch({
                 type: AppProvider.actions.UPDATE_USER_INFO,
                 data: userInfo
             })
         } catch (err) {
-            // Alert.alert(err.message)
+            Alert.alert("Không lấy được thông tin người dùng", err.message)
         }
     }
 
@@ -58,7 +56,7 @@ export const HomeHeader = memo(() => {
                             <Text ml={3} fontSize="lg" color="white">Chào {user.name}</Text>
                         </>
                         :
-                        <Text ml={3} fontSize="lg" color="white">Chào người lạ</Text>
+                        <Text fontSize="lg" color="white">Chào người lạ</Text>
                 }
             </Pressable>
 

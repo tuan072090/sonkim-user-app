@@ -12,7 +12,7 @@ const SignInWithPhone = async (phone:string) => {
 
         return confirmation
     }catch (err){
-        throw new MyError(400, err.message, 400)
+        throw new MyError(err.message, 400)
     }
 }
 

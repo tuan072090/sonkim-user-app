@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, Text} from "native-base";
 import {StaticImages} from '../../../share'
-import VoucherCard from "../../../components/organisms/voucher-card";
+import {VoucherCard} from "../../../components";
 
 
 const sampleVoucherData = [

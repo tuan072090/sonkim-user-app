@@ -53,7 +53,7 @@ export const ResetPasswordForm = () => {
             }
             setProcessing(false)
 
-            if (!isValid) throw new MyError(400, "Dữ liệu không hợp lệ");
+            if (!isValid) throw new MyError("Dữ liệu không hợp lệ", 400);
 
             // @ts-ignore
             navigation.navigate(ScreenName.OTP_SCREEN, {phone: phoneLocal, action: "resetPassword"})

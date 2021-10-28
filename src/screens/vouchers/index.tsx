@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import VoucherCard from "../../components/organisms/voucher-card";
 import {Box, Text} from "native-base";
 import {Alert} from "react-native";
-import AccountInfo from "../account/AccountInfo";
-import {MainLayout} from "../../components";
+import {MainLayout, VoucherCard} from "../../components";
 import { SonkimApiService, StaticImages } from "../../share";
 
 
@@ -44,7 +42,7 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
         try {
             const data = await SonkimApiService.getVouchers()
             console.log("data...", data)
-        } catch (err) {
+        } catch (err:any) {
             Alert.alert(err.message)
         }
     }
