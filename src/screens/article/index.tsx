@@ -5,6 +5,7 @@ import { useRoute } from '@react-navigation/native';
 import { ScreenSize, SonkimApiService } from "../../share";
 import { Box, ScrollView, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
+import Markdown from 'react-native-markdown-display';
 
 const ImgWidth = ScreenSize.vw - 30
 export const ArticleScreen = MainLayout(({ navigation }) => {
@@ -42,9 +43,12 @@ export const ArticleScreen = MainLayout(({ navigation }) => {
                             <Box p={3} bgColor="white" mt={4} rounded="xl">
                                 <Text fontSize="2xl" my={3}>{article.title}</Text>
 
-                                <Text mt={4}>
-                                    {article.body}
-                                </Text>
+                                <Box mt={4}>
+                                    <Markdown>
+                                        {article.body}
+                                    </Markdown>
+
+                                </Box>
                             </Box>
                         </Box>
                     </ScrollView>

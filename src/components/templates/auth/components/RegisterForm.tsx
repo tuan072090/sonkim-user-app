@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from "react";
 import {Box, Button, Heading, Input, KeyboardAvoidingView, ScrollView, Text} from 'native-base'
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute, CommonActions} from '@react-navigation/native';
 import {Formatter, ScreenName, SonkimApiService, useLocalStorage, Validator} from "../../../../share";
 import {Alert, Platform} from "react-native";
 import AppProvider from "../../../../share/context";
@@ -92,6 +92,20 @@ export const RegisterForm = () => {
                 data: jwt
             })
             Alert.alert("Đăng ký thành công, vui lòng thiết lập tài khoản")
+
+            //  remove register screen from stack
+            navigation.dispatch((state) => {
+                state.routes.pop()
+
+                const newRoutes = [...state.routes]
+
+                return CommonActions.reset({
+                    ...state,
+                    routes: newRoutes,
+                    index: newRoutes.length - 1,
+                });
+            });
+
             // @ts-ignore
             navigation.navigate(ScreenName.USER_INFO)
         } catch (err) {
@@ -100,6 +114,18 @@ export const RegisterForm = () => {
     }
 
     const _navToLogin = () => {
+        //  remove register screen from stack
+        navigation.dispatch((state) => {
+            state.routes.pop()
+
+            const newRoutes = [...state.routes]
+
+            return CommonActions.reset({
+                ...state,
+                routes: newRoutes,
+                index: newRoutes.length - 1,
+            });
+        });
         // @ts-ignore
         navigation.navigate(ScreenName.LOGIN_SCREEN)
     }
