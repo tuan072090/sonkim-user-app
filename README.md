@@ -93,8 +93,13 @@ API uri: `https://api.sonkim.upme.dev`
 - [x] Đăng ký thẻ
 - [x] Liên kết thẻ
 - [x] Đổi điểm // Khánh
+<<<<<<< HEAD
+- [x] Lịch sử đổi điểm // Khánh
+- [ ] Quản lý thông báo // Tài
+=======
 - [ ] Lịch sử đổi điểm // Khánh
 - [x] Quản lý thông báo // Tài
+>>>>>>> 3637a1a4569922b09bbf851e75bbec0f861503b8
 - [x] Tìm xung quanh
 - [ ] Giỏ hàng
 - [ ] Gift Cards // Tài
