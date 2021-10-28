@@ -50,7 +50,7 @@ export const ScreenTitle = {
     [ScreenName.USEPOINTQR]: 'Tích và dùng điểm',
     [ScreenName.TRANSFER_POINT]: 'Đổi điểm',
     [ScreenName.STORE]: 'Danh sách store',
-    [ScreenName.VOUCHERS_SCREEN]: 'Danh khuyến mãi',
+    [ScreenName.VOUCHERS_SCREEN]: 'Danh sách khuyến mãi',
     [ScreenName.VOUCHER_DETAIL]: 'Chi tiết khuyến mãi',
     [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
 }

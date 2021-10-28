@@ -1,38 +1,11 @@
-import React, { useEffect, useState } from "react";
-import {Box, Text} from "native-base";
-import {Alert} from "react-native";
+import React, {useEffect, useState} from "react";
+import {Box, ScrollView, Text} from "native-base";
+import {ActivityIndicator, Alert} from "react-native";
 import {MainLayout, VoucherCard} from "../../components";
-import { SonkimApiService, StaticImages } from "../../share";
+import {PromotionType, SonkimApiService} from "../../share";
 
-
-const sampleVoucherData = [
-    {
-        imageUri: StaticImages.voucher1,
-        title: 'Voucher giảm giá 20% cho dịch vụ massage vào tháng 10',
-        applied: 5,
-        due: '12/12/2021',
-        status: 'free'
-    },
-    {
-        imageUri: StaticImages.voucher2,
-        title: 'Tặng kèm dịch vụ tắm trắng',
-        applied: 1,
-        due: '12/12/2021',
-        status: 'point',
-        point: 10000
-    },
-    {
-        imageUri: StaticImages.voucher3,
-        title: 'Combo xông hơi, massage cổ vai gáy',
-        applied: 3,
-        due: '12/12/2021',
-        status: 'currency',
-        price: 10000
-    },
-]
-
-const VouchersScreen:React.FC<any> = MainLayout(() => {
-    const [vouchers, setVouchers] = useState(null)
+const VouchersScreen: React.FC<any> = MainLayout(() => {
+    const [vouchers, setVouchers] = useState<PromotionType[] | null>(null)
 
     useEffect(() => {
         _fetchVouchers()
@@ -40,25 +13,27 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
 
     const _fetchVouchers = async () => {
         try {
-            const data = await SonkimApiService.getVouchers()
-            console.log("data...", data)
+            const {count, promotions} = await SonkimApiService.GetVouchers()
+            setVouchers(promotions)
         } catch (err) {
             Alert.alert(err.message)
         }
     }
 
+    console.log("vouchers....", vouchers)
     return (
-        <Box p={4} mt={4}>
-            <Text fontSize="xl" color="primary.500">
-                Danh sách khuyến mãi
-            </Text>
+        <ScrollView>
+            <Box p={4} mt={4}>
 
-            {
-                sampleVoucherData.map((item, index) => (
-                    <VoucherCard voucher={item} key={index} />
-                ))
-            }
-        </Box>
+                {
+                    !vouchers
+                        ? <Box width="full" p={4}><ActivityIndicator color="primary.500"/></Box>
+                        : vouchers.map((item, index) => (
+                            <VoucherCard voucher={item} key={index}/>
+                        ))
+                }
+            </Box>
+        </ScrollView>
     )
 })
 

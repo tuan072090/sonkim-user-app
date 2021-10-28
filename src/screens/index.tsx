@@ -23,7 +23,7 @@ import TransferPointPage from './transfer-point';
 import StorePage from './store';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
-import VoucherDetail from './vouchers/components/VoucherDetail';
+import VoucherDetail from './vouchers/VoucherDetail';
 import TransactionHistory from './transaction-history';
 import {ArticleScreen} from "./article";
 

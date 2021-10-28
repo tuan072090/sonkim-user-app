@@ -1,18 +1,20 @@
-import React, {memo, useContext, useEffect} from "react";
+import React, {memo, useContext, useEffect, useState} from "react";
 import {Box, Pressable, Text} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
 import {ScreenName, SonkimApiService} from "../../../share";
 import AppProvider from "../../../share/context";
-import {Alert} from "react-native";
+import {ActivityIndicator, Alert} from "react-native";
 
 export const HomeHeader = memo(() => {
     const navigation = useNavigation()
+    const [vouchers, setVouchers] = useState<number | null>(null)
     const {dispatch, user, accessToken} = useContext(AppProvider.context)
 
     useEffect(() => {
-        if(accessToken && accessToken.length > 0){
+        if (accessToken && accessToken.length > 0) {
             _fetchProfile()
+            _fetchVouchers();
         }
     }, [])
 
@@ -26,6 +28,15 @@ export const HomeHeader = memo(() => {
             })
         } catch (err) {
             Alert.alert("Không lấy được thông tin người dùng", err.message)
+        }
+    }
+
+    const _fetchVouchers = async () => {
+        try {
+            const {count} = await SonkimApiService.GetVouchers()
+            setVouchers(count)
+        } catch (err) {
+            Alert.alert("Không lấy được voucher", err.message)
         }
     }
 
@@ -67,7 +78,10 @@ export const HomeHeader = memo(() => {
                      rounded="2xl"/>
                 {/*overlay background*/}
                 <VoucherIcons fill="white" size={6}/>
-                <Text ml={2} fontSize="lg" fontWeight="medium" color="white">3</Text>
+                {
+                    !vouchers ? <ActivityIndicator size="small" color="white"/>
+                        : <Text ml={2} fontSize="lg" fontWeight="medium" color="white">{vouchers}</Text>
+                }
             </Pressable>
         </Box>
     )

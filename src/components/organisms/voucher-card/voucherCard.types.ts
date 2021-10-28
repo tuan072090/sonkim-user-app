@@ -1,13 +1,5 @@
-export type VoucherCardType={
-    voucher: VoucherType,
-}
+import {PromotionType} from "../../../share";
 
-export type VoucherType={
-    imageUri: any,
-    title:string,
-    applied:number,
-    due:string,
-    status:string,
-    point?:number,
-    price?:number,
+export type VoucherCardType={
+    voucher: PromotionType,
 }

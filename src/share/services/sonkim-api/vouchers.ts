@@ -1,10 +1,10 @@
 import FetchDataService from "../fetch"
 
-export const getVouchers = async (params={}) => {
+export const GetVouchers = async (params={}) => {
     try {
         const { count, promotions } = await FetchDataService.GET("/user-api/promotions", params)
 
-        return { count, data: promotions }
+        return { count, promotions }
     } catch (err) {
         console.log("promotions error.....", err)
         throw err

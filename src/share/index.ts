@@ -14,7 +14,7 @@ import {GenderList} from "./utils/constant";
 //  services
 import FetchDataService from "./services/fetch";
 import {CheckPhone, Login, Logout, Register, ResetPassword} from "./services/sonkim-api/auth";
-import {getVouchers} from "./services/sonkim-api/vouchers";
+import {GetVouchers} from "./services/sonkim-api/vouchers";
 import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
@@ -33,7 +33,7 @@ const SonkimApiService = {
     Logout,
     GetPersonalInfo,
     UpdatePersonalInfo,
-    getVouchers,
+    GetVouchers,
     GetUploadUrl,
     UploadImage,
     GetArticles,
@@ -62,3 +62,9 @@ export {
     useCountDown,
     useLocalStorage
 }
+
+//  types
+export type {StoreTypes} from './data-types/store.types'
+export type {BusinessUnitType} from './data-types/businessUnit.types'
+export type {UserType} from './data-types/user.types'
+export type {PromotionType} from './data-types/promotion.types'
