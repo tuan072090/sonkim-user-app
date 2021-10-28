@@ -3,18 +3,18 @@ import React, {useEffect} from 'react'
 import {ImageStatic} from '../../components'
 import ScreenHeader from '../../components/organisms/screen-header'
 import {StaticImages} from '../../share'
-import { useRoute } from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import {Alert} from "react-native";
 
 const VoucherDetail = () => {
     const route = useRoute();
-    const {params} = route
+    const {params}: any = route
 
     useEffect(() => {
-        if(typeof params["voucherId"] !== "undefined"){
-            Alert.alert("voucher ID: " +params["voucherId"])
+        if (typeof params["voucherId"] !== "undefined") {
+            Alert.alert("voucher ID: " + params["voucherId"])
         }
-    },[params])
+    }, [params])
 
     return (
         <Box flex={1} width="100%">
@@ -67,11 +67,11 @@ const VoucherDetail = () => {
                             versions of Lorem Ipsum.</Text>
                         <HStack alignItems="center" justifyContent="space-around" my={4}>
                             <ImageStatic uri={StaticImages.voucher_detail1} rounded="md" width={24}
-                                         height={24}></ImageStatic>
+                                         height={24}/>
                             <ImageStatic uri={StaticImages.voucher_detail2} rounded="md" width={24}
-                                         height={24}></ImageStatic>
+                                         height={24}/>
                             <ImageStatic uri={StaticImages.voucher_detail3} rounded="md" width={24}
-                                         height={24}></ImageStatic>
+                                         height={24}/>
                         </HStack>
                     </Box>
                 </Box>
