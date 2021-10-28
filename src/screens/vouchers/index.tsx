@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Box, Text} from "native-base";
-import {Alert} from "react-native";
-import {MainLayout, VoucherCard} from "../../components";
+import { Box, Text } from "native-base";
+import { Alert } from "react-native";
+import { MainLayout, VoucherCard } from "../../components";
 import { SonkimApiService, StaticImages } from "../../share";
 
 
@@ -31,7 +31,7 @@ const sampleVoucherData = [
     },
 ]
 
-const VouchersScreen:React.FC<any> = MainLayout(() => {
+const VouchersScreen: React.FC<any> = MainLayout(() => {
     const [vouchers, setVouchers] = useState(null)
 
     useEffect(() => {
@@ -42,7 +42,7 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
         try {
             const data = await SonkimApiService.getVouchers()
             console.log("data...", data)
-        } catch (err:any) {
+        } catch (err: any) {
             Alert.alert(err.message)
         }
     }
@@ -52,7 +52,6 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
             <Text fontSize="xl" color="primary.500">
                 Danh sách khuyến mãi
             </Text>
-
             {
                 sampleVoucherData.map((item, index) => (
                     <VoucherCard voucher={item} key={index} />
@@ -62,6 +61,6 @@ const VouchersScreen:React.FC<any> = MainLayout(() => {
     )
 })
 
-VouchersScreen.defaultProps = {authRequire: true}
+VouchersScreen.defaultProps = { authRequire: true }
 
 export default VouchersScreen

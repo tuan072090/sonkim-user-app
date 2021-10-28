@@ -29,6 +29,13 @@ const BUDetailScreen = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.STORE);
     };
+
+    const _navigateListVoucher = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.VOUCHERS_SCREEN);
+    };
+
+
     return (
         <Box
             flex={1}
@@ -95,7 +102,17 @@ const BUDetailScreen = () => {
                     </Box>
                 </Box>
                 <Categories></Categories>
+
                 <VoucherList></VoucherList>
+                <Text
+                    py={5}
+                    underline
+                    fontSize="md"
+                    color="red.400" onPress={_navigateListVoucher}
+                    textAlign="center"
+                >
+                    Xem tất cả
+                </Text>
                 <Box p={5}>
                     <VStack space={3}>
                         <SimpleGrid columns={2} spacingY={3} spacingX={3}>
@@ -104,7 +121,7 @@ const BUDetailScreen = () => {
                         </SimpleGrid>
                     </VStack>
                     <Text
-                        pb={5}
+                        py={5}
                         underline
                         fontSize="md"
                         color="red.400"
