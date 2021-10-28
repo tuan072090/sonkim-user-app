@@ -89,17 +89,19 @@ const AccountInfoForm = () => {
     }
 
     const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
-    console.log("new form data", formData)
+
+    //  birthday
+    const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)
+
     return (
-        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position"
-                              backgroundColor="primary.500">
+        <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
             <ScrollView p={4}>
                 <Box flex={1} px={3}>
                     {/* Avatar */}
                     <Text color="secondary.500" my={1}>Ảnh đại diện</Text>
 
                     <Box width="full" alignItems="center" mb={4}>
-                        <AvatarPicker onChange={_uploadImgChange}/>
+                        <AvatarPicker onChange={_uploadImgChange} value={formData.avatar}/>
                     </Box>
 
                     {/* name */}
@@ -135,7 +137,7 @@ const AccountInfoForm = () => {
                         p={3}
                         bgColor="rgba(255,255,255,0.5)"
                         rounded="xl"
-                        value={new Date(1990, 0, 1)}
+                        value={dateValue}
                         onChange={_onBirthdayChange}/>
                     <Text color="red.500" fontSize="sm" mt={1}>{birthdayValid}</Text>
 

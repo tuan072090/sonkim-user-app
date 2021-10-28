@@ -13,11 +13,11 @@ const AccountInfo: React.FC<any> = MainLayout(() => {
 
     return (
         <Box flex={1} position="relative" alignItems="center">
-            <ImageStatic resizeMode="cover" position="absolute" bottom={0} left={0} width="100%" height="100%" uri={StaticImages.reg_membership_backgroud}></ImageStatic>
-            <Box flex={1} width="100%">
-                <ScreenHeader hasBackButton={true} title={Translate[language].userInfo} bgColor="primary.500"></ScreenHeader>
-                <AccountInfoForm></AccountInfoForm>
-            </Box>
+
+            <ImageStatic resizeMode="cover" position="absolute" bottom={0} left={0} width="100%" height="100%" uri={StaticImages.reg_membership_backgroud}/>
+            <ScreenHeader hasBackButton={true} title={Translate[language].userInfo} bgColor="transparent"/>
+
+            <AccountInfoForm/>
         </Box>
     )
 })

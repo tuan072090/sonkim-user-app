@@ -1,4 +1,4 @@
-import { compareAsc, format } from 'date-fns'
+import { parse, format } from 'date-fns'
 
 export const FormatVND = (pnumber:number) => {
     let result = "0"
@@ -75,8 +75,16 @@ export const ChangeToSlug = (plainText: string): string => {
     return slug;
 };
 
-export const FormatDateFromDate = (date:Date, defaultFormat = 'yyyy-MM-dd') => {
+export const FormatDateFromDate = (date:Date, defaultFormat = 'yyyy-MM-dd'):string => {
     return format(date, defaultFormat)
+}
+
+export const ParseStringToDate = (dateStr:string, defaultFormat = 'yyyy-MM-dd'):Date => {
+    return parse(
+        dateStr,
+        defaultFormat,
+        new Date()
+    )
 }
 
 const Formatter = {
@@ -84,7 +92,8 @@ const Formatter = {
     FormatVND,
     ChangeToSlug,
     RemoveAscent,
-    FormatDateFromDate
+    FormatDateFromDate,
+    ParseStringToDate
 }
 
 export default Formatter

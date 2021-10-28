@@ -2,5 +2,6 @@ import {IPressableProps} from "native-base/lib/typescript/components/primitives/
 
 export interface ImagePickerTypes extends IPressableProps{
     from?: "camera"|"gallery",
+    value?:string,
     onChange: (imgUrl:string)=>void
 }

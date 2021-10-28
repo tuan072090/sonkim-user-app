@@ -14,7 +14,6 @@ const Picker:React.FC<PickerTypes> = memo(({onChange, value, items, placeholder=
         onChange(value)
     }
 
-    console.log("picker value...", value)
     return (
         <Box {...props}>
             <Select

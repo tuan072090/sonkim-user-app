@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {EditIcon, ImageIcon, ImagePicker} from "../..";
 import Image from "../../atoms/image";
 import {ImagePickerTypes} from "../../molecules/image-picker/imagePicker.types";
 import {Box} from "native-base";
 
-const AvatarPicker:React.FC<ImagePickerTypes> = ({onChange,from = "gallery", ...props}) => {
-    const [avatar, setAvatar] = useState("")
+const AvatarPicker:React.FC<ImagePickerTypes> = memo(({onChange, value="", from = "gallery", ...props}) => {
+    const [avatar, setAvatar] = useState(value)
+
+    useEffect(() => {
+        setAvatar(value)
+    },[value])
 
     const _uploadImgChange = (imgUri: string) => {
         setAvatar(imgUri)
@@ -27,7 +31,7 @@ const AvatarPicker:React.FC<ImagePickerTypes> = ({onChange,from = "gallery", ...
             {
                 avatar.length === 0
                 ? <ImageIcon size={20}/>
-                : <Image uri={avatar} size={20}/>
+                : <Image uri={avatar} size={20} rounded="full" borderRadius="full"/>
             }
 
             <Box position="absolute" top={0} right={0} bgColor="white" p={2} rounded="full" shadow="1">
@@ -35,6 +39,6 @@ const AvatarPicker:React.FC<ImagePickerTypes> = ({onChange,from = "gallery", ...
             </Box>
         </ImagePicker>
     )
-}
+})
 
 export default AvatarPicker
