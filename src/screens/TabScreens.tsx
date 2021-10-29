@@ -68,7 +68,7 @@ const TabScreens = () => {
 
             }} />
             <Tab.Screen name={ScreenName.ACCOUNT_SCREEN} component={AccountScreen} options={{
-                unmountOnBlur: false,
+                unmountOnBlur: true,
                 headerShown: false,
                 tabBarLabel: ({ focused, color }) => {
                     if (focused)

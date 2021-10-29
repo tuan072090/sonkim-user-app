@@ -20,7 +20,6 @@ const VouchersScreen: React.FC<any> = MainLayout(() => {
         }
     }
 
-    console.log("vouchers....", vouchers)
     return (
         <ScrollView>
             <Box p={4} mt={4}>

@@ -14,14 +14,15 @@ const fakeData = [
     {id: "5", title: "Health Spa", coordinate: [106.690469, 10.778680]}
 ]
 
-export const MapContent = () => {
+export const MapContent = React.memo(() => {
 
     return (
         <Box width="100%" height="100%">
-            <MapboxGL.MapView style={{flex: 1}} localizeLabels={true} zoomEnabled={true}>
+            <MapboxGL.MapView style={{flex: 1}} localizeLabels={true} zoomEnabled={false}>
                 <MapboxGL.Camera
                     centerCoordinate={[106.6960296, 10.7724091]}
                     zoomLevel={12}/>
+
                 <MapboxGL.UserLocation visible={true} animated={true}/>
 
                 {
@@ -40,4 +41,4 @@ export const MapContent = () => {
             </MapboxGL.MapView>
         </Box>
     )
-}
+})

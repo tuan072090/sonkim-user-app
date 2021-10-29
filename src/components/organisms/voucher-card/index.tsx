@@ -21,12 +21,13 @@ const VoucherCard: React.FC<VoucherCardType> = ({voucher, ...props}) => {
     return (
         <Pressable onPress={_navigateVoucherDetail} _pressed={{opacity: 0.5}}>
             <VStack bgColor="white" borderRadius={8} shadow={4} mt={3}>
-                <HStack mx={3} my={2}>
-                    <Box bgColor="primary.500" borderRadius={6} width="20" height="20" my={1}>
-                        <Image uri={voucher.avatar.url} borderRadius={4} width={20} height={20}/>
+                <HStack px={3} py={2}>
+                    <Box borderRadius={6} flex={1}>
+                        <Image uri={voucher.avatar.url} borderRadius={6} width={20} height={20}/>
                     </Box>
-                    <VStack px={3} py={1}>
-                        <Text fontWeight="semibold" fontSize="md">{voucher.title}</Text>
+
+                    <VStack pl={3} py={1} flex={4}>
+                        <Text fontWeight="semibold" fontSize="md" >{voucher.title}</Text>
 
                         <Box py={2} width="full">
                             <HStack alignItems="center" mb={1}>
@@ -35,8 +36,9 @@ const VoucherCard: React.FC<VoucherCardType> = ({voucher, ...props}) => {
                             </HStack>
                             <HStack alignItems="center">
                                 <HistoryIcon size={4}/>
-                                <Text ml={2}>Hạn sử
-                                    dụng: {dateRule ? Formatter.FormatDateFromDate(new Date(dateRule.valid_until), "dd/MM/YYY") : "Mãi mãi"}</Text>
+                                <Text ml={2}>
+                                    Hạn sử dụng: {dateRule ? Formatter.FormatDateFromDate(new Date(dateRule.valid_until), "dd/MM/YYY") : "Không có"}
+                                </Text>
                             </HStack>
                         </Box>
                     </VStack>

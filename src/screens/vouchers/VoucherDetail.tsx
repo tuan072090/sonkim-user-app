@@ -76,7 +76,7 @@ const VoucherDetail = () => {
                     </Box>
                 </Box>
             </ScrollView>
-            <HStack bgColor="white" height={20} alignItems="center" justifyContent="space-around" position="absolute"
+            <HStack bgColor="white" py={3} alignItems="center" justifyContent="space-around" position="absolute"
                     bottom={0} width="100%">
                 <Text color="primary.500" fontWeight="semibold" fontStyle="normal" fontSize="md" lineHeight="lg">Miễn
                     phí</Text>

@@ -15,6 +15,8 @@ export const HomeHeader = memo(() => {
         if (accessToken && accessToken.length > 0) {
             _fetchProfile()
             _fetchVouchers();
+        }else {
+            setVouchers(0)
         }
     }, [])
 
@@ -79,7 +81,7 @@ export const HomeHeader = memo(() => {
                 {/*overlay background*/}
                 <VoucherIcons fill="white" size={6}/>
                 {
-                    !vouchers ? <ActivityIndicator size="small" color="white"/>
+                    vouchers===null ? <ActivityIndicator size="small" color="white"/>
                         : <Text ml={2} fontSize="lg" fontWeight="medium" color="white">{vouchers}</Text>
                 }
             </Pressable>
