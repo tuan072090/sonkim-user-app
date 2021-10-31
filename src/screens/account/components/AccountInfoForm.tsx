@@ -88,15 +88,15 @@ const AccountInfoForm = () => {
         }
     }
 
-    const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 0 : 0;
 
     //  birthday
     const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)
 
     return (
         <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
-            <ScrollView p={4}>
-                <Box flex={1} px={3}>
+            <ScrollView>
+                <Box flex={1} p={4}>
                     {/* Avatar */}
                     <Text color="secondary.500" my={1}>Ảnh đại diện</Text>
 

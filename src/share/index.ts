@@ -1,6 +1,5 @@
 import {Colors} from "./configs/colors";
 import {Deeplink, ScreenName, ScreenTitle} from "./configs/routers";
-import {MAPBOX_ACCESS_TOKEN} from './configs/tokens'
 import StaticImages from './static/images'
 import LocalStorageService from "./services/local-storage";
 import Translate from './languages'
@@ -18,6 +17,7 @@ import {GetVouchers} from "./services/sonkim-api/vouchers";
 import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
+import {GetStores} from './services/sonkim-api/stores'
 import FirebaseService from "./services/firebase";
 
 //  hooks
@@ -37,7 +37,8 @@ const SonkimApiService = {
     GetUploadUrl,
     UploadImage,
     GetArticles,
-    GetArticleDetail
+    GetArticleDetail,
+    GetStores
 }
 
 export {
@@ -46,7 +47,6 @@ export {
     StaticImages,
     Translate,
     LocalStorageService,
-    MAPBOX_ACCESS_TOKEN,
     //  utils
     ScreenSize,
     Validator,
@@ -57,6 +57,7 @@ export {
     FetchDataService,
     SonkimApiService,
     FirebaseService,
+
     //  hooks
     useDebounce,
     useCountDown,

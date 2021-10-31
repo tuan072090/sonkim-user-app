@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useState} from "react";
 import {Platform} from "react-native";
-import {ChevronDownIcon, Pressable, Text} from "native-base";
+import {Box,ChevronDownIcon, Pressable, Text} from "native-base";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {DatepickerTypes} from "./datepicker.types";
 import {Formatter} from "../../../share";
@@ -24,7 +24,7 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
     }
 
     return (
-        <>
+        <Box>
             <Pressable onPress={_toggleDatePicker} position="relative" {...props}>
                 <Text color="white" fontSize="md" size="2xl">
                     {
@@ -46,7 +46,7 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
                 onConfirm={_dateConfirm}
                 onCancel={_toggleDatePicker}
             />
-        </>
+        </Box>
     )
 })
 
