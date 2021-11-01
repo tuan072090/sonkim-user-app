@@ -1,55 +1,38 @@
-import React, {useContext} from "react";
-import {Box, ScrollView} from "native-base";
+import React, {useContext, useEffect, useState} from "react";
+import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {StaticImages, Translate} from "../../share";
+import {NotificationType, SonkimApiService, StaticImages, Translate} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import {CheckAllIcon, MainLayout} from "../../components";
 import NotificationCard from "./components/NotificationCard";
-
-
-const notificationSampleData = [
-    {
-        logo: StaticImages.lazada,
-        title: 'Đăng kí thành công thẻ Lazada',
-        due: '12/12/2021 - 12:00',
-        description: 'Chúc mừng bạn đã đăng kí thành công thẻ thành viên của Lazada',
-        unread: true,
-    },
-    {
-        logo: StaticImages.cgv,
-        title: 'Bạn đã trở thành thành viên của CGV Cinema',
-        due: '12/12/2021 - 12:00',
-        description: 'Chúc mừng bạn đã đăng kí thành công thẻ thành viên của Lazada',
-        unread: true
-    },
-    {
-        logo: StaticImages.gs25,
-        title: 'Bạn đã được tặng 1 voucher',
-        due: '12/12/2021 - 12:00',
-        description: 'Bạn đã được tặng 1 voucher 50% khi mua hóa đơn trên 100k'
-    },
-    {
-        logo: StaticImages.cgv,
-        title: 'Bạn đã nhận được một sản phẩm tri ân khách hàng',
-        due: '12/12/2021 - 12:00',
-        description: 'Chúc mừng bạn đã trở thành thành viên vàng của Jockey. Bạn sẽ nhận được một...'
-    },
-]
+import {ActivityIndicator, Alert} from "react-native";
 
 const NotificationsScreen: React.FC<any> = MainLayout(() => {
     const {language} = useContext(LanguageProvider.context)
+    const [notifications, setNotifications] = useState<NotificationType[]|null>(null)
+
+    useEffect(() => {
+        SonkimApiService.GetNotifications().then(data => {
+            console.log("notification data....", data)
+            setNotifications(data)
+        }).catch(err => {
+            Alert.alert(err.message)
+        })
+    },[])
+
+    //  @ts-ignore
+    const _renderItems = ({ item }) => {
+        return (<NotificationCard item={item} />)
+    }
 
     return (
         <Box flex={1}>
             <ScreenHeader hasBackButton={true} title={Translate[language].notifications} bgColor="primary.500"
                           rightIcon={<CheckAllIcon size={6}/>}/>
-            <ScrollView>
-                {
-                    notificationSampleData.map((item, index) => (
-                        <NotificationCard item={item} key={index}/>
-                    ))
-                }
-            </ScrollView>
+            {
+                !notifications ? <Box p={5}><ActivityIndicator/></Box>
+                : <FlatList data={notifications} renderItem={_renderItems}/>
+            }
         </Box>
     )
 })

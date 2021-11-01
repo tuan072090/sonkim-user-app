@@ -21,6 +21,7 @@ import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
 import {GetStores} from './services/sonkim-api/stores'
+import {GetNotifications} from './services/sonkim-api/notifications'
 import FirebaseService from "./services/firebase";
 
 //  hooks
@@ -41,7 +42,8 @@ const SonkimApiService = {
     UploadImage,
     GetArticles,
     GetArticleDetail,
-    GetStores
+    GetStores,
+    GetNotifications
 }
 
 export {
@@ -72,3 +74,4 @@ export type {StoreTypes} from './data-types/store.types'
 export type {BusinessUnitType} from './data-types/businessUnit.types'
 export type {UserType} from './data-types/user.types'
 export type {PromotionType} from './data-types/promotion.types'
+export type {NotificationType} from './data-types/notification.types'

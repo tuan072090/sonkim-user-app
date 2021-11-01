@@ -1,11 +1,5 @@
-export type NotificationCardType={
-    item:NotiType
-}
+import {NotificationType} from "../../../share";
 
-export type NotiType={
-    logo: any,
-    title:string,
-    due:string,
-    description:string,
-    unread?:boolean
+export type NotificationCardType={
+    item: NotificationType
 }

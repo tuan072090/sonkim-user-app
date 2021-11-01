@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SimpleGrid, VStack } from "native-base";
 import CardBU from "./index";
 import { ListCardBuType } from "./cardBU.types";
-import { getAllBranch } from "../../../share/services/sonkim-api/branches";
+import { GetBranches } from "../../../share/services/sonkim-api/branches";
 import { Alert } from "react-native";
 
 const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
@@ -16,8 +16,9 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
     };
 
     const _getAllBranch = () => {
-        getAllBranch().then(({ data }) => {
+        GetBranches().then(({ data }) => {
             let formatData: any[] = [];
+
             data.forEach((item: any) => {
                 formatData.push({
                     id: item.id,
@@ -26,7 +27,7 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
                 });
             });
             setBranch(formatData);
-        }).catch(err => Alert.alert(err.message));;
+        }).catch(err => Alert.alert(err.message));
     };
 
     useEffect(() => {

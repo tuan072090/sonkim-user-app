@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Box, Pressable, Text } from "native-base";
 import { MembershipCards } from "../../../components";
 import { useNavigation } from "@react-navigation/core";
-import { ScreenName } from "../../../share";
+import {ScreenName, SonkimApiService} from "../../../share";
 
 export const MembershipCardList = () => {
     const navigation = useNavigation();
+
+    useEffect(() => {
+
+    },[])
+
     const _navigateForm = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM);

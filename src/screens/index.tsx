@@ -87,8 +87,8 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.USEPOINT} component={UsePoint} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.USEPOINTQR} component={UsePointQR} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USE_POINT} component={UsePoint} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.USE_POINT_QR} component={UsePointQR} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.STORE} component={StorePage} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen} options={{title: ScreenTitle[ScreenName.VOUCHERS_SCREEN]}}/>
                     <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail} options={{headerShown:false}}/>

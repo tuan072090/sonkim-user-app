@@ -32,7 +32,7 @@ const UsePoint = () => {
                 <ListCardBU choise={choise} setChoise={setChoise}>
                     {" "}
                 </ListCardBU>
-                <Box mt={20}></Box>
+                <Box mt={20}/>
             </ScrollView>
             <Box
                 width="100%"

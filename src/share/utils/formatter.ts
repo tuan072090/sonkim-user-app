@@ -75,7 +75,7 @@ export const ChangeToSlug = (plainText: string): string => {
     return slug;
 };
 
-export const FormatDateFromDate = (date:Date, defaultFormat = 'yyyy-MM-dd'):string => {
+export const FormatDateFromDate = (date:Date, defaultFormat = 'dd-MM-yyyy'):string => {
     return format(date, defaultFormat)
 }
 
