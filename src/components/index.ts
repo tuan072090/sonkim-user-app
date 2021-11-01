@@ -13,7 +13,8 @@ import {
     NotificationOutlineIcon,
     PhoneIcon,
     TranslateIcon,
-    VoucherIcons
+    VoucherIcons,
+    ValueIcon
 } from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
@@ -42,6 +43,7 @@ export {
     //  Atoms
     HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, ImageIcon, EditIcon,
     VoucherIcons,
+    ValueIcon,
     ChevronLeftIcon,
     ListIcon,
     LocationIcon,

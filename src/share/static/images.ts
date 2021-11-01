@@ -60,6 +60,12 @@ const StaticImages = {
     voucher_detail1: require("../../../static/imgs/voucher_detail1.png"),
     voucher_detail2: require("../../../static/imgs/voucher_detail2.png"),
     voucher_detail3: require("../../../static/imgs/voucher_detail3.png"),
+
+    //giftCard image
+    giftCard1: require("../../../static/imgs/giftCard1.png"),
+    giftCard2: require("../../../static/imgs/giftCard2.png"),
+    giftCard3: require("../../../static/imgs/giftCard3.png"),
+    giftCard4: require("../../../static/imgs/giftCard4.png"),
 }
 
 export default StaticImages

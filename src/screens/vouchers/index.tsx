@@ -15,7 +15,7 @@ const VouchersScreen: React.FC<any> = MainLayout(() => {
         try {
             const {count, promotions} = await SonkimApiService.GetVouchers()
             setVouchers(promotions)
-        } catch (err) {
+        } catch (err:any) {
             Alert.alert(err.message)
         }
     }
