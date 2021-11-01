@@ -26,7 +26,8 @@ export const ScreenName = {
     VOUCHERS_SCREEN: "Vouchers",
     VOUCHER_DETAIL:"VoucherDetail",
     TRANSACTION_HISTORY: 'TransactionHistory',
-    ARTICLE_SCREEN: "Article"
+    ARTICLE_SCREEN: "Article",
+    GIFTCARD_SCREEN: "GiftCard"
 
 }
 export const ScreenTitle = {
@@ -53,6 +54,7 @@ export const ScreenTitle = {
     [ScreenName.VOUCHERS_SCREEN]: 'Danh sách khuyến mãi',
     [ScreenName.VOUCHER_DETAIL]: 'Chi tiết khuyến mãi',
     [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
+    [ScreenName.GIFTCARD_SCREEN]: 'Thẻ quà tặng',
 }
 
 export const Deeplink = {
