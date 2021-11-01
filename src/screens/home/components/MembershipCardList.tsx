@@ -11,7 +11,6 @@ export const MembershipCardList = () => {
 
     useEffect(() => {
         SonkimApiService.GetLoyaltyPrograms().then(data => {
-            console.log("data...", data)
             setLoyaltyPrograms(data)
         }).catch(err => {
             Alert.alert(err.message)

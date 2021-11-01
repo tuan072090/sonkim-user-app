@@ -65,7 +65,7 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
             />
 
             <Box p={8} position="absolute" bottom={4} left={0} right={0}>
-                <Button onPress={nextSlide} size="lg" rounded="lg" bgColor="primary.500">Tiếp tục</Button>
+                <Button _pressed={{opacity: 0.8}} onPress={nextSlide} size="lg" rounded="lg" bgColor="primary.500">Tiếp tục</Button>
             </Box>
         </Box>
     );
