@@ -20,21 +20,25 @@ const AccountInfoForm = () => {
     })
 
     useEffect(() => {
-        _fetchPersonalInfo()
-    }, [])
+        let isMounted = true;
 
-    const _fetchPersonalInfo = () => {
         SonkimApiService.GetPersonalInfo().then(info => {
-            setFormData({
-                name: info.name || "",
-                avatar: info.avatar || "",
-                gender: info.gender || "other",
-                birthday: info.birthday || ""
-            })
+            if(isMounted){
+                setFormData({
+                    name: info.name || "",
+                    avatar: info.avatar || "",
+                    gender: info.gender || "other",
+                    birthday: info.birthday || ""
+                })
+            }
         }).catch(err => {
             Alert.alert("Lấy thông tin lỗi", err.message)
         })
-    }
+
+        return () => {
+            isMounted = false
+        }
+    }, [])
 
     const _onInputChange = (name: "name" | "gender" | "birthday" | "avatar", value: string) => {
         setFormData({...formData, [name]: value})
@@ -88,15 +92,15 @@ const AccountInfoForm = () => {
         }
     }
 
-    const keyboardVerticalOffset = Platform.OS === 'ios' ? 0 : 0;
-
+    const keyboardVerticalOffset = Platform.OS === 'ios' ? 20 : 0;
     //  birthday
     const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)
 
     return (
         <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
-            <ScrollView>
-                <Box flex={1} p={4}>
+
+            <Box width={"full"} p={4}>
+                <ScrollView>
                     {/* Avatar */}
                     <Text color="secondary.500" my={1}>Ảnh đại diện</Text>
 
@@ -145,8 +149,9 @@ const AccountInfoForm = () => {
                             bgColor="white"
                             _pressed={{bgColor: "rgba(255,255,255,0.8)"}}
                             _text={{color: "gray.500"}} opacity={70}>Cập nhật</Button>
-                </Box>
-            </ScrollView>
+                </ScrollView>
+            </Box>
+
         </KeyboardAvoidingView>
     )
 }

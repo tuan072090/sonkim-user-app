@@ -1,8 +1,7 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
-import {AuthResponseType} from "../../data-types/user";
-import {API_URI} from "../../configs/apiUris";
+import {API_URI} from "../..";
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -30,29 +29,22 @@ class FetchData {
             timeout: 10000, //  10s
             headers: this.headers
         });
+    }
 
-        //  auto refresh token when 401 error
-        // this.axiosInstance.interceptors.response.use((response) => {
-        //     return response;
-        // }, async (error: AxiosError) => {
-        //     try  {
-        //         const status = error.response ? error.response.status : null
-        //
-        //         if (status === 401 && accessToken && accessToken.length > 0) {
-        //             await this.RefreshToken()
-        //             //  retry request
-        //             const originalRequest = error.config
-        //
-        //             return this.axiosInstance.request({...originalRequest, headers:{
-        //                     Authorization: "Bearer " + LocalStorage.GetAccessToken()
-        //                 }})
-        //         }
-        //
-        //         return Promise.reject(error);
-        //     } catch (err){
-        //         return Promise.reject(err);
-        //     }
-        // });
+    public async RefreshToken() {
+        try {
+            const accessToken = LocalStorage.GetAccessToken()
+            this.SetAccessToken(accessToken)
+
+            return;
+
+        } catch (err) {
+            //  logout
+            this.SetAccessToken("")
+            LocalStorage.SetAccessToken("");
+            LocalStorage.SetRefreshToken("");
+            this.handleError(err)
+        }
     }
 
     private handleData = function (res: AxiosResponse<any>) {
@@ -85,46 +77,6 @@ class FetchData {
 
     public POST(route: string, params = {}) {
         return this.executeRequest("POST", route, params)
-    }
-
-    public async RefreshToken() {
-        try {
-            const accessToken = LocalStorage.GetAccessToken()
-            this.SetAccessToken(accessToken)
-
-            return;
-
-            //  debug sau
-
-            if (!accessToken || accessToken.length === 0) throw new MyError("access token not found", 400)
-
-            const res = await axios.post(API_URI + "/account/security/refresh",
-                {
-                    "data": {
-                        "refresh_token": LocalStorage.GetRefreshToken()
-                    }
-                },
-                {headers: {Authorization: "Bearer " + LocalStorage.GetAccessToken()}}
-            )
-
-            // @ts-ignore
-            const authData: AuthResponseType = res.data
-            const {refresh_token, access_token} = authData.session
-
-            this.SetAccessToken(access_token)
-
-            LocalStorage.SetRefreshToken(refresh_token)
-            LocalStorage.SetAccessToken(access_token)
-
-            return authData
-
-        } catch (err) {
-            //  logout
-            this.SetAccessToken("")
-            LocalStorage.SetAccessToken("");
-            LocalStorage.SetRefreshToken("");
-            this.handleError(err)
-        }
     }
 
     private executeRequest = (method: MethodType, route: string, params = {}) => {

@@ -1,5 +1,8 @@
+//  configs
 import {Colors} from "./configs/colors";
 import {Deeplink, ScreenName, ScreenTitle} from "./configs/routers";
+import {API_URI, APP_VERSION,APP_BUILD} from './configs/commonConfigs'
+
 import StaticImages from './static/images'
 import LocalStorageService from "./services/local-storage";
 import Translate from './languages'
@@ -43,7 +46,7 @@ const SonkimApiService = {
 
 export {
     Colors,
-    ScreenName, ScreenTitle, Deeplink,
+    ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION,APP_BUILD,
     StaticImages,
     Translate,
     LocalStorageService,

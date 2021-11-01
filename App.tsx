@@ -8,20 +8,18 @@ import {FullScreenLoader, OnBoarding} from "./src/components";
 import LanguageProvider from "./src/share/context/Language";
 import SplashScreen from 'react-native-splash-screen'
 
-const configs = {
+const theme = extendTheme({
     colors: Colors
-}
-
-const theme = extendTheme(configs);
+});
 
 const App = () => {
     const {setLanguage} = useContext(LanguageProvider.context)
     const [isFirstOpen, setFirstOpen] = useState<boolean | null>(null)
 
     useEffect(() => {
-        LocalStorageService.SynsData().then(res => {
-            //  does not need at this time
-            FetchDataService.RefreshToken()
+        LocalStorageService.SynsData().then(async () => {
+
+            await FetchDataService.RefreshToken()
 
             setLanguage(LocalStorageService.GetLanguage())
             setFirstOpen(LocalStorageService.GetFirstOpen())

@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Box, Button, Heading, Input, KeyboardAvoidingView, Pressable, ScrollView, Text} from 'native-base'
-import {useNavigation} from "@react-navigation/native";
+import {CommonActions, useNavigation} from "@react-navigation/native";
 import {ScreenName, ScreenSize, SonkimApiService, useLocalStorage, Validator} from "../../../../share";
 import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
@@ -31,6 +31,20 @@ export const LoginForm = () => {
                 data: jwt
             })
             Alert.alert("Đăng nhập thành công")
+
+            //  remove login screen from stack
+            navigation.dispatch((state) => {
+                console.log("router list....", state.routes)
+
+                state.routes.pop()
+
+                const newRoutes = [...state.routes]
+                return CommonActions.reset({
+                    ...state,
+                    routes: newRoutes,
+                    index: newRoutes.length - 1,
+                });
+            });
             navigation.goBack()
         } catch (err) {
             Alert.alert(err.message)

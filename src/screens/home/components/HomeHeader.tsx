@@ -6,7 +6,7 @@ import {ScreenName, SonkimApiService} from "../../../share";
 import AppProvider from "../../../share/context";
 import {ActivityIndicator, Alert} from "react-native";
 
-export const HomeHeader = memo(() => {
+export const HomeHeader:React.FC<any> = memo((props) => {
     const navigation = useNavigation()
     const [vouchers, setVouchers] = useState<number | null>(null)
     const {dispatch, user, accessToken} = useContext(AppProvider.context)
@@ -18,7 +18,7 @@ export const HomeHeader = memo(() => {
         }else {
             setVouchers(0)
         }
-    }, [])
+    }, [accessToken])
 
 
     const _fetchProfile = async () => {
@@ -60,7 +60,7 @@ export const HomeHeader = memo(() => {
                     user
                         ? <>
                             {
-                                user.avatar ? <Avatar uri={user.avatar} size="sm"/>
+                                user.avatar ? <Avatar uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name} size="sm"/>
                                     : <Avatar
                                         uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name}
                                         size="sm"/>

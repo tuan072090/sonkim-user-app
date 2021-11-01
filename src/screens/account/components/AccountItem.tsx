@@ -2,28 +2,36 @@ import { Box, HStack, Pressable, Text } from "native-base";
 import React from "react";
 import { AccountItemType } from "./AccountType";
 
-const AccountItem: React.FC<AccountItemType> = ({ item, ...props }) => {
-    return (
-        <HStack
-            bgColor="white"
+const AccountItem: React.FC<AccountItemType> = ({ title, startIcon, endIcon, onPress, ...props }) => {
 
+    const _onPress = () => {
+        if(onPress){
+            onPress()
+        }
+    }
+
+    return (
+        <Pressable
+            onPress={_onPress}
+            flexDirection="row"
+            bgColor="white"
             borderRadius={12}
             height="12"
-            mb="3"
             shadow={1}
             alignItems="center"
             justifyContent="space-between"
             px={4}
         >
             <HStack space={3} alignItems="center" justifyContent="space-around">
-                {item.startIcon}
+                {startIcon}
 
                 <Text fontWeight="semibold" fontSize="md" color="gray.500">
-                    {item.title}
+                    {title}
                 </Text>
             </HStack>
-            {item.endIcon}
-        </HStack>
+
+            {endIcon}
+        </Pressable>
     );
 };
 

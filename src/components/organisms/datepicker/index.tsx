@@ -24,8 +24,8 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
     }
 
     return (
-        <Box>
-            <Pressable onPress={_toggleDatePicker} position="relative" {...props}>
+        <Box height={props.height || 12} overflow="hidden">
+            <Pressable bgColor="white" onPress={_toggleDatePicker} position="relative" {...props}>
                 <Text color="white" fontSize="md" size="2xl">
                     {
                         date ? `${Formatter.FormatDateFromDate(date, "dd-MM-YYY")}` : "Chọn ngày sinh"
@@ -34,7 +34,6 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
 
                 <ChevronDownIcon color="white" size="6" position="absolute" right={3} top={3}/>
             </Pressable>
-
             <DateTimePickerModal
                 date={date || value}
                 isVisible={isDatePickerVisible}
