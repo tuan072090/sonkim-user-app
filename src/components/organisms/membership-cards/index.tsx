@@ -1,86 +1,59 @@
 import React from "react";
-import { ImageBackground, StyleSheet } from "react-native";
-import { ScreenName, ScreenSize, StaticImages } from "../../../share";
-import { ImageStatic } from "../../index";
-import { Box, Button, Pressable, Text } from "native-base";
-import { MembershipCardTypes } from "./membershipCard.types";
-import { IBoxProps } from "native-base/lib/typescript/components/primitives/Box/types";
-import { useNavigation } from "@react-navigation/core";
+import {ImageBackground, StyleSheet} from "react-native";
+import {ScreenName, ScreenSize, StaticImages} from "../../../share";
+import {ImageStatic} from "../../index";
+import {Box, Button, Pressable, Text} from "native-base";
+import {MembershipCardTypes} from "./membershipCard.types";
+import {IBoxProps} from "native-base/lib/typescript/components/primitives/Box/types";
+import {useNavigation} from "@react-navigation/core";
+import Image from "../../atoms/image";
 
-const MembershipCard: React.FC<MembershipCardTypes> = ({ name, ...props }) => {
+const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
     const navigation = useNavigation();
 
-    const cardBackgroundSample =
-        name === "gs25"
-            ? StaticImages.frame1
-            : name === "lazada"
-                ? StaticImages.frame2
-                : name === "jardin"
-                    ? StaticImages.frame3
-                    : name === "healthSpa"
-                        ? StaticImages.frame4
-                        : StaticImages.frame5;
+    const {id, name, business_unit, levels} = item
 
-    const cardLogoSample =
-        name === "gs25"
-            ? StaticImages.gs25_nopadding
-            : name === "lazada"
-                ? StaticImages.lazada_nopadding
-                : name === "jardin"
-                    ? StaticImages.jardin_nopadding
-                    : name === "healthSpa"
-                        ? StaticImages.health_spa_nopadding
-                        : StaticImages.fallback_img;
-
-    const memberArchiveSample =
-        name === "gs25"
-            ? "Thành viên bạc"
-            : name === "lazada"
-                ? "Thành viên vàng"
-                : name === "jardin"
-                    ? "Thành viên mới"
-                    : name === "healthSpa"
-                        ? "Thành viên đồng"
-                        : "";
+    const cardBackground = levels[0].card_background.url
 
     const _navigateDetail = () => {
+        console.warn("id....", id)
         // @ts-ignore
-        navigation.navigate(ScreenName.BU_DETAIL_SCREEN);
+        navigation.navigate(ScreenName.BU_DETAIL_SCREEN, {businessId: id});
     };
 
     return (
-        <Box {...props}>
-            <Pressable
-                _pressed={{ opacity: 0.5 }}
-                onPress={_navigateDetail}
-                _focus={{ opacity: 0.5 }}
+        <Pressable
+            {...props}
+            _pressed={{opacity: 0.5}}
+            onPress={_navigateDetail}
+        >
+            <ImageBackground
+                source={cardBackground ? {uri: cardBackground} : StaticImages.frame1}
+                resizeMode="cover"
+                style={styles.image}
             >
-                <ImageBackground
-                    source={cardBackgroundSample}
-                    resizeMode="cover"
-                    style={styles.image}
-                >
-                    <ImageStatic
-                        mt={2}
-                        mx={3}
-                        uri={cardLogoSample}
-                        width={12}
-                        height={6}
-                    />
-                    <Text px={3} color="white" fontSize="md" fontWeight="semibold">
-                        {memberArchiveSample}
+                <Image
+                    mt={2}
+                    mx={3}
+                    uri={business_unit.logo.url}
+                    width={16}
+                    height={10}
+                />
+
+                <Text px={3} color="white" fontSize="md" fontWeight="semibold">
+                    Thành viên
+                </Text>
+
+                <Box p={3} flexDirection="row" justifyContent="space-between">
+                    <Text color="white" fontSize="lg">
+                        GS25_12345
                     </Text>
-                    <Box p={3} flexDirection="row" justifyContent="space-between">
-                        <Text color="white" fontSize="lg">
-                            GS25_12345
-                        </Text>
-                        <Text color="primary.600" fontSize="lg">
-                            120 điểm
-                        </Text>
-                    </Box>
-                </ImageBackground>
-            </Pressable>
-        </Box>
+                    <Text color="primary.600" fontSize="lg">
+                        120 điểm
+                    </Text>
+                </Box>
+            </ImageBackground>
+        </Pressable>
     );
 };
 
@@ -91,13 +64,12 @@ const RegisterCard: React.FC<IBoxProps> = (props) => {
         // @ts-ignore
         navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
     };
+
     return (
         <Box {...props}>
             <Pressable
-                _pressed={{ opacity: 0.5 }}
-                onPress={_navigateRegisterCard}
-                _focus={{ opacity: 0.5 }}
-            >
+                _pressed={{opacity: 0.5}}
+                onPress={_navigateRegisterCard}>
                 <ImageBackground
                     source={StaticImages.frame4}
                     resizeMode="cover"
@@ -117,7 +89,7 @@ const RegisterCard: React.FC<IBoxProps> = (props) => {
                                 bgColor="white"
                                 size="lg"
                                 rounded="lg"
-                                _text={{ color: "primary.500" }}
+                                _text={{color: "primary.500"}}
                             >
                                 Liên kết thẻ
                             </Button>
@@ -129,17 +101,9 @@ const RegisterCard: React.FC<IBoxProps> = (props) => {
     );
 };
 
-const MembershipCards = {
-    GS15: (props: any) => <MembershipCard name="gs25" {...props} />,
-    Lazada: (props: any) => <MembershipCard name="lazada" {...props} />,
-    Jardin: (props: any) => <MembershipCard name="jardin" {...props} />,
-    HealthSpa: (props: any) => <MembershipCard name="healthSpa" {...props} />,
-    NotRegister: (props: any) => <RegisterCard {...props} />,
-};
+export default MembershipCard;
 
-export default MembershipCards;
-
-const cardHeight = ScreenSize.vw / 3.17; //  tỉ lệ 3.17
+const cardHeight = ScreenSize.vw / 2.68; //  tỉ lệ 2.68
 const styles = StyleSheet.create({
     image: {
         width: "100%",

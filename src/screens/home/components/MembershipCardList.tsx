@@ -1,15 +1,22 @@
-import React, {useEffect} from "react";
-import { Box, Pressable, Text } from "native-base";
-import { MembershipCards } from "../../../components";
-import { useNavigation } from "@react-navigation/core";
-import {ScreenName, SonkimApiService} from "../../../share";
+import React, {useEffect, useState} from "react";
+import {Box, ScrollView, Text} from "native-base";
+import {MembershipCard} from "../../../components";
+import {useNavigation} from "@react-navigation/core";
+import {Colors, LoyaltyProgramTypes, ScreenName, SonkimApiService} from "../../../share";
+import {ActivityIndicator, Alert} from "react-native";
 
 export const MembershipCardList = () => {
+    const [loyaltyPrograms, setLoyaltyPrograms] = useState<LoyaltyProgramTypes[] | null>(null)
     const navigation = useNavigation();
 
     useEffect(() => {
-
-    },[])
+        SonkimApiService.GetLoyaltyPrograms().then(data => {
+            console.log("data...", data)
+            setLoyaltyPrograms(data)
+        }).catch(err => {
+            Alert.alert(err.message)
+        })
+    }, [])
 
     const _navigateForm = () => {
         // @ts-ignore
@@ -25,13 +32,19 @@ export const MembershipCardList = () => {
                 Danh sách thẻ thành viên của SKR
             </Text>
 
-            <MembershipCards.GS15 mt={4} />
-
-            <MembershipCards.Lazada mt={4} />
-
-            <MembershipCards.Jardin mt={4} />
-
-            <MembershipCards.NotRegister mt={4} />
+            {
+                !loyaltyPrograms
+                    ? <Box p={5}><ActivityIndicator color={Colors.primary["500"]}/></Box>
+                    : <Box>
+                        {
+                            loyaltyPrograms.map((item, index) => {
+                                return (
+                                    <MembershipCard item={item} mt={4} key={index}/>
+                                )
+                            })
+                        }
+                    </Box>
+            }
         </Box>
     );
 };

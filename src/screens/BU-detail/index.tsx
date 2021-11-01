@@ -11,7 +11,7 @@ import {
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
-import { ImageStatic, MembershipCards } from "../../components";
+import { ImageStatic } from "../../components";
 import { ImageBackground, StyleSheet } from "react-native";
 import { Categories } from "./components/Categories";
 import { VoucherList } from "./components/VoucherList";
@@ -35,7 +35,6 @@ const BUDetailScreen = () => {
         navigation.navigate(ScreenName.VOUCHERS_SCREEN);
     };
 
-
     return (
         <Box
             flex={1}
@@ -57,7 +56,7 @@ const BUDetailScreen = () => {
                         right={0}
                         left={0}
                         uri={StaticImages.banner_bu_detail}
-                    ></ImageStatic>
+                    />
                     <Box m={4} position="absolute" width={ImgWidth}>
                         <ImageBackground
                             source={StaticImages.frame4}
@@ -101,9 +100,10 @@ const BUDetailScreen = () => {
                         </Box>
                     </Box>
                 </Box>
-                <Categories></Categories>
+                <Categories/>
 
-                <VoucherList></VoucherList>
+                <VoucherList/>
+
                 <Text
                     py={5}
                     underline
@@ -116,8 +116,8 @@ const BUDetailScreen = () => {
                 <Box p={5}>
                     <VStack space={3}>
                         <SimpleGrid columns={2} spacingY={3} spacingX={3}>
-                            <CardStore></CardStore>
-                            <CardStore></CardStore>
+                            <CardStore/>
+                            <CardStore/>
                         </SimpleGrid>
                     </VStack>
                     <Text
@@ -141,7 +141,7 @@ const BUDetailScreen = () => {
                         Lên đầu trang
                     </Button>
                 </Box>
-                <Box mb={50}></Box>
+                <Box mb={50}/>
             </ScrollView>
         </Box>
     );

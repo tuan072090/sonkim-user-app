@@ -28,7 +28,7 @@ import ImagePicker from "./molecules/image-picker";
 //  Organisms
 import DatePicker from './organisms/datepicker'
 import FeatureItems from './organisms/feature-item'
-import MembershipCards from './organisms/membership-cards'
+import MembershipCard from './organisms/membership-cards'
 import VoucherCard from "./organisms/voucher-card";
 import AvatarPicker from './organisms/avatar-picker'
 
@@ -65,7 +65,7 @@ export {
     //  Organisms
     DatePicker,
     FeatureItems,
-    MembershipCards,
+    MembershipCard,
     AvatarPicker,
     VoucherCard,
 

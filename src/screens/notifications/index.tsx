@@ -13,7 +13,6 @@ const NotificationsScreen: React.FC<any> = MainLayout(() => {
 
     useEffect(() => {
         SonkimApiService.GetNotifications().then(data => {
-            console.log("notification data....", data)
             setNotifications(data)
         }).catch(err => {
             Alert.alert(err.message)
