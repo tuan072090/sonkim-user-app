@@ -21,7 +21,7 @@ const GiftCard:React.FC<GiftCardType> = ({giftCard,...props}) => {
                                 <ValueIcon size={4}/>
                                 <Text ml={2} fontWeight="normal" lineHeight="xs" letterSpacing="lg" fontSize="sm">Trị giá: {FormatVND(giftCard.value)} đ</Text> 
                             </HStack>
-                        </Box>
+                        </Box> 
                     </VStack>
                 </HStack>
                 <Box borderWidth={1} borderColor="#C8C8C8" borderStyle="dashed" width="80" mx="auto"/>
