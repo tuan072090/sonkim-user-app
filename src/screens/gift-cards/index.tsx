@@ -42,11 +42,11 @@ const giftCardDataSample=[
 const GiftCardPage = () => {
     const {language}=useContext(LanguageProvider.context);
     return (
-        <Box flex={1} position="relative" alignItems="center">
-            <ImageStatic resizeMode="cover" position="absolute" ></ImageStatic>
-            <ScreenHeader hasBackButton={true} title={Translate[language].giftCard} bgColor="primary.500"></ScreenHeader>
+        <Box flex={1} position="relative">
+            <ImageStatic resizeMode="cover" position="absolute" width="100%" height="100%" uri={StaticImages.reg_membership_backgroud}></ImageStatic>
+            <ScreenHeader hasBackButton={true} title={Translate[language].giftCard} bgColor="transparent"></ScreenHeader>
             <ScrollView>
-                <Box p={4} mt={4}>
+                <Box p={4} m={4}>
                     {
                         giftCardDataSample.map((item,index)=>(
                             <GiftCard giftCard={item} key={index}/>
