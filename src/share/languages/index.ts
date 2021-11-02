@@ -13,7 +13,8 @@ const languages = {
         linkMembership: 'Liên kết thẻ',
         usePoint: 'Tích và dùng điểm',
         tranferPoint: 'Đổi điểm',
-        transactionHistory: 'Lịch sử đổi điểm'
+        transactionHistory: 'Lịch sử đổi điểm',
+        giftCard:'Thẻ quà tặng'
 
     },
     en: {
@@ -29,7 +30,8 @@ const languages = {
         registerMembership: 'Register membership',
         linkMembership: 'Link membership',
         usePoint: 'Tích và dùng điểm',
-        tranferPoint: 'Đổi điểm', transactionHistory: 'Lịch sử đổi điểm'
+        tranferPoint: 'Đổi điểm', transactionHistory: 'Lịch sử đổi điểm',
+        giftCard:'Gift Cards'
     }
 }
 

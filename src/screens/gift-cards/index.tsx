@@ -1,8 +1,12 @@
 import { Box, ScrollView } from 'native-base'
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import ScreenHeader from '../../components/organisms/screen-header'
 import { StaticImages } from '../../share'
 import GiftCard from './components/GiftCard'
+import {Translate} from '../../share'
+import LanguageProvider from '../../share/context/Language'
+import { ImageStatic } from '../../components'
 
 const giftCardDataSample=[
     {
@@ -36,16 +40,21 @@ const giftCardDataSample=[
 ]
 
 const GiftCardPage = () => {
+    const {language}=useContext(LanguageProvider.context);
     return (
-        <ScrollView>
-            <Box p={4} mt={4}>
-                {
-                    giftCardDataSample.map((item,index)=>(
-                        <GiftCard giftCard={item} key={index}/>
-                    ))
-                }
-            </Box>
-        </ScrollView>
+        <Box flex={1} position="relative" alignItems="center">
+            <ImageStatic resizeMode="cover" position="absolute" ></ImageStatic>
+            <ScreenHeader hasBackButton={true} title={Translate[language].giftCard} bgColor="primary.500"></ScreenHeader>
+            <ScrollView>
+                <Box p={4} mt={4}>
+                    {
+                        giftCardDataSample.map((item,index)=>(
+                            <GiftCard giftCard={item} key={index}/>
+                        ))
+                    }
+                </Box>
+            </ScrollView>
+        </Box>
     )
 }
 
