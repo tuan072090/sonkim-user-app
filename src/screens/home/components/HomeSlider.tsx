@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Alert, StyleSheet} from "react-native";
+import {Alert, StyleSheet, Platform} from "react-native";
 import {Image, ImageStatic} from "../../../components";
 import {ScreenName, ScreenSize, SonkimApiService, StaticImages} from "../../../share";
 import {Box, Pressable} from "native-base";
@@ -38,7 +38,7 @@ export const HomeSlider = () => {
         return (
             <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198}
                        onPress={() => _itemPress(item)}>
-                <Image borderRadius={26} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198}
+                <Image borderRadius={Platform.OS === "ios" ? 26 : 10} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198}
                        resizeMode="stretch"/>
             </Pressable>
         )

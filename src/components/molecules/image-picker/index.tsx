@@ -17,17 +17,15 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", onChange, ..
                     //  @ts-ignore
                     const file = res.assets[0]
                     //  @ts-ignore
-                    if (file.fileSize > 10000000) {
-                        Alert.alert("Hình quá lớn, vui lòng chọn hình dưới 10M")
+                    if (file.fileSize > 5110) {
+                        Alert.alert("Hình quá lớn, vui lòng chọn hình dưới 5M")
                         return;
                     }
                     setLoading(true)
                     //  @ts-ignore
                     const uploadData = await SonkimApiService.GetUploadUrl(file.fileName, file.type)
-                    console.log("uploadData...", uploadData)
 
                     const imageUrl = uploadData.url.split("?")[0]
-                    console.log("imageUrl...", imageUrl)
 
                     //  upload
                     const uploadResponse = await SonkimApiService.UploadImage(file, uploadData.url)
