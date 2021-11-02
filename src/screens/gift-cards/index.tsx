@@ -10,6 +10,7 @@ import { ImageStatic } from '../../components'
 
 const giftCardDataSample=[
     {
+        id:1,
         avatar: StaticImages.giftCard1,
         title:'Thẻ quà tặng 100.000đ cho mùa sale cuối năm 12.12',
         value: 110000,
@@ -17,6 +18,7 @@ const giftCardDataSample=[
         price:70000
     },
     {
+        id:2,
         avatar: StaticImages.giftCard2,
         title:'Phiếu quà tặng 150k đợt sale cuối năm',
         value: 150000,
@@ -24,6 +26,7 @@ const giftCardDataSample=[
         price:30000
     },
     {
+        id:3,
         avatar: StaticImages.giftCard3,
         title:'Quà tặng 20.10',
         value: 10000,
@@ -31,6 +34,7 @@ const giftCardDataSample=[
         price:30000
     },
     {
+        id:4,
         avatar: StaticImages.giftCard4,
         title:'Thẻ quà tặng 100.000đ cho mùa sale cuối năm Noel',
         value: 110000,

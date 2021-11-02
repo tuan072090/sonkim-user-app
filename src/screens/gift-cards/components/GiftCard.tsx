@@ -1,13 +1,21 @@
+import { useNavigation } from '@react-navigation/core'
 import { Box, Button, HStack, Pressable, Text, VStack } from 'native-base'
 import React from 'react'
 import { ImageStatic, ValueIcon } from '../../../components'
+import { ScreenName } from '../../../share'
 import { FormatVND } from '../../../share/utils/formatter'
 import { GiftCardType } from '../giftCard.type'
 
 
 const GiftCard:React.FC<GiftCardType> = ({giftCard,...props}) => {
+    const navigation= useNavigation();
+
+    const _navigateGiftCardDetail=()=>{
+        //@ts-ignore
+        navigation.navigate(ScreenName.GIFTCARD_DETAIL,{giftCardId:giftCard.id})
+    }
     return (
-        <Pressable _pressed={{opacity: 0.5}}>
+        <Pressable _pressed={{opacity: 0.5}} onPress={_navigateGiftCardDetail}>
             <VStack bgColor="white" borderRadius={12} shadow={4} mt={3}>
                 <HStack px={3} py={2}>
                     <Box borderRadius={6}>
