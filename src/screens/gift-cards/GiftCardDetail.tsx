@@ -11,12 +11,11 @@ const GiftCardDetail = () => {
     const route=useRoute();
     const {params}:any=route;
 
-    useEffect(()=>{
-        if (typeof params["giftCardId"] !== "undefined"){
-            Alert.alert("giftCard ID:"+ params["giftCardId"]);
-        }
-    },[params])
-
+    // useEffect(()=>{
+    //     if (params){
+    //         Alert.alert("giftCardId:"+ params["giftCardId"]);
+    //     }
+    // },[params])
 
     return (
         <Box flex={1} width="100%">
@@ -42,9 +41,9 @@ const GiftCardDetail = () => {
                                     <VStack>
                                         <Text ml={2} fontWeight="semibold" fontStyle="normal" fontSize="sm"
                                               lineHeight="xs" color="#1b1b1b">HEALTH SPA</Text>
-                                        <Text ml={2} fontWeight="semibold" mt={1} fontStyle="normal" fontSize="sm"
-                                              lineHeight="xs" color="#1b1b1b">
-                                            Áp dụng cho <Text underline color="red.700">100.000 đ</Text>
+                                        <Text ml={2} fontWeight="semibold" mt={2} fontStyle="normal" fontSize="sm"
+                                              lineHeight="xs" color="primary.500">
+                                            100.000 đ
                                         </Text>
                                     </VStack>
                                 </HStack>
@@ -56,18 +55,16 @@ const GiftCardDetail = () => {
                               letterSpacing="lg">Điều khoản áp dụng:</Text>
                         <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
                             been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</Text>
+                            galley of type and scrambled it to make a type specimen book. </Text>
                     </Box>
                 </Box>
             </ScrollView>
             <HStack bgColor="white" py={3} alignItems="center" justifyContent="space-around" position="absolute"
                     bottom={0} width="100%">
-                <Text color="primary.500" fontWeight="semibold" fontStyle="normal" fontSize="md" lineHeight="lg">70.000 đ</Text>
-                <Text fontWeight="normal" fontStyle="normal" fontSize="sm" color="#C8C8C8" textDecorationLine="line-through">90.000 đ</Text>
+                <VStack>
+                    <Text color="primary.500" fontWeight="semibold" fontStyle="normal" fontSize="md" lineHeight="lg">70.000 đ</Text>
+                    <Text fontWeight="normal" fontStyle="normal" fontSize="sm" color="#C8C8C8" textDecorationLine="line-through">90.000 đ</Text>
+                </VStack>
                 <Button bgColor="primary.500" rounded="xl" size="lg" color="white" px={4}>
                     Mua thẻ quà tặng
                 </Button>
