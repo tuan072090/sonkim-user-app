@@ -8,7 +8,7 @@ import { ScreenSize, StaticImages } from '../../share';
 import { FormatVND } from '../../share/utils/formatter';
 import GiftCardPointInfo from './components/GiftCardPointInfo';
 
-const qrWWidth = ScreenSize.vw - 72;
+const qrWWidth = ScreenSize.vw - ScreenSize.vw/2;
 const GiftCardDetail = ({fromBottom=true,...props}) => {
     const route=useRoute();
     const {params}:any=route;
@@ -29,27 +29,27 @@ const GiftCardDetail = ({fromBottom=true,...props}) => {
                             <Center>
                                 <Text textAlign="center" color="#095A64" fontWeight="bold" fontStyle="normal" 
                                       fontSize="md" lineHeight="md" letterSpacing="lg" textTransform="uppercase">Thẻ quà tặng 100.000đ cho mùa sale cuối năm 12.12</Text>
-                                {fromBottom?<Box>
+                                {fromBottom?<Box my={5}>
                                     <QrCode
                         code={"Something"}
                         size={qrWWidth}
                         alignItems="center"
-                        logoUri="https://sonkim.s3.ap-southeast-1.amazonaws.com/lazada_d75ab18c1c.png?61505.40000000037"
                     />
-                            <Text fontWeight="semibold" fontStyle="normal" fontSize="md" lineHeight="xs" textAlign="center">GIFTCODE123456789</Text>
+                            <Text mt={5} fontWeight="semibold" fontStyle="normal" fontSize="md" lineHeight="xs" textAlign="center">GIFTCODE123456789</Text>
                                 </Box>
                    
                     :<ImageStatic uri={StaticImages.giftCard1} borderRadius={4} width={56} height={56}
                                              my={4}/> }
                             </Center>
-                            {fromBottom?<HStack alignItems="center" justifyContent="space-around" my={5}>
-                                            <Button bgColor="rgba(255, 255, 255, 1)" borderRadius={10} width={40} border={1} borderStyle="solid" borderColor="rgba(98, 98, 98, 1)">
+                            {fromBottom?
+                            <HStack alignItems="center" justifyContent="space-around" my={5}>
+                                            <Button bgColor="rgba(255, 255, 255, 1)" borderRadius={10} width={40} variant="outline" borderStyle="solid" borderColor="rgba(9, 90, 100, 1)">
                                                 <Text fontWeight='semibold' fontStyle='normal' fontSize='sm' lineHeight='xs'
-                                                        color='rgba(255, 255, 255,0.7)' textAlign="center" my='auto' letterSpacing="xl">Barcode</Text>
+                                                        color='rgba(98, 98, 98, 1)' textAlign="center" my='auto' letterSpacing="xl">Barcode</Text>
                                             </Button>
-                                            <Button bgColor="rgba(255, 255, 255, 1)" borderRadius={10} width={40} border={1} borderStyle="solid" borderColor="rgba(98, 98, 98, 1)">
+                                            <Button bgColor="rgba(255, 255, 255, 1)" borderRadius={10} width={40} variant="outline" borderStyle="solid" borderColor="rgba(9, 90, 100, 1)">
                                                 <Text fontWeight='semibold' fontStyle='normal' fontSize='sm' lineHeight='xs'
-                                                        color='rgba(255, 255, 255,1)' textAlign="center" my='auto' letterSpacing="xl">QR code</Text>
+                                                        color='rgba(98, 98, 98, 1)' textAlign="center" my='auto' letterSpacing="xl">QR code</Text>
                                             </Button>
                                         </HStack>:null}
                             <Box bgColor="rgba(240, 240, 240, 0.5)" mx={3} p={4} rounded="lg">
@@ -72,7 +72,7 @@ const GiftCardDetail = ({fromBottom=true,...props}) => {
                             </Box>
                         </VStack>
                     </Box>
-                    <Box py={1} px={3} mb={20}>
+                    <Box py={1} px={3} mb={fromBottom?0:20}>
                         <Text color="primary.500" fontWeight="bold" fontStyle="normal" fontSize="sm" lineHeight="xs"
                               letterSpacing="lg">Điều khoản áp dụng:</Text>
                         <Text>Lorem Ipsum is simply dummy text of  the printing and typesetting industry. Lorem Ipsum has
@@ -80,7 +80,6 @@ const GiftCardDetail = ({fromBottom=true,...props}) => {
                             galley of type and scrambled it to make a type specimen book. </Text>
                     </Box>
                 </Box>
-            </ScrollView>
             {
                 fromBottom?<GiftCardPointInfo/>:<HStack bgColor="white" py={3} alignItems="center" justifyContent="space-around" position="absolute"
                 bottom={0} width="100%">
@@ -93,6 +92,7 @@ const GiftCardDetail = ({fromBottom=true,...props}) => {
             </Button>
         </HStack>
             }
+            </ScrollView>
             
         </Box>
     )
