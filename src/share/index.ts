@@ -24,6 +24,7 @@ import {GetStores} from './services/sonkim-api/stores'
 import {GetNotifications} from './services/sonkim-api/notifications'
 import {GetBranches} from './services/sonkim-api/branches'
 import {GetLoyaltyPrograms} from './services/sonkim-api/loyaltyPrograms'
+import {GetGiftCards} from './services/sonkim-api/giftCards'
 import FirebaseService from "./services/firebase";
 
 //  hooks
@@ -47,7 +48,8 @@ const SonkimApiService = {
     GetArticleDetail,
     GetStores,
     GetNotifications,
-    GetLoyaltyPrograms
+    GetLoyaltyPrograms,
+    GetGiftCards
 }
 
 export {
