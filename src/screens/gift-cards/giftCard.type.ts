@@ -1,5 +1,6 @@
 export type GiftCardType = {
-    giftCard: GiftCardItemType;
+    giftCard: GiftCardItemType,
+    fromBottom?:boolean
 };
 
 export type GiftCardItemType={
@@ -10,4 +11,9 @@ export type GiftCardItemType={
     cost?:number,
     price?:number,
 
+}
+
+export type GiftCardListType={
+    giftCards:GiftCardItemType[] | null,
+    fromBottom?:boolean,
 }

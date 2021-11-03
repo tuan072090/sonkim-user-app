@@ -49,7 +49,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
 
     const _navToVouchers = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.GIFTCARD_SCREEN)
+        navigation.navigate(ScreenName.GIFTCARD_FROM_BOTTOM_SCREEN)
     }
 
     return (

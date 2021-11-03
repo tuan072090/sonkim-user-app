@@ -7,13 +7,14 @@ import { FormatVND } from '../../../share/utils/formatter'
 import { GiftCardType } from '../giftCard.type'
 
 
-const GiftCard:React.FC<GiftCardType> = ({giftCard,...props}) => {
+const GiftCard:React.FC<GiftCardType> = ({giftCard,fromBottom=false,...props}) => {
     const navigation= useNavigation();
 
     const _navigateGiftCardDetail=()=>{
         //@ts-ignore
         navigation.navigate(ScreenName.GIFTCARD_DETAIL,{giftCardId:giftCard.id})
     }
+
     return (
         <Pressable _pressed={{opacity: 0.5}} onPress={_navigateGiftCardDetail}>
             <VStack bgColor="white" borderRadius={12} shadow={4} mt={3}>
@@ -34,7 +35,7 @@ const GiftCard:React.FC<GiftCardType> = ({giftCard,...props}) => {
                     </VStack>
                 </HStack>
                 <Box borderWidth={1} borderColor="#C8C8C8" borderStyle="dashed" width="80" mx="auto"/>
-                <HStack justifyContent="space-between" alignItems="center" px={4} my={2}>
+                {!fromBottom?<HStack justifyContent="space-between" alignItems="center" px={4} my={2}>
                     <VStack>
                         <Text fontWeight="semibold" fontStyle="normal" fontSize="md" color="primary.500">30.000 đ</Text>
                         <Text fontWeight="normal" fontStyle="normal" fontSize="sm" color="#C8C8C8" textDecorationLine="line-through">50.000 đ</Text>
@@ -44,7 +45,16 @@ const GiftCard:React.FC<GiftCardType> = ({giftCard,...props}) => {
                         <Text fontWeight='semibold' fontStyle='normal' fontSize='md' lineHeight='md'
                               color='rgba(8,105,129,1)' textAlign="center" my='auto'>Mua thẻ quà tặng</Text>
                     </Button>
-                </HStack>
+                </HStack>:<HStack justifyContent="space-between" alignItems="center" px={4} my={2}>
+                    <VStack>
+                        <Text fontWeight="normal" fontStyle="normal" fontSize="xs" lineHeight="2xs" letterSpacing="lg" color="rgba(98, 98, 98, 1)">Đã dùng</Text>
+                        <Text fontWeight="semibold" fontStyle="normal" lineHeight="md" fontSize="md" color="rgba(98, 98, 98, 1)">30.000 đ</Text>
+                    </VStack>
+                    <VStack>
+                        <Text fontWeight="normal" fontStyle="normal" fontSize="xs" lineHeight="2xs" letterSpacing="lg" color="rgba(9, 90, 100, 1)">Còn lại</Text>
+                        <Text fontWeight="semibold" fontStyle="normal" lineHeight="md" fontSize="md" color="rgba(9, 90, 100, 1)">70.000 đ</Text>
+                    </VStack>
+                </HStack>}
             </VStack>
         </Pressable>
     )
