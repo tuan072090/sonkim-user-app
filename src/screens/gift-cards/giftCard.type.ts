@@ -3,10 +3,11 @@ export type GiftCardType = {
 };
 
 export type GiftCardItemType={
+    id:number,
     avatar:any,
     title:string,
-    value:number,
-    cost:number,
-    price:number,
+    cash:number,
+    cost?:number,
+    price?:number,
 
 }

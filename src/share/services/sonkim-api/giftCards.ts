@@ -2,9 +2,9 @@ import FetchDataService from "../fetch"
 
 export const GetGiftCards = async (params={}) => {
     try {
-        const data = await FetchDataService.GET("/user-api/gift-cards", params)
+        const {gift_cards,count} = await FetchDataService.GET("/user-api/gift-cards", params)
 
-        return data
+        return {gift_cards,count}
     } catch (err) {
         console.log("promotions error.....", err)
         throw err
