@@ -29,6 +29,8 @@ export const ScreenName = {
     ARTICLE_SCREEN: "Article",
     GIFTCARD_SCREEN: "GiftCard",
     GIFTCARD_DETAIL: "GiftCardDetail",
+    GIFTCARD_FROM_BOTTOM_SCREEN:'GiftCardFromBottom',
+    GIFTCARD_FROM_BOTTOM_DETAIL:'GiftCardFromBottomDetail',
 
 }
 export const ScreenTitle = {
@@ -57,6 +59,7 @@ export const ScreenTitle = {
     [ScreenName.TRANSACTION_HISTORY]: 'Lịch sử đổi điểm',
     [ScreenName.GIFTCARD_SCREEN]: 'Thẻ quà tặng',
     [ScreenName.GIFTCARD_DETAIL]: 'Chi tiết thẻ quà tặng',
+    [ScreenName.GIFTCARD_FROM_BOTTOM_SCREEN]: 'Thẻ quà tặng từ menu',
 }
 
 export const Deeplink = {

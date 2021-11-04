@@ -28,6 +28,7 @@ import TransactionHistory from './transaction-history';
 import {ArticleScreen} from "./article";
 import GiftCardPage from './gift-cards';
 import GiftCardDetail from './gift-cards/GiftCardDetail';
+import GiftCardBottom from './gift-cards/components/GiftCardBottom';
 
 const Stack = createNativeStackNavigator();
 
@@ -99,6 +100,7 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.ARTICLE_SCREEN} component={ArticleScreen}  options={{ headerShown: false }}/>
                     <Stack.Screen name={ScreenName.GIFTCARD_SCREEN} component={GiftCardPage}  options={{ headerShown: false }}/>
                     <Stack.Screen name={ScreenName.GIFTCARD_DETAIL} component={GiftCardDetail}  options={{ headerShown: false }}/>
+                    <Stack.Screen name={ScreenName.GIFTCARD_FROM_BOTTOM_SCREEN} component={GiftCardBottom}  options={{ headerShown: false }}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </>
