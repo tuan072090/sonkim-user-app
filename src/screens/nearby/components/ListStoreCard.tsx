@@ -26,7 +26,7 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
-            <Pressable onPress={_onStorePress} _pressed={{opacity: 0.8}} width={itemWidth} height={itemWidth} bgColor="white" rounded="lg" p={2} ml={2} shadow={"3"}>
+            <Pressable onPress={_onStorePress} _pressed={{opacity: 0.8}} width={itemWidth} bgColor="white" rounded="lg" p={2} ml={2} shadow={"3"}>
 
                 <Box flex={1}>
                     <Image
@@ -37,15 +37,15 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
                 <Box mt={3} flexDirection="row">
                     <Box mt={1}><LocationIcon size={4}/></Box>
 
-                    <Text px={2} fontSize="sm" fontWeight="semibold">
+                    <Text px={2} numberOfLines={2} fontSize="sm" fontWeight="semibold">
                         {item.name}
                     </Text>
                 </Box>
-                <Box mt={3} flexDirection="row">
-                    <Text px={2} fontSize="sm" fontWeight="semibold">
-                        {item.contact.contact_phone}
-                    </Text>
-                </Box>
+                {/*<Box mt={3} flexDirection="row">*/}
+                {/*    <Text px={2} fontSize="sm" fontWeight="semibold">*/}
+                {/*        {item.contact.contact_phone}*/}
+                {/*    </Text>*/}
+                {/*</Box>*/}
 
             </Pressable>
         );
@@ -54,7 +54,6 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
 
     return (
         <Box width="100%" mb={3}>
-
             {
                 !stores ? <ActivityIndicator color={Colors.primary["500"]}/>
                 : <Carousel
@@ -68,7 +67,6 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
                         activeSlideAlignment={"start"}
                     />
             }
-
         </Box>
     )
 })

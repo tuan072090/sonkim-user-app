@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Alert, StyleSheet, Platform} from "react-native";
+import {Alert, StyleSheet, Platform, ActivityIndicator} from "react-native";
 import {Image, ImageStatic} from "../../../components";
 import {ScreenName, ScreenSize, SonkimApiService, StaticImages} from "../../../share";
 import {Box, Pressable} from "native-base";
@@ -51,7 +51,9 @@ export const HomeSlider = () => {
 
             {
                 articles.length === 0
-                    ? <Box width={sliderWidth} height={sliderWidth / 2.198}/>
+                    ? <Box width={sliderWidth} height={sliderWidth / 2.198} alignItems="center" justifyContent="center">
+                        <ActivityIndicator color="white"/>
+                    </Box>
                     : <Carousel
                         loop={true} //  back to first slide when finish the end slide
                         autoplay={true}

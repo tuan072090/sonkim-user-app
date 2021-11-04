@@ -1,8 +1,8 @@
-@baseUrl = https://api.sonkim.upme.dev/user-api
-@firebaseAuthUrl = https://api.sonkim.upme.dev/firebase-auth
+# @baseUrl = https://api.sonkim.upme.dev/user-api
+# @firebaseAuthUrl = https://api.sonkim.upme.dev/firebase-auth
 
-# @baseUrl = http://localhost:1337/user-api
-# @firebaseAuthUrl = http://localhost:1337/firebase-auth
+@baseUrl = http://localhost:1337/user-api
+@firebaseAuthUrl = http://localhost:1337/firebase-auth
 
 ### Check phone existed
 GET {{firebaseAuthUrl}}/check?phone=0966499006 HTTP/1.1
@@ -78,6 +78,16 @@ Content-Type: application/json
 GET {{baseUrl}}/loyalty-programs/3 HTTP/1.1
 Content-Type: application/json
 
+### Register Membership card
+POST {{baseUrl}}/membership-cards HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTkwODQyLCJleHAiOjE2Mzg1ODI4NDJ9.eAcJMp2bH1sJ-lvFrPgiFJE8XDkTKJlgdr8OvJRuTH4
+
+### Get user's Membership cards
+GET {{baseUrl}}/membership-cards HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTkwODQyLCJleHAiOjE2Mzg1ODI4NDJ9.eAcJMp2bH1sJ-lvFrPgiFJE8XDkTKJlgdr8OvJRuTH4
+
 ###  Promotions
 GET {{baseUrl}}/promotions HTTP/1.1
 Content-Type: application/json
@@ -87,7 +97,7 @@ GET {{baseUrl}}/promotions/2 HTTP/1.1
 Content-Type: application/json
 
 ###  Gift cards
-GET {{baseUrl}}/gift-cards?title_contains=100.000đ cho mùa sale HTTP/1.1
+GET {{baseUrl}}/gift-cards HTTP/1.1
 Content-Type: application/json
 
 ###  Gift cards detail

@@ -32,6 +32,8 @@ export function useLocalStorage(key:string, initialValue:any) {
             // Save to local storage
             if(typeof valueToStore === "string"){
                 await LocalStorageService.StoreData(key, valueToStore);
+            } else if(typeof valueToStore === "number"){
+                await LocalStorageService.StoreData(key, valueToStore.toString());
             }else {
                 await LocalStorageService.StoreData(key, JSON.stringify(valueToStore));
             }

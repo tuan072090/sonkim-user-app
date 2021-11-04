@@ -16,7 +16,6 @@ const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
     const cardBackground = levels[0].card_background.url
 
     const _navigateDetail = () => {
-        console.warn("id....", id)
         // @ts-ignore
         navigation.navigate(ScreenName.BU_DETAIL_SCREEN, {businessId: id});
     };

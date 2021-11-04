@@ -13,6 +13,7 @@ export const MembershipCardList = () => {
         SonkimApiService.GetLoyaltyPrograms().then(data => {
             setLoyaltyPrograms(data)
         }).catch(err => {
+            setLoyaltyPrograms([])
             Alert.alert(err.message)
         })
     }, [])
