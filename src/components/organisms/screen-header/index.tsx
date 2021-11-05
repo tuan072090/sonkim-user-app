@@ -11,7 +11,7 @@ const ScreenHeader:React.FC<ScreenHeaderTypes> = ({title, hasBackButton=true,rig
         <Box width="100%" flexDirection="row" alignContent="center" px={2} {...props} safeAreaTop={true}>
             {/* left content */}
             <Box width={10}>
-                {hasBackButton && <Pressable onPress={() => navigation.goBack()} py={3} width="100%">
+                {hasBackButton && <Pressable _pressed={{opacity: 0.8}} onPress={() => navigation.goBack()} py={3} width="100%">
                     <ChevronLeftIcon size={6}/>
                 </Pressable>}
             </Box>
@@ -20,8 +20,8 @@ const ScreenHeader:React.FC<ScreenHeaderTypes> = ({title, hasBackButton=true,rig
             {title && <Text flexGrow={100} textAlign="center" color="white" fontSize="md" fontWeight="semibold" py={3}>{title}</Text>}
 
             {/* right content*/}
-            <Box  width={10}>
-                {rightIcon && <Pressable py={3} width="100%">
+            <Box width={10}>
+                {rightIcon && <Pressable _pressed={{opacity: 0.8}} py={3} width="100%">
                         {rightIcon}
                     </Pressable>}
             </Box>

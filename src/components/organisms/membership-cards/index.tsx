@@ -5,6 +5,7 @@ import {Box, Pressable, Text} from "native-base";
 import {MembershipCardTypes} from "./membershipCard.types";
 import {useNavigation} from "@react-navigation/core";
 import Image from "../../atoms/image";
+import {Typo} from "../../index";
 
 const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
     const navigation = useNavigation();
@@ -32,17 +33,17 @@ const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
                     height={10}
                 />
 
-                <Text px={4} color="white" fontSize="md" fontWeight="semibold">
-                    Hạng {label}
-                </Text>
+                <Typo px={4} color="white" type="body14">
+                    {label}
+                </Typo>
 
                 <Box py={3} px={4} flexDirection="row" justifyContent="space-between">
-                    <Text color="white" fontSize="lg" textTransform="uppercase">
+                    <Typo color="white" type="subtitle16" textTransform="uppercase">
                         {nameOnCard}
-                    </Text>
-                    <Text color="white" fontSize="lg">
+                    </Typo>
+                    <Typo color="white" type="subtitle16">
                         {point} điểm
-                    </Text>
+                    </Typo>
                 </Box>
             </ImageBackground>
         </Pressable>

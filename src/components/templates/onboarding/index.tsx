@@ -1,9 +1,8 @@
 import React, {useRef, useState} from "react";
 import {Box, Button, Pressable, Text} from "native-base";
 import Carousel from 'react-native-snap-carousel';
-import {Alert} from "react-native";
 import {ScreenSize, StaticImages} from "../../../share";
-import {ImageStatic} from "../../index";
+import {ImageStatic, MyButton} from "../../index";
 
 const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -21,7 +20,7 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
         }
     }
 
-    const imageSize = ScreenSize.vw * 0.7
+    const imageSize = Math.ceil(ScreenSize.vw * 0.8)
 
     // @ts-ignore
     const _renderItem = ({item}) => {
@@ -75,7 +74,7 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
             />
 
             <Box p={8} position="absolute" bottom={4} left={0} right={0}>
-                <Button _pressed={{opacity: 0.8}} onPress={nextSlide} size="lg" rounded="lg" bgColor="primary.500">Tiếp tục</Button>
+                <MyButton onPress={nextSlide} >Tiếp tục</MyButton>
             </Box>
         </Box>
     );

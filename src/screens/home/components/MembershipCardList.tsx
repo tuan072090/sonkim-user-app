@@ -4,12 +4,20 @@ import {LoyaltyCard, MembershipCard} from "../../../components";
 import {Colors, LoyaltyProgramTypes, SonkimApiService, useLocalStorage} from "../../../share";
 import {ActivityIndicator, Alert} from "react-native";
 import AppProvider from "../../../share/context";
+import {useNavigation} from "@react-navigation/native";
 
 export const MembershipCardList = () => {
     const {accessToken} = useContext(AppProvider.context)
+    const navigation = useNavigation()
     const [loyaltyPrograms, setLoyaltyPrograms] = useState<LoyaltyProgramTypes[] | null>(null)
     const [userMemberShipCards, setUserMembershipCars] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
     let isMounted = false
+
+    React.useEffect(() => {
+        return navigation.addListener('focus', () => {
+            _fetchUserRegisteredCards()
+        });
+    }, [navigation]);
 
     useEffect(() => {
         isMounted = true
@@ -20,8 +28,9 @@ export const MembershipCardList = () => {
 
     useEffect(() => {
         //  Fetch all registered cards of current user
-        if (accessToken && accessToken.length > 0)
+        if (accessToken && accessToken.length > 0) {
             _fetchUserRegisteredCards()
+        }
     }, [accessToken])
 
     const _fetchLoyaltyPrograms = () => {
@@ -37,8 +46,8 @@ export const MembershipCardList = () => {
         SonkimApiService.GetUserMembershipCards().then(cards => {
             if(isMounted) setUserMembershipCars(cards)
         }).catch(err => {
-            if(isMounted) setLoyaltyPrograms([])
-            Alert.alert(err.message)
+            console.log("fetch membership card error.....", err)
+            if(isMounted) setUserMembershipCars([])
         })
     }
 
@@ -47,7 +56,7 @@ export const MembershipCardList = () => {
             <Text fontSize="xl" color="primary.500">
                 Thẻ thành viên
             </Text>
-            <Text fontSize="md" color="gray.500" mb={3}>
+            <Text fontSize="md" color="gray.500" mb={1}>
                 Danh sách thẻ thành viên của SKR
             </Text>
 

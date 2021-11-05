@@ -1,75 +1,66 @@
-import React from "react";
+import React, {useContext} from "react";
 import {ImageBackground, StyleSheet} from "react-native";
-import {ImageStatic} from "../../../components";
-import {ScreenSize, StaticImages} from "../../../share";
+import {Image, ImageStatic, MembershipCard, Typo} from "../../../components";
+import {Formatter, ScreenSize, StaticImages, UserMemberShipCardType} from "../../../share";
 import {Box, Text} from "native-base";
+import AppProvider from "../../../share/context";
+import LinearGradient from 'react-native-linear-gradient';
 
 const fullWidth = ScreenSize.vw;
 const ImgWidth = fullWidth - 30;
 
-export const ScreenBanner = () => {
+type ScreenBannerType = {
+    membershipCard: UserMemberShipCardType
+}
+export const ScreenBanner:React.FC<ScreenBannerType> = ({membershipCard}) => {
+    const {user} = useContext(AppProvider.context)
+    const {point, label, membership_info, loyalty_program, created_at} = membershipCard
 
+    const bannerImage = loyalty_program.business_unit.cover?.url || "https://sonkim.s3.ap-southeast-1.amazonaws.com/BU_placeholder_f0a2ae6b29.jpg"
+
+    console.log("user đã login", user)
     return (
-        <Box position="relative">
-            <ImageStatic
-                width={fullWidth}
+        <Box position="relative" bgColor="gray.200">
+            {/* background image */}
+            <Image
+                width="100%"
+                height="100%"
+                position="absolute"
                 resizeMode="cover"
                 top={0}
                 right={0}
                 left={0}
-                height="100%"
-                uri={StaticImages.banner_bu_detail}
+                uri={bannerImage}
             />
-            <Box m={4} position="absolute" width={ImgWidth}>
-                <ImageBackground
-                    source={StaticImages.frame4}
-                    resizeMode="cover"
-                    style={styles.image}>
-                    <ImageStatic
-                        mx={3}
-                        mt={2}
-                        uri={StaticImages.health_spa_nopadding}
-                        width={12}
-                        height={6}
-                    />
-                    <Text mx={3} color="tertiary.600" fontSize="lg">
-                        Thành viên kim cương
-                    </Text>
-                    <Box
-                        p={3}
-                        mt="4"
-                        flexDirection="row"
-                        justifyContent="space-between">
-                        <Text color="white" fontSize="lg">
-                            GS25_12345
-                        </Text>
-                        <Text color="white" fontSize="lg">
-                            15000 điểm
-                        </Text>
-                    </Box>
-                </ImageBackground>
+
+            {/* background gradient */}
+            <LinearGradient colors={['rgba(8, 105, 129, 1)', 'rgba(8, 105, 129, 0.8)', 'rgba(8, 105, 129, 0.7)']} style={styles.gradientBox}/>
+
+            {/* Card info */}
+            <Box p={4} width="100%">
+
+                <MembershipCard item={membershipCard}/>
+
                 <Box mt="4">
-                    <Text fontSize="xl" color="white">
+                    <Typo type="subtitle16" color="white">
                         Thông tin chủ thẻ
-                    </Text>
-                    <Text fontSize="lg" color="white">
-                        Tên chủ thẻ: Nguyễn Đinh H Đắc
-                    </Text>
-                    <Text fontSize="lg" color="white">
-                        Ngày đăng ký thẻ: 08/11/2021
-                    </Text>
+                    </Typo>
+                    <Typo mt={2} type="body14" color="white">
+                        Tên chủ thẻ: {membership_info?.name || user.name || "Chưa cập nhật"}
+                    </Typo>
+                    <Typo mt={2} type="body14" color="white">
+                        Ngày đăng ký thẻ: {Formatter.FormatDateFromDate(new Date(membershipCard.created_at), "dd/MM/yyyy")}
+                    </Typo>
                 </Box>
             </Box>
         </Box>
     )
 }
 
-const cardHeight = ScreenSize.vw / 3; //  tỉ lệ 3.17
 const styles = StyleSheet.create({
-    image: {
-        height: cardHeight,
-        borderRadius: 20,
-        overflow: "hidden",
-        justifyContent: "space-between",
-    },
-});
+    gradientBox: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+    }
+})

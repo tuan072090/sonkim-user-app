@@ -43,6 +43,8 @@ import AuthComponent from './templates/auth'
 import MainLayout from "./templates/layout/MainLayout";
 import {PageProps} from './templates/layout/mainLayoutProps.types'
 import ListBUCard from "./templates/list-loyalty-program";
+import { Typo } from "./atoms/typo";
+import MySwitch from "./atoms/switch";
 
 export {
     //  Atoms
@@ -64,6 +66,8 @@ export {
     ImageStatic,
     FullScreenLoader,
     HTMLContent,
+    Typo,
+    MySwitch,
 
     //  Molecules
     Avatar,

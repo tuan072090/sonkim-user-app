@@ -1,9 +1,15 @@
-import {Box, Button, ScrollView, Switch, Text} from "native-base";
-import React, {useContext, useEffect} from "react";
-import {ChevronRightIcon, FriendIcon, LocationIcon, NotificationOutlineIcon, TranslateIcon} from "../../components";
+import {Box, Button, ScrollView, Text} from "native-base";
+import React, {useContext} from "react";
+import {
+    ChevronRightIcon,
+    FriendIcon,
+    LocationIcon,
+    MySwitch,
+    NotificationOutlineIcon,
+    TranslateIcon
+} from "../../components";
 import AccountHeader from "./components/AccountHeader";
 import AccountItem from "./components/AccountItem";
-import ScreenHeader from "../../components/organisms/screen-header";
 import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
@@ -13,16 +19,16 @@ const AccountScreen = () => {
     const {dispatch, user} = useContext(AppProvider.context)
     const navigation = useNavigation();
 
-    useEffect(() => {
-        console.log("render Account screen........")
-    },[])
-
     const _logout = () => {
         dispatch({
             type: AppProvider.actions.LOGOUT,
             data: null
         })
         Alert.alert("Đăng xuất thành công")
+    }
+
+    const _toggleAllowNotification = (value: boolean) => {
+        console.log("isAllowNotification...", value)
     }
 
     const _navigateToHistory = () => {
@@ -54,10 +60,11 @@ const AccountScreen = () => {
                         <AccountItem title="Ngôn Ngữ" startIcon={(<TranslateIcon size={6}/>)}
                                      endIcon={(<ChevronRightIcon size={6}/>)}/>
                     </Box>
+
                     <Box mb={4}>
                         <AccountItem title="Thông báo" onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
-                                     endIcon={(<ChevronRightIcon size={6}/>)}/>
+                                     endIcon={(<MySwitch onChangeValue={_toggleAllowNotification}/>)}/>
                     </Box>
                     {
                         user && <Button onPress={_logout}
@@ -71,7 +78,8 @@ const AccountScreen = () => {
                     }
 
 
-                    <Text width="100%" fontSize="sm" color="gray.400" mt={5} textAlign="center">Verion {APP_VERSION}</Text>
+                    <Text width="100%" fontSize="sm" color="gray.400" mt={5}
+                          textAlign="center">Verion {APP_VERSION}</Text>
                 </Box>
             </ScrollView>
         </Box>
