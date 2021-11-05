@@ -34,13 +34,19 @@ const StaticImages = {
     banner_background: require("../../../static/imgs/banner_background.jpg"),
     banner_bu_detail: require("../../../static/imgs/banner_bu_detail.png"),
     filter_bu: require("../../../static/imgs/filter_bu.jpg"),
+
+    //  category icons
     register_card: require("../../../static/imgs/categories/dang-ky-the.png"),
     transfer_point: require("../../../static/imgs/categories/doi-diem.png"),
     history_point: require("../../../static/imgs/categories/lich-su.png"),
     rank_point: require("../../../static/imgs/categories/thu-hang-diem.png"),
-
     earn_point: require("../../../static/imgs/categories/tich-diem.png"),
+    use_point: require("../../../static/imgs/categories/tich-diem.png"),
     link_card: require("../../../static/imgs/categories/lien-ket-the.png"),
+    vouchers: require("../../../static/imgs/categories/vouchers.png"),
+    gift_cards: require("../../../static/imgs/categories/giftcards.png"),
+    stores: require("../../../static/imgs/categories/cua-hang.png"),
+    news: require("../../../static/imgs/categories/tin-tuc.png"),
     fallback_img: require("../../../static/imgs/fallback_img.jpg"),
 
     //  background auth page

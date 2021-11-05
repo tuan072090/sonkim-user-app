@@ -1,15 +1,14 @@
-import {BusinessUnitType} from "./businessUnit.types";
 import {StoreTypes} from "./store.types";
 import {LoyaltyProgramTypes} from "./loyaltyProgram.types";
 
-export type PromotionType={
-    id: number|string,
-    title:string,
-    avatar:any,
-    cash: number,
+export type GiftCardType = {
+    id: number | string,
+    title: string,
+    avatar: any,
     price?: number,
     sale_price?: number,
-    point_prices?: any[],
+    cash: number,
+    point_prices: any[],
     description: string,
     rules: any[],
     loyalty_program: LoyaltyProgramTypes,

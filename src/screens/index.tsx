@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useRef } from 'react';
 
 import { Colors, ScreenName, ScreenTitle } from "../share";
-import UserListCard from './user-list-card';
+import UserListCard from './membership-card-list';
 import LoyaltyProgramDetailScreen from "./loyalty-detail";
 import TabScreens from "./TabScreens";
 import { PhoneInputScreen } from "./auth/PhoneInputScreen";
@@ -24,9 +24,8 @@ import AccountInfo from './account/AccountInfo';
 import VoucherDetail from './vouchers/VoucherDetail';
 import TransactionHistory from './transaction-history';
 import {ArticleScreen} from "./article";
-import GiftCardPage from './gift-cards';
-import GiftCardDetail from './gift-cards/GiftCardDetail';
-import GiftCardBottom from './gift-cards/components/GiftCardBottom';
+import GiftCardListScreen from './gift-cards';
+import GiftCardDetail from './gift-card-detail';
 import LoyaltyRegisterScreen from "./loyalty-register";
 import MemberShipCardDetailScreen from "./membership-card-detail";
 
@@ -97,9 +96,8 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.TRANSFER_POINT} component={TransferPointPage} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.TRANSACTION_HISTORY} component={TransactionHistory} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.ARTICLE_SCREEN} component={ArticleScreen}  options={{ headerShown: false }}/>
-                    <Stack.Screen name={ScreenName.GIFTCARD_SCREEN} component={GiftCardPage}  options={{ headerShown: false }}/>
-                    <Stack.Screen name={ScreenName.GIFTCARD_DETAIL} component={GiftCardDetail}  options={{ headerShown: false }}/>
-                    <Stack.Screen name={ScreenName.GIFTCARD_FROM_BOTTOM_SCREEN} component={GiftCardBottom}  options={{ headerShown: false }}/>
+                    <Stack.Screen name={ScreenName.GIFT_CARD_LIST_SCREEN} component={GiftCardListScreen}  options={{ headerShown: false }}/>
+                    <Stack.Screen name={ScreenName.GIFT_CARD_DETAIL_SCREEN} component={GiftCardDetail}  options={{ headerShown: false }}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </>

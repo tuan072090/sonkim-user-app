@@ -35,7 +35,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
 
     const _fetchVouchers = async () => {
         try {
-            const {count} = await SonkimApiService.GetVouchers()
+            const {count} = await SonkimApiService.GetPromotions({})
             setVouchers(count)
         } catch (err) {
             Alert.alert("Không lấy được voucher", err.message)
@@ -49,7 +49,6 @@ export const HomeHeader:React.FC<any> = memo((props) => {
 
     const _navToVouchers = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.GIFTCARD_FROM_BOTTOM_SCREEN)
     }
 
     return (

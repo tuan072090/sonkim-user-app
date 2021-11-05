@@ -1,24 +1,21 @@
 import React, {useContext} from "react";
-import {ImageBackground, StyleSheet} from "react-native";
-import {Image, ImageStatic, MembershipCard, Typo} from "../../../components";
-import {Formatter, ScreenSize, StaticImages, UserMemberShipCardType} from "../../../share";
-import {Box, Text} from "native-base";
+import {StyleSheet} from "react-native";
+import {Image, MembershipCard, Typo} from "../../../components";
+import {Formatter, UserMemberShipCardType} from "../../../share";
+import {Box} from "native-base";
 import AppProvider from "../../../share/context";
 import LinearGradient from 'react-native-linear-gradient';
 
-const fullWidth = ScreenSize.vw;
-const ImgWidth = fullWidth - 30;
 
 type ScreenBannerType = {
     membershipCard: UserMemberShipCardType
 }
-export const ScreenBanner:React.FC<ScreenBannerType> = ({membershipCard}) => {
+export const CardBanner: React.FC<ScreenBannerType> = ({membershipCard}) => {
     const {user} = useContext(AppProvider.context)
     const {point, label, membership_info, loyalty_program, created_at} = membershipCard
 
     const bannerImage = loyalty_program.business_unit.cover?.url || "https://sonkim.s3.ap-southeast-1.amazonaws.com/BU_placeholder_f0a2ae6b29.jpg"
 
-    console.log("user đã login", user)
     return (
         <Box position="relative" bgColor="gray.200">
             {/* background image */}
@@ -34,7 +31,8 @@ export const ScreenBanner:React.FC<ScreenBannerType> = ({membershipCard}) => {
             />
 
             {/* background gradient */}
-            <LinearGradient colors={['rgba(8, 105, 129, 1)', 'rgba(8, 105, 129, 0.8)', 'rgba(8, 105, 129, 0.7)']} style={styles.gradientBox}/>
+            <LinearGradient colors={['rgba(8, 105, 129, 1)', 'rgba(8, 105, 129, 0.8)', 'rgba(8, 105, 129, 0.7)']}
+                            style={styles.gradientBox}/>
 
             {/* Card info */}
             <Box p={4} width="100%">

@@ -14,7 +14,8 @@ import {
     PhoneIcon,
     TranslateIcon,
     VoucherIcons,
-    ValueIcon
+    ValueIcon,
+    RefreshIcon
 } from "./atoms/icons/CommonIcons"
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
@@ -34,6 +35,7 @@ import FeatureItems from './organisms/feature-item'
 import MembershipCard from './organisms/membership-cards'
 import LoyaltyCard from './organisms/loyalty-cards'
 import VoucherCard from "./organisms/voucher-card";
+import GiftCard from './organisms/gift-card'
 import AvatarPicker from './organisms/avatar-picker'
 import Dialog from "./organisms/dialog/index";
 
@@ -45,10 +47,11 @@ import {PageProps} from './templates/layout/mainLayoutProps.types'
 import ListBUCard from "./templates/list-loyalty-program";
 import { Typo } from "./atoms/typo";
 import MySwitch from "./atoms/switch";
+import PressBox from "./atoms/press-box";
 
 export {
     //  Atoms
-    HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, ImageIcon, EditIcon,
+    HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, ImageIcon, EditIcon,RefreshIcon,
     MyButton,
     VoucherIcons,
     ValueIcon,
@@ -68,6 +71,7 @@ export {
     HTMLContent,
     Typo,
     MySwitch,
+    PressBox,
 
     //  Molecules
     Avatar,
@@ -82,6 +86,7 @@ export {
     LoyaltyCard,
     AvatarPicker,
     VoucherCard,
+    GiftCard,
     Dialog,
 
     //  Templates

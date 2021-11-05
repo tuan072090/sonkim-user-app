@@ -1,23 +1,19 @@
-import { Box, ScrollView } from 'native-base'
+import {Box, ScrollView} from 'native-base'
 import React from 'react'
-import { ActivityIndicator } from 'react-native'
-import { GiftCardListType } from '../giftCard.type'
-import GiftCard from './GiftCard'
+import {GiftCardType} from "../../../share";
+import {GiftCard} from "../../../components";
 
-
-const GiftCardList:React.FC<GiftCardListType> = ({giftCards,fromBottom=false,...props}) => {
+const GiftCardList: React.FC<{ giftCards: GiftCardType[] }> = ({giftCards, ...props}) => {
     return (
         <ScrollView>
-                <Box p={4} m={4}>
-                {
-                    !giftCards
-                        ? <Box width="full" p={4}><ActivityIndicator color="primary.500"/></Box>
-                        : giftCards.map((item, index) => (
-                            <GiftCard giftCard={item} key={index} fromBottom={fromBottom}/>
-                        ))
-                }
-                </Box>
-            </ScrollView>
+            {
+                giftCards.map((item, index) => (
+                    <Box key={index} px={4} mb={4}>
+                        <GiftCard giftCard={item}/>
+                    </Box>
+                ))
+            }
+        </ScrollView>
     )
 }
 

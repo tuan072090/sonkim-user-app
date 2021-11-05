@@ -1,15 +1,16 @@
 import React, {useContext, useEffect, useState} from "react";
-import {Box, Button, ScrollView, SimpleGrid, Text, VStack} from "native-base";
+import {Box, Button, Pressable, ScrollView, SimpleGrid, Text, VStack} from "native-base";
 import {ScreenName, SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import {useNavigation, useRoute} from "@react-navigation/core";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {FullScreenLoader, MainLayout, PageProps} from "../../components";
+import {FullScreenLoader, MainLayout, PageProps, PressBox, RefreshIcon} from "../../components";
 import {Alert} from "react-native";
-import {Categories} from "../loyalty-detail/components/Categories";
-import {VoucherList} from "../loyalty-detail/components/VoucherList";
 import CardStore from "../../components/molecules/card-store";
-import {ScreenBanner} from "./components/ScreenBanner";
+import {CardBanner} from "./components/CardBanner";
+import {CardCategories} from "./components/CardCategories";
+import {CardVoucherList} from "./components/CardVoucherList";
+import {GiftCardList} from "./components/GiftCardList";
 
 const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     const [cardDetail, setCardDetail] = useState<UserMemberShipCardType | null>(null)
@@ -26,7 +27,6 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     const _fetchData = () => {
         //  @ts-ignore
         SonkimApiService.GetUserMembershipCardDetail(params.id).then(data => {
-            console.log("data....", data)
             setCardDetail(data)
         }).catch(err => {
             Alert.alert(err.message)
@@ -49,52 +49,20 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
 
     return (
         <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
-            <ScreenHeader hasBackButton={true} title={Translate[language].buDetail} bgColor="primary.500"/>
+            <ScreenHeader
+                title={Translate[language].buDetail}
+                bgColor="primary.500"
+                rightComponent={<PressBox onPress={_fetchData} p={3} alignItems="flex-end" width="100%"><RefreshIcon size={6}/></PressBox>}
+            />
 
             <ScrollView bgColor="white">
-                <ScreenBanner membershipCard={cardDetail}/>
+                <CardBanner membershipCard={cardDetail}/>
 
-                <Categories/>
+                <CardCategories membershipCard={cardDetail}/>
 
-                <VoucherList/>
+                <CardVoucherList membershipCard={cardDetail}/>
 
-                <Text
-                    py={5}
-                    underline
-                    fontSize="md"
-                    color="red.400" onPress={_navigateListVoucher}
-                    textAlign="center"
-                >
-                    Xem tất cả
-                </Text>
-                <Box p={5}>
-                    <VStack space={3}>
-                        <SimpleGrid columns={2} spacingY={3} spacingX={3}>
-                            <CardStore/>
-                            <CardStore/>
-                        </SimpleGrid>
-                    </VStack>
-                    <Text
-                        py={5}
-                        underline
-                        fontSize="md"
-                        color="red.400"
-                        textAlign="center"
-                        onPress={_navigateStorepage}
-                    >
-                        Xem tất cả
-                    </Text>
-                </Box>
-                <Box flex={1} width={"100%"} p={5} alignItems="center">
-                    <Button
-                        width={"45%"}
-                        rounded="xl"
-                        bgColor="info.100"
-                        _text={{color: "primary.500"}}
-                    >
-                        Lên đầu trang
-                    </Button>
-                </Box>
+                <GiftCardList membershipCard={cardDetail}/>
                 <Box mb={50}/>
             </ScrollView>
         </Box>

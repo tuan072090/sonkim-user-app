@@ -17,7 +17,7 @@ import {GenderList} from "./utils/constant";
 //  services
 import FetchDataService from "./services/fetch";
 import {CheckPhone, Login, Logout, Register, ResetPassword} from "./services/sonkim-api/auth";
-import {GetVouchers} from "./services/sonkim-api/vouchers";
+import {GetPromotionDetail, GetPromotions} from "./services/sonkim-api/promotions";
 import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
@@ -29,7 +29,7 @@ import {
     GetLoyaltyPrograms, GetUserMembershipCardDetail,
     GetUserMembershipCards, RegisterMemberShipCard, UpdateMemberShipCardInfo
 } from './services/sonkim-api/loyaltyPrograms'
-import {GetGiftCards} from './services/sonkim-api/giftCards'
+import {GetGiftCardDetail, GetGiftCards} from './services/sonkim-api/giftCards'
 import FirebaseService from "./services/firebase";
 
 //  hooks
@@ -46,7 +46,8 @@ const SonkimApiService = {
     GetPersonalInfo,
     UpdatePersonalInfo,
     GetBranches,
-    GetVouchers,
+    GetPromotions,
+    GetPromotionDetail,
     GetUploadUrl,
     UploadImage,
     GetArticles,
@@ -59,7 +60,8 @@ const SonkimApiService = {
     GetLoyaltyProgramDetail,
     GetUserMembershipCards,
     GetUserMembershipCardDetail,
-    GetGiftCards
+    GetGiftCards,
+    GetGiftCardDetail
 }
 
 export {
@@ -92,6 +94,7 @@ export type {StoreTypes} from './data-types/store.types'
 export type {BusinessUnitType} from './data-types/businessUnit.types'
 export type {UserType} from './data-types/user.types'
 export type {PromotionType} from './data-types/promotion.types'
+export type {GiftCardType} from './data-types/giftCard.types'
 export type {NotificationType} from './data-types/notification.types'
 export type {LoyaltyProgramTypes} from './data-types/loyaltyProgram.types'
 export type {UserMemberShipCardType} from './data-types/userMembershipCard.types'

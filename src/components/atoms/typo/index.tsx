@@ -6,14 +6,38 @@ import {TypoTypes} from "./typo.types";
 export const Typo: React.FC<TypoTypes & ITextProps & React.RefAttributes<unknown>> = ({type, children, ...props}) => {
     let fontSize = 14
     let fontWeight = FontWeights.normal
+    let letterSpacing = LetterSpacings.md
+    let lineHeight = LineHeights.md
 
-    if (type === "subtitle16") {
-        fontSize = 16
-        fontWeight = FontWeights.medium
+    switch (type){
+        case "body14":
+            fontSize = FontSizes.sm
+            fontWeight = FontWeights.normal
+            break;
+        case "body16":
+            fontSize = FontSizes.md
+            fontWeight = FontWeights.normal
+            break;
+        case "caption":
+            fontSize = FontSizes.xs
+            fontWeight = FontWeights.normal
+            break;
+        case "overline":
+            fontSize = FontSizes["2xs"]
+            fontWeight = FontWeights.normal
+            break;
+        case "subtitle14":
+            fontSize = FontSizes.sm
+            fontWeight = FontWeights.medium
+            break;
+        case "subtitle16":
+            fontSize = FontSizes.md
+            fontWeight = FontWeights.medium
+            break;
     }
 
     return (
-        <Text fontSize={fontSize} fontWeight={fontWeight} {...props}>{children}</Text>
+        <Text fontSize={fontSize} fontWeight={fontWeight} letterSpacing={letterSpacing} lineHeight={lineHeight} {...props}>{children}</Text>
     )
 }
 const FontSizes = {
