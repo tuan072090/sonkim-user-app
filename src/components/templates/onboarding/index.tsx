@@ -2,7 +2,8 @@ import React, {useRef, useState} from "react";
 import {Box, Button, Pressable, Text} from "native-base";
 import Carousel from 'react-native-snap-carousel';
 import {Alert} from "react-native";
-import {ScreenSize} from "../../../share";
+import {ScreenSize, StaticImages} from "../../../share";
+import {ImageStatic} from "../../index";
 
 const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -20,6 +21,8 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
         }
     }
 
+    const imageSize = ScreenSize.vw * 0.7
+
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
@@ -28,9 +31,14 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
                     <Text color="gray.500">Bỏ qua</Text>
                 </Pressable>
 
-                <Box alignItems="center" justifyContent="center" width={48} height={48} rounded={"lg"} bgColor="gray.200">
-                    <Text>Image</Text>
+                <Box width={imageSize} height={imageSize} rounded={"lg"} bgColor="gray.200">
+                    {
+                        item.id === 1 ?<ImageStatic uri={StaticImages.onboarding_1}  width={imageSize} height={imageSize}/>
+                        : <ImageStatic uri={StaticImages.onboarding_2}  width={imageSize} height={imageSize}/>
+                    }
+
                 </Box>
+
 
                 <Box alignItems="center" mt={8} p={8}>
                     <Text fontSize="2xl">{item.title}</Text>
@@ -49,10 +57,12 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
                 autoplay={false}
                 data={[
                     {
+                        id:1,
                         title: "Sơn Kim Loyalty app",
                         body: "A flagship application pushing the frontier of mass adoption. A super app for general public to earn",
                     },
                     {
+                        id:2,
                         title: "OnBoarding title 2",
                         body: "2 - This is onboarding description content. It can be max 100 charaters",
                     }

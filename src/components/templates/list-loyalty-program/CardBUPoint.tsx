@@ -1,15 +1,14 @@
 import React from "react";
-import { Box, Center, Text, VStack } from "native-base";
-import { ScreenSize, StaticImages } from "../../../share";
-import { ImageStatic } from "../..";
-import { cardBuType } from "./cardBU.types";
+import {Box, Center, Text, VStack} from "native-base";
+import {ScreenSize} from "../../../share";
+import {ImageStatic} from "../../index";
 
 const fullWidth = ScreenSize.vw;
 
 const cardRegisterWidht = fullWidth / 4;
 const cardRegisterHeight = fullWidth / 2.5;
 
-const CardBUPoint: React.FC<{ point: string, uri: any }> = ({ point, uri }) => {
+const CardBUPoint: React.FC<{ point: string, uri: any }> = ({point, uri}) => {
     return (
         <Box
             borderRadius={16}

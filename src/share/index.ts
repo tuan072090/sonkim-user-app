@@ -2,6 +2,7 @@
 import {Colors} from "./configs/colors";
 import {Deeplink, ScreenName, ScreenTitle} from "./configs/routers";
 import {API_URI, APP_VERSION,APP_BUILD} from './configs/commonConfigs'
+import {FontStyles} from './configs/fontStyles'
 
 import StaticImages from './static/images'
 import LocalStorageService from "./services/local-storage";
@@ -23,7 +24,11 @@ import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
 import {GetStores} from './services/sonkim-api/stores'
 import {GetNotifications} from './services/sonkim-api/notifications'
 import {GetBranches} from './services/sonkim-api/branches'
-import {GetLoyaltyPrograms} from './services/sonkim-api/loyaltyPrograms'
+import {
+    GetLoyaltyProgramDetail,
+    GetLoyaltyPrograms, GetUserMembershipCardDetail,
+    GetUserMembershipCards, RegisterMemberShipCard, UpdateMemberShipCardInfo
+} from './services/sonkim-api/loyaltyPrograms'
 import {GetGiftCards} from './services/sonkim-api/giftCards'
 import FirebaseService from "./services/firebase";
 
@@ -49,15 +54,22 @@ const SonkimApiService = {
     GetStores,
     GetNotifications,
     GetLoyaltyPrograms,
+    RegisterMemberShipCard,
+    UpdateMemberShipCardInfo,
+    GetLoyaltyProgramDetail,
+    GetUserMembershipCards,
+    GetUserMembershipCardDetail,
     GetGiftCards
 }
 
 export {
     Colors,
+    FontStyles,
     ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION,APP_BUILD,
     StaticImages,
     Translate,
     LocalStorageService,
+
     //  utils
     ScreenSize,
     Validator,
@@ -82,3 +94,4 @@ export type {UserType} from './data-types/user.types'
 export type {PromotionType} from './data-types/promotion.types'
 export type {NotificationType} from './data-types/notification.types'
 export type {LoyaltyProgramTypes} from './data-types/loyaltyProgram.types'
+export type {UserMemberShipCardType} from './data-types/userMembershipCard.types'

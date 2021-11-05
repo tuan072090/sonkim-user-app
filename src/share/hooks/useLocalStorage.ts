@@ -1,7 +1,18 @@
 import {useEffect, useState} from "react";
 import LocalStorageService from "../services/local-storage";
 
-export function useLocalStorage(key:string, initialValue:any) {
+const KEY_LOCAL_USER_CARDS = "userRegisteredCards"
+
+function isJson(str:string) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+const useLocalStorage = (key:string, initialValue:any) => {
     // State to store our value
     // Pass initial state function to useState so logic is only executed once
     const [storedValue, setStoredValue] = useState<any>(null);
@@ -13,7 +24,13 @@ export function useLocalStorage(key:string, initialValue:any) {
     const _syncData = async () => {
         try {
             const localData = await LocalStorageService.GetData(key)
-            setStoredValue(localData)
+            if(localData){
+                if(isJson(localData)){
+                    setStoredValue(JSON.parse(localData))
+                }else {
+                    setStoredValue(localData)
+                }
+            }
         } catch (error) {
             setStoredValue(initialValue)
             console.log("syn local data error...", error)
@@ -47,3 +64,7 @@ export function useLocalStorage(key:string, initialValue:any) {
 
     return [storedValue, setValue];
 }
+
+useLocalStorage.KEY_LOCAL_USER_CARDS = KEY_LOCAL_USER_CARDS
+
+export {useLocalStorage}

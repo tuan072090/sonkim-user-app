@@ -4,7 +4,8 @@ export type PersonalInfoType = {
     name: string,
     gender: "male"|"female"|"other",
     birthday: string,
-    avatar: string
+    avatar: string,
+    address?:string
 }
 
 export const GetPersonalInfo = async () => {

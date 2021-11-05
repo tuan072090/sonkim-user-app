@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { SimpleGrid, VStack } from "native-base";
-import CardBU from "./index";
-import { ListCardBuType } from "./cardBU.types";
 import { GetBranches } from "../../../share/services/sonkim-api/branches";
 import { Alert } from "react-native";
+import BUCard from "../../organisms/bu-card";
 
-const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
-
+const ListBUCard: React.FC<any> = () => {
+    const [choise, setChoise] = useState("")
     const [branch, setBranch] = useState<
         { id: number; name: string; url: string }[]
-    >([]);
+        >([]);
 
     const _choiseBu = (name: string) => {
         setChoise(name);
@@ -39,7 +38,7 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
             <SimpleGrid columns={3} spacingY={3} spacingX={3}>
                 {branch.map((item) => {
                     return (
-                        <CardBU
+                        <BUCard
                             onPress={() => _choiseBu(item.name)}
                             active={choise === item.name ? true : false}
                             key={item.name}
@@ -53,4 +52,4 @@ const ListCardBU: React.FC<ListCardBuType> = ({ choise, setChoise }) => {
     );
 };
 
-export default ListCardBU;
+export default ListBUCard;

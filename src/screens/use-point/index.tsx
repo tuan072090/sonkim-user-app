@@ -3,8 +3,8 @@ import { Box, ScrollView, Text, Button } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { ScreenName, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
-import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
 import { useNavigation } from "@react-navigation/core";
+import {ListBUCard} from "../../components";
 
 const UsePoint = () => {
     const { language } = useContext(LanguageProvider.context);
@@ -29,9 +29,7 @@ const UsePoint = () => {
                 <Text mb={3} color='muted.500' fontSize="md" fontWeight="semibold">
                     Chọn thẻ bạn muốn sử dụng
                 </Text>
-                <ListCardBU choise={choise} setChoise={setChoise}>
-                    {" "}
-                </ListCardBU>
+                <ListBUCard choise={choise} setChoise={setChoise}/>
                 <Box mt={20}/>
             </ScrollView>
             <Box

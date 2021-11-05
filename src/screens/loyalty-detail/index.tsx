@@ -21,7 +21,7 @@ import { useNavigation } from "@react-navigation/core";
 const fullWidth = ScreenSize.vw;
 const ImgWidth = fullWidth - 30;
 
-const BUDetailScreen = () => {
+const LoyaltyProgramDetailScreen = () => {
     const { language } = useContext(LanguageProvider.context);
     const navigation = useNavigation();
 
@@ -77,8 +77,7 @@ const BUDetailScreen = () => {
                                 p={3}
                                 mt="4"
                                 flexDirection="row"
-                                justifyContent="space-between"
-                            >
+                                justifyContent="space-between">
                                 <Text color="white" fontSize="lg">
                                     GS25_12345
                                 </Text>
@@ -147,7 +146,7 @@ const BUDetailScreen = () => {
     );
 };
 
-export default BUDetailScreen;
+export default LoyaltyProgramDetailScreen;
 
 const cardHeight = ScreenSize.vw / 3; //  tỉ lệ 3.17
 const styles = StyleSheet.create({

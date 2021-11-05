@@ -12,10 +12,11 @@ export const ScreenName = {
     RESET_PASSWORD_SCREEN: "ResetPassword",
     ACCOUNT_SCREEN: "Account",
     ACCOUNT_SETTING_SCREEN: "AccountSetting",
-    BU_DETAIL_SCREEN: "BUDetail",
+    LOYALTY_PROGRAM_DETAIL_SCREEN: "LoyaltyProgramDetail",
+    LOYALTY_PROGRAM_REGISTER_SCREEN: "LoyaltyRegister",
+    MEMBERSHIP_CARD_DETAIL_SCREEN: "MembershipCardDetail",
     USER_LIST_CARD: "UserListCard",
     USER_INFO: 'UserInfo',
-    REGISTER_MEMBERSHIP: "RegisterMembership",
     LINK_MEMBERSHIP: 'LinkMembership',
     LINK_MEMBERSHIP_FORM: 'LinkMembershipForm',
     REGISTER_MEMBERSHIP_FORM: "RegisterMembershipForm",
@@ -43,10 +44,10 @@ export const ScreenTitle = {
     [ScreenName.LOGIN_SCREEN]: "Đăng nhập",
     [ScreenName.REGISTER_SCREEN]: "Đăng ký",
     [ScreenName.RESET_PASSWORD_SCREEN]: "Đổi mật khẩu",
-    [ScreenName.BU_DETAIL_SCREEN]: "Chi tiết BU",
+    [ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN]: "Chi tiết chương trình",
+    [ScreenName.LOYALTY_PROGRAM_REGISTER_SCREEN]: "Đăng ký thẻ thành viên",
     [ScreenName.USER_LIST_CARD]: "Danh sách thẻ",
     [ScreenName.USER_INFO]: "Thông tin cá nhân",
-    [ScreenName.REGISTER_MEMBERSHIP]: "Đăng ký thẻ",
     [ScreenName.LINK_MEMBERSHIP]: "Liên kết thẻ",
     [ScreenName.REGISTER_MEMBERSHIP_FORM]: "Điền form đăng ký",
     [ScreenName.LINK_MEMBERSHIP_FORM]: 'Điền form Liên kết thẻ',
@@ -83,9 +84,6 @@ export const Deeplink = {
         [ScreenName.RESET_PASSWORD_SCREEN]: {
             path: "forgotpass"
         },
-        [ScreenName.REGISTER_MEMBERSHIP]: {
-            path: "registerMemberShip"
-        },
         [ScreenName.REGISTER_MEMBERSHIP_FORM]: {
             path: "RegisterMembershipForm"
         },
@@ -100,8 +98,8 @@ export const Deeplink = {
             },
         },
 
-        [ScreenName.BU_DETAIL_SCREEN]: {
-            path: 'bu/:id',
+        [ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN]: {
+            path: 'loyalty/:id',
             parse: {
                 id: String,
             },

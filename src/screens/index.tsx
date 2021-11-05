@@ -4,17 +4,15 @@ import React, { useRef } from 'react';
 
 import { Colors, ScreenName, ScreenTitle } from "../share";
 import UserListCard from './user-list-card';
-import BUDetailScreen from "./BU-detail";
+import LoyaltyProgramDetailScreen from "./loyalty-detail";
 import TabScreens from "./TabScreens";
 import { PhoneInputScreen } from "./auth/PhoneInputScreen";
 import { LoginScreen } from "./auth/LoginScreen";
 import { OtpScreen } from "./auth/OtpScreen";
 import { RegisterScreen } from "./auth/RegisterScreen";
-import RegisterMembership from './register-membership';
 import LinkMembership from './link-membership';
 import { StatusBar } from "native-base";
 import analytics from '@react-native-firebase/analytics';
-import RegisterMembershipForm from './register-membership/RegisterMembershipForm';
 import LinkMembershipForm from './link-membership/LinkMemberShipForm';
 import UsePoint from './use-point';
 import UsePointQR from './use-point/UserPointQR';
@@ -29,9 +27,10 @@ import {ArticleScreen} from "./article";
 import GiftCardPage from './gift-cards';
 import GiftCardDetail from './gift-cards/GiftCardDetail';
 import GiftCardBottom from './gift-cards/components/GiftCardBottom';
+import LoyaltyRegisterScreen from "./loyalty-register";
+import MemberShipCardDetailScreen from "./membership-card-detail";
 
 const Stack = createNativeStackNavigator();
-
 
 const AppNavigation = () => {
     const routeNameRef = useRef("");
@@ -85,10 +84,10 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.RESET_PASSWORD_SCREEN} component={ResetPasswordScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USER_LIST_CARD} component={UserListCard} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USER_INFO} component={AccountInfo} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.BU_DETAIL_SCREEN} component={BUDetailScreen} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP} component={RegisterMembership} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LOYALTY_PROGRAM_REGISTER_SCREEN} component={LoyaltyRegisterScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN} component={LoyaltyProgramDetailScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.MEMBERSHIP_CARD_DETAIL_SCREEN} component={MemberShipCardDetailScreen} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP} component={LinkMembership} options={{ headerShown: false }} />
-                    <Stack.Screen name={ScreenName.REGISTER_MEMBERSHIP_FORM} component={RegisterMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.LINK_MEMBERSHIP_FORM} component={LinkMembershipForm} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USE_POINT} component={UsePoint} options={{ headerShown: false }} />
                     <Stack.Screen name={ScreenName.USE_POINT_QR} component={UsePointQR} options={{ headerShown: false }} />

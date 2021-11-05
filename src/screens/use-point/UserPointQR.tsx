@@ -5,8 +5,7 @@ import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
 
 import { useNavigation } from "@react-navigation/core";
-import { QrCode } from "../../components";
-import DialogMemberShip from "../../components/organisms/dialog-membership";
+import {Dialog, QrCode} from "../../components";
 
 const qrWWidth = ScreenSize.vw - 72;
 const UsePointQR = () => {
@@ -46,10 +45,9 @@ const UsePointQR = () => {
                     />
                 </Box>
             </Box>
-            <DialogMemberShip
+            <Dialog
                 isOpen={open}
                 onClose={() => setOpen(false)}
-                logoUri={StaticImages.health_spa}
                 title="Tích điểm thành công"
                 messenge="Bạn đã được cộng thêm 10 điềm vào thẻ thành viên Health Spa"
                 footer={
@@ -57,7 +55,8 @@ const UsePointQR = () => {
                         XÁC NHẬN
                     </Button>
                 }
-            ></DialogMemberShip>
+            />
+
             <Box p={5} alignContent="flex-end" bgColor="white">
                 <Button width={'100%'} rounded="xl" onPress={() => setOpen(true)} >
                     open dialog

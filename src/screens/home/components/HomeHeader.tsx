@@ -28,7 +28,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
                 type: AppProvider.actions.UPDATE_USER_INFO,
                 data: userInfo
             })
-        } catch (err:any) {
+        } catch (err) {
             Alert.alert("Không lấy được thông tin người dùng", err.message)
         }
     }
@@ -37,7 +37,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
         try {
             const {count} = await SonkimApiService.GetVouchers()
             setVouchers(count)
-        } catch (err:any) {
+        } catch (err) {
             Alert.alert("Không lấy được voucher", err.message)
         }
     }

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Box, Button, Heading, Input, Text } from "native-base";
-import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, StaticImages } from "../../share";
-import { useNavigation } from "@react-navigation/core";
-import {Dialog, ImageStatic} from "../../components";
+import React, {useState} from "react";
+import {Box, Button, Heading, Input, Text} from "native-base";
+import {Colors, LoyaltyProgramTypes, ScreenName, StaticImages} from "../../../../share";
+import ScreenHeader from "../../../../components/organisms/screen-header";
+import {useNavigation} from "@react-navigation/core";
+import {Dialog, ImageStatic, MyButton} from "../../../../components";
 
-const LinkMembershipForm = () => {
+type LinkMemberShipTypes = {
+    loyaltyProgram: LoyaltyProgramTypes,
+}
+export const LinkMemberShip: React.FC<LinkMemberShipTypes> = (props) => {
+
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
 
@@ -71,20 +75,10 @@ const LinkMembershipForm = () => {
                         rounded="xl"
                         placeholder="Nhập mã thẻ thành viên"
                     />
-                    <Button
-                        my={5}
-                        p={3}
-                        rounded="xl"
-                        size="lg"
-                        onPress={() => {
-                            setOpen(true);
-                        }}
-                        bgColor="white"
-                        _text={{ color: "white" }}
-                        opacity={70}
-                    >
-                        LIÊN KẾT
-                    </Button>
+                    <MyButton
+                        onPress={() => {setOpen(true)}}
+                        bgColor={"white"}
+                        _text={{ color: "primary.500" }}>LIÊN KẾT</MyButton>
                 </Box>
             </Box>
             <Dialog
@@ -115,6 +109,4 @@ const LinkMembershipForm = () => {
             </Box>
         </Box>
     );
-};
-
-export default LinkMembershipForm;
+}

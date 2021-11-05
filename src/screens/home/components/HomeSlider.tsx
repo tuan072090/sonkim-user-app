@@ -36,7 +36,7 @@ export const HomeSlider = () => {
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
-            <Pressable alignItems="center" width={sliderWidth} height={sliderWidth / 2.198}
+            <Pressable _pressed={{opacity: 0.8}} alignItems="center" width={sliderWidth} height={sliderWidth / 2.198}
                        onPress={() => _itemPress(item)}>
                 <Image borderRadius={Platform.OS === "ios" ? 26 : 10} uri={item.avatar.url} width={sliderImgWidth} height={sliderImgWidth / 2.198}
                        resizeMode="stretch"/>

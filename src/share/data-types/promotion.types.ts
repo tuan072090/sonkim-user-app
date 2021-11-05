@@ -1,3 +1,5 @@
+import {BusinessUnitType} from "./businessUnit.types";
+import {StoreTypes} from "./store.types";
 
 export type PromotionType={
     id: number|string,
@@ -5,6 +7,6 @@ export type PromotionType={
     avatar:any,
     rules: any[],
     voucher_codes_count:number,
-    business_unit:any,
-    stores: any[]
+    business_unit: BusinessUnitType,
+    stores: StoreTypes[]
 }

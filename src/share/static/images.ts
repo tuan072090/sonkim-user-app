@@ -1,6 +1,11 @@
 const StaticImages = {
+
     //  example
     banner_example: require("../../../static/imgs/banner_example.jpg"),
+
+    //  onboarding
+    onboarding_1: require('../../../static/imgs/onboarding_1.jpg'),
+    onboarding_2: require('../../../static/imgs/onboarding_2.jpg'),
 
     //  brand example
     gs25: require("../../../static/imgs/brands/gs25.png"),
@@ -46,7 +51,6 @@ const StaticImages = {
     //  membership backgroud
     link_membership_backgroud: require("../../../static/imgs/link_membership_backgroud.png"),
     reg_membership_backgroud: require("../../../static/imgs/reg_membership_backgroud.png"),
-
 
 
     //  icons

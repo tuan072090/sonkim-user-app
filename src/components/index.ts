@@ -19,6 +19,8 @@ import {
 import Image from "./atoms/image"
 import ImageStatic from './atoms/image/ImageStatic'
 import FullScreenLoader from './atoms/loader/FullScreenLoader';
+import MyButton from './atoms/button/index'
+import HTMLContent from "./atoms/html-content";
 
 //  molecules
 import Avatar from './molecules/avatar'
@@ -30,18 +32,22 @@ import ImagePicker from "./molecules/image-picker";
 import DatePicker from './organisms/datepicker'
 import FeatureItems from './organisms/feature-item'
 import MembershipCard from './organisms/membership-cards'
+import LoyaltyCard from './organisms/loyalty-cards'
 import VoucherCard from "./organisms/voucher-card";
 import AvatarPicker from './organisms/avatar-picker'
+import Dialog from "./organisms/dialog/index";
 
 //  templates
 import OnBoarding from './templates/onboarding'
 import AuthComponent from './templates/auth'
 import MainLayout from "./templates/layout/MainLayout";
 import {PageProps} from './templates/layout/mainLayoutProps.types'
+import ListBUCard from "./templates/list-loyalty-program";
 
 export {
     //  Atoms
     HomeIcon, NotificationIcon, NearByIcon, CartIcon, AccountIcon, ImageIcon, EditIcon,
+    MyButton,
     VoucherIcons,
     ValueIcon,
     ChevronLeftIcon,
@@ -57,6 +63,7 @@ export {
     Image,
     ImageStatic,
     FullScreenLoader,
+    HTMLContent,
 
     //  Molecules
     Avatar,
@@ -68,13 +75,16 @@ export {
     DatePicker,
     FeatureItems,
     MembershipCard,
+    LoyaltyCard,
     AvatarPicker,
     VoucherCard,
+    Dialog,
 
     //  Templates
     OnBoarding,
     AuthComponent,
-    MainLayout
+    MainLayout,
+    ListBUCard
 }
 
 export type {PageProps}

@@ -3,14 +3,13 @@ import { Box, Button, Input, ScrollView, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import { StaticImages, Translate } from "../../share";
 import LanguageProvider from "../../share/context/Language";
-import { ImageStatic } from "../../components";
+import {Dialog, ImageStatic} from "../../components";
 import {
     PointExchangericon,
     ArrowDropDownIcon,
 } from "../../components/atoms/icons/CommonIcons";
 import DialogPointChange from "../../components/organisms/dialog-point-exchange";
 import { Pressable } from "react-native";
-import DialogMemberShip from "../../components/organisms/dialog-membership";
 
 const TransferPointPage = () => {
     const [open, setOpen] = useState(false);
@@ -192,10 +191,9 @@ const TransferPointPage = () => {
                     onClose={() => setIsFrom(false)}
                     isOpen={isFrom}
                 />
-                <DialogMemberShip
+                <Dialog
                     isOpen={open}
                     onClose={() => setOpen(false)}
-                    logoUri={StaticImages.health_spa}
                     title="Xác nhận đổi điểm"
                     messenge="Bấm xác nhận để đổi 260 điểm từ thẻ tích điểm Health Spa của bạn tới thẻ tích điểm Lazada"
                     footer={<Button.Group space={5}>
@@ -207,7 +205,7 @@ const TransferPointPage = () => {
                         </Button>
                     </Button.Group>
                     }
-                ></DialogMemberShip>
+                />
             </ScrollView>
 
             <Box
