@@ -3,7 +3,7 @@ import {Box, Pressable, Text} from "native-base";
 import Carousel from 'react-native-snap-carousel';
 import {Colors, ScreenSize, StoreTypes} from "../../../share";
 import {ActivityIndicator, StyleSheet} from "react-native";
-import {Image, LocationIcon} from "../../../components";
+import {Image, LocationIcon, PressBox} from "../../../components";
 
 const itemWidth = ScreenSize.vw / 2 - 16
 
@@ -26,8 +26,7 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
     // @ts-ignore
     const _renderItem = ({item}) => {
         return (
-            <Pressable onPress={_onStorePress} _pressed={{opacity: 0.8}} width={itemWidth} bgColor="white" rounded="lg" p={2} ml={2} shadow={"3"}>
-
+            <PressBox onPress={_onStorePress} width={itemWidth} bgColor="white" rounded="lg" p={2} ml={2} shadow={"3"}>
                 <Box flex={1}>
                     <Image
                         uri={item.avatar?.url}
@@ -41,19 +40,13 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
                         {item.name}
                     </Text>
                 </Box>
-                {/*<Box mt={3} flexDirection="row">*/}
-                {/*    <Text px={2} fontSize="sm" fontWeight="semibold">*/}
-                {/*        {item.contact.contact_phone}*/}
-                {/*    </Text>*/}
-                {/*</Box>*/}
-
-            </Pressable>
+            </PressBox>
         );
     }
 
 
     return (
-        <Box width="100%" mb={3}>
+        <Box width="100%">
             {
                 !stores ? <ActivityIndicator color={Colors.primary["500"]}/>
                 : <Carousel

@@ -23,13 +23,17 @@ const NearByScreen = () => {
         }
     }
 
+    const _onFilterChange = () => {
+
+    }
+
     return (
         <Box flex={1} position="relative">
-            <SearchHeader/>
+            <SearchHeader onFilterChange={_onFilterChange}/>
 
             <MapContent stores={stores} indexFocused={indexFocused}/>
 
-            <Box position="absolute" bottom={0} left={0} width="100%">
+            <Box position="absolute" bottom={0} left={0} width="100%" pb={2}>
                 <ListStoreCard stores={stores} onStoreFocus={setIndexFocused}/>
             </Box>
         </Box>
