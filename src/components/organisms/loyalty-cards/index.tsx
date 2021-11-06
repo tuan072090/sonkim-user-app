@@ -15,7 +15,7 @@ const LoyaltyCard: React.FC<LoyaltyCardTypes> = ({item, ...props}) => {
 
     const _navigateToDetail = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN, {id: id});
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: id});
     };
 
     const cardBackground = levels[0]?.card_background?.url

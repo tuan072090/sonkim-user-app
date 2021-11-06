@@ -12,7 +12,6 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
     const _onPressHandler = (name: string) => {
         // @ts-ignore
         navigation.navigate(name)
-
     };
 
     let itemImage = StaticImages.fallback_img
@@ -23,7 +22,7 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
             itemImage = StaticImages.use_point
             itemLabel = "Tích dùng điểm"
             break;
-        case ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN:
+        case ScreenName.MEMBERSHIP_REGISTER_SELECT_SCREEN:
             itemImage = StaticImages.register_card
             itemLabel = "Đăng ký thẻ"
             break;
@@ -43,11 +42,11 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
             itemImage = StaticImages.rank_point
             itemLabel = "Thứ hạng"
             break;
-        case "Vouchers":
+        case ScreenName.VOUCHERS_SCREEN:
             itemImage = StaticImages.vouchers
             itemLabel = "Voucher"
             break;
-        case "GiftCards":
+        case ScreenName.GIFT_CARD_LIST_SCREEN:
             itemImage = StaticImages.gift_cards
             itemLabel = "Thẻ quà tặng"
             break;
@@ -55,7 +54,7 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
             itemImage = StaticImages.news
             itemLabel = "Tin tức"
             break;
-        case "Stores":
+        case ScreenName.STORES_SCREEN:
             itemImage = StaticImages.stores
             itemLabel = "Cửa hàng"
             break;
@@ -79,15 +78,15 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
 
 const FeatureItems = {
     UsePoint: (props: any) => <FeatureItem name={ScreenName.USE_POINT} {...props} />,
-    RegisterMembership: (props: any) => (<FeatureItem name={ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN} {...props} />),
-    LinkMembership: (props: any) => (<FeatureItem name="LinkMembership" {...props} />),
-    TransferPoint: (props: any) => (<FeatureItem name="TransferPoint" {...props} />),
-    History: (props: any) => <FeatureItem name="History" {...props} />,
+    RegisterMembership: (props: any) => (<FeatureItem name={ScreenName.MEMBERSHIP_REGISTER_SELECT_SCREEN} {...props} />),
+    LinkMembership: (props: any) => (<FeatureItem name={ScreenName.LINK_MEMBERSHIP} {...props} />),
+    TransferPoint: (props: any) => (<FeatureItem name={ScreenName.TRANSFER_POINT} {...props} />),
+    History: (props: any) => <FeatureItem name={ScreenName.TRANSACTION_HISTORY} {...props} />,
     RankPoint: (props: any) => <FeatureItem name="RankPoint" {...props} />,
-    Vouchers: (props: any) => <FeatureItem name="Vouchers" {...props} />,
-    GiftCards: (props: any) => <FeatureItem name="GiftCards" {...props} />,
+    Vouchers: (props: any) => <FeatureItem name={ScreenName.VOUCHERS_SCREEN} {...props} />,
+    GiftCards: (props: any) => <FeatureItem name={ScreenName.GIFT_CARD_LIST_SCREEN} {...props} />,
     News: (props: any) => <FeatureItem name="News" {...props} />,
-    Stores: (props: any) => <FeatureItem name="Stores" {...props} />
+    Stores: (props: any) => <FeatureItem name={ScreenName.STORES_SCREEN} {...props} />
 };
 
 export default FeatureItems;

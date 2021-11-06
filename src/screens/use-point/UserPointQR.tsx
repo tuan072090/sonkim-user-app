@@ -1,23 +1,25 @@
 import React, { useContext, useState } from "react";
 import { Box, Button, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
+import {Colors, ScreenName, ScreenSize, Translate, useLocalStorage} from "../../share";
 import LanguageProvider from "../../share/context/Language";
+import { useNavigation, useRoute } from "@react-navigation/core";
+import {Dialog, MainLayout, MyButton, PageProps, QrCode} from "../../components";
+import {ActivityIndicator} from "react-native";
 
-import { useNavigation } from "@react-navigation/core";
-import {Dialog, QrCode} from "../../components";
+const QrCodeSize = Math.ceil(ScreenSize.vw * 0.7);
 
-const qrWWidth = ScreenSize.vw - 72;
-const UsePointQR = () => {
+const UsePointQR:React.FC<PageProps> = MainLayout(() => {
     const { language } = useContext(LanguageProvider.context);
     const navigation = useNavigation();
-    const [choise, setChoise] = useState("");
     const [open, setOpen] = useState(false);
+    const [loyaltyPrograms, setLoyaltyPrograms] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
+    const {params}:any = useRoute()
 
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM);
-    };
+    //  @ts-ignore
+    const loyaltyProgram = loyaltyPrograms ? loyaltyPrograms.find(item => item.id === params["id"]) : null
+
+    console.log("loyaltyProgram...", loyaltyProgram)
 
     return (
         <Box flex={1}>
@@ -26,25 +28,41 @@ const UsePointQR = () => {
                 title={Translate[language].usePoint}
                 bgColor="primary.500"
             />
-            <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
-                <Text fontSize="lg" fontWeight="semibold" textAlign="center">
-                    Mã thẻ:{" "}
-                    <Text fontSize="lg" fontWeight="semibold" color="primary.500">
-                        X123X123
-                    </Text>
+
+            {
+                !loyaltyProgram ? <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
+                    <ActivityIndicator color={Colors.primary["500"]}/>
+                    </Box>
+                    : <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
+                        <Text fontSize="lg" fontWeight="semibold" textAlign="center">
+                            Mã thẻ:{" "}
+                            <Text fontSize="lg" fontWeight="semibold" color="primary.500">
+                                X123X123
+                            </Text>
+                        </Text>
+                        <Text fontSize="md" color="muted.400" textAlign="center">
+                            Vui lòng đưa mã cho nhân viên để sử dụng hoặc tích điểm
+                        </Text>
+                        <Box mt={20} alignContent="center">
+                            <QrCode
+                                code={"Something"}
+                                size={QrCodeSize}
+                                alignItems="center"
+                                logoUri={loyaltyProgram.avatar.url}
+                            />
+                        </Box>
+                    </Box>
+            }
+
+            <Box p={5} alignContent="flex-end" bgColor="white">
+                <MyButton width={'100%'} onPress={() => setOpen(true)} >
+                    open dialog
+                </MyButton>
+                <Text py={5} underline fontSize="md" color="red.400" textAlign="center">
+                    Xem lịch sử quét mã
                 </Text>
-                <Text fontSize="md" color="muted.400" textAlign="center">
-                    Vui lòng đưa mã cho nhân viên để sử dụng hoặc tích điểm
-                </Text>
-                <Box mt={20} alignContent="center">
-                    <QrCode
-                        code={"Something"}
-                        size={qrWWidth}
-                        alignItems="center"
-                        logoUri="https://sonkim.s3.ap-southeast-1.amazonaws.com/lazada_d75ab18c1c.png?61505.40000000037"
-                    />
-                </Box>
             </Box>
+
             <Dialog
                 isOpen={open}
                 onClose={() => setOpen(false)}
@@ -56,17 +74,10 @@ const UsePointQR = () => {
                     </Button>
                 }
             />
-
-            <Box p={5} alignContent="flex-end" bgColor="white">
-                <Button width={'100%'} rounded="xl" onPress={() => setOpen(true)} >
-                    open dialog
-                </Button>
-                <Text pb={5} underline fontSize="md" color="red.400" textAlign="center">
-                    Xem lịch sử quét mã
-                </Text>
-            </Box>
         </Box>
     );
-};
+})
+
+UsePointQR.defaultProps = {authRequire: true}
 
 export default UsePointQR;

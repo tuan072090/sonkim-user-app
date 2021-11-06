@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import LocalStorageService from "../services/local-storage";
 
-const KEY_LOCAL_USER_CARDS = "userRegisteredCards"
-
 function isJson(str:string) {
     try {
         JSON.parse(str);
@@ -65,6 +63,8 @@ const useLocalStorage = (key:string, initialValue:any) => {
     return [storedValue, setValue];
 }
 
-useLocalStorage.KEY_LOCAL_USER_CARDS = KEY_LOCAL_USER_CARDS
+
+useLocalStorage.KEY_LOCAL_USER_CARDS = "userRegisteredCards"
+useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS = "loyaltyPrograms"
 
 export {useLocalStorage}

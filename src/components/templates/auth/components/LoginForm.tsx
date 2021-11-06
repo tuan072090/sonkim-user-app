@@ -45,7 +45,7 @@ export const LoginForm = () => {
                     index: newRoutes.length - 1,
                 });
             });
-            // navigation.goBack()
+            navigation.goBack()
         } catch (err) {
             Alert.alert(err.message)
         }

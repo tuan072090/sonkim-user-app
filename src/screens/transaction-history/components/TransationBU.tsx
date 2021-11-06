@@ -3,7 +3,7 @@ import { Box, Center, HStack, Pressable, Text, VStack } from "native-base";
 import { HistoryIcon } from "../../../components";
 import { StaticImages } from "../../../share";
 import { ArrowIcon } from "../../../components/atoms/icons/CommonIcons";
-import CardBUPoint from "../../../components/templates/list-loyalty-program/CardBUPoint";
+import CardBUPoint from "../../../components/templates/list-loyalty-select/CardBUPoint";
 
 const TransationBU = () => {
     return (

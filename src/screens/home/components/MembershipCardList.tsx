@@ -9,8 +9,9 @@ import {useNavigation} from "@react-navigation/native";
 export const MembershipCardList = () => {
     const {accessToken} = useContext(AppProvider.context)
     const navigation = useNavigation()
-    const [loyaltyPrograms, setLoyaltyPrograms] = useState<LoyaltyProgramTypes[] | null>(null)
+    const [loyaltyPrograms, setLoyaltyPrograms] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
     const [userMemberShipCards, setUserMembershipCars] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
+
     let isMounted = false
 
     React.useEffect(() => {
@@ -63,11 +64,13 @@ export const MembershipCardList = () => {
             {
                 !loyaltyPrograms
                     ? <Box p={5}><ActivityIndicator color={Colors.primary["500"]}/></Box>
-                    : loyaltyPrograms.map((item, index) => {
+                    :     // @ts-ignore
+                    loyaltyPrograms.map((item, index) => {
                         let registeredCard = null
                         if(userMemberShipCards && userMemberShipCards.length > 0){
                             registeredCard = userMemberShipCards.find((card:any) => card.loyalty_program.id === item.id)
                         }
+
                         if(registeredCard)
                             return <MembershipCard  mt={4} item={registeredCard} key={index}/>
 

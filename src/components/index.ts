@@ -44,7 +44,7 @@ import OnBoarding from './templates/onboarding'
 import AuthComponent from './templates/auth'
 import MainLayout from "./templates/layout/MainLayout";
 import {PageProps} from './templates/layout/mainLayoutProps.types'
-import ListBUCard from "./templates/list-loyalty-program";
+import ListLoyaltySelect from "./templates/list-loyalty-select";
 import { Typo } from "./atoms/typo";
 import MySwitch from "./atoms/switch";
 import PressBox from "./atoms/press-box";
@@ -93,7 +93,7 @@ export {
     OnBoarding,
     AuthComponent,
     MainLayout,
-    ListBUCard
+    ListLoyaltySelect
 }
 
 export type {PageProps}

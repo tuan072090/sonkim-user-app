@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext} from "react";
 import {PageProps} from "./mainLayoutProps.types";
 import AppProvider from "../../../share/context";
 import {PhoneInputScreen} from "../../../screens/auth/PhoneInputScreen";

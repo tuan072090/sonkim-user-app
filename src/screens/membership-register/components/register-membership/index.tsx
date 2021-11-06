@@ -28,7 +28,7 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
 
     const _navToCardDetail = () => {
         //  @ts-ignore
-        navigation.navigate(ScreenName.MEMBERSHIP_CARD_DETAIL_SCREEN, {id: cardInfo.id});
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: cardInfo.id});
         setCardInfo(null)
     }
 

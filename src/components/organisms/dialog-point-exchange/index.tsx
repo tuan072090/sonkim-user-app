@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Button, Modal, ScrollView, Text} from "native-base";
 import {useNavigation} from "@react-navigation/core";
 import {DialogPointChanger} from "./dialogPointExchange.types";
-import {ListBUCard} from "../../index";
+import {ListLoyaltySelect} from "../../index";
 
 const DialogPointChange: React.FC<DialogPointChanger> = ({
                                                              onClose,
@@ -29,7 +29,7 @@ const DialogPointChange: React.FC<DialogPointChanger> = ({
                 </Modal.Header>
                 <Modal.Body>
                     <ScrollView w='100%'>
-                        <ListBUCard/>
+                        <ListLoyaltySelect/>
                     </ScrollView>
                 </Modal.Body>
                 <Modal.Footer mb={2} bgColor="white">

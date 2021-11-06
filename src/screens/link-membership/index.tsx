@@ -1,20 +1,24 @@
 import React, { useContext, useState } from "react";
 import { Box, ScrollView, Button, Text } from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, Translate } from "../../share";
+import {LoyaltyProgramTypes, ScreenName, Translate} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import { useNavigation } from "@react-navigation/core";
-import {ListBUCard} from "../../components";
+import {ListLoyaltySelect, Typo} from "../../components";
 
 const LinkMembership = () => {
     const { language } = useContext(LanguageProvider.context);
+    const [loyaltySelected, setLoyaltySelected] = useState<LoyaltyProgramTypes | null>(null)
 
     const navigation = useNavigation();
 
-    const [choise, setChoise] = useState('')
+    const _onSelect = (data:LoyaltyProgramTypes) => {
+        setLoyaltySelected(data)
+    }
+
     const _navigateForm = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM)
+        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM, {id: loyaltySelected.id})
     }
 
     return (
@@ -25,9 +29,11 @@ const LinkMembership = () => {
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
-                <Text mb={3} color='muted.500' fontSize="md" fontWeight="semibold">Chọn thẻ bạn muốn liên kết</Text>
-                <ListBUCard choise={choise} setChoise={setChoise}/>
-                <Box mt={20}></Box>
+                <Typo type="subtitle16" mb={3} color='muted.500'>Chọn thẻ bạn muốn liên kết</Typo>
+
+                <ListLoyaltySelect onSelect={_onSelect} />
+
+                <Box mt={20}/>
             </ScrollView>
             <Box width="100%" bgColor="white" padding={3} flexDirection="row" justifyContent='center' alignContent="center" px={2} safeAreaTop={true}>
                 <Button w="100%" onPress={_navigateForm} rounded="xl" py={3} size="lg" colorScheme="primary">

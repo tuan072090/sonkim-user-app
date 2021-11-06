@@ -35,7 +35,7 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
 
     const _navigateStorepage = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.STORE);
+        navigation.navigate(ScreenName.STORE_SCREEN);
     };
 
     const _navigateListVoucher = () => {

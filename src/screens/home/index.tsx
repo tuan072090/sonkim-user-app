@@ -15,7 +15,7 @@ const HomeScreen = () => {
     useEffect(() => {
         setTimeout(function () {
             // @ts-ignore
-            // navigation.navigate(ScreenName.MEMBERSHIP_CARD_DETAIL_SCREEN, {id: 1});
+            // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
             // navigation.navigate(ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN)
             // setLanguage("en")
         }, 1000)
@@ -32,6 +32,7 @@ const HomeScreen = () => {
                 <Categories/>
 
                 <MembershipCardList/>
+
             </ScrollView>
         </>
     )

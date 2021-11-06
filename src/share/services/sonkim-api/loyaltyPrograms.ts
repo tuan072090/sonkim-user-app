@@ -1,9 +1,9 @@
 import FetchDataService from "../fetch"
 import {UserMemberShipCardType} from "../..";
 
-export const GetLoyaltyPrograms = async (params={_limit:50}) => {
+export const GetLoyaltyPrograms = async (params: any = {_limit: 50}) => {
     try {
-        const {count, loyalty_programs} = await FetchDataService.GET("/user-api/loyalty-programs",params)
+        const {count, loyalty_programs} = await FetchDataService.GET("/user-api/loyalty-programs", params)
 
         return loyalty_programs
     } catch (err) {
@@ -11,9 +11,9 @@ export const GetLoyaltyPrograms = async (params={_limit:50}) => {
     }
 }
 
-export const GetLoyaltyProgramDetail = async (id:number|string) => {
+export const GetLoyaltyProgramDetail = async (id: number | string) => {
     try {
-        const loyalty_program = await FetchDataService.GET("/user-api/loyalty-programs/"+id)
+        const loyalty_program = await FetchDataService.GET("/user-api/loyalty-programs/" + id)
 
         return loyalty_program
     } catch (err) {
@@ -21,7 +21,7 @@ export const GetLoyaltyProgramDetail = async (id:number|string) => {
     }
 }
 
-export const RegisterMemberShipCard = async (id:number|string) => {
+export const RegisterMemberShipCard = async (id: number | string) => {
     try {
         const data = await FetchDataService.POST("/user-api/membership-cards", {loyaltyProgramId: id})
 
@@ -31,7 +31,7 @@ export const RegisterMemberShipCard = async (id:number|string) => {
     }
 }
 
-export const UpdateMemberShipCardInfo = async (id:string|number,payload:any) => {
+export const UpdateMemberShipCardInfo = async (id: string | number, payload: any) => {
     try {
         const data = await FetchDataService.PUT(`/user-api/membership-cards/${id}/info`, payload)
 
@@ -41,9 +41,9 @@ export const UpdateMemberShipCardInfo = async (id:string|number,payload:any) => 
     }
 }
 
-export const GetUserMembershipCards = async (params = {_limit: 50}):Promise<UserMemberShipCardType[]> => {
+export const GetUserMembershipCards = async (params = {_limit: 50}): Promise<UserMemberShipCardType[]> => {
     try {
-        const {count, membership_cards} = await FetchDataService.GET("/user-api/membership-cards",params)
+        const {count, membership_cards} = await FetchDataService.GET("/user-api/membership-cards", params)
 
         return membership_cards
     } catch (err) {
@@ -51,9 +51,9 @@ export const GetUserMembershipCards = async (params = {_limit: 50}):Promise<User
     }
 }
 
-export const GetUserMembershipCardDetail = async (id:string|number):Promise<UserMemberShipCardType> => {
+export const GetUserMembershipCardDetail = async (id: string | number): Promise<UserMemberShipCardType> => {
     try {
-        const membershipCard = await FetchDataService.GET("/user-api/membership-cards/"+id)
+        const membershipCard = await FetchDataService.GET("/user-api/membership-cards/" + id)
 
         return membershipCard
     } catch (err) {

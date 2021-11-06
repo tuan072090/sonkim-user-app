@@ -6,7 +6,7 @@ import { StaticImages, Translate } from "../../share";
 import { HistoryIcon, ImageStatic } from "../../components";
 import ListCardStore from "../../components/molecules/card-store/ListCardStore";
 import LanguageProvider from "../../share/context/Language";
-import CardBU from "../../components/templates/list-loyalty-program";
+import CardBU from "../../components/templates/list-loyalty-select";
 import TransationBU from "./components/TransationBU";
 
 const TransactionHistory = () => {

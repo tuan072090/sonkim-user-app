@@ -15,7 +15,7 @@ const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
 
     const _navigateDetail = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.MEMBERSHIP_CARD_DETAIL_SCREEN, {id: id});
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: id});
     };
 
     const nameOnCard = membership_info? membership_info.name : "User"
