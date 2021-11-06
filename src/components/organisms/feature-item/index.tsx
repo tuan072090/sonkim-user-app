@@ -1,5 +1,5 @@
 import React from "react";
-import {StaticImages} from "../../../share";
+import {ScreenName, StaticImages} from "../../../share";
 import {Pressable} from "native-base";
 import ImageStatic from "../../atoms/image/ImageStatic";
 import {FeatureItemTypes} from "./featureItem.types";
@@ -19,23 +19,23 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
     let itemLabel = ".."
 
     switch (name){
-        case "UsePoint":
+        case ScreenName.USE_POINT:
             itemImage = StaticImages.use_point
             itemLabel = "Tích dùng điểm"
             break;
-        case "RegisterMembership":
+        case ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN:
             itemImage = StaticImages.register_card
             itemLabel = "Đăng ký thẻ"
             break;
-        case "LinkMembership":
+        case ScreenName.LINK_MEMBERSHIP:
             itemImage = StaticImages.link_card
             itemLabel = "Liên kết thẻ"
             break;
-        case "TransferPoint":
+        case ScreenName.TRANSFER_POINT:
             itemImage = StaticImages.transfer_point
             itemLabel = "Đổi điểm"
             break;
-        case "History":
+        case ScreenName.TRANSACTION_HISTORY:
             itemImage = StaticImages.history_point
             itemLabel = "Lịch sử"
             break;
@@ -78,8 +78,8 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
 };
 
 const FeatureItems = {
-    UsePoint: (props: any) => <FeatureItem name="UsePoint" {...props} />,
-    RegisterMembership: (props: any) => (<FeatureItem name="RegisterMembership" {...props} />),
+    UsePoint: (props: any) => <FeatureItem name={ScreenName.USE_POINT} {...props} />,
+    RegisterMembership: (props: any) => (<FeatureItem name={ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN} {...props} />),
     LinkMembership: (props: any) => (<FeatureItem name="LinkMembership" {...props} />),
     TransferPoint: (props: any) => (<FeatureItem name="TransferPoint" {...props} />),
     History: (props: any) => <FeatureItem name="History" {...props} />,

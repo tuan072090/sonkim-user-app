@@ -7,9 +7,8 @@ import {LoyaltyProgramTypes, SonkimApiService} from "../../share";
 import RegisterMembership from "./components/register-membership";
 import {LinkMemberShip} from "./components/link-membership/LinkMemberShip";
 import {FullScreenLoader, MainLayout} from "../../components";
-import AccountInfo from "../account/AccountInfo";
 
-const LoyaltyRegisterScreen:React.FC<any> = MainLayout(() => {
+const MembershipRegisterScreen:React.FC<any> = MainLayout(() => {
   const route = useRoute()
   const [loyaltyProgram, setLoyaltyProgram] = useState<null|LoyaltyProgramTypes>(null)
   const [type, setType] = useState<"register"|"link"|null>(null)
@@ -44,5 +43,5 @@ const LoyaltyRegisterScreen:React.FC<any> = MainLayout(() => {
 })
 
 //  add auth require
-LoyaltyRegisterScreen.defaultProps = {authRequire: true}
-export default LoyaltyRegisterScreen
+MembershipRegisterScreen.defaultProps = {authRequire: true}
+export default MembershipRegisterScreen

@@ -12,8 +12,7 @@ export const ScreenName = {
     RESET_PASSWORD_SCREEN: "ResetPassword",
     ACCOUNT_SCREEN: "Account",
     ACCOUNT_SETTING_SCREEN: "AccountSetting",
-    LOYALTY_PROGRAM_DETAIL_SCREEN: "LoyaltyProgramDetail",
-    LOYALTY_PROGRAM_REGISTER_SCREEN: "LoyaltyRegister",
+    MEMBERSHIP_CARD_REGISTER_SCREEN: "LoyaltyRegister",
     MEMBERSHIP_CARD_DETAIL_SCREEN: "MembershipCardDetail",
     USER_LIST_CARD: "UserListCard",
     USER_INFO: 'UserInfo',
@@ -42,8 +41,7 @@ export const ScreenTitle = {
     [ScreenName.LOGIN_SCREEN]: "Đăng nhập",
     [ScreenName.REGISTER_SCREEN]: "Đăng ký",
     [ScreenName.RESET_PASSWORD_SCREEN]: "Đổi mật khẩu",
-    [ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN]: "Chi tiết chương trình",
-    [ScreenName.LOYALTY_PROGRAM_REGISTER_SCREEN]: "Đăng ký thẻ thành viên",
+    [ScreenName.MEMBERSHIP_CARD_REGISTER_SCREEN]: "Đăng ký thẻ thành viên",
     [ScreenName.USER_LIST_CARD]: "Danh sách thẻ",
     [ScreenName.USER_INFO]: "Thông tin cá nhân",
     [ScreenName.LINK_MEMBERSHIP]: "Liên kết thẻ",
@@ -90,13 +88,6 @@ export const Deeplink = {
 
         [ScreenName.VOUCHER_DETAIL]: {
             path: 'voucher/:id',
-            parse: {
-                id: String,
-            },
-        },
-
-        [ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN]: {
-            path: 'loyalty/:id',
             parse: {
                 id: String,
             },

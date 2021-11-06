@@ -5,7 +5,7 @@ import { StaticImages } from "../../share";
 import { ImageStatic } from "../../components";
 import ListCardStore from "../../components/molecules/card-store/ListCardStore";
 
-const StorePage = () => {
+const StoreScreen = () => {
     return (
         <Box flex={1} position="relative" alignItems="center">
             <ImageStatic
@@ -32,4 +32,4 @@ const StorePage = () => {
     );
 };
 
-export default StorePage;
+export default StoreScreen;

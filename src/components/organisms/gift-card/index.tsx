@@ -12,7 +12,7 @@ const GiftCard: React.FC<GiftCardPropsType> = ({giftCard, ...props}) => {
 
     const _navigateGiftCardDetail = () => {
         //@ts-ignore
-        navigation.navigate(ScreenName.GIFTCARD_DETAIL, {id: giftCard.id})
+        navigation.navigate(ScreenName.GIFT_CARD_DETAIL_SCREEN, {id: giftCard.id})
     }
 
     const _renderPrice = () => {

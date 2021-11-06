@@ -40,7 +40,7 @@ const ListBUCard: React.FC<any> = () => {
                     return (
                         <BUCard
                             onPress={() => _choiseBu(item.name)}
-                            active={choise === item.name ? true : false}
+                            active={choise === item.name}
                             key={item.name}
                             url={{ uri: item.url }}
                             name={item.name}
