@@ -24,7 +24,7 @@ import VoucherDetail from './vouchers/VoucherDetail';
 import TransactionHistory from './transaction-history';
 import {ArticleScreen} from "./article";
 import GiftCardListScreen from './gift-cards';
-import GiftCardDetail from './gift-card-detail';
+import GiftCardDetail from './gift-cards/GiftCardDetail';
 import MembershipRegisterScreen from "./membership-register";
 import MemberShipCardDetailScreen from "./membership-card-detail";
 import {MembershipRegisterSelect} from "./membership-register/MembershipRegisterSelect";

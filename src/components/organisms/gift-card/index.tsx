@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/core'
 import {Box, HStack, Text, VStack} from 'native-base'
 import React from 'react'
-import {Image, MyButton, PressBox, Typo, ValueIcon} from '../../../components'
+import {Image, MyButton, PressBox, PriceDisplay, Typo, ValueIcon} from '../../../components'
 import {Formatter, ScreenName} from '../../../share'
 import {FormatVND} from '../../../share/utils/formatter'
 import {GiftCardPropsType} from './giftCard.type'
@@ -14,31 +14,6 @@ const GiftCard: React.FC<GiftCardPropsType> = ({giftCard, ...props}) => {
         //@ts-ignore
         navigation.navigate(ScreenName.GIFT_CARD_DETAIL_SCREEN, {id: giftCard.id})
     }
-
-    const _renderPrice = () => {
-
-        if (!price && !sale_price && (!point_prices || point_prices.length === 0)) {
-            return <Typo type="subtitle16" color="primary.500">Miễn phí</Typo>
-        } else {
-            if (!sale_price && price) {
-                return <Typo type="subtitle16" color="primary.500">{Formatter.FormatVND(price || 0)}đ</Typo>
-            } else if (sale_price && price) {
-                return (
-                    <Box>
-                        <Typo type="subtitle16" color="primary.500">{Formatter.FormatVND(sale_price || 0)}đ</Typo>
-                        <Typo style={{textDecorationLine: "line-through"}} type="caption"
-                              color="gray.500">{Formatter.FormatVND(price || 0)}đ</Typo>
-                    </Box>
-                )
-            } else if (point_prices) {
-                const pointPrice = point_prices[0]
-                return <Typo type="subtitle16" color="primary.500">{pointPrice.price + " " + pointPrice.unit}</Typo>
-            } else {
-                return <Typo type="subtitle16" color="primary.500">Miễn phí</Typo>
-            }
-        }
-    }
-
 
     return (
         <PressBox onPress={_navigateGiftCardDetail}>
@@ -61,11 +36,10 @@ const GiftCard: React.FC<GiftCardPropsType> = ({giftCard, ...props}) => {
                 </HStack>
                 <Box borderWidth={1} borderColor="#C8C8C8" borderStyle="dashed" width="80" mx="auto"/>
                 <HStack justifyContent="space-between" alignItems="center" px={4} my={2}>
-                    {
-                        _renderPrice()
-                    }
 
-                    <MyButton bgColor="rgba(8,105,129,0.2)">
+                    <PriceDisplay price={price} sale_price={sale_price} point_prices={point_prices}/>
+
+                    <MyButton bgColor="rgba(8,105,129,0.2)" onPress={_navigateGiftCardDetail}>
                         <Typo type="subtitle14" color='rgba(8,105,129,1)'>Mua thẻ quà tặng</Typo>
                     </MyButton>
                 </HStack>

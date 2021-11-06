@@ -48,6 +48,7 @@ import ListLoyaltySelect from "./templates/list-loyalty-select";
 import { Typo } from "./atoms/typo";
 import MySwitch from "./atoms/switch";
 import PressBox from "./atoms/press-box";
+import PriceDisplay from "./molecules/price-display";
 
 export {
     //  Atoms
@@ -78,6 +79,7 @@ export {
     Picker,
     QrCode,
     ImagePicker,
+    PriceDisplay,
 
     //  Organisms
     DatePicker,

@@ -9,7 +9,7 @@ export type GiftCardType = {
     sale_price?: number,
     cash: number,
     point_prices: any[],
-    description: string,
+    body: string,
     rules: any[],
     loyalty_program: LoyaltyProgramTypes,
     stores: StoreTypes[]

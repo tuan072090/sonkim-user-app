@@ -32,11 +32,11 @@ export const GiftCardList: React.FC<{ membershipCard: UserMemberShipCardType }> 
     const _navigateListGiftCard = (filter:boolean = true) => {
         if(!filter){
             //  @ts-ignore
-            navigation.navigate(ScreenName.GIFTCARD_SCREEN)
+            navigation.navigate(ScreenName.GIFT_CARD_LIST_SCREEN)
             return
         }
         //  @ts-ignore
-        navigation.navigate(ScreenName.GIFTCARD_SCREEN, {filter: {loyalty_program: loyalty_program.id}})
+        navigation.navigate(ScreenName.GIFT_CARD_LIST_SCREEN, {filter: {loyalty_program: loyalty_program.id}})
     }
 
     return (
@@ -44,9 +44,10 @@ export const GiftCardList: React.FC<{ membershipCard: UserMemberShipCardType }> 
             <Typo type="subtitle16" color="primary.500">
                 Danh sách thẻ quà tặng
             </Typo>
-            <Box alignItems="center" mt={3}>
+
+            <Box alignItems="center">
                 {
-                    !giftCards ? <ActivityIndicator color={Colors.primary["500"]}/>
+                    !giftCards ? <ActivityIndicator color="white"/>
                         : giftCards.length === 0 ? <>
                             <Typo type={"subtitle14"} color="red.500" textAlign="center">Chưa có ưu thẻ quà tặng nào</Typo>
                             <MyButton onPress={() => _navigateListGiftCard(false)} mt={3}

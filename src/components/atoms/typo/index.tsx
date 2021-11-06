@@ -26,6 +26,10 @@ export const Typo: React.FC<TypoTypes & ITextProps & React.RefAttributes<unknown
             fontSize = FontSizes["2xs"]
             fontWeight = FontWeights.normal
             break;
+        case "title":
+            fontSize = FontSizes.lg
+            fontWeight = FontWeights.bold
+            break;
         case "subtitle14":
             fontSize = FontSizes.sm
             fontWeight = FontWeights.medium
