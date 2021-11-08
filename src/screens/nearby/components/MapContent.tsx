@@ -28,7 +28,7 @@ export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFo
         }
     }, [indexFocused])
 
-    const mapCenter =  stores && stores.length > 0 ? stores[indexFocused].location : {latitude: 10.7721095, longitude: 106.6960844}
+    const mapCenter =  stores && stores.length > 0 && stores[indexFocused] ? stores[indexFocused].location : {latitude: 10.7721095, longitude: 106.6960844}
 
     return (
         <Box width="100%" height="100%" bgColor="gray.100">

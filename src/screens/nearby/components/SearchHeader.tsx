@@ -1,4 +1,4 @@
-import React, {memo, useState} from "react";
+import React, {memo, useRef, useState} from "react";
 import {Box, ScrollView, SearchIcon, Text} from "native-base";
 import {ListIcon, PressBox, Typo} from "../../../components";
 import {LoyaltyProgramTypes, useLocalStorage} from "../../../share";
@@ -6,15 +6,21 @@ import {LoyaltyProgramTypes, useLocalStorage} from "../../../share";
 type SearchHeaderProps = {
     onFilterChange: (filter: any) => void
 }
+
 export const SearchHeader: React.FC<SearchHeaderProps> = memo(({onFilterChange}) => {
     const [loyaltySelect, setLoyaltySelect] = useState<null|LoyaltyProgramTypes>(null)
     const [loyaltyProgramsLocal] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
+    const LoyaltyListRef = useRef()
+    const itemWidth = 90
 
-    const _loyaltyPress = (item: LoyaltyProgramTypes | null = null) => {
+    const _loyaltyPress = (item: LoyaltyProgramTypes | null = null, index: number) => {
         setLoyaltySelect(item)
 
         //  do store không chứa loyalty mà chứa business unit
         onFilterChange({business_unit: item ? item.business_unit.id : "all"})
+
+        //  @ts-ignore
+        LoyaltyListRef.current.scrollTo({ x: index*itemWidth, y: 0, animated: true })
     }
 
     return (
@@ -49,8 +55,8 @@ export const SearchHeader: React.FC<SearchHeaderProps> = memo(({onFilterChange})
             </Box>
 
             <Box width="100%" pt={2} pb={1}>
-                <ScrollView horizontal={true}>
-                    <PressBox px={3} pb={2} onPress={() => _loyaltyPress()}>
+                <ScrollView ref={LoyaltyListRef} horizontal={true}>
+                    <PressBox style={{width: itemWidth}} alignItems="center" pb={2} onPress={() => _loyaltyPress(null, 0)}>
                         <Box p={1} borderBottomWidth={1} borderBottomColor={!loyaltySelect ? "white" : "transparent"}>
                             <Typo type="body14" color="white" textTransform="uppercase">Tất cả</Typo>
                         </Box>
@@ -59,9 +65,9 @@ export const SearchHeader: React.FC<SearchHeaderProps> = memo(({onFilterChange})
                         loyaltyProgramsLocal && loyaltyProgramsLocal.map((item: LoyaltyProgramTypes, index: number) => {
                             const isActive = loyaltySelect && loyaltySelect.id === item.id
                             return (
-                                <PressBox px={3} pb={2} key={index} onPress={() => _loyaltyPress(item)}>
-                                    <Box p={1} borderBottomWidth={1} borderBottomColor={isActive ? "white" : "transparent"}>
-                                        <Typo type="body14" color="white" textTransform="uppercase">{item.name}</Typo>
+                                <PressBox style={{width: itemWidth}} alignItems="center" pb={2} key={index} onPress={() => _loyaltyPress(item, index)}>
+                                    <Box py={1} borderBottomWidth={1} borderBottomColor={isActive ? "white" : "transparent"}>
+                                        <Typo numberOfLines={1} type="body14" color="white" textTransform="uppercase">{item.name}</Typo>
                                     </Box>
                                 </PressBox>
                             )
