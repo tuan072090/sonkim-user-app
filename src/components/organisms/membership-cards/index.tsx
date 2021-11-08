@@ -7,6 +7,9 @@ import {useNavigation} from "@react-navigation/core";
 import Image from "../../atoms/image";
 import {Typo} from "../../index";
 
+/**
+ * Card đã đăng ký
+ */
 const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
     const navigation = useNavigation();
     const {id, label,point, loyalty_program, membership_info} = item
