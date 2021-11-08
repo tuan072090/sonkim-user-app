@@ -11,8 +11,10 @@ export const SearchHeader: React.FC<SearchHeaderProps> = memo(({onFilterChange})
     const [loyaltyProgramsLocal] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
 
     const _loyaltyPress = (item: LoyaltyProgramTypes | null = null) => {
-        console.log("item change...", item)
         setLoyaltySelect(item)
+
+        //  do store không chứa loyalty mà chứa business unit
+        onFilterChange({business_unit: item ? item.business_unit.id : "all"})
     }
 
     return (

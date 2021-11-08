@@ -20,7 +20,6 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
 
     const _onSnapToItem = (index:number) => {
         onStoreFocus(index)
-        console.log("snap to index", index)
     }
 
     // @ts-ignore
@@ -44,11 +43,10 @@ export const ListStoreCard:React.FC<ListStoreCardType> = memo(({stores, onStoreF
         );
     }
 
-
     return (
         <Box width="100%">
             {
-                !stores ? <ActivityIndicator color={Colors.primary["500"]}/>
+                !stores ? <ActivityIndicator color={Colors.primary["500"]} size="large"/>
                 : <Carousel
                         onSnapToItem={_onSnapToItem}
                         sliderWidth={ScreenSize.vw}

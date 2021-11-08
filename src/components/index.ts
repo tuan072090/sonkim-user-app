@@ -49,6 +49,7 @@ import { Typo } from "./atoms/typo";
 import MySwitch from "./atoms/switch";
 import PressBox from "./atoms/press-box";
 import PriceDisplay from "./molecules/price-display";
+import FloatMessage from "./molecules/float-message";
 
 export {
     //  Atoms
@@ -80,6 +81,7 @@ export {
     QrCode,
     ImagePicker,
     PriceDisplay,
+    FloatMessage,
 
     //  Organisms
     DatePicker,

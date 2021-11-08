@@ -13,16 +13,22 @@ interface MapContentType extends React.PropsWithChildren<any> {
 
 export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFocused = 0}) => {
     const mapRef = useRef()
+    const markersRef = useRef<any[]>([])
 
     useEffect(() => {
         //  animateToCoordinate
         if(mapRef.current && stores){
             //  @ts-ignore
             mapRef.current.animateToCoordinate(stores[indexFocused].location)
+            const showMarkerInfoTimeout = setTimeout(() => {
+                markersRef.current[indexFocused].showCallout()
+            },500)
+
+            return () => clearTimeout(showMarkerInfoTimeout)
         }
     }, [indexFocused])
 
-    const mapCenter =  stores ? stores[indexFocused].location : {latitude: 10.7721095, longitude: 106.6960844}
+    const mapCenter =  stores && stores.length > 0 ? stores[indexFocused].location : {latitude: 10.7721095, longitude: 106.6960844}
 
     return (
         <Box width="100%" height="100%" bgColor="gray.100">
@@ -39,16 +45,17 @@ export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFo
                     ...mapCenter,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421
-                }}
-            >
+                }}>
                 {
                     stores && stores.map((store, index) => {
                         if (!store.location)
                             return null
 
+
                         return (
                             <Marker
-                                key={index}
+                                ref={ref => {markersRef.current[index] = ref}}
+                                key={store.id+"_"+index}
                                 coordinate={store.location}
                                 title={store.name}
                                 description={store.location.address}
