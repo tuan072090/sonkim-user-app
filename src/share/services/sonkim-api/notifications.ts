@@ -9,3 +9,13 @@ export const GetNotifications = async (params = {_limit: 23, _sort:"id:DESC"}) =
         throw err
     }
 }
+
+export const ReadNotification = async (id:number|string) => {
+    try {
+        const data = await FetchDataService.POST("/user-api/notifications/"+id)
+
+        return data
+    } catch (err) {
+        throw err
+    }
+}

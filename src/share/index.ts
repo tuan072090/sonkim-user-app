@@ -17,25 +17,26 @@ import {GenderList} from "./utils/constant";
 //  services
 import FetchDataService from "./services/fetch";
 import {CheckPhone, Login, Logout, Register, ResetPassword} from "./services/sonkim-api/auth";
-import {GetPromotionDetail, GetPromotions} from "./services/sonkim-api/promotions";
+import {GetOrderPromotions, GetPromotionDetail, GetPromotions} from "./services/sonkim-api/promotions";
 import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
 import {GetStores} from './services/sonkim-api/stores'
-import {GetNotifications} from './services/sonkim-api/notifications'
+import {GetNotifications, ReadNotification} from './services/sonkim-api/notifications'
 import {GetBranches} from './services/sonkim-api/branches'
 import {
     GetLoyaltyProgramDetail,
     GetLoyaltyPrograms, GetUserMembershipCardDetail,
     GetUserMembershipCards, RegisterMemberShipCard, UpdateMemberShipCardInfo
 } from './services/sonkim-api/loyaltyPrograms'
-import {GetGiftCardDetail, GetGiftCards} from './services/sonkim-api/giftCards'
+import {GetGiftCardDetail, GetGiftCards, GetOrderGiftCards} from './services/sonkim-api/giftCards'
 import FirebaseService from "./services/firebase";
 
 //  hooks
 import {useDebounce} from "./hooks/useDebounce";
 import {useCountDown} from "./hooks/useCountdown";
 import {useLocalStorage} from './hooks/useLocalStorage'
+import {GetPointHistories, GetPointSwapHistories, GetPointSystems} from "./services/sonkim-api/points";
 
 const SonkimApiService = {
     CheckPhone,
@@ -47,6 +48,7 @@ const SonkimApiService = {
     UpdatePersonalInfo,
     GetBranches,
     GetPromotions,
+    GetOrderPromotions,
     GetPromotionDetail,
     GetUploadUrl,
     UploadImage,
@@ -54,6 +56,7 @@ const SonkimApiService = {
     GetArticleDetail,
     GetStores,
     GetNotifications,
+    ReadNotification,
     GetLoyaltyPrograms,
     RegisterMemberShipCard,
     UpdateMemberShipCardInfo,
@@ -61,7 +64,11 @@ const SonkimApiService = {
     GetUserMembershipCards,
     GetUserMembershipCardDetail,
     GetGiftCards,
-    GetGiftCardDetail
+    GetOrderGiftCards,
+    GetGiftCardDetail,
+    GetPointHistories,
+    GetPointSwapHistories,
+    GetPointSystems
 }
 
 export {
@@ -98,3 +105,4 @@ export type {GiftCardType} from './data-types/giftCard.types'
 export type {NotificationType} from './data-types/notification.types'
 export type {LoyaltyProgramTypes} from './data-types/loyaltyProgram.types'
 export type {UserMemberShipCardType} from './data-types/userMembershipCard.types'
+export type {PointSwapHistoryType, PointSystemType} from './data-types/point.types'

@@ -33,7 +33,7 @@ const AccountScreen = () => {
 
     const _navigateToHistory = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.TRANSACTION_HISTORY)
+        navigation.navigate(ScreenName.TRANSACTION_SWAP_POINT_HISTORY)
     }
 
     const _navigateToNotification = () => {

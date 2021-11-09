@@ -9,7 +9,7 @@ import {Alert} from "react-native";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.7)
 
-const MyGiftCardDetail = ({fromBottom = true, ...props}) => {
+const OrderGiftCardDetail = ({fromBottom = true, ...props}) => {
     const route = useRoute();
     const {params}: any = route;
 
@@ -116,5 +116,5 @@ const MyGiftCardDetail = ({fromBottom = true, ...props}) => {
     )
 }
 
-export default MyGiftCardDetail
+export default OrderGiftCardDetail
 

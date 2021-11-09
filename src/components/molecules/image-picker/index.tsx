@@ -12,7 +12,6 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", onChange, ..
     const _launchImageLibrary = () => {
         launchImageLibrary({mediaType: "photo"}, async (res) => {
             try {
-                console.log("launch image response", res)
                 if (res) {
                     //  @ts-ignore
                     const file = res.assets[0]
@@ -29,7 +28,6 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", onChange, ..
 
                     //  upload
                     const uploadResponse = await SonkimApiService.UploadImage(file, uploadData.url)
-                    console.log("uploadResponse...", uploadResponse)
                     onChange(imageUrl)
                     setLoading(false)
                 }
@@ -39,6 +37,7 @@ const ImagePicker: React.FC<ImagePickerTypes> = ({from = "gallery", onChange, ..
             }
         })
     }
+
     const _launchCamera = () => {
         launchCamera({mediaType: "photo"}, res => {
             console.log("launchCamera response", res)

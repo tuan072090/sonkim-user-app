@@ -6,18 +6,22 @@ import LanguageProvider from "../../share/context/Language";
 import {CheckAllIcon, MainLayout} from "../../components";
 import NotificationCard from "./components/NotificationCard";
 import {ActivityIndicator, Alert} from "react-native";
+import {useIsFocused} from "@react-navigation/native";
 
 const NotificationsScreen: React.FC<any> = MainLayout(() => {
     const {language} = useContext(LanguageProvider.context)
     const [notifications, setNotifications] = useState<NotificationType[]|null>(null)
+    const isFocused = useIsFocused()
 
     useEffect(() => {
-        SonkimApiService.GetNotifications().then(data => {
-            setNotifications(data)
-        }).catch(err => {
-            Alert.alert(err.message)
-        })
-    },[])
+        if(isFocused){
+            SonkimApiService.GetNotifications().then(data => {
+                setNotifications(data)
+            }).catch(err => {
+                Alert.alert(err.message)
+            })
+        }
+    },[isFocused])
 
     //  @ts-ignore
     const _renderItems = ({ item }) => {

@@ -21,7 +21,7 @@ import StoreScreen from './stores';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
 import VoucherDetail from './vouchers/VoucherDetail';
-import TransactionHistory from './transaction-history';
+import TransactionSwapHistory from './transaction-swap-point-history';
 import {ArticleScreen} from "./article";
 import GiftCardListScreen from './gift-cards';
 import GiftCardDetail from './gift-cards/GiftCardDetail';
@@ -29,6 +29,8 @@ import MembershipRegisterScreen from "./membership-register";
 import MemberShipCardDetailScreen from "./membership-card-detail";
 import {MembershipRegisterSelect} from "./membership-register/MembershipRegisterSelect";
 import {FloatMessage} from "../components";
+import OrderVouchersScreen from "./order-vouchers";
+import OrderGiftCardsScreen from "./order-giftcards";
 
 const Stack = createNativeStackNavigator();
 
@@ -104,13 +106,19 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.USE_POINT_QR} component={UsePointQR} options={{headerShown: false}}/>
                     <Stack.Screen name={ScreenName.STORES_SCREEN} component={StoreScreen}
                                   options={{headerShown: false}}/>
+
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen}
                                   options={{title: ScreenTitle[ScreenName.VOUCHERS_SCREEN]}}/>
+                    <Stack.Screen name={ScreenName.ORDER_VOUCHERS_SCREEN} component={OrderVouchersScreen}
+                                  options={{title: ScreenTitle[ScreenName.ORDER_VOUCHERS_SCREEN]}}/>
+                    <Stack.Screen name={ScreenName.ORDER_GIFT_CARDS_SCREEN} component={OrderGiftCardsScreen}
+                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN]}}/>
+
                     <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail}
                                   options={{headerShown: false}}/>
                     <Stack.Screen name={ScreenName.TRANSFER_POINT} component={TransferPointPage}
                                   options={{headerShown: false}}/>
-                    <Stack.Screen name={ScreenName.TRANSACTION_HISTORY} component={TransactionHistory}
+                    <Stack.Screen name={ScreenName.TRANSACTION_SWAP_POINT_HISTORY} component={TransactionSwapHistory}
                                   options={{headerShown: false}}/>
                     <Stack.Screen name={ScreenName.ARTICLE_SCREEN} component={ArticleScreen}
                                   options={{headerShown: false}}/>

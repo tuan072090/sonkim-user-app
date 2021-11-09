@@ -14,6 +14,20 @@ export const GetGiftCards = async (params:any = {}) => {
     }
 }
 
+//  gift card đã lấy
+export const GetOrderGiftCards = async (params:any) => {
+    try {
+        if(typeof params["_limit"] === "undefined"){
+            params["_limit"] = 20
+        }
+        const { count, giftcard_orders } = await FetchDataService.GET("/user-api/giftcard-orders", params)
+
+        return { count, giftcard_orders }
+    } catch (err) {
+        throw err
+    }
+}
+
 export const GetGiftCardDetail = async (id: number | string) => {
     try {
         const gift_card = await FetchDataService.GET("/user-api/gift-cards/" + id)

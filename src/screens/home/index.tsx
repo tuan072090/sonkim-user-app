@@ -16,7 +16,7 @@ const HomeScreen = () => {
         setTimeout(function () {
             // @ts-ignore
             // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
-            // navigation.navigate(ScreenName.LOYALTY_PROGRAM_DETAIL_SCREEN)
+            // navigation.navigate(ScreenName.ORDER_GIFT_CARDS_SCREEN)
             // setLanguage("en")
         }, 1000)
     }, [isFocused])
