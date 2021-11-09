@@ -1,20 +1,22 @@
 import {Box, Button, Center, HStack, ScrollView, Text, VStack} from 'native-base'
 import React, {useEffect, useState} from 'react'
-import {FullScreenLoader, HTMLContent, Image, ImageStatic, MyButton, PriceDisplay, Typo} from '../../components'
+import {Dialog, FullScreenLoader, HTMLContent, Image, ImageStatic, MyButton, PriceDisplay, Typo} from '../../components'
 import ScreenHeader from '../../components/organisms/screen-header'
-import {Formatter, PromotionType, SonkimApiService, StaticImages} from '../../share'
-import {useRoute} from '@react-navigation/native';
+import {Formatter, PromotionType, ScreenName, SonkimApiService, StaticImages} from '../../share'
+import {useRoute, useNavigation} from '@react-navigation/native';
 import {Alert} from "react-native";
 
 const VoucherDetail = () => {
+    const [loading, setLoading] = useState(false)
     const [promotion, setPromotion] = useState<PromotionType|null>(null)
+    const [order, setOrder] = useState<any|null>(null)
     const route = useRoute();
+    const navigation = useNavigation();
     const {params}: any = route
 
     useEffect(() => {
        if(params.id){
            SonkimApiService.GetPromotionDetail(params.id).then(data => {
-
                console.log("promotion detail" ,data)
                setPromotion(data)
            }).catch(err => {
@@ -22,6 +24,24 @@ const VoucherDetail = () => {
            })
        }
     }, [params])
+
+    const _buyVoucher = () => {
+        if(promotion){
+            setLoading(true)
+            SonkimApiService.BuyPromotion(promotion.id).then(data => {
+                setOrder(data)
+                setLoading(false)
+            }).catch(err => {
+                setLoading(false)
+
+                Alert.alert(err.message)
+            })
+        }
+    }
+
+    const _navToOrderDetail = () => {
+        // navigation.navigate(ScreenName)
+    }
 
     if(!promotion) return <FullScreenLoader/>
 
@@ -81,10 +101,19 @@ const VoucherDetail = () => {
 
                 <PriceDisplay price={price} sale_price={sale_price} point_prices={point_prices}/>
 
-                <MyButton>
+                <MyButton onPress={_buyVoucher} isLoading={loading}>
                     Đổi voucher
                 </MyButton>
             </HStack>
+
+            <Dialog
+                imgUri={promotion.avatar.url}
+                title="Mua voucher thành công"
+                messenge="Bấm để xem chi tiết"
+                isOpen={!!order}
+                onClose={() => {setOrder(null)}}
+                footer={(<Box px={4} width="100%"><MyButton onPress={_navToOrderDetail} width="100%">Chi tiết</MyButton></Box>)}
+            />
         </Box>
     )
 }

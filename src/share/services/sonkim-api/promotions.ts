@@ -27,6 +27,16 @@ export const GetOrderPromotions = async (params:any) => {
         throw err
     }
 }
+//  promotion đã lấy
+export const GetOrderPromotionDetail = async (id:number|string) => {
+    try {
+        const data = await FetchDataService.GET("/user-api/promotion-orders/"+id)
+
+        return data
+    } catch (err) {
+        throw err
+    }
+}
 
 export const GetPromotionDetail = async (id:number|string) => {
     try {
@@ -35,6 +45,19 @@ export const GetPromotionDetail = async (id:number|string) => {
         return promotion
     } catch (err) {
         console.log("promotion detail error.....", err)
+        throw err
+    }
+}
+
+export const BuyPromotion = async (id:number|string) => {
+    try {
+        const data = await FetchDataService.POST("/user-api/promotion-orders", {
+            "promotion_id": id,
+            "payment_method": "point"
+        })
+        return data
+    } catch (err) {
+        console.log("create promotion order error.....", err)
         throw err
     }
 }

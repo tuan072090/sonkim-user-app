@@ -196,16 +196,13 @@ export const PhoneIcon: React.FC<IconTypes> = ({
     );
 };
 
-export const PointExchangericon: React.FC<IconTypes> = ({
-                                                            size = 20,
-                                                            fill = "none",
-                                                        }) => {
+export const PointExchangericon: React.FC<IconTypes> = ({size = 20, fill = "none",}) => {
     return (
 
         <Icon viewBox="0 0 16 20" fill="none" size={size}>
             <Path
                 d="M16 13L12 18L8 13H11L11 0H13L13 13H16ZM8 7H5L5 20H3L3 7H0L4 2L8 7Z"
-                fill="#095A64"
+                fill={fill === "none" ? "#095A64" : fill}
             />
         </Icon>
     );

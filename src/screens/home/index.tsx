@@ -16,10 +16,10 @@ const HomeScreen = () => {
         setTimeout(function () {
             // @ts-ignore
             // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
-            // navigation.navigate(ScreenName.ORDER_GIFT_CARDS_SCREEN)
+            // navigation.navigate(ScreenName.TRANSFER_POINT)
             // setLanguage("en")
         }, 1000)
-    }, [isFocused])
+    }, [])
 
     return (
         <>

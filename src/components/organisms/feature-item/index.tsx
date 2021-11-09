@@ -34,7 +34,7 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
             itemImage = StaticImages.transfer_point
             itemLabel = "Đổi điểm"
             break;
-        case ScreenName.TRANSACTION_HISTORY:
+        case ScreenName.TRANSACTION_SWAP_POINT_HISTORY:
             itemImage = StaticImages.history_point
             itemLabel = "Lịch sử"
             break;
@@ -81,7 +81,7 @@ const FeatureItems = {
     RegisterMembership: (props: any) => (<FeatureItem name={ScreenName.MEMBERSHIP_REGISTER_SELECT_SCREEN} {...props} />),
     LinkMembership: (props: any) => (<FeatureItem name={ScreenName.LINK_MEMBERSHIP} {...props} />),
     TransferPoint: (props: any) => (<FeatureItem name={ScreenName.TRANSFER_POINT} {...props} />),
-    History: (props: any) => <FeatureItem name={ScreenName.TRANSACTION_HISTORY} {...props} />,
+    History: (props: any) => <FeatureItem name={ScreenName.TRANSACTION_SWAP_POINT_HISTORY} {...props} />,
     RankPoint: (props: any) => <FeatureItem name="RankPoint" {...props} />,
     Vouchers: (props: any) => <FeatureItem name={ScreenName.VOUCHERS_SCREEN} {...props} />,
     GiftCards: (props: any) => <FeatureItem name={ScreenName.GIFT_CARD_LIST_SCREEN} {...props} />,

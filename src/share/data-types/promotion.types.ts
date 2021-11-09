@@ -15,3 +15,12 @@ export type PromotionType={
     loyalty_program: LoyaltyProgramTypes,
     stores: StoreTypes[]
 }
+
+export type OrderVoucherType = {
+    id: number|string,
+    code: string,
+    created_at: string,
+    expired_at: string,
+    promotion: any,
+    point_history?: any
+}

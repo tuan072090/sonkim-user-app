@@ -17,7 +17,13 @@ import {GenderList} from "./utils/constant";
 //  services
 import FetchDataService from "./services/fetch";
 import {CheckPhone, Login, Logout, Register, ResetPassword} from "./services/sonkim-api/auth";
-import {GetOrderPromotions, GetPromotionDetail, GetPromotions} from "./services/sonkim-api/promotions";
+import {
+    BuyPromotion,
+    GetOrderPromotionDetail,
+    GetOrderPromotions,
+    GetPromotionDetail,
+    GetPromotions
+} from "./services/sonkim-api/promotions";
 import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
@@ -49,7 +55,9 @@ const SonkimApiService = {
     GetBranches,
     GetPromotions,
     GetOrderPromotions,
+    GetOrderPromotionDetail,
     GetPromotionDetail,
+    BuyPromotion,
     GetUploadUrl,
     UploadImage,
     GetArticles,
@@ -100,7 +108,7 @@ export {
 export type {StoreTypes} from './data-types/store.types'
 export type {BusinessUnitType} from './data-types/businessUnit.types'
 export type {UserType} from './data-types/user.types'
-export type {PromotionType} from './data-types/promotion.types'
+export type {PromotionType, OrderVoucherType} from './data-types/promotion.types'
 export type {GiftCardType} from './data-types/giftCard.types'
 export type {NotificationType} from './data-types/notification.types'
 export type {LoyaltyProgramTypes} from './data-types/loyaltyProgram.types'
