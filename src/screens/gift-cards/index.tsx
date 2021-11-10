@@ -28,7 +28,7 @@ const GiftCardListScreen = () => {
         <Box flex={1} position="relative">
             <ImageStatic resizeMode="cover" position="absolute" width="100%" height="100%"
                          uri={StaticImages.reg_membership_backgroud}/>
-            <ScreenHeader hasBackButton={true} title={Translate[language].giftCard} bgColor="transparent"/>
+            <ScreenHeader hasBackButton={true} title={Translate[language].giftCards} bgColor="transparent"/>
 
             {
                 !giftCards

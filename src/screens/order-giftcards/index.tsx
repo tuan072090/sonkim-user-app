@@ -16,7 +16,6 @@ const OrderGiftCardsScreen: React.FC<PageProps> = MainLayout(() => {
 
     const _fetchOrders = async () => {
         SonkimApiService.GetOrderGiftCards({_limit: 20, _sort: "id:DESC"}).then(data => {
-            console.log("data....", data)
             const {count, giftcard_orders} = data
             setOrders(giftcard_orders)
         }).catch(err => {

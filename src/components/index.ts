@@ -53,6 +53,10 @@ import PressBox from "./atoms/press-box";
 import PriceDisplay from "./molecules/price-display";
 import FloatMessage from "./molecules/float-message";
 import OrderVoucherCard from "./organisms/order-voucher-card";
+import ListLoyaltyFilter from "./templates/list-loyalty-filter";
+import OrderVoucherList from "./templates/order-voucher-list";
+import OrderGiftCardCard from "./organisms/order-gift-card";
+import OrderGiftCardList from "./templates/order-giftcard-list";
 
 export {
     //  Atoms
@@ -98,12 +102,16 @@ export {
     GiftCard,
     Dialog,
     OrderVoucherCard,
+    OrderGiftCardCard,
 
     //  Templates
     OnBoarding,
     AuthComponent,
     MainLayout,
-    ListLoyaltySelect
+    ListLoyaltySelect,
+    ListLoyaltyFilter,
+    OrderVoucherList,
+    OrderGiftCardList
 }
 
 export type {PageProps}

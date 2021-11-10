@@ -2,12 +2,14 @@ import React, {memo, useContext, useEffect, useState} from "react";
 import {Box, Pressable, Text} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
-import {ScreenName, SonkimApiService} from "../../../share";
+import {ScreenName, SonkimApiService, Translate} from "../../../share";
 import AppProvider from "../../../share/context";
 import {ActivityIndicator, Alert} from "react-native";
+import LanguageProvider from "../../../share/context/Language";
 
 export const HomeHeader:React.FC<any> = memo((props) => {
     const navigation = useNavigation()
+    const {language}  = useContext(LanguageProvider.context)
     const [vouchers, setVouchers] = useState<number | null>(null)
     const {dispatch, user, accessToken} = useContext(AppProvider.context)
 
@@ -66,10 +68,10 @@ export const HomeHeader:React.FC<any> = memo((props) => {
                                         size="sm"/>
                             }
 
-                            <Text ml={3} fontSize="lg" color="white">Chào {user.name}</Text>
+                            <Text ml={3} fontSize="lg" color="white">{Translate[language].hello+" "+ user.name}</Text>
                         </>
                         :
-                        <Text fontSize="lg" color="white">Chào người lạ</Text>
+                        <Text fontSize="lg" color="white">{Translate[language].hello+" "+ Translate[language].anonymous}</Text>
                 }
             </Pressable>
 

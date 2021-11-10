@@ -13,10 +13,13 @@ import AccountItem from "./components/AccountItem";
 import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
-import {APP_VERSION, ScreenName} from "../../share";
+import {APP_VERSION, ScreenName, Translate} from "../../share";
+import LanguageProvider from "../../share/context/Language";
 
 const AccountScreen = () => {
     const {dispatch, user} = useContext(AppProvider.context)
+    const {language, setLanguage} = useContext(LanguageProvider.context)
+
     const navigation = useNavigation();
 
     const _logout = () => {
@@ -29,6 +32,11 @@ const AccountScreen = () => {
 
     const _toggleAllowNotification = (value: boolean) => {
         console.log("isAllowNotification...", value)
+    }
+
+    const _toggleLanguage = () => {
+        const newLang = language === "vi" ? "en" : "vi"
+        setLanguage(newLang)
     }
 
     const _navigateToHistory = () => {
@@ -48,21 +56,22 @@ const AccountScreen = () => {
 
                 <Box p="4">
                     <Box mb={4}>
-                        <AccountItem title="Lịch sử đổi điểm" onPress={_navigateToHistory}
+                        <AccountItem title={Translate[language].transferPoint} onPress={_navigateToHistory}
                                      startIcon={(<LocationIcon size={6}/>)} endIcon={(<ChevronRightIcon size={6}/>)}/>
                     </Box>
 
                     <Box mb={4}>
-                        <AccountItem title="Mời bạn" startIcon={(<FriendIcon size={6}/>)}
+                        <AccountItem title={Translate[language].inviteFriend} startIcon={(<FriendIcon size={6}/>)}
                                      endIcon={(<ChevronRightIcon size={6}/>)}/>
                     </Box>
                     <Box mb={4}>
-                        <AccountItem title="Ngôn Ngữ" startIcon={(<TranslateIcon size={6}/>)}
-                                     endIcon={(<ChevronRightIcon size={6}/>)}/>
+                        <AccountItem title={Translate[language].currentLanguage}
+                                     startIcon={(<TranslateIcon size={6}/>)}
+                                     endIcon={(<MySwitch onChangeValue={_toggleLanguage} isChecked={language==="en"}/>)}/>
                     </Box>
 
                     <Box mb={4}>
-                        <AccountItem title="Thông báo" onPress={_navigateToNotification}
+                        <AccountItem title={Translate[language].notifications} onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
                                      endIcon={(<MySwitch onChangeValue={_toggleAllowNotification}/>)}/>
                     </Box>
@@ -73,7 +82,7 @@ const AccountScreen = () => {
                                         mt={4}
                                         height={12}
                                         borderRadius={12}>
-                            <Text color="primary.500" fontSize="lg" fontWeight="semibold">Đăng xuất</Text>
+                            <Text color="primary.500" fontSize="lg" fontWeight="semibold">{Translate[language].logout}</Text>
                         </Button>
                     }
 

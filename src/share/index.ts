@@ -84,7 +84,6 @@ export {
     FontStyles,
     ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION,APP_BUILD,
     StaticImages,
-    Translate,
     LocalStorageService,
 
     //  utils
@@ -101,7 +100,10 @@ export {
     //  hooks
     useDebounce,
     useCountDown,
-    useLocalStorage
+    useLocalStorage,
+
+    //  language
+    Translate
 }
 
 //  types
@@ -109,7 +111,7 @@ export type {StoreTypes} from './data-types/store.types'
 export type {BusinessUnitType} from './data-types/businessUnit.types'
 export type {UserType} from './data-types/user.types'
 export type {PromotionType, OrderVoucherType} from './data-types/promotion.types'
-export type {GiftCardType} from './data-types/giftCard.types'
+export type {GiftCardType, OrderGiftCardTypes} from './data-types/giftCard.types'
 export type {NotificationType} from './data-types/notification.types'
 export type {LoyaltyProgramTypes} from './data-types/loyaltyProgram.types'
 export type {UserMemberShipCardType} from './data-types/userMembershipCard.types'

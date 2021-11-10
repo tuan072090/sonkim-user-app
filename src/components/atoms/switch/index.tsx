@@ -17,7 +17,9 @@ const MySwitch: React.FC<ISwitchProps & MySwitchType> = memo(({onChangeValue, is
     }
 
     return (
-        <Switch isChecked={checked} onToggle={_toggleCheck} size="md" onTrackColor="success.500"
+        <Switch isChecked={checked}
+                onToggle={_toggleCheck} size="md"
+                onTrackColor="success.500"
                 onThumbColor="white" {...props}/>
     )
 })

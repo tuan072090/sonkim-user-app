@@ -14,3 +14,12 @@ export type GiftCardType = {
     loyalty_program: LoyaltyProgramTypes,
     stores: StoreTypes[]
 }
+
+export type OrderGiftCardTypes = {
+    id: number|string,
+    code: string,
+    created_at: string,
+    expired_at: string,
+    gift_card: any,
+    point_history?: any
+}

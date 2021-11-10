@@ -1,6 +1,7 @@
 const languages = {
     vi: {
-        //  Tab navigator
+        hello:"Chào",
+        anonymous: "Người lạ",
         home: "Trang chủ",
         notifications: "Thông báo",
         nearby: "Gần tôi",
@@ -12,13 +13,18 @@ const languages = {
         registerMembership: 'Đăng ký thẻ',
         linkMembership: 'Liên kết thẻ',
         usePoint: 'Tích và dùng điểm',
-        tranferPoint: 'Đổi điểm',
+        transferPoint: 'Đổi điểm',
         transactionHistory: 'Lịch sử đổi điểm',
-        giftCard:'Thẻ quà tặng'
-
+        giftCards:'Thẻ quà tặng',
+        vouchers: 'Ưu đãi',
+        inviteFriend: 'Mời bạn',
+        currentLanguage: "Ngôn ngữ: Tiếng Việt",
+        login: "Đăng nhập",
+        logout: "Đăng xuất"
     },
     en: {
-        //  Tab navigator
+        hello:"Hello",
+        anonymous: "Mr/Ms",
         home: "Home",
         notifications: "Notifications",
         nearby: "Near By",
@@ -29,9 +35,15 @@ const languages = {
         buDetail: "Card Information",
         registerMembership: 'Register membership',
         linkMembership: 'Link membership',
-        usePoint: 'Tích và dùng điểm',
-        tranferPoint: 'Đổi điểm', transactionHistory: 'Lịch sử đổi điểm',
-        giftCard:'Gift Cards'
+        usePoint: 'Use points',
+        transferPoint: 'Transfer points',
+        transactionHistory: 'Lịch sử đổi điểm',
+        giftCards:'Gift Cards',
+        vouchers: 'Vouchers',
+        inviteFriend: 'Invite friend',
+        currentLanguage: "Language: English",
+        login: "Login",
+        logout: "Logout"
     }
 }
 

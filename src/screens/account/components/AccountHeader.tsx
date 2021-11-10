@@ -1,13 +1,16 @@
 import {useNavigation} from '@react-navigation/core';
 import {Box, Button, HStack, Heading} from 'native-base'
 import React, {useContext, useEffect} from 'react'
-import {ScreenName, SonkimApiService} from '../../../share';
+import {ScreenName, SonkimApiService, Translate} from '../../../share';
 import AppProvider from "../../../share/context";
 import {Alert} from "react-native";
+import LanguageProvider from "../../../share/context/Language";
+import {MyButton} from "../../../components";
 
 const AccountHeader = () => {
     const {user, dispatch, accessToken} = useContext(AppProvider.context)
     const navigation = useNavigation();
+    const {language, setLanguage} = useContext(LanguageProvider.context)
 
     useEffect(() => {
         if (accessToken && accessToken.length > 0) {
@@ -51,24 +54,24 @@ const AccountHeader = () => {
                         <Heading color="white" textAlign="center" mb={5}>{user.name}</Heading>
 
                         <HStack space={4}>
-                            <Button flex={1} rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
+                            <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                     bgColor="rgba(255,255,255,0.5)"
                                     onPress={_navigateUserListCard}>
-                                Danh sách thẻ
-                            </Button>
+                                {Translate[language].userListCard}
+                            </MyButton>
 
-                            <Button flex={1} rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
+                            <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                     bgColor="rgba(255,255,255,0.5)"
                                     onPress={_navigateUserInfo}>
-                                Thông tin tài khoản
-                            </Button>
+                                {Translate[language].userInfo}
+                            </MyButton>
                         </HStack>
                     </Box>
                     : <Box px={4}>
                         <Button rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                 bgColor="rgba(255,255,255,0.5)"
                                 onPress={_navigateLogin}>
-                            Đăng nhập
+                            {Translate[language].login}
                         </Button>
                     </Box>
             }

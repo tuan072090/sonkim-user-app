@@ -3,7 +3,7 @@ import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {NotificationType, SonkimApiService, StaticImages, Translate} from "../../share";
 import LanguageProvider from "../../share/context/Language";
-import {CheckAllIcon, MainLayout} from "../../components";
+import {CheckAllIcon, MainLayout, Typo} from "../../components";
 import NotificationCard from "./components/NotificationCard";
 import {ActivityIndicator, Alert} from "react-native";
 import {useIsFocused} from "@react-navigation/native";
@@ -11,12 +11,14 @@ import {useIsFocused} from "@react-navigation/native";
 const NotificationsScreen: React.FC<any> = MainLayout(() => {
     const {language} = useContext(LanguageProvider.context)
     const [notifications, setNotifications] = useState<NotificationType[]|null>(null)
+    const [count, setCount] = useState<number|null>(null)
     const isFocused = useIsFocused()
 
     useEffect(() => {
         if(isFocused){
             SonkimApiService.GetNotifications().then(data => {
-                setNotifications(data)
+                setNotifications(data.notifications)
+                setCount(data.count)
             }).catch(err => {
                 Alert.alert(err.message)
             })
@@ -34,7 +36,11 @@ const NotificationsScreen: React.FC<any> = MainLayout(() => {
                           rightComponent={<CheckAllIcon size={6}/>}/>
             {
                 !notifications ? <Box p={5}><ActivityIndicator/></Box>
-                : <FlatList data={notifications} renderItem={_renderItems}/>
+                : <FlatList
+                        ListHeaderComponent={<Typo type="subtitle14" p={4}>Có {count!==null ? count : "..."} kết quả</Typo>}
+                        data={notifications}
+                        renderItem={_renderItems}
+                    />
             }
         </Box>
     )

@@ -17,7 +17,6 @@ const VoucherDetail = () => {
     useEffect(() => {
        if(params.id){
            SonkimApiService.GetPromotionDetail(params.id).then(data => {
-               console.log("promotion detail" ,data)
                setPromotion(data)
            }).catch(err => {
                Alert.alert(err.message)
@@ -52,7 +51,6 @@ const VoucherDetail = () => {
         <Box flex={1} width="100%">
             <ScreenHeader hasBackButton={true} title={title} bgColor="primary.500"/>
             <ScrollView>
-
                 <Box m={4}>
                     <Box bgColor="white" rounded="xl" py={4} px={3} my={3}>
                         <VStack>
