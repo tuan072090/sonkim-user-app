@@ -12,7 +12,7 @@ const OrderGiftCardCard: React.FC<OrderGiftCardCardTypes> = ({order}) => {
 
     const _navigateToDetail = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.ORDER_VOUCHER_DETAIL, {id: order.id});
+        navigation.navigate(ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN, {id: order.id});
     }
 
     return (

@@ -32,6 +32,7 @@ import {FloatMessage} from "../components";
 import OrderVouchersScreen from "./order-vouchers";
 import OrderGiftCardsScreen from "./order-giftcards";
 import {OrderVoucherDetail} from "./order-vouchers/OrderVoucherDetail";
+import {OrderGiftCardDetail} from "./order-giftcards/OrderGiftCardDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -117,6 +118,8 @@ const AppNavigation = () => {
 
                     <Stack.Screen name={ScreenName.ORDER_GIFT_CARDS_SCREEN} component={OrderGiftCardsScreen}
                                   options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN]}}/>
+                    <Stack.Screen name={ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN} component={OrderGiftCardDetail}
+                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN]}}/>
 
                     <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail}
                                   options={{headerShown: false}}/>

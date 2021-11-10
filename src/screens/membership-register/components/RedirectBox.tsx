@@ -38,7 +38,7 @@ export const RedirectBox: React.FC<RedirectBoxTypes> = ({loyaltyProgram, setType
 
                 <MyButton onPress={() => setType("link")} width="full" mt={4} bg="primary.500">Liên kết thẻ đã có</MyButton>
                 <MyButton onPress={() => setType("register")} width="full" mt={4}
-                          bg="primary.200" _text={{color: 'primary.500'}} size="lg">Đăng ký thẻ thành viên</MyButton>
+                          bg="primary.200" _text={{color: 'primary.500'}}>Đăng ký thẻ thành viên</MyButton>
             </Box>
         </Box>
     )

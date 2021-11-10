@@ -3,6 +3,7 @@ import {Box, SimpleGrid} from "native-base";
 import {ActivityIndicator, Alert} from "react-native";
 import BranchCard from "../../organisms/branch-card";
 import {Colors, LoyaltyProgramTypes, SonkimApiService, useLocalStorage} from "../../../share";
+import PressBox from "../../atoms/press-box";
 
 type ListLoyaltySelectProps = {
     onSelect?: (data: LoyaltyProgramTypes) => void
@@ -33,15 +34,31 @@ const ListLoyaltySelect: React.FC<ListLoyaltySelectProps> = ({onSelect}) => {
                         {
                             //  @ts-ignore
                             loyaltyPrograms.map((item, index) => {
+                                let isRegistered = false
 
-                                return (
-                                    <BranchCard
-                                        isSelect={selected ? selected.id === item.id : false}
-                                        key={index}
-                                        loyaltyProgram={item}
-                                        onSelect={_onSelect}
-                                    />
-                                );
+                                if(userMemberShipCards){
+                                    isRegistered = userMemberShipCards.find((card:any) => card.loyalty_program.id === item.id)
+                                }
+
+                                if(isRegistered){
+                                    return (
+                                        <Box key={index} opacity={isRegistered ? 0.6:1} bgColor="gray.100" borderRadius={16}>
+                                            <BranchCard
+                                                isSelect={selected ? selected.id === item.id : false}
+                                                loyaltyProgram={item}
+                                                onSelect={()=>{}}
+                                            />
+                                        </Box>
+                                    );
+                                } else {
+                                    return (
+                                        <BranchCard
+                                            isSelect={selected ? selected.id === item.id : false}
+                                            loyaltyProgram={item}
+                                            onSelect={_onSelect}
+                                        />
+                                    );
+                                }
                             })
                         }
                     </SimpleGrid>

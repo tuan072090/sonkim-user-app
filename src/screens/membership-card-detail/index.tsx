@@ -9,7 +9,7 @@ import {Alert} from "react-native";
 import CardStore from "../../components/molecules/card-store";
 import {CardBanner} from "./components/CardBanner";
 import {CardCategories} from "./components/CardCategories";
-import {CardVoucherList} from "./components/CardVoucherList";
+import {VoucherList} from "./components/VoucherList";
 import {GiftCardList} from "./components/GiftCardList";
 
 const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
@@ -25,6 +25,7 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     }, [params])
 
     const _fetchData = () => {
+        console.log("params....", params)
         //  @ts-ignore
         SonkimApiService.GetUserMembershipCardDetail(params.id).then(data => {
             setCardDetail(data)
@@ -32,16 +33,6 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
             Alert.alert(err.message)
         })
     }
-
-    const _navigateStorepage = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.STORE_SCREEN);
-    };
-
-    const _navigateListVoucher = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.VOUCHERS_SCREEN);
-    };
 
     if (!cardDetail) return <FullScreenLoader/>
 
@@ -60,7 +51,7 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
 
                 <CardCategories membershipCard={cardDetail}/>
 
-                <CardVoucherList membershipCard={cardDetail}/>
+                <VoucherList membershipCard={cardDetail}/>
 
                 <GiftCardList membershipCard={cardDetail}/>
                 <Box mb={50}/>

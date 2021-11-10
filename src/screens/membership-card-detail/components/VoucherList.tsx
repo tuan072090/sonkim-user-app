@@ -5,7 +5,7 @@ import {MyButton, PressBox, Typo, VoucherCard} from "../../../components";
 import {ActivityIndicator, Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
 
-export const CardVoucherList: React.FC<{ membershipCard: UserMemberShipCardType }> = ({membershipCard}) => {
+export const VoucherList: React.FC<{ membershipCard: UserMemberShipCardType }> = ({membershipCard}) => {
     const [promotions, setPromotions] = useState<PromotionType[] | null>(null)
     const [total, setTotal] = useState<number|null>(null)
     const navigation = useNavigation();
@@ -49,7 +49,7 @@ export const CardVoucherList: React.FC<{ membershipCard: UserMemberShipCardType 
                     !promotions ? <ActivityIndicator color={Colors.primary["500"]}/>
                         : promotions.length === 0
                         ? <>
-                            <Typo type={"subtitle14"} color="red.500" textAlign="center">Chưa có ưu đãi nào</Typo>
+                            <Typo type={"subtitle14"} my={3} color="secondary.500" textAlign="center">Chưa có ưu đãi nào</Typo>
                             <MyButton onPress={() => _navigateListVoucher(false)} mt={3}
                                       bgColor="info.100"
                                       _text={{color: "primary.500"}}>Xem thương hiệu khác</MyButton>

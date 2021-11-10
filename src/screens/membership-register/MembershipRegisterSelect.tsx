@@ -51,7 +51,7 @@ export const MembershipRegisterSelect = () => {
                 p={3}
                 px={2}
                 safeAreaBottom={true}>
-                <MyButton w="100%" onPress={_navigateForm}>CHỌN</MyButton>
+                <MyButton w="100%" size="lg" onPress={_navigateForm}>CHỌN</MyButton>
             </Box>
         </Box>
     );

@@ -14,13 +14,16 @@ const OrderVoucherList: React.FC<OrderVoucherListTypes> = ({filter = {}}) => {
     }, [filter])
 
     const _fetchOrders = async () => {
-        let queryParams = {...filter}
-        if (typeof queryParams["_limit"] === "undefined")
-            queryParams["_limit"] = 20
-        if (typeof queryParams["_sort"] === "undefined")
-            queryParams["_sort"] = "id:DESC"
+        if (typeof filter["_limit"] === "undefined")
+            filter["_limit"] = 20
+        if (typeof filter["_sort"] === "undefined")
+            filter["_sort"] = "id:DESC"
+        if (typeof filter["loyalty_program"] !== "undefined"){
+            filter["promotion.loyalty_program"] = filter["loyalty_program"]
+            delete filter["loyalty_program"]
+        }
 
-        SonkimApiService.GetOrderPromotions(queryParams).then(data => {
+        SonkimApiService.GetOrderPromotions(filter).then(data => {
             const {count, promotion_orders} = data
             setOrders(promotion_orders)
             setCount(count)

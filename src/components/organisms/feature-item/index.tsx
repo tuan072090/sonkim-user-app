@@ -1,6 +1,6 @@
 import React from "react";
 import {ScreenName, StaticImages} from "../../../share";
-import {Pressable} from "native-base";
+import {Box, Pressable} from "native-base";
 import ImageStatic from "../../atoms/image/ImageStatic";
 import {FeatureItemTypes} from "./featureItem.types";
 import {useNavigation} from "@react-navigation/core";
@@ -61,18 +61,13 @@ const FeatureItem: React.FC<FeatureItemTypes> = ({name, ...props}) => {
     }
 
     return (
-        <Pressable
-            onPress={() => _onPressHandler(name)}
-            _pressed={{opacity: 0.5}}
-            flexDirection="column"
-            alignItems="center"
-            {...props}
-        >
+        <Box flexDirection="column" alignItems="center"
+            {...props}>
             <ImageStatic uri={itemImage} width={55} height={55}/>
             <Typo type="caption" mt={2} textTransform="uppercase" textAlign="center">
                 {itemLabel}
             </Typo>
-        </Pressable>
+        </Box>
     );
 };
 

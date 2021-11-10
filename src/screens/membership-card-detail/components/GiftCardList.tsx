@@ -45,11 +45,11 @@ export const GiftCardList: React.FC<{ membershipCard: UserMemberShipCardType }> 
                 Danh sách thẻ quà tặng
             </Typo>
 
-            <Box alignItems="center">
+            <Box alignItems="center" mt={3}>
                 {
                     !giftCards ? <ActivityIndicator color="white"/>
                         : giftCards.length === 0 ? <>
-                            <Typo type={"subtitle14"} color="red.500" textAlign="center">Chưa có ưu thẻ quà tặng nào</Typo>
+                            <Typo type={"subtitle14"} my={3} color="secondary.500" textAlign="center">Bạn chưa có ưu thẻ quà tặng nào</Typo>
                             <MyButton onPress={() => _navigateListGiftCard(false)} mt={3}
                                       bgColor="info.100"
                                       _text={{color: "primary.500"}}>Xem thương hiệu khác</MyButton>

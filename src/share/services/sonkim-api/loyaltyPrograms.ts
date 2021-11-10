@@ -21,9 +21,9 @@ export const GetLoyaltyProgramDetail = async (id: number | string) => {
     }
 }
 
-export const RegisterMemberShipCard = async (id: number | string) => {
+export const RegisterMemberShipCard = async (id: number | string, memberInfo:any={}) => {
     try {
-        const data = await FetchDataService.POST("/user-api/membership-cards", {loyaltyProgramId: id})
+        const data = await FetchDataService.POST("/user-api/membership-cards", {loyaltyProgramId: id, ...memberInfo})
 
         return data
     } catch (err) {

@@ -71,7 +71,7 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
     }
 
     const _onBirthdayChange = (date: Date) => {
-        _onInputChange("birthday", Formatter.FormatDateFromDate(date))
+        _onInputChange("birthday", Formatter.FormatDateFromDate(date,"yyyy-MM-dd"))
     }
 
     const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)

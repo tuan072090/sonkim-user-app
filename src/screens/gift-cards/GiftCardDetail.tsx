@@ -1,40 +1,23 @@
-import {useNavigation, useRoute} from '@react-navigation/core'
-import {Box, Button, Center, HStack, ScrollView, Text, VStack} from 'native-base';
+import {useRoute} from '@react-navigation/core'
+import {Box, Center, HStack, ScrollView, VStack} from 'native-base';
 import React, {useEffect, useState} from 'react'
-import {
-    FullScreenLoader,
-    HTMLContent,
-    Image,
-    ImageStatic,
-    MyButton,
-    PriceDisplay,
-    QrCode,
-    Typo
-} from '../../components';
+import {Dialog, FullScreenLoader, HTMLContent, Image, MyButton, PriceDisplay, Typo} from '../../components';
 import ScreenHeader from '../../components/organisms/screen-header';
-import {
-    BusinessUnitType,
-    Formatter,
-    GiftCardType,
-    PromotionType,
-    ScreenSize,
-    SonkimApiService,
-    StaticImages
-} from '../../share';
-import GiftCardPointInfo from '../order-giftcard-detail/components/GiftCardPointInfo';
+import {BusinessUnitType, Formatter, GiftCardType, ScreenName, SonkimApiService} from '../../share';
 import {Alert} from "react-native";
 
-const GiftCardDetail = ({ ...props}) => {
-    const [giftCard, setGiftCard] = useState<GiftCardType|null>(null)
-    const [businessUnit, setBusinessUnit] = useState<BusinessUnitType|null>(null)
+// @ts-ignore
+const GiftCardDetail = ({navigation}) => {
+    const [giftCard, setGiftCard] = useState<GiftCardType | null>(null)
+    const [loading, setLoading] = useState(false)
+    const [order, setOrder] = useState<any|null>(null)
     const route = useRoute();
     const {params}: any = route
 
     useEffect(() => {
-        if(params.id){
+        if (params.id) {
             SonkimApiService.GetGiftCardDetail(params.id).then(data => {
-
-                console.log("gift card detail" ,data)
+                console.log("gift card detail", data.id)
                 setGiftCard(data)
             }).catch(err => {
                 Alert.alert(err.message)
@@ -42,9 +25,28 @@ const GiftCardDetail = ({ ...props}) => {
         }
     }, [params])
 
-    if(!giftCard) return <FullScreenLoader/>
+    const _buyGiftcard = () => {
+        if(giftCard){
+            setLoading(true)
+            SonkimApiService.BuyGiftCard(giftCard.id).then(data => {
+                setOrder(data)
+                setLoading(false)
+            }).catch(err => {
+                setLoading(false)
 
-    const {id, title,body, price, sale_price, point_prices, avatar,cash, loyalty_program, stores} = giftCard
+                Alert.alert(err.message)
+            })
+        }
+    }
+
+    const _navToOrderDetail = () => {
+        //  @ts-ignore
+        if(order) navigation.navigate(ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN, {id: order.id})
+    }
+
+    if (!giftCard) return <FullScreenLoader/>
+
+    const {id, title, body, price, sale_price, point_prices, avatar, cash, loyalty_program, stores} = giftCard
 
     return (
         <Box flex={1} width="100%">
@@ -55,7 +57,8 @@ const GiftCardDetail = ({ ...props}) => {
                     <Box bgColor="white" rounded="xl" py={4} px={3} my={3}>
                         <VStack>
                             <Center>
-                                <Typo type="title" textAlign="center" color="primary.500" textTransform="uppercase">{title}</Typo>
+                                <Typo type="title" textAlign="center" color="primary.500"
+                                      textTransform="uppercase">{title}</Typo>
                                 <Image uri={avatar.url} borderRadius={4} width={56} height={56} my={4}/>
                             </Center>
 
@@ -87,15 +90,25 @@ const GiftCardDetail = ({ ...props}) => {
                 </Box>
             </ScrollView>
 
-            <HStack shadow={9} bgColor="white" pt={3} alignItems="center" justifyContent="space-around" position="absolute"
+            <HStack shadow={9} bgColor="white" pt={3} alignItems="center" justifyContent="space-around"
+                    position="absolute"
                     bottom={0} width="100%" safeAreaBottom={true}>
 
                 <PriceDisplay price={price} sale_price={sale_price} point_prices={point_prices}/>
 
-                <MyButton>
+                <MyButton onPress={_buyGiftcard} isLoading={loading}>
                     Mua thẻ quà tặng
                 </MyButton>
             </HStack>
+
+            <Dialog
+                imgUri={giftCard.avatar.url}
+                title="Mua thẻ quà tặng thành công"
+                messenge="Bấm để xem chi tiết"
+                isOpen={!!order}
+                onClose={() => {setOrder(null)}}
+                footer={(<Box px={4} width="100%"><MyButton onPress={_navToOrderDetail} width="100%">Chi tiết</MyButton></Box>)}
+            />
         </Box>
     )
 }

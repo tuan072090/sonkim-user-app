@@ -33,7 +33,7 @@ const GiftCardListScreen = () => {
             {
                 !giftCards
                     ? <Box width="full" p={4} alignItems="center">
-                        <ActivityIndicator color="primary.500"/>
+                        <ActivityIndicator color="white"/>
                     </Box>
                     : <GiftCardList giftCards={giftCards}/>
             }

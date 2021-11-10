@@ -18,8 +18,8 @@ const CartScreen: React.FC<PageProps> = MainLayout(() => {
 
             {
                 filter.display === "voucher"
-                ? <OrderVoucherList/>
-                : <OrderGiftCardList/>
+                ? <OrderVoucherList filter={{...filter, display: undefined}}/>
+                : <OrderGiftCardList filter={{...filter, display: undefined}}/>
             }
 
         </Box>

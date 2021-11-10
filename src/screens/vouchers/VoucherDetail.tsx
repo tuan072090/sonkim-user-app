@@ -39,7 +39,8 @@ const VoucherDetail = () => {
     }
 
     const _navToOrderDetail = () => {
-        // navigation.navigate(ScreenName)
+        //  @ts-ignore
+        if(order) navigation.navigate(ScreenName.ORDER_VOUCHER_DETAIL, {id: order.id})
     }
 
     if(!promotion) return <FullScreenLoader/>
@@ -94,7 +95,7 @@ const VoucherDetail = () => {
                 </Box>
             </ScrollView>
 
-            <HStack bgColor="white" pt={3} alignItems="center" justifyContent="space-around" position="absolute"
+            <HStack shadow={9}  bgColor="white" pt={3} alignItems="center" justifyContent="space-around" position="absolute"
                     bottom={0} width="100%" safeAreaBottom={true}>
 
                 <PriceDisplay price={price} sale_price={sale_price} point_prices={point_prices}/>

@@ -6,7 +6,6 @@ import {Box} from "native-base";
 import AppProvider from "../../../share/context";
 import LinearGradient from 'react-native-linear-gradient';
 
-
 type ScreenBannerType = {
     membershipCard: UserMemberShipCardType
 }

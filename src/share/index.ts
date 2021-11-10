@@ -35,7 +35,13 @@ import {
     GetLoyaltyPrograms, GetUserMembershipCardDetail,
     GetUserMembershipCards, RegisterMemberShipCard, UpdateMemberShipCardInfo
 } from './services/sonkim-api/loyaltyPrograms'
-import {GetGiftCardDetail, GetGiftCards, GetOrderGiftCards} from './services/sonkim-api/giftCards'
+import {
+    BuyGiftCard,
+    GetGiftCardDetail,
+    GetGiftCards,
+    GetOrderGiftCardDetail,
+    GetOrderGiftCards
+} from './services/sonkim-api/giftCards'
 import FirebaseService from "./services/firebase";
 
 //  hooks
@@ -73,7 +79,9 @@ const SonkimApiService = {
     GetUserMembershipCardDetail,
     GetGiftCards,
     GetOrderGiftCards,
+    GetOrderGiftCardDetail,
     GetGiftCardDetail,
+    BuyGiftCard,
     GetPointHistories,
     GetPointSwapHistories,
     GetPointSystems

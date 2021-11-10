@@ -15,13 +15,16 @@ const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
     }, [filter])
 
     const _fetchOrders = async () => {
-        let queryParams = {...filter}
-        if (typeof queryParams["_limit"] === "undefined")
-            queryParams["_limit"] = 20
-        if (typeof queryParams["_sort"] === "undefined")
-            queryParams["_sort"] = "id:DESC"
+        if (typeof filter["_limit"] === "undefined")
+            filter["_limit"] = 20
+        if (typeof filter["_sort"] === "undefined")
+            filter["_sort"] = "id:DESC"
+        if (typeof filter["loyalty_program"] !== "undefined"){
+            filter["gift_card.loyalty_program"] = filter["loyalty_program"]
+            delete filter["loyalty_program"]
+        }
 
-        SonkimApiService.GetOrderGiftCards(queryParams).then(data => {
+        SonkimApiService.GetOrderGiftCards(filter).then(data => {
             const {count, giftcard_orders} = data
             setOrders(giftcard_orders)
             setCount(count)

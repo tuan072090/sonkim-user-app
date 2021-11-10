@@ -51,8 +51,8 @@ export const HomeSlider = () => {
 
             {
                 articles.length === 0
-                    ? <Box width={sliderWidth} height={sliderWidth / 2.198} alignItems="center" justifyContent="center">
-                        <ActivityIndicator color="white"/>
+                    ? <Box width={sliderWidth} height={sliderWidth / 2.198} p={3}>
+                        <Box width={"100%"} height={"100%"} bgColor="gray.300" borderRadius={14}/>
                     </Box>
                     : <Carousel
                         loop={true} //  back to first slide when finish the end slide

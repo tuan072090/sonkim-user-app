@@ -49,8 +49,6 @@ const AccountInfoForm = () => {
     }
 
     const _onBirthdayChange = (date: Date) => {
-        console.log("date...", date)
-        console.log("date unixtime...", date.getTime())
         _onInputChange("birthday", Formatter.FormatDateFromDate(date, "yyyy-MM-dd"))
     }
 
