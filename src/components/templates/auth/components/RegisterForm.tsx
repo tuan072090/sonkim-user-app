@@ -115,17 +115,17 @@ export const RegisterForm = () => {
 
     const _navToLogin = () => {
         //  remove register screen from stack
-        navigation.dispatch((state) => {
-            state.routes.pop()
-
-            const newRoutes = [...state.routes]
-
-            return CommonActions.reset({
-                ...state,
-                routes: newRoutes,
-                index: newRoutes.length - 1,
-            });
-        });
+        // navigation.dispatch((state) => {
+        //     state.routes.pop()
+        //
+        //     const newRoutes = [...state.routes]
+        //
+        //     return CommonActions.reset({
+        //         ...state,
+        //         routes: newRoutes,
+        //         index: newRoutes.length - 1,
+        //     });
+        // });
         // @ts-ignore
         navigation.navigate(ScreenName.LOGIN_SCREEN)
     }

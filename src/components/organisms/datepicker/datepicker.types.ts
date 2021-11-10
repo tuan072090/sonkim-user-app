@@ -1,4 +1,4 @@
-import {IPressableProps, Pressable, Text} from "native-base";
+import {IPressableProps} from "native-base";
 
 export interface DatepickerTypes extends IPressableProps {
     value: Date,

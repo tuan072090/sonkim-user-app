@@ -3,7 +3,7 @@ import {Box, Pressable, Text} from "native-base";
 import {FontStyles, LoyaltyProgramTypes, ScreenSize} from "../../../share";
 import {useNavigation} from '@react-navigation/native';
 import {CancelIcon} from "../../../components/atoms/icons/CommonIcons";
-import {Image, MyButton} from "../../../components";
+import {Image, MyButton, PressBox} from "../../../components";
 import {ActivityIndicator} from "react-native";
 
 type RedirectBoxTypes = {
@@ -22,9 +22,9 @@ export const RedirectBox: React.FC<RedirectBoxTypes> = ({loyaltyProgram, setType
     return (
         <Box flex={1} bg="gray.800" alignItems="center" justifyContent="center">
             <Box p={5} width={boxWidth} bg="white" rounded="2xl" position="relative" alignItems="center">
-                <Pressable position="absolute" top={0} right={0} p={4} onPress={_closeBox} _pressed={{opacity: 0.8}}>
+                <PressBox position="absolute" top={0} right={0} p={4} onPress={_closeBox}>
                     <CancelIcon size={4}/>
-                </Pressable>
+                </PressBox>
 
                 <Box width={50} height={50} justifyContent="center" alignItems="center">
                     {

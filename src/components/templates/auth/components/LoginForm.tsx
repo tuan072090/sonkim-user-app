@@ -34,7 +34,6 @@ export const LoginForm = () => {
 
             //  remove login screen from stack
             navigation.dispatch((state) => {
-                console.log("router list....", state.routes)
 
                 state.routes.pop()
 
@@ -45,18 +44,20 @@ export const LoginForm = () => {
                     index: newRoutes.length - 1,
                 });
             });
-            navigation.goBack()
+
         } catch (err) {
             Alert.alert(err.message)
         }
     }
 
     const _navToRegister = () => {
+        savePhoneLocal(phone)
         // @ts-ignore
         navigation.navigate(ScreenName.REGISTER_SCREEN, {phone: phone})
     }
 
     const _navToResetPass = () => {
+        savePhoneLocal(phone)
         // @ts-ignore
         navigation.navigate(ScreenName.RESET_PASSWORD_SCREEN, {phone: phone})
     }
@@ -84,6 +85,7 @@ export const LoginForm = () => {
                         placeholderTextColor="white"
                         bgColor="rgba(255,255,255,0.5)"
                         variant="filled"
+                        clearButtonMode="while-editing"
                         p={3}
                         size="2xl" rounded="xl"
                         placeholder="Nhập số điện thoại"

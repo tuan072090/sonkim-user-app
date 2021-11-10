@@ -7,10 +7,12 @@ import {Formatter} from "../../../share";
 
 const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props}) => {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-    const [date, setDate] = useState<Date | null>(null)
+    const [date, setDate] = useState<Date | null>(value)
 
     useEffect(() => {
-        setDate(value)
+        if(value && value.getTime() !== date?.getTime()){
+            setDate(value)
+        }
     }, [value])
 
     const _toggleDatePicker = () => {
@@ -18,9 +20,9 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
     }
 
     const _dateConfirm = (date: Date) => {
+        setDate(date)
         onChange(date)
         _toggleDatePicker()
-        setDate(date)
     }
 
     return (
@@ -28,7 +30,7 @@ const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props})
             <Pressable bgColor="white" onPress={_toggleDatePicker} position="relative" {...props}>
                 <Text color="white" fontSize="md" size="2xl">
                     {
-                        date ? `${Formatter.FormatDateFromDate(date, "dd-MM-YYY")}` : "Chọn ngày sinh"
+                        date ? `${Formatter.FormatDateFromDate(date)}` : "Chọn ngày sinh"
                     }
                 </Text>
 

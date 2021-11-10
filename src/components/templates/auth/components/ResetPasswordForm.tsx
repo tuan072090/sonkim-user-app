@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from "react";
 import {Button, Heading, Input, KeyboardAvoidingView, Pressable, ScrollView, Text} from 'native-base'
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {CommonActions, useNavigation, useRoute} from '@react-navigation/native';
 import {Formatter, ScreenName, SonkimApiService, useLocalStorage} from "../../../../share";
 import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
@@ -74,6 +74,20 @@ export const ResetPasswordForm = () => {
                 data: jwt
             })
             Alert.alert("Lấy lại mật khẩu thành công")
+
+            //  remove reset password screen from stack
+            navigation.dispatch((state) => {
+                state.routes.pop()
+
+                const newRoutes = [...state.routes]
+
+                return CommonActions.reset({
+                    ...state,
+                    routes: newRoutes,
+                    index: newRoutes.length - 1,
+                });
+            });
+
             navigation.goBack()
         } catch (err) {
             Alert.alert(err.message)
@@ -125,7 +139,7 @@ export const ResetPasswordForm = () => {
                 />
 
 
-                <Button onPress={_submit} my={5} p={3} isLoading={isProcessing} rounded="xl" size="lg" bgColor="white"
+                <Button onPress={_submit} mt={10} mb={5} p={3} isLoading={isProcessing} rounded="xl" size="lg" bgColor="white"
                         _text={{color: "gray.500"}} opacity={70}>Xác nhận</Button>
 
                 <Pressable onPress={_goBack} flexDirection="row" alignItems="center" justifyContent="center">

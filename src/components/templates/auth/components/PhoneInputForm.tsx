@@ -62,6 +62,7 @@ export const PhoneInputForm = () => {
                    keyboardType="phone-pad"
                    color="white"
                    fontSize="md"
+                   clearButtonMode="while-editing"
                    placeholderTextColor="white"
                    bgColor="rgba(255,255,255,0.5)"
                    variant="filled"

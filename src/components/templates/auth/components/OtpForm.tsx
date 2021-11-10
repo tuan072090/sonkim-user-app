@@ -124,7 +124,7 @@ export const OtpForm = () => {
 
             <Text py={5} color="white" textAlign="center">Không nhận được mã?
                 {
-                    counter > 0 ? <Text px={3} color="white" textDecoration="underline">Gửi lại sau {counter}</Text>
+                    counter > 0 ? <Text ml={3} px={3} color="white" textDecoration="underline">Gửi lại sau {counter}</Text>
                         : <Text onPress={_sendConfirmCode} px={3} color="white" textDecoration="underline"
                                 fontWeight="semibold">Gửi lại</Text>
                 }

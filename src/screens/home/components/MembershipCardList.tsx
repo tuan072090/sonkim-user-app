@@ -47,7 +47,6 @@ export const MembershipCardList = () => {
         SonkimApiService.GetUserMembershipCards().then(cards => {
             if(isMounted) setUserMembershipCars(cards)
         }).catch(err => {
-            console.log("fetch membership card error.....", err)
             if(isMounted) setUserMembershipCars([])
         })
     }
