@@ -3,13 +3,15 @@ import {Box, Center, HStack, ScrollView, VStack} from "native-base";
 import {Formatter, ScreenSize, SonkimApiService} from "../../share";
 import {useRoute} from "@react-navigation/native";
 import {Alert} from "react-native";
-import {FullScreenLoader, HTMLContent, MyButton, QrCode, Typo} from "../../components";
+import {BarcodeCpn, FullScreenLoader, HTMLContent, MyButton, QrCode, Typo} from "../../components";
 import GiftCardPointInfo from "./components/GiftCardPointInfo";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.5)
+const BarCodeWidth = ScreenSize.vw-80
 
 export const OrderGiftCardDetail = () => {
-    const [order, setOrder] = useState<any|null>(null)
+    const [order, setOrder] = useState<any | null>(null)
+    const [display, setDisplay] = useState<"qrCode" | "barCode">("qrCode")
     const route = useRoute();
     const {params}: any = route;
 
@@ -21,14 +23,13 @@ export const OrderGiftCardDetail = () => {
 
     const _fetchGiftCard = () => {
         SonkimApiService.GetOrderGiftCardDetail(params.id).then(data => {
-            console.log("data...", data)
             setOrder(data)
         }).catch(err => {
             Alert.alert("Lỗi " + err.message)
         })
     }
 
-    if(!order) return <FullScreenLoader/>
+    if (!order) return <FullScreenLoader/>
 
     const {id, code, created_at, gift_card, expired_at} = order
 
@@ -41,30 +42,33 @@ export const OrderGiftCardDetail = () => {
                             <Center>
                                 <Typo type="title" textAlign="center" color="primary.500">{gift_card.title}</Typo>
                                 <Box my={5}>
-                                    <QrCode
-                                        code={code}
-                                        size={QrCodeSize}
-                                        alignItems="center"
-                                    />
+                                    {
+                                        display === "qrCode"
+                                            ? <QrCode code={code} size={QrCodeSize} alignItems="center"/>
+                                            : <BarcodeCpn code={code} width={BarCodeWidth} height={BarCodeWidth/3}/>
+                                    }
+
                                     <Typo mt={5} type="title" letterSpacing={5} textAlign="center">{code}</Typo>
                                 </Box>
                             </Center>
                             <HStack space={3} alignItems="center" justifyContent="space-around" my={5} px={3}>
-                                <MyButton flex={1} bgColor="rgba(255, 255, 255, 1)" variant="outline" borderColor="rgba(9, 90, 100, 1)">
-                                    Barcode
-                                </MyButton>
-                                <MyButton flex={1} bgColor="rgba(255, 255, 255, 1)" variant="outline" borderColor="rgba(9, 90, 100, 1)">
+                                <MyButton onPress={() => setDisplay("qrCode")} flex={1} variant={display === "qrCode" ? "solid" : "outline"} borderColor="primary.500">
                                     QR code
+                                </MyButton>
+                                <MyButton onPress={() => setDisplay("barCode")} flex={1} variant={display === "barCode" ? "solid" : "outline"} borderColor="primary.500">
+                                    Barcode
                                 </MyButton>
                             </HStack>
                             <Box bgColor="rgba(240, 240, 240, 0.5)" mx={3} p={4} rounded="lg">
                                 <HStack alignItems="center" space={3}>
                                     <Typo flex={1} type="body14" color="gray.500">Thương hiệu:</Typo>
-                                    <Typo flex={2} type="subtitle14" textTransform="uppercase">{gift_card.loyalty_program.name}</Typo>
+                                    <Typo flex={2} type="subtitle14"
+                                          textTransform="uppercase">{gift_card.loyalty_program.name}</Typo>
                                 </HStack>
                                 <HStack alignItems="center" space={3} mt={2}>
                                     <Typo flex={1} type="body14" color="gray.500">Hạn sử dụng:</Typo>
-                                    <Typo flex={2} type="subtitle14">{Formatter.FormatDateFromDate(new Date(expired_at), "dd/MM/YYY")}</Typo>
+                                    <Typo flex={2}
+                                          type="subtitle14">{Formatter.FormatDateFromDate(new Date(expired_at), "dd/MM/YYY")}</Typo>
                                 </HStack>
                                 <HStack alignItems="center" space={3} mt={2}>
                                     <Typo flex={1} type="body14" color="gray.500">Trị giá:</Typo>
@@ -74,7 +78,7 @@ export const OrderGiftCardDetail = () => {
                         </VStack>
                     </Box>
                     <Box py={1} px={3}>
-                        <Typo type="subtitle16" color="primary.500" >Điều khoản áp dụng:</Typo>
+                        <Typo type="subtitle16" color="primary.500">Điều khoản áp dụng:</Typo>
 
                         <HTMLContent>{gift_card.body}</HTMLContent>
                     </Box>

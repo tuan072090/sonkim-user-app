@@ -29,7 +29,8 @@ import HTMLContent from "./atoms/html-content";
 import Avatar from './molecules/avatar'
 import Picker from './molecules/picker'
 import QrCode from './molecules/qr-code'
-import ImagePicker from "./molecules/image-picker";
+import ImagePicker from "./molecules/image-picker"
+import BarcodeCpn from './molecules/barcode'
 
 //  Organisms
 import DatePicker from './organisms/datepicker'
@@ -88,6 +89,7 @@ export {
     Avatar,
     Picker,
     QrCode,
+    BarcodeCpn,
     ImagePicker,
     PriceDisplay,
     FloatMessage,
