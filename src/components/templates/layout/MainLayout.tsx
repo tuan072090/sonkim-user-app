@@ -12,7 +12,7 @@ const MainLayout = (Component: React.FC<PageProps>) => ({authRequire = false, ..
         if(accessToken && deviceToken && accessToken.length > 0 && deviceToken.length > 0){
             SonkimApiService.UpdateUserDeviceToken(deviceToken).then(res => {
                 //  save success
-                console.log("save device token success....", res)
+                // console.log("save device token success....", res)
             }).catch(err => {
                 console.log("save device token error....", err)
             })

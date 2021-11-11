@@ -5,6 +5,8 @@ export const GetPromotions = async (params:any) => {
         if(typeof params["_limit"] === "undefined"){
             params["_limit"] = 20
         }
+
+        console.log("promotion filter....", params)
         const { count, promotions } = await FetchDataService.GET("/user-api/promotions", params)
 
         return { count, promotions }
