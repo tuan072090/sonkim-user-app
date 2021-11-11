@@ -13,10 +13,11 @@ import AccountItem from "./components/AccountItem";
 import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
-import {APP_VERSION, ScreenName, Translate} from "../../share";
+import {APP_VERSION, FirebaseService, ScreenName, Translate, useLocalStorage} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 
 const AccountScreen = () => {
+    const [notifPermissionStatus] = useLocalStorage(useLocalStorage.KEY_NOTIFICATION_PERMISSION_STATUS, "0")
     const {dispatch, user} = useContext(AppProvider.context)
     const {language, setLanguage} = useContext(LanguageProvider.context)
 
@@ -31,7 +32,11 @@ const AccountScreen = () => {
     }
 
     const _toggleAllowNotification = (value: boolean) => {
-        console.log("isAllowNotification...", value)
+        FirebaseService.RequestNotificationPermission().then(permission => {
+            console.log("permission noti is...", permission)
+        }).catch(err => {
+
+        })
     }
 
     const _toggleLanguage = () => {
@@ -48,6 +53,8 @@ const AccountScreen = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.NOTIFICATION_SCREEN)
     }
+
+    const isNotificationAllow = notifPermissionStatus && parseInt(notifPermissionStatus) > 0
 
     return (
         <Box flex={1}>
@@ -73,7 +80,7 @@ const AccountScreen = () => {
                     <Box mb={4}>
                         <AccountItem title={Translate[language].notifications} onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
-                                     endIcon={(<MySwitch onChangeValue={_toggleAllowNotification}/>)}/>
+                                     endIcon={(<MySwitch isChecked={isNotificationAllow} onChangeValue={_toggleAllowNotification}/>)}/>
                     </Box>
                     {
                         user && <Button onPress={_logout}
@@ -85,7 +92,6 @@ const AccountScreen = () => {
                             <Text color="primary.500" fontSize="lg" fontWeight="semibold">{Translate[language].logout}</Text>
                         </Button>
                     }
-
 
                     <Text width="100%" fontSize="sm" color="gray.400" mt={5}
                           textAlign="center">Verion {APP_VERSION}</Text>

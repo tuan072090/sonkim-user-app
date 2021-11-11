@@ -73,8 +73,8 @@ const OnBoarding:React.FC<{finish:()=>void}> = ({finish}) => {
                 onSnapToItem={setSlideIndex}
             />
 
-            <Box p={8} position="absolute" bottom={4} left={0} right={0}>
-                <MyButton onPress={nextSlide} >Tiếp tục</MyButton>
+            <Box p={8} position="absolute" bottom={0} left={0} right={0}>
+                <MyButton onPress={nextSlide} size="lg">Tiếp tục</MyButton>
             </Box>
         </Box>
     );

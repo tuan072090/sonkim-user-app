@@ -1,6 +1,7 @@
-import React, {createContext, Dispatch, useReducer} from "react";
+import React, {createContext, Dispatch, useEffect, useReducer} from "react";
 import FetchDataService from "../services/fetch";
 import LocalStorageService from "../services/local-storage";
+import messaging from '@react-native-firebase/messaging';
 
 const UPDATE_ACCESS_TOKEN = "UPDATE_ACCESS_TOKEN";
 const UPDATE_REFRESH_TOKEN = "UPDATE_REFRESH_TOKEN";
@@ -80,14 +81,20 @@ const reducer = (state: any, action: ActionType) => {
 const AppProvider = (props: React.PropsWithChildren<any>) => {
     const accessToken = LocalStorageService.GetAccessToken();
     const refreshToken = LocalStorageService.GetRefreshToken();
-
     const initData = {
         ...initState,
         accessToken: accessToken,
         refreshToken: refreshToken,
     };
-
     const [state, dispatch] = useReducer(reducer, initData);
+
+    useEffect(() => {
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+            console.log("notification message payload.......", remoteMessage)
+        });
+
+        return unsubscribe;
+    }, []);
 
     return (
         <Provider value={{...state, dispatch}}>

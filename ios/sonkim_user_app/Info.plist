@@ -54,6 +54,8 @@
 	<string>Cần để tìm cửa hàng quanh bạn</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Cần để cập nhật ảnh đại diện của bạn</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Sơn Kim cần lưu lại lỗi và nhưng thông tin khác để phân loại ưu đãi cho người dùng</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

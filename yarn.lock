@@ -1631,6 +1631,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-12.9.1.tgz#7a5a6f739703103e0fad052d1e307b938155600c"
   integrity sha512-YnutHqhYu1ql64+maVQ7YreJpn9QRI7KeknQEdZUR/t6co9nks3FRx26Zm5GHkRYJ/0HVtqlnhmtX5cJ4CZ/gg==
 
+"@react-native-firebase/messaging@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-13.0.1.tgz#cc10a99e75e155ab566d2f112dedb20d1a50f4f7"
+  integrity sha512-EYEExRXtGrDgYciWPDvCKXGVQLXEAErE1KFWglzcEBjFOyp9NGf0kj1Gd54r03g7BN1JybK8AC+pWgkTTkFf5A==
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
@@ -6770,6 +6775,11 @@ react-native-codegen@^0.0.6:
     flow-parser "^0.121.0"
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
+
+react-native-device-info@^8.4.5:
+  version "8.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.4.5.tgz#89434849d6146c003b8a8b29f4ed5b6261d8009b"
+  integrity sha512-0uKO9rBF4Uv8X+xLJdR6HkuyB2C4gNEcWdHPcS1MhtsIExP6NTbC3tgkrUUWZ7HODbn1MFx5LG5cGDe4X0zhWA==
 
 react-native-fit-image@^1.5.5:
   version "1.5.5"

@@ -27,13 +27,6 @@ export const MembershipCardList = () => {
         return () => {isMounted = false}
     }, [])
 
-    useEffect(() => {
-        //  Fetch all registered cards of current user
-        if (accessToken && accessToken.length > 0) {
-            _fetchUserRegisteredCards()
-        }
-    }, [accessToken])
-
     const _fetchLoyaltyPrograms = () => {
         SonkimApiService.GetLoyaltyPrograms().then(data => {
             if(isMounted) setLoyaltyPrograms(data)
@@ -44,11 +37,13 @@ export const MembershipCardList = () => {
     }
 
     const _fetchUserRegisteredCards = () => {
-        SonkimApiService.GetUserMembershipCards().then(cards => {
-            if(isMounted) setUserMembershipCars(cards)
-        }).catch(err => {
-            if(isMounted) setUserMembershipCars([])
-        })
+        if (accessToken && accessToken.length > 0) {
+            SonkimApiService.GetUserMembershipCards().then(cards => {
+                if(isMounted) setUserMembershipCars(cards)
+            }).catch(err => {
+                if(isMounted) setUserMembershipCars([])
+            })
+        }
     }
 
     return (

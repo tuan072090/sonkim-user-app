@@ -24,7 +24,7 @@ import {
     GetPromotionDetail,
     GetPromotions
 } from "./services/sonkim-api/promotions";
-import {GetPersonalInfo, UpdatePersonalInfo} from './services/sonkim-api/user'
+import {GetPersonalInfo, UpdatePersonalInfo, UpdateUserDeviceToken} from './services/sonkim-api/user'
 import {GetUploadUrl, UploadImage} from './services/sonkim-api/upload'
 import {GetArticleDetail, GetArticles} from './services/sonkim-api/articles'
 import {GetStores} from './services/sonkim-api/stores'
@@ -58,6 +58,7 @@ const SonkimApiService = {
     Logout,
     GetPersonalInfo,
     UpdatePersonalInfo,
+    UpdateUserDeviceToken,
     GetBranches,
     GetPromotions,
     GetOrderPromotions,

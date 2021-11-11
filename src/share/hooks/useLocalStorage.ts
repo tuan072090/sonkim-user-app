@@ -67,5 +67,7 @@ const useLocalStorage = (key:string, initialValue:any) => {
 useLocalStorage.KEY_LOCAL_USER_CARDS = "userRegisteredCards"
 useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS = "loyaltyPrograms"
 useLocalStorage.KEY_LOCAL_POINT_SYSTEMS = "pointSystems"
+useLocalStorage.KEY_NOTIFICATION_PERMISSION_STATUS = "notificationPermission"
+useLocalStorage.KEY_NOTIFICATION_DEVICE_TOKEN = "deviceToken"
 
 export {useLocalStorage}

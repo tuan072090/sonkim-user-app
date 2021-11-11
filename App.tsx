@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
-import {Colors, FetchDataService, LocalStorageService} from "./src/share";
+import {Colors, FetchDataService, FirebaseService, LocalStorageService} from "./src/share";
 import AppProvider from "./src/share/context";
 import {Alert, Platform} from "react-native";
 import {FullScreenLoader, OnBoarding} from "./src/components";
@@ -27,6 +27,9 @@ const App = () => {
             if(Platform.OS === 'android'){
                 SplashScreen.hide()
             }
+
+            //  check notification permission status
+            FirebaseService.RequestNotificationPermission()
         }).catch(err => {
             Alert.alert("Có lỗi xảy ra", err.message)
         })
