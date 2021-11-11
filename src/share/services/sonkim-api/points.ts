@@ -24,6 +24,21 @@ export const GetPointHistories = async (params:any) => {
     }
 }
 
+type SwapPayloadType = {
+    userPointA: string|number,
+    userCardIdA: string|number,
+    userCardIdB: string|number
+}
+export const SwapPoint = async (params:SwapPayloadType) => {
+    try {
+        const data = await FetchDataService.POST("/user-api/points/swap", params)
+
+        return data
+    } catch (err) {
+        throw err
+    }
+}
+
 export const GetPointSwapHistories = async (params:any) => {
     try {
         if(typeof params["_limit"] === "undefined"){

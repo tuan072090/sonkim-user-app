@@ -48,7 +48,7 @@ import FirebaseService from "./services/firebase";
 import {useDebounce} from "./hooks/useDebounce";
 import {useCountDown} from "./hooks/useCountdown";
 import {useLocalStorage} from './hooks/useLocalStorage'
-import {GetPointHistories, GetPointSwapHistories, GetPointSystems} from "./services/sonkim-api/points";
+import {GetPointHistories, GetPointSwapHistories, GetPointSystems, SwapPoint} from "./services/sonkim-api/points";
 
 const SonkimApiService = {
     CheckPhone,
@@ -85,7 +85,8 @@ const SonkimApiService = {
     BuyGiftCard,
     GetPointHistories,
     GetPointSwapHistories,
-    GetPointSystems
+    GetPointSystems,
+    SwapPoint
 }
 
 export {

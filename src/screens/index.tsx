@@ -21,7 +21,7 @@ import StoreScreen from './stores';
 import VouchersScreen from "./vouchers";
 import AccountInfo from './account/AccountInfo';
 import VoucherDetail from './vouchers/VoucherDetail';
-import TransactionSwapHistory from './transaction-swap-point-history';
+import TransactionSwapHistory from './transfer-point-history';
 import {ArticleScreen} from "./article";
 import GiftCardListScreen from './gift-cards';
 import GiftCardDetail from './gift-cards/GiftCardDetail';

@@ -59,6 +59,7 @@ const TransactionSwapHistory:React.FC<PageProps> = MainLayout(() => {
                     : <FlatList
                         data={histories}
                         renderItem={_renderItem}
+                        ListFooterComponent={(<Box width="100%" height={16}/>)}
                         />
                 }
 

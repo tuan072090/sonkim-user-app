@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {Colors, ScreenName, SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
+import {Colors, ScreenName, SonkimApiService, Translate, useLocalStorage, UserMemberShipCardType} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import {MainLayout, MembershipCard, PageProps, Typo} from "../../components";
 import {useNavigation} from "@react-navigation/core";
@@ -10,14 +10,12 @@ import AppProvider from "../../share/context";
 
 const UserListCard:React.FC<PageProps> = MainLayout(() => {
     const {language} = useContext(LanguageProvider.context);
-    const navigation = useNavigation();
-    const [cards, setCards] = useState<UserMemberShipCardType[]|null>(null)
+    const [userCards, setUserCards] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
     const {dispatch} = useContext(AppProvider.context)
 
     useEffect(() => {
         SonkimApiService.GetUserMembershipCards().then(data => {
-            console.log("cards....", data)
-            setCards(data)
+            setUserCards(data)
         }).catch(err => {
             dispatch({
                 type: AppProvider.actions.UPDATE_MESSAGE,
@@ -40,12 +38,12 @@ const UserListCard:React.FC<PageProps> = MainLayout(() => {
             />
             <Box>
                 {
-                    !cards ? <ActivityIndicator color={Colors.primary["500"]}/>
-                        : cards.length === 0 ? <Typo type="subtitle16">Bạn chưa có thẻ thành viên</Typo>
+                    !userCards ? <Box p={5}><ActivityIndicator color={Colors.primary["500"]}/></Box>
+                        : userCards.length === 0 ? <Typo type="subtitle16">Bạn chưa có thẻ thành viên</Typo>
                         : <FlatList
-                            data={cards}
+                            data={userCards}
                             renderItem={_renderItem}
-                            ListHeaderComponent={<Box width="100%" p={4}><Typo type="subtitle16">Bạn có {cards.length} thẻ</Typo></Box>}
+                            ListHeaderComponent={<Box width="100%" p={4}><Typo type="subtitle16">Bạn có {userCards.length} thẻ</Typo></Box>}
                             ListFooterComponent={(<Box width="100%" height={128}/>)}
                         />
                 }

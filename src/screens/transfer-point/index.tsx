@@ -1,30 +1,49 @@
-import React, {useContext, useEffect} from "react";
-import {Box, Button, HStack, ScrollView} from "native-base";
+import React, {useContext, useEffect, useState} from "react";
+import {Box, Button, HStack, ScrollView, Modal, Text} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {SonkimApiService, StaticImages, Translate, useLocalStorage} from "../../share";
+import {
+    PointSystemType,
+    SonkimApiService,
+    StaticImages,
+    Translate,
+    useLocalStorage,
+    UserMemberShipCardType
+} from "../../share";
 import LanguageProvider from "../../share/context/Language";
 import {
     FullScreenLoader,
-    Image,
     ImageStatic,
     MainLayout,
     MyButton,
     PageProps,
-    PointExchangericon,
+    PointExchangericon, PressBox,
     Typo
 } from "../../components";
 import {Alert, TextInput} from "react-native";
+import {SelectPoint} from "./components/SelectPoint";
+import {EstimateResult} from "./components/EstimateResult";
 
 const TransferPointPage: React.FC<PageProps> = MainLayout(() => {
     const [pointSystems, setPointSystems] = useLocalStorage(useLocalStorage.KEY_LOCAL_POINT_SYSTEMS, [])
     const [userCards, setUserCards] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
     const {language} = useContext(LanguageProvider.context);
-
+    const [fromPoint, setFromPoint] = useState<PointSystemType|null>(null)
+    const [toPoint, setToPoint] = useState<PointSystemType|null>(null)
+    const [valueA, setValueA] = useState(0)
+    const [valueB, setValueB] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         _fetchPointSystem()
         _fetchAllUserWallets()
     }, [])
+
+    useEffect(() => {
+        if(pointSystems && userCards && pointSystems.length > 0){
+            setFromPoint(pointSystems[0])
+            setToPoint(pointSystems[1])
+        }
+    },[pointSystems])
 
     const _fetchPointSystem = () => {
         SonkimApiService.GetPointSystems().then(data => {
@@ -42,12 +61,62 @@ const TransferPointPage: React.FC<PageProps> = MainLayout(() => {
         })
     }
 
-    if (!pointSystems || pointSystems.length === 0 || !userCards) {
+    const _swapIconPress = () => {
+        setFromPoint(toPoint)
+        setToPoint(fromPoint)
+    }
+
+    const _onChangePointA = (point:number) => {
+        if(fromPoint && toPoint){
+            setValueA(point)
+            //  calculate value B
+            const valuePointB = ((toPoint.ratio/fromPoint.ratio) * point).toFixed(2)
+            setValueB(parseFloat(valuePointB))
+        }
+    }
+    const _onChangePointB = (point:number) => {
+        if(fromPoint && toPoint){
+            setValueB(point)
+            //  calculate value B
+            const valuePointA = (point/(toPoint.ratio/fromPoint.ratio)).toFixed(2)
+            setValueA(parseFloat(valuePointA))
+        }
+    }
+
+    const _submitSwap = async () => {
+        try{
+            if(fromPoint && toPoint){
+                setLoading(true)
+                const cardA = userCards.find((item:UserMemberShipCardType) => item.point_system.symbol === fromPoint.symbol)
+                const cardB = userCards.find((item:UserMemberShipCardType) => item.point_system.symbol === toPoint.symbol)
+
+                if(!cardA || !cardB){
+                    Alert.alert(`Bạn chưa đăng ký thành viên ${fromPoint.name} hoặc ${toPoint.name}`)
+                    return;
+                }
+
+                await SonkimApiService.SwapPoint({
+                    "userPointA": valueA,
+                    "userCardIdA": cardA.id,
+                    "userCardIdB": cardB.id
+                })
+
+                Alert.alert("Đổi điểm thành công")
+                _fetchAllUserWallets()
+                setLoading(false)
+            }
+        }catch (err){
+            setLoading(false)
+            Alert.alert("Lỗi "+err.message)
+        }
+    }
+
+    if (!pointSystems || pointSystems.length === 0 || !userCards || !fromPoint || !toPoint ) {
         return <FullScreenLoader/>
     }
 
-    const fromPoint = pointSystems[0]
-    const toPoint = pointSystems[1]
+    const balanceFrom = fromPoint ? userCards.find((item:UserMemberShipCardType) => item.point_system.symbol === fromPoint.symbol) : null
+    const balanceTo = toPoint ? userCards.find((item:UserMemberShipCardType) => item.point_system.symbol === toPoint.symbol) : null
 
     return (
         <Box flex={1} position="relative" alignItems="center">
@@ -70,43 +139,37 @@ const TransferPointPage: React.FC<PageProps> = MainLayout(() => {
 
                         <HStack alignItems="center">
                             <Typo type="subtitle14" color="gray.300">Số dư:</Typo>
-                            <Typo ml={1} type="subtitle16" color="secondary.500">333</Typo>
+                            <Typo ml={1} type="subtitle16" color="secondary.500">{balanceFrom ? balanceFrom.point : 0}</Typo>
                         </HStack>
                     </HStack>
 
-                    <Box borderRadius={10} bgColor="white" p={4} mt={2}>
-                        <HStack justifyContent="space-between">
-                            <TextInput placeholder="nhập số lượng gửi đi"/>
+                    {
+                        fromPoint && <SelectPoint pointValue={valueA} onChangePointValue={_onChangePointA} onChangePointSystem={setFromPoint} pointSystem={fromPoint}/>
+                    }
 
-                            <HStack alignItems="center">
-                                <Typo type="subtitle14" mr={1}>{fromPoint.symbol}</Typo>
-                                <Image uri={fromPoint.icon.url} width={10} height={10} borderRadius="full" borderWidth={1} borderColor="gray.500"/>
-                            </HStack>
-                        </HStack>
+                    <Box width="full" p={5} alignItems="center">
+                        <PressBox onPress={_swapIconPress}><PointExchangericon size={6} fill="white"/></PressBox>
                     </Box>
-
-                    <Box width="full" p={5} alignItems="center"><PointExchangericon size={6} fill="white"/></Box>
 
                     <HStack justifyContent="space-between">
                         <Typo type="subtitle14" color="gray.300">Nhận về</Typo>
-
-                        <Typo type="subtitle16" color="secondary.500">123</Typo>
+                        <HStack alignItems="center">
+                            <Typo type="subtitle14" color="gray.300">Số dư:</Typo>
+                            <Typo ml={1} type="subtitle16" color="secondary.500">{balanceTo ? balanceTo.point : 0}</Typo>
+                        </HStack>
                     </HStack>
 
-                    <Box borderRadius={10} bgColor="white" p={4} mt={2}>
-                        <HStack justifyContent="space-between">
-                            <TextInput placeholder="Số lượng nhận về"/>
+                    {
+                        toPoint && <SelectPoint pointValue={valueB}  onChangePointValue={_onChangePointB} onChangePointSystem={setToPoint} pointSystem={toPoint}/>
+                    }
 
-                            <HStack alignItems="center">
-                                <Typo type="subtitle14" mr={1}>{toPoint.symbol}</Typo>
-                                <Image uri={toPoint.icon.url} width={10} height={10} borderRadius="full" borderWidth={1} borderColor="gray.500"/>
-                            </HStack>
-                        </HStack>
+                    <MyButton isLoading={loading} onPress={_submitSwap} my={10} bgColor="white" size="lg" _text={{color: "primary.500"}} opacity={70}>Đổi</MyButton>
 
-                    </Box>
-
-                    <MyButton mt={10} bgColor="white" _text={{color: "primary.500"}} opacity={70}>Đổi</MyButton>
+                    {
+                        fromPoint && toPoint && <EstimateResult fromPoint={fromPoint} toPoint={toPoint}/>
+                    }
                 </Box>
+
             </ScrollView>
         </Box>
     );

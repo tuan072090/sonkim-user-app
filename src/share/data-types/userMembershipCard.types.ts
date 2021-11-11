@@ -14,5 +14,6 @@ export type UserMemberShipCardType = {
     "loyalty_program": any,
     "membership_info"?: MembershipCardInfoType,
     "created_at": string,
-    "updated_at": string
+    "updated_at": string,
+    "point_system": any
 }

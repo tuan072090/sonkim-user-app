@@ -18,7 +18,7 @@ const HomeScreen = () => {
             // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
             // navigation.navigate(ScreenName.TRANSFER_POINT)
             // setLanguage("en")
-        }, 1000)
+        }, 500)
     }, [])
 
     return (
