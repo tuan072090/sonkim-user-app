@@ -1,8 +1,9 @@
 export const Colors = {
+    tabBarBackground:'#CDDDDF',
     primary: {
         50: '#ECFDFC',
         100: '#CAF8F4',
-        200: 'rgba(8, 105, 129, 0.2)',
+        200: 'rgba(9, 90, 100, 0.2)',
         300: '#5ED3D9',
         400: '#35A3B3',
         500: '#086981',
