@@ -16,7 +16,7 @@ const HomeScreen = () => {
         setTimeout(function () {
             // @ts-ignore
             // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
-            navigation.navigate(ScreenName.VOUCHERS_SCREEN)
+            // navigation.navigate(ScreenName.VOUCHERS_SCREEN)
             // setLanguage("en")
         }, 500)
     }, [])
