@@ -3,9 +3,6 @@ import MyError from "../error";
 
 export const GetUploadUrl = async (file_name:string, file_type:string) => {
     try {
-        console.log("file_name....", file_name)
-        console.log("file_type....", file_type)
-
         const {url, fileName, fileType, expiresIn} = await FetchDataService.POST("/user-upload/presignedurl",{
             fileName: file_name, fileType: file_type})
 
@@ -17,19 +14,10 @@ export const GetUploadUrl = async (file_name:string, file_type:string) => {
 }
 
 export const UploadImage = async (photo:any, url:string) => {
-    try{
-        //  create formdata
-        const formData = new FormData();
-
-        formData.append("file", {
-            name: photo.fileName,
-            type: photo.type,
-            uri: photo.uri
-        });
-
+    try {
         const response = await fetch(url, {
             method: "PUT",
-            body: formData
+            body: photo
         })
 
         return response

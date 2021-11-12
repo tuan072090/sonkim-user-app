@@ -2,7 +2,7 @@ import React, {memo, useContext, useEffect, useState} from "react";
 import {Box, Pressable, Text} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
-import {ScreenName, SonkimApiService, Translate} from "../../../share";
+import {ScreenName, SonkimApiService, Translate, Validator} from "../../../share";
 import AppProvider from "../../../share/context";
 import {ActivityIndicator, Alert} from "react-native";
 import LanguageProvider from "../../../share/context/Language";
@@ -62,7 +62,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
                     user
                         ? <>
                             {
-                                user.avatar ? <Avatar uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name} size="sm"/>
+                                user.avatar && Validator.isValidUrl(user.avatar) ? <Avatar uri={user.avatar} size="sm"/>
                                     : <Avatar
                                         uri={"https://ui-avatars.com/api/?background=ff2dad&color=fff&size=400&name=" + user.name}
                                         size="sm"/>
