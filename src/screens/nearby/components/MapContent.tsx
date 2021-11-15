@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Box} from "native-base";
-import {Colors, StoreTypes} from "../../../share";
+import {Colors, ScreenSize, StoreTypes} from "../../../share";
 import MapView, {Marker} from 'react-native-maps';
 import {StyleSheet} from "react-native";
 
@@ -72,6 +72,7 @@ export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFo
 
 const styles = StyleSheet.create({
     mapContainer: {
-        flex: 1
+        width: ScreenSize.vw,
+        height: ScreenSize.vh - 70 - 200
     }
 })
