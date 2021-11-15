@@ -13,6 +13,8 @@ export const OrderVoucherDetail = () => {
     const navigation = useNavigation();
     const {params}: any = route
 
+    console.log("params order....", params)
+
     useEffect(() => {
         if (params.id) {
             SonkimApiService.GetOrderPromotionDetail(params.id).then(data => {

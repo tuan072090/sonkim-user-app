@@ -24,7 +24,7 @@ const TabScreens = () => {
             tabBarShowLabel: false,
             tabBarStyle: {
                 position: 'absolute',
-                bottom: 20,
+                bottom: 15,
                 marginHorizontal: 12,
                 paddingBottom: 0,
                 paddingHorizontal: 12,

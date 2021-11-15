@@ -51,12 +51,19 @@ class FetchData {
         return res.data;
     }
 
-    private handleError = function (error: AxiosError | any) {
-        console.log("error gốc....", {...error})
+    private handleError =  (error: AxiosError | any) => {
         const errorResponse = error.response.data
+
+        //  remove access token if get 401 error
+        if(errorResponse.statusCode === 401 || errorResponse.status === 401){
+            console.log("xoá access token.......", errorResponse)
+            this.SetAccessToken("")
+            LocalStorage.SetAccessToken("")
+            LocalStorage.SetRefreshToken("")
+        }
         //  Need optimize
         const message = errorResponse.message || "Something error"
-        const status = errorResponse.status || 500
+        const status = errorResponse.status || errorResponse.statusCode || 500
         const code = errorResponse.code || 500
         const errors = errorResponse.errors || []
 

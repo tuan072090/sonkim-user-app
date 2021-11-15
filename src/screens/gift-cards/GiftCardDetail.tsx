@@ -29,7 +29,8 @@ const GiftCardDetail = ({navigation}) => {
         if(giftCard){
             setLoading(true)
             SonkimApiService.BuyGiftCard(giftCard.id).then(data => {
-                setOrder(data)
+                const orderData = data.order
+                setOrder(orderData)
                 setLoading(false)
             }).catch(err => {
                 setLoading(false)
@@ -40,8 +41,10 @@ const GiftCardDetail = ({navigation}) => {
     }
 
     const _navToOrderDetail = () => {
+        const orderId = order.id
+        setOrder(null)
         //  @ts-ignore
-        if(order) navigation.navigate(ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN, {id: order.id})
+        if(order) navigation.navigate(ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN, {id: orderId})
     }
 
     if (!giftCard) return <FullScreenLoader/>
@@ -90,7 +93,7 @@ const GiftCardDetail = ({navigation}) => {
                 </Box>
             </ScrollView>
 
-            <HStack shadow={9} bgColor="white" pt={3} alignItems="center" justifyContent="space-around"
+            <HStack shadow={9} bgColor="white" py={2} alignItems="center" justifyContent="space-around"
                     position="absolute"
                     bottom={0} width="100%" safeAreaBottom={true}>
 

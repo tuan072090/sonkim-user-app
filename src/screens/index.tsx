@@ -113,6 +113,7 @@ const AppNavigation = () => {
                                   options={{headerShown: false}}/>
                     <Stack.Screen name={ScreenName.ORDER_VOUCHERS_SCREEN} component={OrderVouchersScreen}
                                   options={{title: ScreenTitle[ScreenName.ORDER_VOUCHERS_SCREEN]}}/>
+
                     <Stack.Screen name={ScreenName.ORDER_VOUCHER_DETAIL} component={OrderVoucherDetail}
                                   options={{title: ScreenTitle[ScreenName.ORDER_VOUCHER_DETAIL]}}/>
 
