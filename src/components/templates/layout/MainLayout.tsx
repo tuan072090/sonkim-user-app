@@ -8,6 +8,7 @@ const MainLayout = (Component: React.FC<PageProps>) => ({authRequire = false, ..
     const {accessToken} = useContext(AppProvider.context)
     const [deviceToken] = useLocalStorage(useLocalStorage.KEY_NOTIFICATION_DEVICE_TOKEN,"")
 
+
     useEffect(() => {
         if(accessToken && deviceToken && accessToken.length > 0 && deviceToken.length > 0){
             SonkimApiService.UpdateUserDeviceToken(deviceToken).then(res => {

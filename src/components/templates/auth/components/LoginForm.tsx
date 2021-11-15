@@ -5,12 +5,14 @@ import {ScreenName, ScreenSize, SonkimApiService, useLocalStorage, Validator} fr
 import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
 import AppProvider from "../../../../share/context";
+import {MyButton} from "../../../index";
 
 export const LoginForm = () => {
     const {dispatch} = useContext(AppProvider.context)
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false)
     const [phoneLocal, savePhoneLocal] = useLocalStorage("phone", "")
 
     useEffect(() => {
@@ -25,12 +27,14 @@ export const LoginForm = () => {
             if (!Validator.isValidPhone(phone) || !password || password.length < 6) {
                 throw new MyError("Điện thoại hoặc mật khẩu không hợp lệ", 400)
             }
+            setLoading(true)
             const {jwt, user} = await SonkimApiService.Login({phone, password})
             dispatch({
                 type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
                 data: jwt
             })
             Alert.alert("Đăng nhập thành công")
+            setLoading(false)
 
             //  remove login screen from stack
             navigation.dispatch((state) => {
@@ -46,6 +50,7 @@ export const LoginForm = () => {
             });
 
         } catch (err) {
+            setLoading(false)
             Alert.alert(err.message)
         }
     }
@@ -110,8 +115,8 @@ export const LoginForm = () => {
                     <Pressable onPress={_navToResetPass} alignItems="flex-end">
                         <Text pt={1} pb={5} color="white" underline>Quên mật khẩu?</Text>
                     </Pressable>
-                    <Button onPress={_submitPhone} my={5} p={3} rounded="xl" size="lg" bgColor="white"
-                            _text={{color: "gray.500"}} opacity={70}>Đăng nhập</Button>
+                    <MyButton isLoading={loading} onPress={_submitPhone} my={5} p={3} rounded="xl" size="lg" bgColor="white"
+                            _text={{color: "gray.500"}} opacity={70}>Đăng nhập</MyButton>
 
                     <Box flexDirection="row" alignItems="center" justifyContent="center">
                         <Text color="white">Chưa có tài khoản?</Text>

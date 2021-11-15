@@ -37,6 +37,7 @@ const RequestNotificationPermission = async () => {
 
 const GetFirebaseDeviceToken = () => {
     messaging().getToken().then(async (deviceToken) => {
+        console.log("GetFirebaseDeviceToken....", deviceToken)
         await LocalStorageService.StoreData(useLocalStorage.KEY_NOTIFICATION_DEVICE_TOKEN, deviceToken)
     }).catch(err => {
         console.log("get device token error.......", err)

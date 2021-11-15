@@ -1,8 +1,8 @@
 import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 
-import {Colors, ScreenName, ScreenTitle} from "../share";
+import {Colors, ScreenName, ScreenTitle, useLocalStorage} from "../share";
 import UserListCard from './membership-card-list';
 import TabScreens from "./TabScreens";
 import {PhoneInputScreen} from "./auth/PhoneInputScreen";
@@ -28,11 +28,13 @@ import GiftCardDetail from './gift-cards/GiftCardDetail';
 import MembershipRegisterScreen from "./membership-register";
 import MemberShipCardDetailScreen from "./membership-card-detail";
 import {MembershipRegisterSelect} from "./membership-register/MembershipRegisterSelect";
-import {FloatMessage} from "../components";
+import {FloatMessage, NotificationFloatMessage} from "../components";
 import OrderVouchersScreen from "./order-vouchers";
 import OrderGiftCardsScreen from "./order-giftcards";
 import {OrderVoucherDetail} from "./order-vouchers/OrderVoucherDetail";
 import {OrderGiftCardDetail} from "./order-giftcards/OrderGiftCardDetail";
+import AppProvider from "../share/context";
+import messaging from "@react-native-firebase/messaging";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +42,18 @@ const AppNavigation = () => {
     const routeNameRef = useRef("");
     // @ts-ignore
     const navigationRef = React.useRef<NavigationContainerRef | null>(null);
+    const {accessToken, dispatch} = useContext(AppProvider.context)
+
+    useEffect(() => {
+        const unsubscribe = messaging().onMessage(async remoteMessage => {
+            dispatch({
+                type: AppProvider.actions.UPDATE_NOTIFICATION_IN_APP,
+                data: remoteMessage
+            })
+        });
+
+        return unsubscribe;
+    }, []);
 
     const handleScreenTracking = () => {
 
@@ -73,6 +87,7 @@ const AppNavigation = () => {
             <StatusBar backgroundColor="#086981" barStyle="light-content"/>
 
             <FloatMessage/>
+            <NotificationFloatMessage/>
 
             <NavigationContainer
                 ref={navigationRef}

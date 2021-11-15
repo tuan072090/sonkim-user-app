@@ -31,6 +31,7 @@ import Picker from './molecules/picker'
 import QrCode from './molecules/qr-code'
 import ImagePicker from "./molecules/image-picker"
 import BarcodeCpn from './molecules/barcode'
+import NotificationFloatMessage from "./molecules/notification-float-message";
 
 //  Organisms
 import DatePicker from './organisms/datepicker'
@@ -93,6 +94,7 @@ export {
     ImagePicker,
     PriceDisplay,
     FloatMessage,
+    NotificationFloatMessage,
 
     //  Organisms
     DatePicker,
