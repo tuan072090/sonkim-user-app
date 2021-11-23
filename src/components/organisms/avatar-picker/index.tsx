@@ -15,7 +15,7 @@ const AvatarPicker:React.FC<ImagePickerTypes> = memo(({onChange, value="", from 
         setAvatar(imgUri)
         onChange(imgUri)
     }
-    
+
     return (
         <ImagePicker
             onChange={_uploadImgChange}
@@ -26,8 +26,7 @@ const AvatarPicker:React.FC<ImagePickerTypes> = memo(({onChange, value="", from 
             width={24}
             height={24}
             position="relative"
-            bgColor="rgba(255,255,255,0.5)" {...props}
-        >
+            bgColor="rgba(255,255,255,0.5)" {...props}>
             {
                 avatar.length === 0
                 ? <ImageIcon size={20}/>
