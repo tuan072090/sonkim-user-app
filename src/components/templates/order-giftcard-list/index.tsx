@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {SonkimApiService} from "../../../share";
+import React, {useContext, useEffect, useState} from "react";
+import {SonkimApiService, Translate} from "../../../share";
 import {ActivityIndicator, Alert} from "react-native";
 import {Box, FlatList} from "native-base";
 import {Typo} from "../../index";
 import {OrderGiftCardListTypes} from "./OrderGiftCardList.types";
 import OrderGiftCardCard from "../../organisms/order-gift-card";
+import LanguageProvider from "../../../share/context/Language";
 
 const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
     const [orders, setOrders] = useState<any[] | null>(null)
     const [count, setCount] = useState<number | null>(null)
+    const {language} = useContext(LanguageProvider.context);
 
     useEffect(() => {
         _fetchOrders()
@@ -49,7 +51,7 @@ const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
                     : <FlatList
                         data={orders}
                         renderItem={_renderItem}
-                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} thẻ quà tặng</Typo>)}
+                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} {Translate[language].giftCards}</Typo>)}
                     />
             }
         </Box>

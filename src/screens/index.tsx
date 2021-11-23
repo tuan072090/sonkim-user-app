@@ -127,15 +127,15 @@ const AppNavigation = () => {
                     <Stack.Screen name={ScreenName.VOUCHERS_SCREEN} component={VouchersScreen}
                                   options={{headerShown: false}}/>
                     <Stack.Screen name={ScreenName.ORDER_VOUCHERS_SCREEN} component={OrderVouchersScreen}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_VOUCHERS_SCREEN]}}/>
+                                  options={{title: ScreenTitle[ScreenName.ORDER_VOUCHERS_SCREEN], headerShown: false}}/>
 
                     <Stack.Screen name={ScreenName.ORDER_VOUCHER_DETAIL} component={OrderVoucherDetail}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_VOUCHER_DETAIL]}}/>
+                                  options={{title: ScreenTitle[ScreenName.ORDER_VOUCHER_DETAIL], headerShown: false}}/>
 
                     <Stack.Screen name={ScreenName.ORDER_GIFT_CARDS_SCREEN} component={OrderGiftCardsScreen}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN]}}/>
+                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN], headerShown: false}}/>
                     <Stack.Screen name={ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN} component={OrderGiftCardDetail}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN]}}/>
+                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN], headerShown: false}}/>
 
                     <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail}
                                   options={{headerShown: false}}/>

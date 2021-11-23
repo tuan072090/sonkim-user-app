@@ -1,19 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Box, Center, HStack, ScrollView, Text, VStack} from "native-base";
-import {Formatter, OrderVoucherType, ScreenSize, SonkimApiService} from "../../share";
+import {Formatter, OrderVoucherType, ScreenSize, SonkimApiService, Translate} from "../../share";
 import {useNavigation, useRoute} from "@react-navigation/native";
 import {Alert} from "react-native";
 import {FullScreenLoader, HTMLContent, QrCode, Typo} from "../../components";
+import ScreenHeader from "../../components/organisms/screen-header";
+import LanguageProvider from "../../share/context/Language";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.5);
 
 export const OrderVoucherDetail = () => {
     const [order, setOrder] = useState<OrderVoucherType | null>(null)
     const route = useRoute();
-    const navigation = useNavigation();
     const {params}: any = route
-
-    console.log("params order....", params)
+    const {language} = useContext(LanguageProvider.context);
 
     useEffect(() => {
         if (params.id) {
@@ -33,6 +33,11 @@ export const OrderVoucherDetail = () => {
 
     return (
         <Box flex={1} bgColor="white">
+            <ScreenHeader
+                hasBackButton={true}
+                title={Translate[language].orderVouchers}
+                bgColor="primary.500"
+            />
             <ScrollView>
                 <Box m={4}>
                     <VStack>

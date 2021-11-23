@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Box, Center, HStack, ScrollView, VStack} from "native-base";
-import {Formatter, ScreenSize, SonkimApiService} from "../../share";
+import {Formatter, ScreenSize, SonkimApiService, Translate} from "../../share";
 import {useRoute} from "@react-navigation/native";
 import {Alert} from "react-native";
 import {BarcodeCpn, FullScreenLoader, HTMLContent, MyButton, QrCode, Typo} from "../../components";
 import GiftCardPointInfo from "./components/GiftCardPointInfo";
+import LanguageProvider from "../../share/context/Language";
+import ScreenHeader from "../../components/organisms/screen-header";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.5)
 const BarCodeWidth = ScreenSize.vw-80
@@ -14,6 +16,7 @@ export const OrderGiftCardDetail = () => {
     const [display, setDisplay] = useState<"qrCode" | "barCode">("qrCode")
     const route = useRoute();
     const {params}: any = route;
+    const {language} = useContext(LanguageProvider.context);
 
     useEffect(() => {
         if (params.id) {
@@ -35,6 +38,11 @@ export const OrderGiftCardDetail = () => {
 
     return (
         <Box flex={1} width="100%">
+            <ScreenHeader
+                hasBackButton={true}
+                title={Translate[language].orderGiftCards}
+                bgColor="primary.500"
+            />
             <ScrollView>
                 <Box m={4}>
                     <Box bgColor="white" rounded="xl" py={4} px={3} my={3}>
