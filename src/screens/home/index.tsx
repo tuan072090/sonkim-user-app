@@ -6,8 +6,11 @@ import {Categories} from "./components/Categories";
 import {MembershipCardList} from "./components/MembershipCardList";
 import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {ScreenName} from "../../share";
+import { useScrollToTop } from '@react-navigation/native';
 
 const HomeScreen = () => {
+    const ref = React.useRef(null);
+    useScrollToTop(ref);
 
     const navigation = useNavigation();
     const isFocused = useIsFocused()
@@ -23,7 +26,7 @@ const HomeScreen = () => {
 
     return (
         <>
-            <ScrollView bgColor="white">
+            <ScrollView bgColor="white" ref={ref}>
 
                 <HomeHeader isFocused={isFocused}/>
 

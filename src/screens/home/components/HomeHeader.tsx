@@ -40,6 +40,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
             const {count} = await SonkimApiService.GetOrderPromotions({})
             setVouchers(count)
         } catch (err) {
+            setVouchers(0)
             Alert.alert("Không lấy được voucher", err.message)
         }
     }

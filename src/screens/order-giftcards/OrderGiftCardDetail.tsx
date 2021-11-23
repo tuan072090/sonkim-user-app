@@ -49,7 +49,7 @@ export const OrderGiftCardDetail = () => {
                         <VStack>
                             <Center>
                                 <Typo type="title" textAlign="center" color="primary.500">{gift_card.title}</Typo>
-                                <Box my={5}>
+                                <Center my={5} width="100%" height={QrCodeSize+40} alignItems="center">
                                     {
                                         display === "qrCode"
                                             ? <QrCode code={code} size={QrCodeSize} alignItems="center"/>
@@ -57,7 +57,7 @@ export const OrderGiftCardDetail = () => {
                                     }
 
                                     <Typo mt={5} type="title" letterSpacing={5} textAlign="center">{code}</Typo>
-                                </Box>
+                                </Center>
                             </Center>
                             <HStack space={3} alignItems="center" justifyContent="space-around" my={5} px={3}>
                                 <MyButton onPress={() => setDisplay("qrCode")} flex={1} variant={display === "qrCode" ? "solid" : "outline"} borderColor="primary.500">
