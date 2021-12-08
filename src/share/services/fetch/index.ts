@@ -1,6 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
-import LocalStorage from "../local-storage";
 import {API_URI} from "../..";
 import {store} from "../../../redux/store";
 import { Logout } from '../../../redux/reducers/auth';
@@ -20,7 +19,7 @@ class FetchData {
     }
 
     constructor() {
-        const accessToken = LocalStorage.GetAccessToken();
+        const accessToken = store.getState().auth.accessToken;
 
         if (accessToken && accessToken.length > 0) {
             this.headers = {Authorization: "Bearer " + accessToken}
@@ -35,8 +34,8 @@ class FetchData {
 
     public async RefreshToken() {
         try {
-            const accessToken = LocalStorage.GetAccessToken()
-            this.SetAccessToken(accessToken)
+            const accessToken = store.getState().auth.accessToken
+            this.SetAccessToken(accessToken || undefined)
 
             return;
 

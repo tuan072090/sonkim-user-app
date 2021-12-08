@@ -1,14 +1,15 @@
 import {useNavigation} from '@react-navigation/core';
 import {Box, Button, Input, KeyboardAvoidingView, ScrollView, Text} from 'native-base';
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Alert, Platform} from 'react-native'
 import {Formatter, GenderList, SonkimApiService} from '../../../share';
-import AppProvider from '../../../share/context'
 import {AvatarPicker, DatePicker, Picker} from "../../../components";
 import {PersonalInfoType} from "../../../share/services/sonkim-api/user";
+import {useAppDispatch} from "../../../redux/store";
+import {UpdateUser} from '../../../redux/reducers/auth';
 
 const AccountInfoForm = () => {
-    const {dispatch} = useContext(AppProvider.context);
+    const appDispatch = useAppDispatch()
     const navigation = useNavigation();
     const [formData, setFormData] = useState<PersonalInfoType>({name: "", gender: "male", birthday: "", avatar: ""});
     const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ const AccountInfoForm = () => {
         let isMounted = true;
 
         SonkimApiService.GetPersonalInfo().then(info => {
-            if(isMounted){
+            if (isMounted) {
                 setFormData({
                     name: info.name || "",
                     avatar: info.avatar || "",
@@ -78,10 +79,8 @@ const AccountInfoForm = () => {
 
             //  update personal info
             const userInfo = await SonkimApiService.UpdatePersonalInfo(formData)
-            dispatch({
-                type: AppProvider.actions.UPDATE_USER_INFO,
-                data: userInfo
-            })
+            appDispatch(UpdateUser(userInfo))
+
             setLoading(false);
             Alert.alert("Cập nhật thông tin thành công")
             // navigate

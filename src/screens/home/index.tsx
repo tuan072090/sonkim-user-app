@@ -1,12 +1,10 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView} from 'native-base';
 import {HomeHeader} from "./components/HomeHeader";
 import {HomeSlider} from "./components/HomeSlider";
 import {Categories} from "./components/Categories";
 import {MembershipCardList} from "./components/MembershipCardList";
-import {useIsFocused, useNavigation} from '@react-navigation/native';
-import {ScreenName} from "../../share";
-import { useScrollToTop } from '@react-navigation/native';
+import {useIsFocused, useNavigation, useScrollToTop} from '@react-navigation/native';
 
 const HomeScreen = () => {
     const ref = React.useRef(null);

@@ -5,7 +5,6 @@ import {API_URI, APP_VERSION,APP_BUILD} from './configs/commonConfigs'
 import {FontStyles} from './configs/fontStyles'
 
 import StaticImages from './static/images'
-import LocalStorageService from "./services/local-storage";
 import {Translate} from './languages'
 
 //  utils
@@ -16,7 +15,7 @@ import {GenderList} from "./utils/constant";
 
 //  services
 import FetchDataService from "./services/fetch";
-import {CheckPhone, Login, Logout, Register, ResetPassword} from "./services/sonkim-api/auth";
+import {CheckPhone, Login, Register, ResetPassword} from "./services/sonkim-api/auth";
 import {
     BuyPromotion,
     GetOrderPromotionDetail,
@@ -55,7 +54,6 @@ const SonkimApiService = {
     Register,
     Login,
     ResetPassword,
-    Logout,
     GetPersonalInfo,
     UpdatePersonalInfo,
     UpdateUserDeviceToken,
@@ -94,7 +92,6 @@ export {
     FontStyles,
     ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION,APP_BUILD,
     StaticImages,
-    LocalStorageService,
 
     //  utils
     ScreenSize,

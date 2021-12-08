@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
+import React from "react";
 import {StyleSheet} from "react-native";
 import {Image, MembershipCard, Typo} from "../../../components";
 import {Formatter, UserMemberShipCardType} from "../../../share";
 import {Box} from "native-base";
-import AppProvider from "../../../share/context";
 import LinearGradient from 'react-native-linear-gradient';
+import {useAppSelector} from "../../../redux/store";
 
 type ScreenBannerType = {
     membershipCard: UserMemberShipCardType
 }
 export const CardBanner: React.FC<ScreenBannerType> = ({membershipCard}) => {
-    const {user} = useContext(AppProvider.context)
+    const {user} = useAppSelector(state => state.auth)
     const {point, label, membership_info, loyalty_program, created_at} = membershipCard
 
     const bannerImage = loyalty_program.business_unit.cover?.url || "https://sonkim.s3.ap-southeast-1.amazonaws.com/BU_placeholder_f0a2ae6b29.jpg"
@@ -46,7 +46,8 @@ export const CardBanner: React.FC<ScreenBannerType> = ({membershipCard}) => {
                         Tên chủ thẻ: {membership_info?.name || user.name || "Chưa cập nhật"}
                     </Typo>
                     <Typo mt={2} type="body14" color="white">
-                        Ngày đăng ký thẻ: {Formatter.FormatDateFromDate(new Date(membershipCard.created_at), "dd/MM/yyyy")}
+                        Ngày đăng ký
+                        thẻ: {Formatter.FormatDateFromDate(new Date(membershipCard.created_at), "dd/MM/yyyy")}
                     </Typo>
                 </Box>
             </Box>

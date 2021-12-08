@@ -1,5 +1,4 @@
 import FetchDataService from "../fetch";
-import {LocalStorageService} from "../../index";
 
 export const CheckPhone = async (phone: string) => {
     try {
@@ -16,15 +15,6 @@ export const Login = async ({phone = "", password = ""}) => {
         const {jwt, user}  = await FetchDataService.POST("/firebase-auth/login", {phone, password})
 
         return {jwt, user}
-    } catch (err) {
-        throw err
-    }
-}
-
-export const Logout = async () => {
-    try {
-        LocalStorageService.SetAccessToken("")
-        LocalStorageService.SetRefreshToken("")
     } catch (err) {
         throw err
     }

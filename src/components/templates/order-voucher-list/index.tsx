@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SonkimApiService, Translate} from "../../../share";
 import {ActivityIndicator, Alert} from "react-native";
 import {Box, FlatList} from "native-base";
@@ -18,7 +18,7 @@ const OrderVoucherList: React.FC<OrderVoucherListTypes> = ({filter = {}}) => {
             filter["_limit"] = 20
         if (typeof filter["_sort"] === "undefined")
             filter["_sort"] = "id:DESC"
-        if (typeof filter["loyalty_program"] !== "undefined"){
+        if (typeof filter["loyalty_program"] !== "undefined") {
             filter["promotion.loyalty_program"] = filter["loyalty_program"]
             delete filter["loyalty_program"]
         }
@@ -48,7 +48,8 @@ const OrderVoucherList: React.FC<OrderVoucherListTypes> = ({filter = {}}) => {
                     : <FlatList
                         data={orders}
                         renderItem={_renderItem}
-                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} {Translate('vouchers')}</Typo>)}
+                        ListHeaderComponent={(
+                            <Typo p={4} type="body14">Có {count ? count : "..."} {Translate('vouchers')}</Typo>)}
                     />
             }
         </Box>

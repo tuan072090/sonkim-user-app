@@ -1,8 +1,8 @@
 import {NavigationContainer, NavigationContainerRef} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 
-import {Colors, ScreenName, ScreenTitle, useLocalStorage} from "../share";
+import {Colors, ScreenName, ScreenTitle} from "../share";
 import UserListCard from './membership-card-list';
 import TabScreens from "./TabScreens";
 import {PhoneInputScreen} from "./auth/PhoneInputScreen";
@@ -33,8 +33,9 @@ import OrderVouchersScreen from "./order-vouchers";
 import OrderGiftCardsScreen from "./order-giftcards";
 import {OrderVoucherDetail} from "./order-vouchers/OrderVoucherDetail";
 import {OrderGiftCardDetail} from "./order-giftcards/OrderGiftCardDetail";
-import AppProvider from "../share/context";
 import messaging from "@react-native-firebase/messaging";
+import {useAppDispatch} from "../redux/store";
+import {UpdateInAppNotification} from '../redux/reducers/notification';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,14 +43,11 @@ const AppNavigation = () => {
     const routeNameRef = useRef("");
     // @ts-ignore
     const navigationRef = React.useRef<NavigationContainerRef | null>(null);
-    const {accessToken, dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
 
     useEffect(() => {
         const unsubscribe = messaging().onMessage(async remoteMessage => {
-            dispatch({
-                type: AppProvider.actions.UPDATE_NOTIFICATION_IN_APP,
-                data: remoteMessage
-            })
+            appDispatch(UpdateInAppNotification(remoteMessage))
         });
 
         return unsubscribe;
@@ -133,9 +131,15 @@ const AppNavigation = () => {
                                   options={{title: ScreenTitle[ScreenName.ORDER_VOUCHER_DETAIL], headerShown: false}}/>
 
                     <Stack.Screen name={ScreenName.ORDER_GIFT_CARDS_SCREEN} component={OrderGiftCardsScreen}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN], headerShown: false}}/>
+                                  options={{
+                                      title: ScreenTitle[ScreenName.ORDER_GIFT_CARDS_SCREEN],
+                                      headerShown: false
+                                  }}/>
                     <Stack.Screen name={ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN} component={OrderGiftCardDetail}
-                                  options={{title: ScreenTitle[ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN], headerShown: false}}/>
+                                  options={{
+                                      title: ScreenTitle[ScreenName.ORDER_GIFT_CARD_DETAIL_SCREEN],
+                                      headerShown: false
+                                  }}/>
 
                     <Stack.Screen name={ScreenName.VOUCHER_DETAIL} component={VoucherDetail}
                                   options={{headerShown: false}}/>

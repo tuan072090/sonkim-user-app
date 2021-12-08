@@ -1,17 +1,17 @@
-import React, {memo, useContext, useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Box, Pressable, Text} from "native-base";
 import {Avatar, VoucherIcons} from "../../../components";
 import {useNavigation} from '@react-navigation/native';
 import {ScreenName, SonkimApiService, Translate, Validator} from "../../../share";
-import AppProvider from "../../../share/context";
 import {ActivityIndicator, Alert} from "react-native";
-import {useAppSelector} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {UpdateUser} from "../../../redux/reducers/auth";
 
 export const HomeHeader: React.FC<any> = memo((props) => {
     const navigation = useNavigation()
-    const {language} = useAppSelector(state => state.settings)
     const [vouchers, setVouchers] = useState<number | null>(null)
-    const {dispatch, user, accessToken} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
+    const {user, accessToken} = useAppSelector(state => state.auth)
 
     useEffect(() => {
         if (accessToken && accessToken.length > 0) {
@@ -26,10 +26,7 @@ export const HomeHeader: React.FC<any> = memo((props) => {
     const _fetchProfile = async () => {
         try {
             const userInfo = await SonkimApiService.GetPersonalInfo()
-            dispatch({
-                type: AppProvider.actions.UPDATE_USER_INFO,
-                data: userInfo
-            })
+            appDispatch(UpdateUser(userInfo))
         } catch (err) {
             Alert.alert("Không lấy được thông tin người dùng", err.message)
         }
