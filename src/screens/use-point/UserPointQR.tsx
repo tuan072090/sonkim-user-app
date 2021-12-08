@@ -52,9 +52,9 @@ const UsePointQR: React.FC<PageProps> = MainLayout(() => {
             }
 
             <Box p={5} alignContent="flex-end" bgColor="white">
-                <MyButton width={'100%'} onPress={() => setOpen(true)}>
-                    open dialog
-                </MyButton>
+                {/*<MyButton width={'100%'} onPress={() => setOpen(true)}>*/}
+                {/*    open dialog*/}
+                {/*</MyButton>*/}
                 <Text py={5} underline fontSize="md" color="red.400" textAlign="center">
                     Xem lịch sử quét mã
                 </Text>
