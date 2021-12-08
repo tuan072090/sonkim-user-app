@@ -1,41 +1,41 @@
-import React, { useContext, useEffect } from 'react';
-import { ScrollView, StatusBar } from 'native-base';
-import { HomeHeader } from "./components/HomeHeader";
-import { HomeSlider } from "./components/HomeSlider";
-import { Categories } from "./components/Categories";
-import { MembershipCardList } from "./components/MembershipCardList";
-import { useNavigation } from '@react-navigation/native';
-import LanguageProvider from "../../share/context/Language";
-import { ScreenName } from "../../share";
-import { QrCode } from "../../components";
+import React, {useContext, useEffect} from 'react';
+import {ScrollView} from 'native-base';
+import {HomeHeader} from "./components/HomeHeader";
+import {HomeSlider} from "./components/HomeSlider";
+import {Categories} from "./components/Categories";
+import {MembershipCardList} from "./components/MembershipCardList";
+import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {ScreenName} from "../../share";
+import { useScrollToTop } from '@react-navigation/native';
 
 const HomeScreen = () => {
-    const { language, setLanguage } = useContext(LanguageProvider.context)
+    const ref = React.useRef(null);
+    useScrollToTop(ref);
+
     const navigation = useNavigation();
+    const isFocused = useIsFocused()
 
     useEffect(() => {
         setTimeout(function () {
             // @ts-ignore
-            //  sonkim://store/:id
-            // navigation.navigate(ScreenName.PHONE_INPUT_SCREEN)
-
+            // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
+            // navigation.navigate(ScreenName.ORDER_GIFT_CARDS_SCREEN)
             // setLanguage("en")
-        }, 1000)
+        }, 500)
     }, [])
 
     return (
         <>
-            <ScrollView bgColor="white">
+            <ScrollView bgColor="white" ref={ref}>
 
-                <HomeHeader />
+                <HomeHeader isFocused={isFocused}/>
 
-                <HomeSlider />
+                <HomeSlider/>
 
-                <QrCode code={"Something"} size={100} alignItems="center" logoUri="https://sonkim.s3.ap-southeast-1.amazonaws.com/lazada_d75ab18c1c.png?61505.40000000037" />
+                <Categories/>
 
-                <Categories />
+                <MembershipCardList/>
 
-                <MembershipCardList />
             </ScrollView>
         </>
     )

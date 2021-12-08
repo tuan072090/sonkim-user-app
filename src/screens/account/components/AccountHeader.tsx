@@ -1,32 +1,81 @@
 import {useNavigation} from '@react-navigation/core';
-import {Box, Button, HStack} from 'native-base'
-import React from 'react'
-import {ScreenName} from '../../../share';
+import {Box, Button, HStack, Heading} from 'native-base'
+import React, {useContext, useEffect} from 'react'
+import {ScreenName, SonkimApiService, Translate} from '../../../share';
+import AppProvider from "../../../share/context";
+import {Alert} from "react-native";
+import {MyButton} from "../../../components";
+import {useAppSelector} from "../../../redux/store";
 
 const AccountHeader = () => {
-
+    const {user, dispatch, accessToken} = useContext(AppProvider.context)
     const navigation = useNavigation();
+    const {language} = useAppSelector(state => state.settings)
+
+    useEffect(() => {
+        if (accessToken && accessToken.length > 0) {
+            _fetchProfile()
+        }
+    }, [accessToken])
+
+    const _fetchProfile = async () => {
+        try {
+            const userInfo = await SonkimApiService.GetPersonalInfo()
+            dispatch({
+                type: AppProvider.actions.UPDATE_USER_INFO,
+                data: userInfo
+            })
+        } catch (err) {
+            Alert.alert("Không lấy được thông tin người dùng", err.message)
+        }
+    }
 
     const _navigateUserListCard = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.USER_LIST_CARD)
     }
 
+    const _navigateUserInfo = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.USER_INFO)
+    }
+
+    const _navigateLogin = () => {
+        // @ts-ignore
+        navigation.navigate(ScreenName.LOGIN_SCREEN)
+    }
+
     return (
-        <Box bg="primary.500" width="100%" p={4}>
+        <Box bg="primary.500" width="100%" p={4} safeAreaTop={true}>
+            {
+                user
+                    ? <Box>
 
-            <HStack space={4}>
-                <Button flex={1} rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
-                        bgColor="rgba(255,255,255,0.5)"
-                        onPress={_navigateUserListCard}>
-                    Danh sách thẻ
-                </Button>
+                        <Heading color="white" textAlign="center" mb={5}>{user.name}</Heading>
 
-                <Button flex={1} rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
-                        bgColor="rgba(255,255,255,0.5)">
-                    Thông tin tài khoản
-                </Button>
-            </HStack>
+                        <HStack space={4}>
+                            <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
+                                    bgColor="rgba(255,255,255,0.5)"
+                                    onPress={_navigateUserListCard}>
+                                {Translate('userListCard')}
+                            </MyButton>
+
+                            <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
+                                    bgColor="rgba(255,255,255,0.5)"
+                                    onPress={_navigateUserInfo}>
+                                {Translate('userInfo')}
+                            </MyButton>
+                        </HStack>
+                    </Box>
+                    : <Box px={4}>
+                        <Button rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
+                                bgColor="rgba(255,255,255,0.5)"
+                                onPress={_navigateLogin}>
+                            {Translate('login')}
+                        </Button>
+                    </Box>
+            }
+
         </Box>
 
     )

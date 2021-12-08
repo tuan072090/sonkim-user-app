@@ -4,5 +4,5 @@ import { ReactNode } from "react";
 export interface ScreenHeaderTypes extends IBoxProps{
     title?:string,
     hasBackButton?:boolean,
-    rightIcon?:ReactNode
+    rightComponent?:ReactNode
 }

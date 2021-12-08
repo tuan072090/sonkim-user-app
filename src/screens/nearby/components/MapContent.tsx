@@ -1,43 +1,78 @@
-import React from "react";
-import MapboxGL from '@react-native-mapbox-gl/maps';
+import React, {useEffect, useRef, useState} from "react";
 import {Box} from "native-base";
-import {MAPBOX_ACCESS_TOKEN, StaticImages} from "../../../share";
-import {ImageStatic} from "../../../components";
+import {Colors, ScreenSize, StoreTypes} from "../../../share";
+import MapView, {Marker} from 'react-native-maps';
+import {StyleSheet} from "react-native";
 
-MapboxGL.setAccessToken(MAPBOX_ACCESS_TOKEN);
+//  chợ bến thành
+//  10.7721095,106.6960844
+interface MapContentType extends React.PropsWithChildren<any> {
+    stores: null | StoreTypes[],
+    indexFocused: number
+}
 
-const fakeData = [
-    {id: "1", title: "GS25 Hoàng Văn Thụ", coordinate: [106.705696, 10.779599]},
-    {id: "2", title: "VERA Đinh Tiên hoàng", coordinate: [106.6960296,10.7724091]},
-    {id: "3", title: "Jardin Võ Thị Sáu", coordinate: [106.701952, 10.769964]},
-    {id: "4", title: "GS25 Nguyễn Thị Minh Khai", coordinate: [106.705869, 10.761507]},
-    {id: "5", title: "Health Spa", coordinate: [106.690469, 10.778680]}
-]
+export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFocused = 0}) => {
+    const mapRef = useRef()
+    const markersRef = useRef<any[]>([])
 
-export const MapContent = () => {
+    useEffect(() => {
+        //  animateToCoordinate
+        if(mapRef.current && stores){
+            //  @ts-ignore
+            mapRef.current.animateToCoordinate(stores[indexFocused].location)
+            const showMarkerInfoTimeout = setTimeout(() => {
+                markersRef.current[indexFocused].showCallout()
+            },500)
+
+            return () => clearTimeout(showMarkerInfoTimeout)
+        }
+    }, [indexFocused])
+
+    const mapCenter =  stores && stores.length > 0 && stores[indexFocused] ? stores[indexFocused].location : {latitude: 10.7721095, longitude: 106.6960844}
 
     return (
-        <Box width="100%" height="100%">
-            <MapboxGL.MapView style={{flex: 1}} localizeLabels={true} zoomEnabled={true}>
-                <MapboxGL.Camera
-                    centerCoordinate={[106.6960296, 10.7724091]}
-                    zoomLevel={12}/>
-                <MapboxGL.UserLocation visible={true} animated={true}/>
-
+        <Box width="100%" height="100%" bgColor="gray.100">
+            <MapView
+                //  @ts-ignore
+                ref={mapRef}
+                liteMode={true} //  android only
+                showsUserLocation={true}
+                loadingEnabled={true}
+                loadingIndicatorColor={Colors.primary["500"]}
+                // onRegionChange={_onRegionChange}
+                style={styles.mapContainer}
+                initialRegion={{
+                    ...mapCenter,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421
+                }}>
                 {
-                    fakeData.map((shop,index) => {
+                    stores && stores.map((store, index) => {
+                        if (!store.location)
+                            return null
+
+
                         return (
-                            <MapboxGL.PointAnnotation
-                                coordinate={shop.coordinate}
-                                id={shop.id}
-                                title={shop.title}
-                                key={index}>
-                                <ImageStatic uri={StaticImages.shop_icon} width={10} height={10}/>
-                            </MapboxGL.PointAnnotation>
+                            <Marker
+                                ref={ref => {markersRef.current[index] = ref}}
+                                key={store.id+"_"+index}
+                                coordinate={store.location}
+                                title={store.name}
+                                description={store.location.address}
+                            />
                         )
                     })
                 }
-            </MapboxGL.MapView>
+
+            </MapView>
         </Box>
     )
-}
+})
+
+
+const styles = StyleSheet.create({
+    mapContainer: {
+        width: ScreenSize.vw,
+        height: ScreenSize.vh - 70 - 200
+    }
+})

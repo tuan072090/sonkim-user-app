@@ -1,10 +1,17 @@
 import React from "react";
-import {Image as ImageNative} from "native-base";
-import {ImageStaticTypes} from "./image.types";
-import {StaticImages} from "../../../share";
+import { Image as ImageNative } from "native-base";
+import { ImageStaticTypes } from "./image.types";
+import { StaticImages } from "../../../share";
 
-const ImageStatic: React.FC<ImageStaticTypes> = ({uri, width, height, alt = "error", resizeMode="contain", borderRadius = 0, ...props}) => {
-
+const ImageStatic: React.FC<ImageStaticTypes> = ({
+    uri,
+    width,
+    height,
+    alt = "error",
+    resizeMode = "contain",
+    borderRadius = 0,
+    ...props
+}) => {
     return (
         <ImageNative
             {...props}
@@ -16,7 +23,7 @@ const ImageStatic: React.FC<ImageStaticTypes> = ({uri, width, height, alt = "err
             source={uri}
             fallbackSource={StaticImages.fallback_img}
         />
-    )
-}
+    );
+};
 
-export default ImageStatic
+export default ImageStatic;

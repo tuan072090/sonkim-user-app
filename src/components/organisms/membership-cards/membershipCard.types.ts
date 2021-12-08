@@ -1,5 +1,6 @@
 import {IBoxProps} from "native-base/lib/typescript/components/primitives/Box/types";
+import {UserMemberShipCardType} from "../../../share";
 
 export interface MembershipCardTypes extends IBoxProps{
-    name: "gs25" | "vera" | "jardin" | "healthSpa" | "lazada"
+    item: UserMemberShipCardType
 }

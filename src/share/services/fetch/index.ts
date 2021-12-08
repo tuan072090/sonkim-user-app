@@ -1,8 +1,9 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
-import {AuthResponseType} from "../../data-types/user";
-import {API_URI} from "../../configs";
+import {API_URI} from "../..";
+import {store} from "../../../redux/store";
+import { Logout } from '../../../redux/reducers/auth';
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -21,60 +22,55 @@ class FetchData {
     constructor() {
         const accessToken = LocalStorage.GetAccessToken();
 
-        if(accessToken && accessToken.length > 0){
-            this.headers = {Authorization: "Bearer " + accessToken }
+        if (accessToken && accessToken.length > 0) {
+            this.headers = {Authorization: "Bearer " + accessToken}
         }
 
         this.axiosInstance = axios.create({
             baseURL: API_URI,
-            timeout: 10000, //  10s
+            timeout: 20000, //  20s
             headers: this.headers
         });
+    }
 
-        //  auto refresh token when 401 error
-        // this.axiosInstance.interceptors.response.use((response) => {
-        //     return response;
-        // }, async (error: AxiosError) => {
-        //     try  {
-        //         const status = error.response ? error.response.status : null
-        //
-        //         if (status === 401 && accessToken && accessToken.length > 0) {
-        //             await this.RefreshToken()
-        //             //  retry request
-        //             const originalRequest = error.config
-        //
-        //             return this.axiosInstance.request({...originalRequest, headers:{
-        //                     Authorization: "Bearer " + LocalStorage.GetAccessToken()
-        //                 }})
-        //         }
-        //
-        //         return Promise.reject(error);
-        //     } catch (err){
-        //         return Promise.reject(err);
-        //     }
-        // });
+    public async RefreshToken() {
+        try {
+            const accessToken = LocalStorage.GetAccessToken()
+            this.SetAccessToken(accessToken)
+
+            return;
+
+        } catch (err) {
+            //  logout
+            this.SetAccessToken("")
+            store.dispatch(Logout())
+            this.handleError(err)
+        }
     }
 
     private handleData = function (res: AxiosResponse<any>) {
         return res.data;
     }
 
-    private handleError = function (error: AxiosError|any) {
-        try {
-            //  Need optimize
-            const message = error.response?.data?.message || "Something error"
-            const status = error.response?.status || 500
-            const code = error.response?.data?.code || 500
-            const errors = error.response?.data?.errors || []
+    private handleError =  (error: AxiosError | any) => {
+        const errorResponse = error.response.data
 
-            throw new MyError(status, message, code, errors)
-        }catch (err){
-            throw new MyError(500, "Unknown error", 500, [])
+        //  remove access token if get 401 error
+        if(errorResponse.statusCode === 401 || errorResponse.status === 401){
+            this.SetAccessToken("")
+            store.dispatch(Logout())
         }
+        //  Need optimize
+        const message = errorResponse.message || "Something error"
+        const status = errorResponse.status || errorResponse.statusCode || 500
+        const code = errorResponse.code || 500
+        const errors = errorResponse.errors || []
+
+        throw new MyError(message, status, code, errors)
     }
 
     public SetAccessToken(accessToken = "") {
-        this.headers = accessToken.length > 0 ? { Authorization: "Bearer " + accessToken } : {}
+        this.headers = accessToken.length > 0 ? {Authorization: "Bearer " + accessToken} : {}
     }
 
     public GET(route: string, params = {}) {
@@ -87,41 +83,6 @@ class FetchData {
 
     public POST(route: string, params = {}) {
         return this.executeRequest("POST", route, params)
-    }
-
-    public async RefreshToken() {
-        try {
-            const accessToken = LocalStorage.GetAccessToken()
-
-            if(!accessToken || accessToken.length === 0) throw new MyError(400, "access token not found")
-
-            const res = await axios.post(API_URI + "/account/security/refresh",
-                {
-                    "data": {
-                        "refresh_token": LocalStorage.GetRefreshToken()
-                    }
-                },
-                {headers: { Authorization: "Bearer " + LocalStorage.GetAccessToken() }}
-            )
-
-            // @ts-ignore
-            const authData: AuthResponseType = res.data
-            const {refresh_token, access_token} = authData.session
-
-            this.SetAccessToken(access_token)
-
-            LocalStorage.SetRefreshToken(refresh_token)
-            LocalStorage.SetAccessToken(access_token)
-
-            return authData
-
-        } catch (err) {
-            //  logout
-            this.SetAccessToken("")
-            LocalStorage.SetAccessToken("");
-            LocalStorage.SetRefreshToken("");
-            this.handleError(err)
-        }
     }
 
     private executeRequest = (method: MethodType, route: string, params = {}) => {
@@ -137,7 +98,7 @@ class FetchData {
             case "PUT":
                 return this.axiosInstance.put(route, {...params}, {headers: this.headers}).then(this.handleData).catch(this.handleError);
             default:
-                throw new MyError(400, "Unknown method")
+                throw new MyError("Unknown method", 400)
         }
     }
 }

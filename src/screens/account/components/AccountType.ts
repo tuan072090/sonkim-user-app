@@ -1,9 +1,7 @@
-export type AccountItemType={
-    item:ItemType,
-}
 
-export type ItemType={
-    startIcon:any,
-    title:string,
-    endIcon:any
+export type AccountItemType = {
+    startIcon: any,
+    title: string,
+    endIcon: any,
+    onPress?: () => void
 }

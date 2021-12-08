@@ -1,25 +1,35 @@
-import React, { useState } from "react";
-import { Box, Button, Heading, Input, Text } from "native-base";
+import React, {useEffect, useState} from "react";
+import {Box, Button, Heading, Input, ScrollView, Text} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, StaticImages } from "../../share";
-import { useNavigation } from "@react-navigation/core";
-import { ImageStatic } from "../../components";
-import DialogMemberShip from "../../components/organisms/dialog-membership";
+import {LoyaltyProgramTypes, SonkimApiService, StaticImages, useLocalStorage} from "../../share";
+import {useNavigation, useRoute} from "@react-navigation/core";
+import {Dialog, FullScreenLoader, Image, ImageStatic, MyButton, PressBox, Typo} from "../../components";
+import {Alert} from "react-native";
 
 const LinkMembershipForm = () => {
+    const [loyaltyProgram, setLoyaltyProgram] = useState<null | LoyaltyProgramTypes>(null)
+    const [loyaltyProgramsLocal] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
+    const {params}: any = useRoute()
 
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
-    };
+    useEffect(() => {
+        if (params.id) {
+            SonkimApiService.GetLoyaltyProgramDetail(params.id).then(data => {
+                setLoyaltyProgram(data)
+            }).catch(err => {
+                Alert.alert("Lỗi: " + err.message)
+            })
+        }
+    }, [params])
 
-    const listImgBU = [
-        StaticImages.health_spa,
-        StaticImages.kyo_watamin,
-        StaticImages.jardin,
-    ];
+    if (!loyaltyProgram) {
+        return (
+            <FullScreenLoader/>
+        )
+    }
+
+    const BUName = loyaltyProgram.business_unit.name
 
     return (
         <Box flex={1} position="relative" alignItems="center">
@@ -38,29 +48,23 @@ const LinkMembershipForm = () => {
                     title={"Health Spa"}
                     bgColor="primary.500"
                 />
-                <Heading
-                    color="white"
-                    fontSize="md"
-                    fontWeight="semibold"
-                    mb={6}
-                    textAlign="center"
-                >
-                    Điền thông tin để liên kết thẻ thành viên Health Spa
-                </Heading>
+                <Typo type="body16" color="gray.100" mb={6} px={4} textAlign="center">
+                    Điền thông tin để liên kết thẻ thành viên {BUName}
+                </Typo>
+
                 <Box width="100%" alignItems="center">
-                    <ImageStatic
-                        uri={StaticImages.health_spa}
+                    <Image
+                        uri={loyaltyProgram.avatar.url}
                         width={88}
                         height={88}
-                        mb={8}
+                        mb={5}
                     />
                 </Box>
                 <Box p={5}>
-                    <Text color="secondary.500" mb={1}>
+                    <Typo type="body14" color="secondary.500" mb={1}>
                         Mã thẻ thành viên
-                    </Text>
+                    </Typo>
                     <Input
-                        keyboardType="phone-pad"
                         color="white"
                         fontSize="md"
                         placeholderTextColor="white"
@@ -72,49 +76,50 @@ const LinkMembershipForm = () => {
                         rounded="xl"
                         placeholder="Nhập mã thẻ thành viên"
                     />
-                    <Button
-                        my={5}
-                        p={3}
-                        rounded="xl"
-                        size="lg"
-                        onPress={() => {
-                            setOpen(true);
-                        }}
-                        bgColor="white"
-                        _text={{ color: "white" }}
-                        opacity={70}
-                    >
+                    <MyButton my={5} onPress={() => {setOpen(true)}} _text={{color: "gray.500"}} bgColor="white" opacity={70}>
                         LIÊN KẾT
-                    </Button>
+                    </MyButton>
                 </Box>
             </Box>
-            <DialogMemberShip
+            <Dialog
                 isOpen={open}
                 onClose={() => setOpen(false)}
-                logoUri={StaticImages.health_spa}
                 title="Liên kết thẻ thành viên thành công"
-                messenge="Chúc mừng bạn đã liên kết thành công
-                thẻ thành viên Health Spa"
-            ></DialogMemberShip>
+                messenge={`Chúc mừng bạn đã liên kết thành công
+                thẻ thành viên ${BUName}`}
+            />
 
-            <Box width="100%" px={5} safeAreaTop={true}>
-                <Text textAlign="left" color="secondary.500" mb={1}>
-                    Mã thẻ thành viên
-                </Text>
-                <Box flexDirection="row">
-                    {listImgBU.map((item) => (
-                        <ImageStatic
-                            mr={3}
-                            key={item}
-                            resizeMode="cover"
-                            uri={item}
-                            width={"56px"}
-                            height={"56px"}
-                            mb={8}
-                        />
-                    ))}
+            {
+                loyaltyProgramsLocal && <Box width="100%" safeAreaBottom={true}>
+                    <Text textAlign="left" color="secondary.500"  px={5}  mb={1}>
+                        Mã thẻ thành viên
+                    </Text>
+
+                    <ScrollView horizontal={true}>
+                        <Box flexDirection="row" pl={5} pb={2}>
+                            {loyaltyProgramsLocal.map((item: LoyaltyProgramTypes, index: number) => (
+                                <PressBox
+                                    borderWidth={1}
+                                    borderColor="white"
+                                    borderRadius={10}
+                                    bgColor="white"
+                                    mr={3}
+                                    key={index}>
+                                    <Image
+                                        borderRadius={10}
+                                        resizeMode="cover"
+                                        uri={item.avatar.url}
+                                        width={"56px"}
+                                        height={"56px"}
+                                    />
+                                </PressBox>
+
+                            ))}
+                        </Box>
+                    </ScrollView>
                 </Box>
-            </Box>
+            }
+
         </Box>
     );
 };

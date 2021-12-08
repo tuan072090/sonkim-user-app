@@ -1,5 +1,5 @@
-import {IPressableProps} from "native-base/lib/typescript/components/primitives/Pressable/types";
+import {IBoxProps} from "native-base/lib/typescript/components/primitives/Box/types";
 
-export interface FeatureItemTypes extends IPressableProps{
-    name: "UsePoint" | "RegisterMembership" | "LinkMembership" | "TransferPoint"
+export interface FeatureItemTypes extends IBoxProps{
+    name: string
 }

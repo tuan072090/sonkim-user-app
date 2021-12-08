@@ -11,8 +11,8 @@ const QrCode: React.FC<QrCodeTypes> = ({code, size=100,logoUri, ...props}) => {
                 logo={logoUri ? {uri: logoUri} : undefined}
                 size={size}
                 value={code}
-                logoSize={30}
-                logoBackgroundColor='transparent'
+                logoSize={40}
+                logoBackgroundColor='white'
             />
         </Box>
     )

@@ -1,0 +1,118 @@
+# @baseUrl = https://api.sonkim.upme.dev/user-api
+# @firebaseAuthUrl = https://api.sonkim.upme.dev/firebase-auth
+
+@baseUrl = http://localhost:1337/user-api
+@firebaseAuthUrl = http://localhost:1337/firebase-auth
+
+### Check phone existed
+GET {{firebaseAuthUrl}}/check?phone=0966499006 HTTP/1.1
+
+### Login
+POST {{firebaseAuthUrl}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "phone": "0966499006",
+    "password": "123123"
+}
+
+### Register
+POST {{firebaseAuthUrl}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "idToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "fullName": "Nguyen Manh Tuan",
+    "email": "nguyentuan@gmail.com",
+    "password": "123123"
+}
+
+### Reset password
+POST {{firebaseAuthUrl}}/reset-password HTTP/1.1
+content-type: application/json
+
+{
+    "idToken": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "password": "123123",
+    "passwordConfirmation": "123123"
+}
+
+### Personal Info
+GET {{baseUrl}}/personal-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1MzI0Nzk5LCJleHAiOjE2Mzc5MTY3OTl9.A4FxSA2A51Yk6A6H03B4aHz4PqxXbjErG7L8R7_76HM
+
+### Update Personal info
+PUT {{baseUrl}}/personal-info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1MzI0Nzk5LCJleHAiOjE2Mzc5MTY3OTl9.A4FxSA2A51Yk6A6H03B4aHz4PqxXbjErG7L8R7_76HM
+
+{
+    "name": "Tuan Manh Tuan",
+    "gender": "female",
+    "birthday": "1990-01-07",
+    "avatar": "https://www.tuanmanh.com"
+}
+
+### Articles
+GET {{baseUrl}}/articles?_start=0&_limit=10&_sort=id:DESC
+Content-Type: application/json
+
+### Article detail
+GET {{baseUrl}}/articles/2 HTTP/1.1
+Content-Type: application/json
+
+### Branches
+GET {{baseUrl}}/branches HTTP/1.1
+Content-Type: application/json
+
+### Branches detail
+GET {{baseUrl}}/branches/1 HTTP/1.1
+Content-Type: application/json
+
+### Loyalty programs
+GET {{baseUrl}}/loyalty-programs HTTP/1.1
+Content-Type: application/json
+
+### Loyalty programs detail
+GET {{baseUrl}}/loyalty-programs/3 HTTP/1.1
+Content-Type: application/json
+
+### Register Membership card
+POST {{baseUrl}}/membership-cards HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTkwODQyLCJleHAiOjE2Mzg1ODI4NDJ9.eAcJMp2bH1sJ-lvFrPgiFJE8XDkTKJlgdr8OvJRuTH4
+
+### Get user's Membership cards
+GET {{baseUrl}}/membership-cards HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM1OTkwODQyLCJleHAiOjE2Mzg1ODI4NDJ9.eAcJMp2bH1sJ-lvFrPgiFJE8XDkTKJlgdr8OvJRuTH4
+
+###  Promotions
+GET {{baseUrl}}/promotions HTTP/1.1
+Content-Type: application/json
+
+###  Promotion detail
+GET {{baseUrl}}/promotions/2 HTTP/1.1
+Content-Type: application/json
+
+###  Gift cards
+GET {{baseUrl}}/gift-cards HTTP/1.1
+Content-Type: application/json
+
+###  Gift cards detail
+GET {{baseUrl}}/gift-cards/1 HTTP/1.1
+Content-Type: application/json
+
+###  Stores
+GET {{baseUrl}}/stores HTTP/1.1
+Content-Type: application/json
+
+###  Store detail
+GET {{baseUrl}}/stores/2 HTTP/1.1
+Content-Type: application/json
+
+###  Notifications
+GET {{baseUrl}}/notifications HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjM1MjE5NTk5LCJleHAiOjE2Mzc4MTE1OTl9.Fo9eCNvYHXsvFa8Bq-wnWkBZ5wf-bMdVKhgH_NigRvw

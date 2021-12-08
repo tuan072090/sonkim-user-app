@@ -1,58 +1,52 @@
-import React, {useContext} from "react";
-import {Box, ScrollView} from "native-base";
+import React, {useEffect, useState} from "react";
+import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {Translate} from "../../share";
-import LanguageProvider from "../../share/context/Language";
-import { CheckAllIcon } from "../../components";
+import {NotificationType, SonkimApiService, Translate} from "../../share";
+import {CheckAllIcon, MainLayout, Typo} from "../../components";
 import NotificationCard from "./components/NotificationCard";
-import { StaticImages } from '../../share'
+import {ActivityIndicator, Alert} from "react-native";
+import {useIsFocused} from "@react-navigation/native";
+import {useAppSelector} from "../../redux/store";
 
+const NotificationsScreen: React.FC<any> = MainLayout(() => {
+    const {language} = useAppSelector(state => state.settings)
+    const [notifications, setNotifications] = useState<NotificationType[] | null>(null)
+    const [count, setCount] = useState<number | null>(null)
+    const isFocused = useIsFocused()
 
-const notificationSampleData=[
-    {
-        logo: StaticImages.lazada,
-        title:'Đăng kí thành công thẻ Lazada',
-        due:'12/12/2021 - 12:00',
-        description:'Chúc mừng bạn đã đăng kí thành công thẻ thành viên của Lazada',
-        unread:true,
-    },
-    {
-        logo: StaticImages.cgv,
-        title:'Bạn đã trở thành thành viên của CGV Cinema',
-        due:'12/12/2021 - 12:00',
-        description:'Chúc mừng bạn đã đăng kí thành công thẻ thành viên của Lazada',
-        unread:true
-    },
-    {
-        logo: StaticImages.gs25,
-        title:'Bạn đã được tặng 1 voucher',
-        due:'12/12/2021 - 12:00',
-        description:'Bạn đã được tặng 1 voucher 50% khi mua hóa đơn trên 100k'
-    },
-    {
-        logo: StaticImages.cgv,
-        title:'Bạn đã nhận được một sản phẩm tri ân khách hàng',
-        due:'12/12/2021 - 12:00',
-        description:'Chúc mừng bạn đã trở thành thành viên vàng của Jockey. Bạn sẽ nhận được một...'
-    },
-]
+    useEffect(() => {
+        if (isFocused) {
+            SonkimApiService.GetNotifications().then(data => {
+                setNotifications(data.notifications)
+                setCount(data.count)
+            }).catch(err => {
+                Alert.alert(err.message)
+            })
+        }
+    }, [isFocused])
 
-const NotificationsScreen = () => {
-    const {language} = useContext(LanguageProvider.context)
+    //  @ts-ignore
+    const _renderItems = ({item}) => {
+        return (<NotificationCard item={item}/>)
+    }
 
     return (
-        <Box flex={1} >
-            <ScreenHeader hasBackButton={true} title={Translate[language].notifications} bgColor="primary.500" rightIcon={<CheckAllIcon size={6} />}/>
-            <ScrollView>
-                {
-                    notificationSampleData.map((item,index)=>(
-                        <NotificationCard item={item} key={index}></NotificationCard>
-                    ))
-                }
-            </ScrollView>
+        <Box flex={1}>
+            <ScreenHeader hasBackButton={true} title={Translate('notifications')} bgColor="primary.500"
+                          rightComponent={<CheckAllIcon size={6}/>}/>
+            {
+                !notifications ? <Box p={5}><ActivityIndicator/></Box>
+                    : <FlatList
+                        ListHeaderComponent={<Typo type="subtitle14" p={4}>Có {count !== null ? count : "..."} kết
+                            quả</Typo>}
+                        data={notifications}
+                        renderItem={_renderItems}
+                    />
+            }
         </Box>
     )
-}
+})
 
+NotificationsScreen.defaultProps = {authRequire: true}
 
 export default NotificationsScreen

@@ -36,11 +36,13 @@ class LocalStorage {
             //  set data
             this.accessToken = accessToken || ""
             this.refreshToken = refreshToken || ""
-            this.firstOpen = firstOpen === "yes"
+            this.firstOpen = !firstOpen || firstOpen === "yes"
             //  @ts-ignore
             this.language = lang || "vi"
+
+            return this
         } catch (err) {
-            throw new MyError(err.status, err.message)
+            throw new MyError(err.message, err.status)
         }
     }
 
@@ -48,7 +50,7 @@ class LocalStorage {
         try {
             await AsyncStorage.setItem(key, value)
         } catch (e) {
-            throw new MyError(e.status, e.message)
+            throw new MyError(e.message, e.status)
         }
     }
 
@@ -57,7 +59,7 @@ class LocalStorage {
             const value = await AsyncStorage.getItem(key)
             return value
         } catch (e) {
-            throw new MyError(e.status, e.message)
+            throw new MyError(e.message, e.status)
         }
     }
 

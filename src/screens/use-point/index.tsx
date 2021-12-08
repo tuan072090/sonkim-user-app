@@ -1,47 +1,55 @@
-import React, { useContext, useState } from "react";
-import {
-    Box,
-    Center,
-    Icon,
-    NativeBaseProvider,
-    Pressable,
-    ScrollView,
-    Text,
-    Button,
-} from "native-base";
+import React, {useState} from "react";
+import {Box, ScrollView} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, Translate } from "../../share";
-import LanguageProvider from "../../share/context/Language";
-import ListCardBU from "../../components/molecules/card-bu/ListCardBU";
-import { useNavigation } from "@react-navigation/core";
+import {LoyaltyProgramTypes, ScreenName, Translate} from "../../share";
+import {useNavigation} from "@react-navigation/core";
+import {ListLoyaltySelect, MyButton, Typo} from "../../components";
+import {Alert} from "react-native";
+import {useAppSelector} from "../../redux/store";
 
 const UsePoint = () => {
-    const { language } = useContext(LanguageProvider.context);
-
+    const [loyaltySelected, setLoyaltySelected] = useState<LoyaltyProgramTypes | null>(null)
+    const {language} = useAppSelector(state => state.settings)
     const navigation = useNavigation();
 
-    const [choise, setChoise] = useState("");
+    const _onLoyaltyProgramChange = (data: LoyaltyProgramTypes) => {
+        setLoyaltySelected(data)
+    }
 
     const _navigateForm = () => {
+        if (!loyaltySelected) {
+            Alert.alert("Bạn vui lòng chọn 1 thương hiệu")
+            return;
+        }
         // @ts-ignore
-        navigation.navigate(ScreenName.USEPOINTQR);
+        navigation.navigate(ScreenName.USE_POINT_QR, {id: loyaltySelected.id});
     };
 
     return (
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].usePoint}
+                title={Translate('usePoint')}
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">
-                <ListCardBU choise={choise} setChoise={setChoise}> </ListCardBU>
-                <Box mt={20}></Box>
+                <Typo type="subtitle16" mb={3} color='muted.500'>
+                    Chọn thẻ bạn muốn sử dụng
+                </Typo>
+
+                <ListLoyaltySelect onSelect={_onLoyaltyProgramChange}/>
+
+                <Box mt={20}/>
             </ScrollView>
-            <Box width="100%" bgColor="white" padding={3} flexDirection="row" justifyContent='center' alignContent="center" px={2} safeAreaTop={true}>
-                <Button w="100%" onPress={_navigateForm} rounded="lg" py={3} size="lg" colorScheme="primary">
-                    CHỌN
-                </Button>
+
+            <Box
+                shadow={9}
+                width="100%"
+                bgColor="white"
+                p={3}
+                px={2}
+                safeAreaBottom={true}>
+                <MyButton w="100%" onPress={_navigateForm}>CHỌN</MyButton>
             </Box>
         </Box>
     );

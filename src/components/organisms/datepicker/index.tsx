@@ -1,37 +1,43 @@
-import React, {useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import {Platform} from "react-native";
-import {Pressable, Text, ChevronDownIcon} from "native-base";
+import {Box,ChevronDownIcon, Pressable, Text} from "native-base";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {DatepickerTypes} from "./datepicker.types";
+import {Formatter} from "../../../share";
 
-const DatePicker:React.FC<DatepickerTypes> = ({onChange, value, ...props}) => {
+const DatePicker: React.FC<DatepickerTypes> = memo(({onChange, value, ...props}) => {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-    const [date, setDate] = useState<Date|null>(null)
+    const [date, setDate] = useState<Date | null>(value)
+
+    useEffect(() => {
+        if(value && value.getTime() !== date?.getTime()){
+            setDate(value)
+        }
+    }, [value])
 
     const _toggleDatePicker = () => {
         setDatePickerVisibility(!isDatePickerVisible)
     }
 
-    const _dateConfirm = (date:Date) => {
+    const _dateConfirm = (date: Date) => {
+        setDate(date)
         onChange(date)
         _toggleDatePicker()
-        setDate(date)
     }
 
     return (
-        <>
-            <Pressable onPress={_toggleDatePicker} position="relative" {...props}>
+        <Box height={props.height || 12} overflow="hidden">
+            <Pressable bgColor="white" onPress={_toggleDatePicker} position="relative" {...props}>
                 <Text color="white" fontSize="md" size="2xl">
                     {
-                        date ? `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}` : "Chọn ngày sinh"
+                        date ? `${Formatter.FormatDateFromDate(date)}` : "Chọn ngày sinh"
                     }
                 </Text>
 
                 <ChevronDownIcon color="white" size="6" position="absolute" right={3} top={3}/>
             </Pressable>
-
             <DateTimePickerModal
-                date={date||value}
+                date={date || value}
                 isVisible={isDatePickerVisible}
                 mode="date"
                 confirmTextIOS="Xác nhận"
@@ -41,8 +47,8 @@ const DatePicker:React.FC<DatepickerTypes> = ({onChange, value, ...props}) => {
                 onConfirm={_dateConfirm}
                 onCancel={_toggleDatePicker}
             />
-        </>
+        </Box>
     )
-}
+})
 
 export default DatePicker

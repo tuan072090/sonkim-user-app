@@ -1,73 +1,80 @@
-import React, { useContext, useState } from "react";
-import { Box, Button, Text } from "native-base";
+import React, {useState} from "react";
+import {Box, Button, Text} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import { ScreenName, ScreenSize, StaticImages, Translate } from "../../share";
-import LanguageProvider from "../../share/context/Language";
+import {Colors, ScreenSize, Translate, useLocalStorage} from "../../share";
+import {useRoute} from "@react-navigation/core";
+import {Dialog, MainLayout, MyButton, PageProps, QrCode} from "../../components";
+import {ActivityIndicator} from "react-native";
+import {useAppSelector} from "../../redux/store";
 
-import { useNavigation } from "@react-navigation/core";
-import { QrCode } from "../../components";
-import DialogMemberShip from "../../components/organisms/dialog-membership";
+const QrCodeSize = Math.ceil(ScreenSize.vw * 0.7);
 
-const qrWWidth = ScreenSize.vw - 72;
-const UsePointQR = () => {
-    const { language } = useContext(LanguageProvider.context);
-    const navigation = useNavigation();
-    const [choise, setChoise] = useState("");
+const UsePointQR: React.FC<PageProps> = MainLayout(() => {
+    const {language} = useAppSelector(state => state.settings)
     const [open, setOpen] = useState(false);
+    const [loyaltyPrograms, setLoyaltyPrograms] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
+    const {params}: any = useRoute()
 
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.LINK_MEMBERSHIP_FORM);
-    };
+    //  @ts-ignore
+    const loyaltyProgram = loyaltyPrograms ? loyaltyPrograms.find(item => item.id === params["id"]) : null
 
     return (
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].usePoint}
+                title={Translate('usePoint')}
                 bgColor="primary.500"
             />
-            <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
-                <Text fontSize="lg" fontWeight="semibold" textAlign="center">
-                    Mã thẻ:{" "}
-                    <Text fontSize="lg" fontWeight="semibold" color="primary.500">
-                        X123X123
-                    </Text>
-                </Text>
-                <Text fontSize="md" color="muted.400" textAlign="center">
-                    Vui lòng đưa mã cho nhân viên để sử dụng hoặc tích điểm
-                </Text>
-                <Box mt={20} alignContent="center">
-                    <QrCode
-                        code={"Something"}
-                        size={qrWWidth}
-                        alignItems="center"
-                        logoUri="https://sonkim.s3.ap-southeast-1.amazonaws.com/lazada_d75ab18c1c.png?61505.40000000037"
-                    />
-                </Box>
-            </Box>
-            <DialogMemberShip
-                isOpen={open}
-                onClose={() => setOpen(false)}
-                logoUri={StaticImages.health_spa}
-                title="Tích điểm thành công"
-                messenge="Bạn đã được cộng thêm 10 điềm vào thẻ thành viên Health Spa"
-                footer={
-                    <Button onPress={() => setOpen(false)} width={'100%'} rounded="xl" >
-                        XÁC NHẬN
-                    </Button>
-                }
-            ></DialogMemberShip>
+
+            {
+                !loyaltyProgram ? <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
+                        <ActivityIndicator color={Colors.primary["500"]}/>
+                    </Box>
+                    : <Box p={5} flex={1} width={"100%"} alignContent="center" bgColor="white">
+                        <Text fontSize="lg" fontWeight="semibold" textAlign="center">
+                            Mã thẻ:{" "}
+                            <Text fontSize="lg" fontWeight="semibold" color="primary.500">
+                                X123X123
+                            </Text>
+                        </Text>
+                        <Text fontSize="md" color="muted.400" textAlign="center">
+                            Vui lòng đưa mã cho nhân viên để sử dụng hoặc tích điểm
+                        </Text>
+                        <Box mt={20} alignContent="center">
+                            <QrCode
+                                code={"Something"}
+                                size={QrCodeSize}
+                                alignItems="center"
+                                logoUri={loyaltyProgram.avatar.url}
+                            />
+                        </Box>
+                    </Box>
+            }
+
             <Box p={5} alignContent="flex-end" bgColor="white">
-                <Button width={'100%'} rounded="xl" onPress={() => setOpen(true)} >
+                <MyButton width={'100%'} onPress={() => setOpen(true)}>
                     open dialog
-                </Button>
-                <Text pb={5} underline fontSize="md" color="red.400" textAlign="center">
+                </MyButton>
+                <Text py={5} underline fontSize="md" color="red.400" textAlign="center">
                     Xem lịch sử quét mã
                 </Text>
             </Box>
+
+            <Dialog
+                isOpen={open}
+                onClose={() => setOpen(false)}
+                title="Tích điểm thành công"
+                messenge="Bạn đã được cộng thêm 10 điềm vào thẻ thành viên Health Spa"
+                footer={
+                    <Button onPress={() => setOpen(false)} width={'100%'} rounded="xl">
+                        XÁC NHẬN
+                    </Button>
+                }
+            />
         </Box>
     );
-};
+})
+
+UsePointQR.defaultProps = {authRequire: true}
 
 export default UsePointQR;
