@@ -1,11 +1,11 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Center, HStack, ScrollView, Text, VStack} from "native-base";
 import {Formatter, OrderVoucherType, ScreenSize, SonkimApiService, Translate} from "../../share";
-import {useNavigation, useRoute} from "@react-navigation/native";
+import {useRoute} from "@react-navigation/native";
 import {Alert} from "react-native";
 import {FullScreenLoader, HTMLContent, QrCode, Typo} from "../../components";
 import ScreenHeader from "../../components/organisms/screen-header";
-import LanguageProvider from "../../share/context/Language";
+import {useAppSelector} from "../../redux/store";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.5);
 
@@ -13,7 +13,7 @@ export const OrderVoucherDetail = () => {
     const [order, setOrder] = useState<OrderVoucherType | null>(null)
     const route = useRoute();
     const {params}: any = route
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
 
     useEffect(() => {
         if (params.id) {
@@ -66,13 +66,15 @@ export const OrderVoucherDetail = () => {
                             <HStack alignItems="center" mt={2}>
                                 <Typo flex={1} type="body14" color="gray.600">Chi nhánh:</Typo>
                                 <Typo flex={2} type="subtitle14">
-                                    Áp dụng cho <Text underline color="red.700">{promotion.stores.length} chi nhánh</Text>
+                                    Áp dụng cho <Text underline color="red.700">{promotion.stores.length} chi
+                                    nhánh</Text>
                                 </Typo>
                             </HStack>
 
                             <HStack alignItems="center" mt={2}>
                                 <Typo flex={1} type="body14" color="gray.600">Thương hiệu:</Typo>
-                                <Typo flex={2} type="subtitle14" textTransform="uppercase">{promotion.loyalty_program.name}</Typo>
+                                <Typo flex={2} type="subtitle14"
+                                      textTransform="uppercase">{promotion.loyalty_program.name}</Typo>
                             </HStack>
 
                         </Box>

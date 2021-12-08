@@ -1,15 +1,14 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {Colors, ScreenName, SonkimApiService, Translate, useLocalStorage, UserMemberShipCardType} from "../../share";
-import LanguageProvider from "../../share/context/Language";
+import {Colors, SonkimApiService, Translate, useLocalStorage} from "../../share";
 import {MainLayout, MembershipCard, PageProps, Typo} from "../../components";
-import {useNavigation} from "@react-navigation/core";
-import {ActivityIndicator, TouchableOpacity} from "react-native";
+import {ActivityIndicator} from "react-native";
 import AppProvider from "../../share/context";
+import {useAppSelector} from "../../redux/store";
 
-const UserListCard:React.FC<PageProps> = MainLayout(() => {
-    const {language} = useContext(LanguageProvider.context);
+const UserListCard: React.FC<PageProps> = MainLayout(() => {
+    const {language} = useAppSelector(state => state.settings)
     const [userCards, setUserCards] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
     const {dispatch} = useContext(AppProvider.context)
 
@@ -22,10 +21,10 @@ const UserListCard:React.FC<PageProps> = MainLayout(() => {
                 data: {message: err.message, status: "error"}
             })
         })
-    },[])
+    }, [])
 
     //  @ts-ignore
-    const _renderItem = ({ item,index }) => {
+    const _renderItem = ({item, index}) => {
         return <Box key={index} mb={4} px={4}><MembershipCard item={item}/></Box>
     }
 
@@ -43,7 +42,8 @@ const UserListCard:React.FC<PageProps> = MainLayout(() => {
                         : <FlatList
                             data={userCards}
                             renderItem={_renderItem}
-                            ListHeaderComponent={<Box width="100%" p={4}><Typo type="subtitle16">Bạn có {userCards.length} thẻ</Typo></Box>}
+                            ListHeaderComponent={<Box width="100%" p={4}><Typo type="subtitle16">Bạn
+                                có {userCards.length} thẻ</Typo></Box>}
                             ListFooterComponent={(<Box width="100%" height={128}/>)}
                         />
                 }

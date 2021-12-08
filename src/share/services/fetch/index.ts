@@ -2,6 +2,8 @@ import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
 import LocalStorage from "../local-storage";
 import {API_URI} from "../..";
+import {store} from "../../../redux/store";
+import { Logout } from '../../../redux/reducers/auth';
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -26,7 +28,7 @@ class FetchData {
 
         this.axiosInstance = axios.create({
             baseURL: API_URI,
-            timeout: 10000, //  10s
+            timeout: 20000, //  20s
             headers: this.headers
         });
     }
@@ -41,8 +43,7 @@ class FetchData {
         } catch (err) {
             //  logout
             this.SetAccessToken("")
-            LocalStorage.SetAccessToken("");
-            LocalStorage.SetRefreshToken("");
+            store.dispatch(Logout())
             this.handleError(err)
         }
     }
@@ -56,10 +57,8 @@ class FetchData {
 
         //  remove access token if get 401 error
         if(errorResponse.statusCode === 401 || errorResponse.status === 401){
-            console.log("xoá access token.......", errorResponse)
             this.SetAccessToken("")
-            LocalStorage.SetAccessToken("")
-            LocalStorage.SetRefreshToken("")
+            store.dispatch(Logout())
         }
         //  Need optimize
         const message = errorResponse.message || "Something error"

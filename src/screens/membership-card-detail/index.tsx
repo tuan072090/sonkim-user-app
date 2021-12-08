@@ -1,20 +1,19 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Box, Button, Pressable, ScrollView, SimpleGrid, Text, VStack} from "native-base";
-import {ScreenName, SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
-import LanguageProvider from "../../share/context/Language";
+import React, {useEffect, useState} from "react";
+import {Box, ScrollView} from "native-base";
+import {SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
 import {useNavigation, useRoute} from "@react-navigation/core";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {FullScreenLoader, MainLayout, PageProps, PressBox, RefreshIcon} from "../../components";
 import {Alert} from "react-native";
-import CardStore from "../../components/molecules/card-store";
 import {CardBanner} from "./components/CardBanner";
 import {CardCategories} from "./components/CardCategories";
 import {VoucherList} from "./components/VoucherList";
 import {GiftCardList} from "./components/GiftCardList";
+import {useAppSelector} from "../../redux/store";
 
 const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     const [cardDetail, setCardDetail] = useState<UserMemberShipCardType | null>(null)
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
     const navigation = useNavigation();
     const {params} = useRoute()
 
@@ -43,7 +42,8 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
             <ScreenHeader
                 title={Translate[language].buDetail}
                 bgColor="primary.500"
-                rightComponent={<PressBox onPress={_fetchData} p={3} alignItems="flex-end" width="100%"><RefreshIcon size={6}/></PressBox>}
+                rightComponent={<PressBox onPress={_fetchData} p={3} alignItems="flex-end" width="100%"><RefreshIcon
+                    size={6}/></PressBox>}
             />
 
             <ScrollView bgColor="white">

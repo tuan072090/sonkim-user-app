@@ -1,14 +1,14 @@
 import {Box, FlatList} from 'native-base'
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Alert} from 'react-native'
 import ScreenHeader from '../../components/organisms/screen-header'
 import {GiftCardType, LoyaltyProgramTypes, SonkimApiService, StaticImages, Translate} from '../../share'
-import LanguageProvider from '../../share/context/Language'
 import {FullScreenLoader, GiftCard, ImageStatic, ListLoyaltyFilter, Typo} from '../../components'
 import {useRoute} from "@react-navigation/core";
+import {useAppSelector} from "../../redux/store";
 
 const GiftCardListScreen = () => {
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
     const [giftCards, setGiftCards] = useState<GiftCardType[] | null>(null);
     const [total, setTotal] = useState<number | null>(null)
     const [filter, setFilter] = useState<any>({_limit: 20})
@@ -63,7 +63,8 @@ const GiftCardListScreen = () => {
             <FlatList
                 data={giftCards}
                 renderItem={_renderItem}
-                ListHeaderComponent={<Typo type="body14" color="white" textAlign="center" mt={5}>Có {total !== null ? total : "..."} kết quả</Typo>}
+                ListHeaderComponent={<Typo type="body14" color="white" textAlign="center"
+                                           mt={5}>Có {total !== null ? total : "..."} kết quả</Typo>}
                 ListFooterComponent={<Box width="100%" height={16}/>}
             />
         </Box>

@@ -1,17 +1,17 @@
-import React, {useContext, useState} from "react";
-import {Alert, StyleSheet} from "react-native";
-import {LoyaltyProgramTypes, ScreenName, Translate, useLocalStorage} from "../../share";
-import LanguageProvider from "../../share/context/Language";
+import React, {useState} from "react";
+import {Alert} from "react-native";
+import {LoyaltyProgramTypes, ScreenName, Translate} from "../../share";
 import {useNavigation} from "@react-navigation/core";
 import {Box, ScrollView} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {Typo} from "../../components/atoms/typo";
 import {ListLoyaltySelect, MyButton} from "../../components";
+import {useAppSelector} from "../../redux/store";
 
 export const MembershipRegisterSelect = () => {
     const [loyaltySelected, setLoyaltySelected] = useState<LoyaltyProgramTypes | null>(null)
 
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
     const navigation = useNavigation();
 
     const _onLoyaltyProgramChange = (data: LoyaltyProgramTypes) => {

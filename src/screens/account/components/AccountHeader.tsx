@@ -4,13 +4,13 @@ import React, {useContext, useEffect} from 'react'
 import {ScreenName, SonkimApiService, Translate} from '../../../share';
 import AppProvider from "../../../share/context";
 import {Alert} from "react-native";
-import LanguageProvider from "../../../share/context/Language";
 import {MyButton} from "../../../components";
+import {useAppSelector} from "../../../redux/store";
 
 const AccountHeader = () => {
     const {user, dispatch, accessToken} = useContext(AppProvider.context)
     const navigation = useNavigation();
-    const {language, setLanguage} = useContext(LanguageProvider.context)
+    const {language} = useAppSelector(state => state.settings)
 
     useEffect(() => {
         if (accessToken && accessToken.length > 0) {

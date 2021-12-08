@@ -1,31 +1,31 @@
 // transaction-history
-import React, {useContext, useEffect, useState} from "react";
-import {Box, ScrollView, FlatList} from "native-base";
+import React, {useEffect, useState} from "react";
+import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {Colors, PointSwapHistoryType, SonkimApiService, Translate, useLocalStorage} from "../../share";
-import LanguageProvider from "../../share/context/Language";
 import TransactionSwapCard from "./components/TransactionSwapCard";
 import {MainLayout, PageProps} from "../../components";
 import {ActivityIndicator, Alert} from "react-native";
+import {useAppSelector} from "../../redux/store";
 
-const TransactionSwapHistory:React.FC<PageProps> = MainLayout(() => {
-    const {language} = useContext(LanguageProvider.context);
-    const [histories, setHistories] = useState<PointSwapHistoryType[]|null>(null);
+const TransactionSwapHistory: React.FC<PageProps> = MainLayout(() => {
+    const {language} = useAppSelector(state => state.settings);
+    const [histories, setHistories] = useState<PointSwapHistoryType[] | null>(null);
     const [pointSystem, setPointSystem] = useLocalStorage(useLocalStorage.KEY_LOCAL_POINT_SYSTEMS, [])
 
     useEffect(() => {
         _fetchData()
-    },[])
+    }, [])
 
     useEffect(() => {
-        if(!pointSystem || pointSystem.length === 0){
+        if (!pointSystem || pointSystem.length === 0) {
             SonkimApiService.GetPointSystems().then(data => {
                 setPointSystem(data.point_systems)
             }).catch(err => {
                 Alert.alert("Không lấy được point systems", err.message)
             })
         }
-    },[pointSystem])
+    }, [pointSystem])
 
     const _fetchData = () => {
         SonkimApiService.GetPointSwapHistories({_limit: 30}).then(res => {
@@ -56,10 +56,10 @@ const TransactionSwapHistory:React.FC<PageProps> = MainLayout(() => {
 
                 {
                     isLoading ? <Box mt={4}><ActivityIndicator color={Colors.primary["500"]}/></Box>
-                    : <FlatList
-                        data={histories}
-                        renderItem={_renderItem}
-                        ListFooterComponent={(<Box width="100%" height={16}/>)}
+                        : <FlatList
+                            data={histories}
+                            renderItem={_renderItem}
+                            ListFooterComponent={(<Box width="100%" height={16}/>)}
                         />
                 }
 

@@ -5,11 +5,11 @@ import {useNavigation} from '@react-navigation/native';
 import {ScreenName, SonkimApiService, Translate, Validator} from "../../../share";
 import AppProvider from "../../../share/context";
 import {ActivityIndicator, Alert} from "react-native";
-import LanguageProvider from "../../../share/context/Language";
+import {useAppSelector} from "../../../redux/store";
 
-export const HomeHeader:React.FC<any> = memo((props) => {
+export const HomeHeader: React.FC<any> = memo((props) => {
     const navigation = useNavigation()
-    const {language}  = useContext(LanguageProvider.context)
+    const {language} = useAppSelector(state => state.settings)
     const [vouchers, setVouchers] = useState<number | null>(null)
     const {dispatch, user, accessToken} = useContext(AppProvider.context)
 
@@ -17,7 +17,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
         if (accessToken && accessToken.length > 0) {
             _fetchProfile()
             _fetchVouchers();
-        }else {
+        } else {
             setVouchers(0)
         }
     }, [accessToken])
@@ -69,10 +69,11 @@ export const HomeHeader:React.FC<any> = memo((props) => {
                                         size="sm"/>
                             }
 
-                            <Text ml={3} fontSize="lg" color="white">{Translate[language].hello+" "+ user.name}</Text>
+                            <Text ml={3} fontSize="lg" color="white">{Translate[language].hello + " " + user.name}</Text>
                         </>
                         :
-                        <Text fontSize="lg" color="white">{Translate[language].hello+" "+ Translate[language].anonymous}</Text>
+                        <Text fontSize="lg"
+                              color="white">{Translate[language].hello + " " + Translate[language].anonymous}</Text>
                 }
             </Pressable>
 
@@ -84,7 +85,7 @@ export const HomeHeader:React.FC<any> = memo((props) => {
                 {/*overlay background*/}
                 <VoucherIcons fill="white" size={6}/>
                 {
-                    vouchers===null ? <ActivityIndicator size="small" color="white"/>
+                    vouchers === null ? <ActivityIndicator size="small" color="white"/>
                         : <Text ml={2} fontSize="lg" fontWeight="medium" color="white">{vouchers}</Text>
                 }
             </Pressable>

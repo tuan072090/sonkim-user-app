@@ -1,22 +1,22 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Center, HStack, ScrollView, VStack} from "native-base";
 import {Formatter, ScreenSize, SonkimApiService, Translate} from "../../share";
 import {useRoute} from "@react-navigation/native";
 import {Alert} from "react-native";
 import {BarcodeCpn, FullScreenLoader, HTMLContent, MyButton, QrCode, Typo} from "../../components";
 import GiftCardPointInfo from "./components/GiftCardPointInfo";
-import LanguageProvider from "../../share/context/Language";
 import ScreenHeader from "../../components/organisms/screen-header";
+import {useAppSelector} from "../../redux/store";
 
 const QrCodeSize = Math.ceil(ScreenSize.vw * 0.5)
-const BarCodeWidth = ScreenSize.vw-80
+const BarCodeWidth = ScreenSize.vw - 80
 
 export const OrderGiftCardDetail = () => {
     const [order, setOrder] = useState<any | null>(null)
     const [display, setDisplay] = useState<"qrCode" | "barCode">("qrCode")
     const route = useRoute();
     const {params}: any = route;
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
 
     useEffect(() => {
         if (params.id) {
@@ -49,21 +49,25 @@ export const OrderGiftCardDetail = () => {
                         <VStack>
                             <Center>
                                 <Typo type="title" textAlign="center" color="primary.500">{gift_card.title}</Typo>
-                                <Center my={5} width="100%" height={QrCodeSize+40} alignItems="center">
+                                <Center my={5} width="100%" height={QrCodeSize + 40} alignItems="center">
                                     {
                                         display === "qrCode"
                                             ? <QrCode code={code} size={QrCodeSize} alignItems="center"/>
-                                            : <BarcodeCpn code={code} width={BarCodeWidth} height={BarCodeWidth/3}/>
+                                            : <BarcodeCpn code={code} width={BarCodeWidth} height={BarCodeWidth / 3}/>
                                     }
 
                                     <Typo mt={5} type="title" letterSpacing={5} textAlign="center">{code}</Typo>
                                 </Center>
                             </Center>
                             <HStack space={3} alignItems="center" justifyContent="space-around" my={5} px={3}>
-                                <MyButton onPress={() => setDisplay("qrCode")} flex={1} variant={display === "qrCode" ? "solid" : "outline"} borderColor="primary.500">
+                                <MyButton onPress={() => setDisplay("qrCode")} flex={1}
+                                          variant={display === "qrCode" ? "solid" : "outline"}
+                                          borderColor="primary.500">
                                     QR code
                                 </MyButton>
-                                <MyButton onPress={() => setDisplay("barCode")} flex={1} variant={display === "barCode" ? "solid" : "outline"} borderColor="primary.500">
+                                <MyButton onPress={() => setDisplay("barCode")} flex={1}
+                                          variant={display === "barCode" ? "solid" : "outline"}
+                                          borderColor="primary.500">
                                     Barcode
                                 </MyButton>
                             </HStack>

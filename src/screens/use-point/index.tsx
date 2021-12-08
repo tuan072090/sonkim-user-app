@@ -1,15 +1,15 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import {Box, ScrollView} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {LoyaltyProgramTypes, ScreenName, Translate} from "../../share";
-import LanguageProvider from "../../share/context/Language";
 import {useNavigation} from "@react-navigation/core";
 import {ListLoyaltySelect, MyButton, Typo} from "../../components";
 import {Alert} from "react-native";
+import {useAppSelector} from "../../redux/store";
 
 const UsePoint = () => {
     const [loyaltySelected, setLoyaltySelected] = useState<LoyaltyProgramTypes | null>(null)
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
     const navigation = useNavigation();
 
     const _onLoyaltyProgramChange = (data: LoyaltyProgramTypes) => {
@@ -17,7 +17,7 @@ const UsePoint = () => {
     }
 
     const _navigateForm = () => {
-        if(!loyaltySelected){
+        if (!loyaltySelected) {
             Alert.alert("Bạn vui lòng chọn 1 thương hiệu")
             return;
         }

@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
+import React from "react";
 import {MainLayout, OrderGiftCardList, PageProps} from "../../components";
-import LanguageProvider from "../../share/context/Language";
 import {Translate} from "../../share";
 import ScreenHeader from "../../components/organisms/screen-header";
+import {useAppSelector} from "../../redux/store";
 
 const OrderGiftCardsScreen: React.FC<PageProps> = MainLayout(() => {
-    const {language} = useContext(LanguageProvider.context);
+    const {language} = useAppSelector(state => state.settings)
 
     return (
         <>

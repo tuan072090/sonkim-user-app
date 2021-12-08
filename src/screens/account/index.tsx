@@ -14,12 +14,13 @@ import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
 import {APP_VERSION, FirebaseService, ScreenName, Translate, useLocalStorage} from "../../share";
-import LanguageProvider from "../../share/context/Language";
+import {store, useAppSelector} from "../../redux/store";
+import {UpdateLanguage} from "../../redux/reducers/settings";
 
 const AccountScreen = () => {
     const [notifPermissionStatus] = useLocalStorage(useLocalStorage.KEY_NOTIFICATION_PERMISSION_STATUS, "0")
     const {dispatch, user} = useContext(AppProvider.context)
-    const {language, setLanguage} = useContext(LanguageProvider.context)
+    const {language} = useAppSelector(state => state.settings)
 
     const navigation = useNavigation();
 
@@ -41,7 +42,7 @@ const AccountScreen = () => {
 
     const _toggleLanguage = () => {
         const newLang = language === "vi" ? "en" : "vi"
-        setLanguage(newLang)
+        store.dispatch(UpdateLanguage(newLang))
     }
 
     const _navigateToHistory = () => {
@@ -74,13 +75,15 @@ const AccountScreen = () => {
                     <Box mb={4}>
                         <AccountItem title={Translate[language].currentLanguage}
                                      startIcon={(<TranslateIcon size={6}/>)}
-                                     endIcon={(<MySwitch onChangeValue={_toggleLanguage} isChecked={language==="en"}/>)}/>
+                                     endIcon={(
+                                         <MySwitch onChangeValue={_toggleLanguage} isChecked={language === "en"}/>)}/>
                     </Box>
 
                     <Box mb={4}>
                         <AccountItem title={Translate[language].notifications} onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
-                                     endIcon={(<MySwitch isChecked={isNotificationAllow} onChangeValue={_toggleAllowNotification}/>)}/>
+                                     endIcon={(<MySwitch isChecked={isNotificationAllow}
+                                                         onChangeValue={_toggleAllowNotification}/>)}/>
                     </Box>
                     {
                         user && <Button onPress={_logout}
@@ -89,7 +92,8 @@ const AccountScreen = () => {
                                         mt={4}
                                         height={12}
                                         borderRadius={12}>
-                            <Text color="primary.500" fontSize="lg" fontWeight="semibold">{Translate[language].logout}</Text>
+                            <Text color="primary.500" fontSize="lg"
+                                  fontWeight="semibold">{Translate[language].logout}</Text>
                         </Button>
                     }
 

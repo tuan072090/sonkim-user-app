@@ -7,6 +7,9 @@ import {Alert, Platform} from "react-native";
 import {FullScreenLoader, OnBoarding} from "./src/components";
 import LanguageProvider from "./src/share/context/Language";
 import SplashScreen from 'react-native-splash-screen'
+import {persistor, store} from './src/redux/store';
+import {PersistGate} from 'redux-persist/integration/react'
+import {Provider} from "react-redux";
 
 const theme = extendTheme({
     colors: Colors
@@ -42,15 +45,21 @@ const App = () => {
 
     return (
         <NativeBaseProvider theme={theme}>
-            <LanguageProvider>
-                {
-                    isFirstOpen === null ? <FullScreenLoader/>
-                        : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
-                        : <AppProvider>
-                            <AppNavigation/>
-                        </AppProvider>
-                }
-            </LanguageProvider>
+            <Provider store={store}>
+                <PersistGate loading={<FullScreenLoader/>} persistor={persistor}>
+                    <LanguageProvider>
+                        {
+                            isFirstOpen === null ? <FullScreenLoader/>
+                                : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
+                                : <AppProvider>
+                                    <AppNavigation/>
+                                </AppProvider>
+                        }
+                    </LanguageProvider>
+
+                </PersistGate>
+            </Provider>
+
         </NativeBaseProvider>
     );
 };

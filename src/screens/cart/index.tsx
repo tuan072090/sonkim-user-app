@@ -1,6 +1,5 @@
 import React, {useContext, useState} from "react";
 import {Box} from "native-base";
-import LanguageProvider from "../../share/context/Language";
 import {FilterHeader} from "./components/FilterHeader";
 import {MainLayout, OrderGiftCardList, OrderVoucherList, PageProps} from "../../components";
 
