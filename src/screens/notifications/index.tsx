@@ -32,7 +32,7 @@ const NotificationsScreen: React.FC<any> = MainLayout(() => {
 
     return (
         <Box flex={1}>
-            <ScreenHeader hasBackButton={true} title={Translate[language].notifications} bgColor="primary.500"
+            <ScreenHeader hasBackButton={true} title={Translate('notifications')} bgColor="primary.500"
                           rightComponent={<CheckAllIcon size={6}/>}/>
             {
                 !notifications ? <Box p={5}><ActivityIndicator/></Box>

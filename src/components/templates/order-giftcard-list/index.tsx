@@ -1,16 +1,14 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SonkimApiService, Translate} from "../../../share";
 import {ActivityIndicator, Alert} from "react-native";
 import {Box, FlatList} from "native-base";
 import {Typo} from "../../index";
 import {OrderGiftCardListTypes} from "./OrderGiftCardList.types";
 import OrderGiftCardCard from "../../organisms/order-gift-card";
-import LanguageProvider from "../../../share/context/Language";
 
 const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
     const [orders, setOrders] = useState<any[] | null>(null)
     const [count, setCount] = useState<number | null>(null)
-    const {language} = useContext(LanguageProvider.context);
 
     useEffect(() => {
         _fetchOrders()
@@ -21,7 +19,7 @@ const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
             filter["_limit"] = 20
         if (typeof filter["_sort"] === "undefined")
             filter["_sort"] = "id:DESC"
-        if (typeof filter["loyalty_program"] !== "undefined"){
+        if (typeof filter["loyalty_program"] !== "undefined") {
             filter["gift_card.loyalty_program"] = filter["loyalty_program"]
             delete filter["loyalty_program"]
         }
@@ -51,7 +49,8 @@ const OrderGiftCardList: React.FC<OrderGiftCardListTypes> = ({filter = {}}) => {
                     : <FlatList
                         data={orders}
                         renderItem={_renderItem}
-                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} {Translate[language].giftCards}</Typo>)}
+                        ListHeaderComponent={(
+                            <Typo p={4} type="body14">Có {count ? count : "..."} {Translate('giftCards')}</Typo>)}
                     />
             }
         </Box>

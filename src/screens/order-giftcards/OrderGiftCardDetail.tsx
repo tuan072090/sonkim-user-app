@@ -40,7 +40,7 @@ export const OrderGiftCardDetail = () => {
         <Box flex={1} width="100%">
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].orderGiftCards}
+                title={Translate('orderGiftCards')}
                 bgColor="primary.500"
             />
             <ScrollView>

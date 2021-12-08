@@ -50,7 +50,7 @@ const TransactionSwapHistory: React.FC<PageProps> = MainLayout(() => {
             <Box flex={1} width="100%">
                 <ScreenHeader
                     hasBackButton={true}
-                    title={Translate[language].transactionHistory}
+                    title={Translate('transactionHistory')}
                     bgColor="primary.500"
                 />
 

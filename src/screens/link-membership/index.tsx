@@ -25,7 +25,7 @@ const LinkMembership = () => {
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].linkMembership}
+                title={Translate('linkMembership')}
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">

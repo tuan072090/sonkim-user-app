@@ -11,7 +11,7 @@ const OrderVouchersScreen: React.FC<PageProps> = MainLayout(() => {
         <>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].orderVouchers}
+                title={Translate('orderVouchers')}
                 bgColor="primary.500"
             />
             <OrderVoucherList filter={{_limit: 50}}/>

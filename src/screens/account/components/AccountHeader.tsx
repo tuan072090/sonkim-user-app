@@ -57,13 +57,13 @@ const AccountHeader = () => {
                             <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                     bgColor="rgba(255,255,255,0.5)"
                                     onPress={_navigateUserListCard}>
-                                {Translate[language].userListCard}
+                                {Translate('userListCard')}
                             </MyButton>
 
                             <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                     bgColor="rgba(255,255,255,0.5)"
                                     onPress={_navigateUserInfo}>
-                                {Translate[language].userInfo}
+                                {Translate('userInfo')}
                             </MyButton>
                         </HStack>
                     </Box>
@@ -71,7 +71,7 @@ const AccountHeader = () => {
                         <Button rounded="lg" borderWidth="1" borderColor="white" _text={{color: "white",}}
                                 bgColor="rgba(255,255,255,0.5)"
                                 onPress={_navigateLogin}>
-                            {Translate[language].login}
+                            {Translate('login')}
                         </Button>
                     </Box>
             }

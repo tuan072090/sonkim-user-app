@@ -11,7 +11,7 @@ const OrderGiftCardsScreen: React.FC<PageProps> = MainLayout(() => {
         <>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].orderGiftCards}
+                title={Translate('orderGiftCards')}
                 bgColor="primary.500"
             />
             <OrderGiftCardList/>

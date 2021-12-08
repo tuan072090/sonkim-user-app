@@ -31,7 +31,7 @@ export const MembershipRegisterSelect = () => {
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].registerMembership}
+                title={Translate('registerMembership')}
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">

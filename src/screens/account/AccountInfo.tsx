@@ -14,7 +14,7 @@ const AccountInfo: React.FC<any> = MainLayout(() => {
 
             <ImageStatic resizeMode="cover" position="absolute" bottom={0} left={0} width="100%" height="100%"
                          uri={StaticImages.reg_membership_backgroud}/>
-            <ScreenHeader hasBackButton={true} title={Translate[language].userInfo} bgColor="transparent"/>
+            <ScreenHeader hasBackButton={true} title={Translate('userInfo')} bgColor="transparent"/>
 
             <AccountInfoForm/>
         </Box>

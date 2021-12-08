@@ -22,7 +22,7 @@ const UsePointQR: React.FC<PageProps> = MainLayout(() => {
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].usePoint}
+                title={Translate('usePoint')}
                 bgColor="primary.500"
             />
 

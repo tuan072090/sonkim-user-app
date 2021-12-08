@@ -29,7 +29,7 @@ const UsePoint = () => {
         <Box flex={1}>
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].usePoint}
+                title={Translate('usePoint')}
                 bgColor="primary.500"
             />
             <ScrollView p={4} bgColor="white">

@@ -40,7 +40,7 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     return (
         <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
             <ScreenHeader
-                title={Translate[language].buDetail}
+                title={Translate('buDetail')}
                 bgColor="primary.500"
                 rightComponent={<PressBox onPress={_fetchData} p={3} alignItems="flex-end" width="100%"><RefreshIcon
                     size={6}/></PressBox>}

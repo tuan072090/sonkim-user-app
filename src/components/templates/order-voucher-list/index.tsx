@@ -4,12 +4,10 @@ import {ActivityIndicator, Alert} from "react-native";
 import {Box, FlatList} from "native-base";
 import {OrderVoucherCard, Typo} from "../../index";
 import {OrderVoucherListTypes} from "./OrderVoucherList.types";
-import LanguageProvider from "../../../share/context/Language";
 
 const OrderVoucherList: React.FC<OrderVoucherListTypes> = ({filter = {}}) => {
     const [orders, setOrders] = useState<any[] | null>(null)
     const [count, setCount] = useState<number | null>(null)
-    const {language} = useContext(LanguageProvider.context);
 
     useEffect(() => {
         _fetchOrders()
@@ -50,7 +48,7 @@ const OrderVoucherList: React.FC<OrderVoucherListTypes> = ({filter = {}}) => {
                     : <FlatList
                         data={orders}
                         renderItem={_renderItem}
-                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} {Translate[language].vouchers}</Typo>)}
+                        ListHeaderComponent={(<Typo p={4} type="body14">Có {count ? count : "..."} {Translate('vouchers')}</Typo>)}
                     />
             }
         </Box>

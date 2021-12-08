@@ -64,23 +64,23 @@ const AccountScreen = () => {
 
                 <Box p="4">
                     <Box mb={4}>
-                        <AccountItem title={Translate[language].transferPoint} onPress={_navigateToHistory}
+                        <AccountItem title={Translate('transferPoint')} onPress={_navigateToHistory}
                                      startIcon={(<LocationIcon size={6}/>)} endIcon={(<ChevronRightIcon size={6}/>)}/>
                     </Box>
 
                     <Box mb={4}>
-                        <AccountItem title={Translate[language].inviteFriend} startIcon={(<FriendIcon size={6}/>)}
+                        <AccountItem title={Translate('inviteFriend')} startIcon={(<FriendIcon size={6}/>)}
                                      endIcon={(<ChevronRightIcon size={6}/>)}/>
                     </Box>
                     <Box mb={4}>
-                        <AccountItem title={Translate[language].currentLanguage}
+                        <AccountItem title={Translate('currentLanguage')}
                                      startIcon={(<TranslateIcon size={6}/>)}
                                      endIcon={(
                                          <MySwitch onChangeValue={_toggleLanguage} isChecked={language === "en"}/>)}/>
                     </Box>
 
                     <Box mb={4}>
-                        <AccountItem title={Translate[language].notifications} onPress={_navigateToNotification}
+                        <AccountItem title={Translate('notifications')} onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
                                      endIcon={(<MySwitch isChecked={isNotificationAllow}
                                                          onChangeValue={_toggleAllowNotification}/>)}/>
@@ -93,7 +93,7 @@ const AccountScreen = () => {
                                         height={12}
                                         borderRadius={12}>
                             <Text color="primary.500" fontSize="lg"
-                                  fontWeight="semibold">{Translate[language].logout}</Text>
+                                  fontWeight="semibold">{Translate('logout')}</Text>
                         </Button>
                     }
 

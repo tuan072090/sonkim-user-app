@@ -36,14 +36,14 @@ export const FilterHeader: React.FC<FilterHeaderProps> = ({onChange}) => {
                           _text={{color: "white",}}
                           bgColor="rgba(255,255,255,0.3)"
                           onPress={() => _changeDisplay("voucher")}>
-                    {Translate[language].vouchers}
+                    {Translate('vouchers')}
                 </MyButton>
 
                 <MyButton flex={1} size="md" borderWidth="1" borderColor={!isDisplayVoucher ? "white" : "transparent"}
                           _text={{color: "white",}}
                           bgColor="rgba(255,255,255,0.3)"
                           onPress={() => _changeDisplay("giftcard")}>
-                    {Translate[language].giftCards}
+                    {Translate('giftCards')}
                 </MyButton>
             </HStack>
 

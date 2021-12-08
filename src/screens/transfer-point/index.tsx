@@ -130,7 +130,7 @@ const TransferPointPage: React.FC<PageProps> = MainLayout(() => {
                 height="100%"
                 uri={StaticImages.link_membership_backgroud}
             />
-            <ScreenHeader hasBackButton={true} title={Translate[language].transferPoint} bgColor="primary.500"/>
+            <ScreenHeader hasBackButton={true} title={Translate('transferPoint')} bgColor="primary.500"/>
 
             <ScrollView width={"100%"}>
                 <Box py={2} px={4}>

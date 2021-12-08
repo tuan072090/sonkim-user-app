@@ -35,7 +35,7 @@ export const OrderVoucherDetail = () => {
         <Box flex={1} bgColor="white">
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].orderVouchers}
+                title={Translate('orderVouchers')}
                 bgColor="primary.500"
             />
             <ScrollView>

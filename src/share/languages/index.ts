@@ -1,3 +1,5 @@
+import {store} from "../../redux/store";
+
 const languages = {
     vi: {
         hello:"Chào",
@@ -49,6 +51,12 @@ const languages = {
         login: "Login",
         logout: "Logout"
     }
+}
+
+export const Translate = (text:string) =>  {
+    const lang = store.getState().settings.language
+    //  @ts-ignore
+    return languages[lang][text]
 }
 
 export default languages

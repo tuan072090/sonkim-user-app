@@ -32,7 +32,7 @@ const UserListCard: React.FC<PageProps> = MainLayout(() => {
         <Box flex={1} position="relative">
             <ScreenHeader
                 hasBackButton={true}
-                title={Translate[language].userListCard}
+                title={Translate('userListCard')}
                 bgColor="primary.500"
             />
             <Box>

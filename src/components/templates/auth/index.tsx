@@ -9,15 +9,14 @@ import {RegisterForm} from "./components/RegisterForm";
 type AuthDisplayTypes = "phone" | "register"|"login"|"resetPassword"|"otp"
 
 const AuthComponent:React.FC<{display:AuthDisplayTypes}> = ({display="register"}) => {
-    const [formDisplay, setFormDisplay] = useState<AuthDisplayTypes>(display)
 
     return (
         <Box>
             {
-                formDisplay === "phone" ? <PhoneInputForm/>
-                    : formDisplay === "register" ? <RegisterForm/>
-                : formDisplay === "resetPassword" ? <ResetPasswordForm/>
-                : formDisplay === "otp" ? <OtpForm/>
+                display === "phone" ? <PhoneInputForm/>
+                    : display === "register" ? <RegisterForm/>
+                : display === "resetPassword" ? <ResetPasswordForm/>
+                : display === "otp" ? <OtpForm/>
                 : <LoginForm/>
             }
         </Box>

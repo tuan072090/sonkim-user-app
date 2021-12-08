@@ -43,7 +43,7 @@ const TabScreens = () => {
                             <PressBox {...props} style={styles.tabActive}>
                                 <HomeIcon active={true} size={19}/>
                                 <Typo numberOfLines={1} pl={1} color="primary.500"
-                                      type="caption">{Translate[lang].home}</Typo>
+                                      type="caption">{Translate('home')}</Typo>
                             </PressBox>
                         )
                     }
@@ -61,7 +61,7 @@ const TabScreens = () => {
                             <PressBox {...props} style={styles.tabActive}>
                                 <NotificationIcon active={true} size={19}/>
                                 <Typo numberOfLines={1} pl={1} color="primary.500"
-                                      type="caption">{Translate[lang].notifications}</Typo>
+                                      type="caption">{Translate('notifications')}</Typo>
                             </PressBox>
                         )
                     }
@@ -80,7 +80,7 @@ const TabScreens = () => {
                             <PressBox {...props} style={styles.tabActive}>
                                 <NearByIcon active={true} size={19}/>
                                 <Typo numberOfLines={1} pl={1} color="primary.500"
-                                      type="caption">{Translate[lang].nearby}</Typo>
+                                      type="caption">{Translate('nearby')}</Typo>
                             </PressBox>
                         )
                     }
@@ -98,7 +98,7 @@ const TabScreens = () => {
                             <PressBox {...props} style={styles.tabActive}>
                                 <CartIcon active={true} size={19}/>
                                 <Typo numberOfLines={1} pl={1} color="primary.500"
-                                      type="caption">{Translate[lang].orders}</Typo>
+                                      type="caption">{Translate('orders')}</Typo>
                             </PressBox>
                         )
                     }
@@ -116,7 +116,7 @@ const TabScreens = () => {
                             <PressBox {...props} style={styles.tabActive}>
                                 <AccountIcon active={true} size={19}/>
                                 <Typo numberOfLines={1} pl={1} color="primary.500"
-                                      type="caption">{Translate[lang].account}</Typo>
+                                      type="caption">{Translate('account')}</Typo>
                             </PressBox>
                         )
                     }

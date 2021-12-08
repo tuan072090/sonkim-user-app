@@ -6,7 +6,7 @@ import {FontStyles} from './configs/fontStyles'
 
 import StaticImages from './static/images'
 import LocalStorageService from "./services/local-storage";
-import Translate from './languages'
+import {Translate} from './languages'
 
 //  utils
 import {ScreenSize} from './utils/sizes'
