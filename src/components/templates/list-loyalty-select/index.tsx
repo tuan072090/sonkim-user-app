@@ -42,6 +42,7 @@ const ListLoyaltySelect: React.FC<ListLoyaltySelectProps> = ({onSelect}) => {
 
                                 return (
                                     <BranchCard
+                                        key={index}
                                         isSelect={selected ? selected.id === item.id : false}
                                         loyaltyProgram={item}
                                         onSelect={_onSelect}
