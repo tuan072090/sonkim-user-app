@@ -2,7 +2,7 @@ import axios, {AxiosError, AxiosInstance, AxiosResponse} from 'axios';
 import MyError from "../error";
 import {API_URI} from "../..";
 import {store} from "../../../redux/store";
-import { Logout } from '../../../redux/reducers/auth';
+import { Logout, UpdateAccessToken } from '../../../redux/reducers/auth';
 
 type MethodType = "GET" | "POST" | "PUT"
 
@@ -19,26 +19,51 @@ class FetchData {
     }
 
     constructor() {
-        const accessToken = store.getState().auth.accessToken;
-
-        if (accessToken && accessToken.length > 0) {
-            this.headers = {Authorization: "Bearer " + accessToken}
-        }
-
         this.axiosInstance = axios.create({
             baseURL: API_URI,
             timeout: 20000, //  20s
             headers: this.headers
         });
+
+        //  auto refresh token when 401 error
+        this.axiosInstance.interceptors.response.use((response) => {
+            return response;
+        }, async (error: AxiosError) => {
+            try{
+                const status = error.response ? error.response.status : null
+
+                if (status === 401) {
+
+                    const newAccessToken = await this.RefreshToken()
+                    //  retry request
+                    const originalRequest = error.config
+
+                    if(originalRequest.data){
+                        originalRequest.data = JSON.parse(originalRequest.data)
+                    }
+
+                    return this.axiosInstance.request({...originalRequest, headers:{
+                            Authorization: "Bearer "+newAccessToken
+                        }})
+                }
+
+                return Promise.reject(error);
+            } catch (err){
+                return Promise.reject(err);
+            }
+        });
     }
 
     public async RefreshToken() {
         try {
-            const accessToken = store.getState().auth.accessToken
-            this.SetAccessToken(accessToken || undefined)
-
-            return;
-
+            const refreshToken = store.getState().auth.refreshToken
+            const {data} = await axios.post(API_URI+'/firebase-auth/refresh', {
+                refresh_token: refreshToken
+            })
+            const {access_token} = data
+            this.SetAccessToken(access_token)
+            store.dispatch(UpdateAccessToken(access_token))
+            return access_token;
         } catch (err) {
             //  logout
             this.SetAccessToken("")

@@ -6,7 +6,7 @@ import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
 import {MyButton} from "../../../index";
 import {useAppDispatch} from "../../../../redux/store";
-import {UpdateAccessToken} from "../../../../redux/reducers/auth";
+import {UpdateAccessToken, UpdateRefreshToken} from "../../../../redux/reducers/auth";
 
 export const LoginForm = () => {
     const appDispatch = useAppDispatch()
@@ -29,8 +29,10 @@ export const LoginForm = () => {
                 throw new MyError("Điện thoại hoặc mật khẩu không hợp lệ", 400)
             }
             setLoading(true)
-            const {jwt, user} = await SonkimApiService.Login({phone, password})
-            appDispatch(UpdateAccessToken(jwt))
+            const {access_token, user, refresh_token} = await SonkimApiService.Login({phone, password})
+
+            appDispatch(UpdateAccessToken(access_token))
+            appDispatch(UpdateRefreshToken(refresh_token))
 
             Alert.alert("Đăng nhập thành công")
             setLoading(false)

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView} from 'native-base';
+import {ScrollView, Box} from 'native-base';
 import {HomeHeader} from "./components/HomeHeader";
 import {HomeSlider} from "./components/HomeSlider";
 import {Categories} from "./components/Categories";
@@ -34,6 +34,7 @@ const HomeScreen = () => {
 
                 <MembershipCardList/>
 
+                <Box width={"100%"} height={100}/>
             </ScrollView>
         </>
     )

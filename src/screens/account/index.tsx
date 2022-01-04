@@ -12,8 +12,8 @@ import AccountHeader from "./components/AccountHeader";
 import AccountItem from "./components/AccountItem";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
-import {APP_VERSION, FirebaseService, ScreenName, Translate} from "../../share";
-import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {APP_VERSION, FetchDataService, FirebaseService, ScreenName, Translate} from "../../share";
+import {store, useAppDispatch, useAppSelector} from "../../redux/store";
 import {UpdateLanguage} from "../../redux/reducers/settings";
 import {Logout} from "../../redux/reducers/auth";
 
@@ -25,13 +25,18 @@ const AccountScreen = () => {
     const navigation = useNavigation();
 
     const _logout = () => {
+        //  revoke token also
+        FetchDataService.POST('/firebase-auth/revoke', {
+            refresh_token: store.getState().auth.refreshToken
+        }).catch(err => {})
+
         appDispatch(Logout())
         Alert.alert("Đăng xuất thành công")
     }
 
     const _toggleAllowNotification = (value: boolean) => {
         FirebaseService.RequestNotificationPermission().then(permission => {
-            console.log("permission noti is...", permission)
+            console.log("permission notification is...", permission)
         }).catch(err => {
 
         })

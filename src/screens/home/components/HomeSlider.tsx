@@ -71,7 +71,3 @@ export const HomeSlider = () => {
         </Box>
     )
 }
-
-const styles = StyleSheet.create({
-    wrap: {}
-})

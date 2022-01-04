@@ -12,9 +12,9 @@ export const CheckPhone = async (phone: string) => {
 
 export const Login = async ({phone = "", password = ""}) => {
     try {
-        const {jwt, user}  = await FetchDataService.POST("/firebase-auth/login", {phone, password})
+        const {access_token, refresh_token, user}  = await FetchDataService.POST("/firebase-auth/login", {phone, password})
 
-        return {jwt, user}
+        return {access_token, refresh_token, user}
     } catch (err) {
         throw err
     }

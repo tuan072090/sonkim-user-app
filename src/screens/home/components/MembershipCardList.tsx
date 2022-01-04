@@ -14,7 +14,7 @@ export const MembershipCardList = () => {
 
     let isMounted = false
 
-    React.useEffect(() => {
+    useEffect(() => {
         return navigation.addListener('focus', () => {
             _fetchUserRegisteredCards()
         });

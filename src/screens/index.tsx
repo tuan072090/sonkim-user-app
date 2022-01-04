@@ -85,6 +85,7 @@ const AppNavigation = () => {
             <StatusBar backgroundColor="#086981" barStyle="light-content"/>
 
             <FloatMessage/>
+
             <NotificationFloatMessage/>
 
             <NavigationContainer
