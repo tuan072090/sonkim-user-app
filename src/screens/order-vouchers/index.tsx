@@ -1,11 +1,9 @@
-import React, {useContext} from "react";
+import React from "react";
 import {MainLayout, OrderVoucherList, PageProps} from "../../components";
 import {Translate} from "../../share";
 import ScreenHeader from "../../components/organisms/screen-header";
-import {useAppSelector} from "../../redux/store";
 
 const OrderVouchersScreen: React.FC<PageProps> = MainLayout(() => {
-    const {language} = useAppSelector(state => state.settings)
 
     return (
         <>

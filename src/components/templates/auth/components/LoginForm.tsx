@@ -1,14 +1,15 @@
-import React, {useContext, useEffect, useState} from "react";
-import {Box, Button, Heading, Input, KeyboardAvoidingView, Pressable, ScrollView, Text} from 'native-base'
+import React, {useEffect, useState} from "react";
+import {Box, Heading, Input, KeyboardAvoidingView, Pressable, ScrollView, Text} from 'native-base'
 import {CommonActions, useNavigation} from "@react-navigation/native";
 import {ScreenName, ScreenSize, SonkimApiService, useLocalStorage, Validator} from "../../../../share";
 import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
-import AppProvider from "../../../../share/context";
 import {MyButton} from "../../../index";
+import {useAppDispatch} from "../../../../redux/store";
+import {UpdateAccessToken, UpdateRefreshToken} from "../../../../redux/reducers/auth";
 
 export const LoginForm = () => {
-    const {dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const navigation = useNavigation();
@@ -28,11 +29,11 @@ export const LoginForm = () => {
                 throw new MyError("Điện thoại hoặc mật khẩu không hợp lệ", 400)
             }
             setLoading(true)
-            const {jwt, user} = await SonkimApiService.Login({phone, password})
-            dispatch({
-                type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
-                data: jwt
-            })
+            const {access_token, user, refresh_token} = await SonkimApiService.Login({phone, password})
+
+            appDispatch(UpdateAccessToken(access_token))
+            appDispatch(UpdateRefreshToken(refresh_token))
+
             Alert.alert("Đăng nhập thành công")
             setLoading(false)
 
@@ -115,8 +116,9 @@ export const LoginForm = () => {
                     <Pressable onPress={_navToResetPass} alignItems="flex-end">
                         <Text pt={1} pb={5} color="white" underline>Quên mật khẩu?</Text>
                     </Pressable>
-                    <MyButton isLoading={loading} onPress={_submitPhone} my={5} p={3} rounded="xl" size="lg" bgColor="white"
-                            _text={{color: "gray.500"}} opacity={70}>Đăng nhập</MyButton>
+                    <MyButton isLoading={loading} onPress={_submitPhone} my={5} p={3} rounded="xl" size="lg"
+                              bgColor="white"
+                              _text={{color: "gray.500"}} opacity={70}>Đăng nhập</MyButton>
 
                     <Box flexDirection="row" alignItems="center" justifyContent="center">
                         <Text color="white">Chưa có tài khoản?</Text>

@@ -1,12 +1,13 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Box, Button, Heading, Input, KeyboardAvoidingView, ScrollView, Text} from 'native-base'
-import {useNavigation, useRoute, CommonActions} from '@react-navigation/native';
+import {CommonActions, useNavigation, useRoute} from '@react-navigation/native';
 import {Formatter, ScreenName, SonkimApiService, useLocalStorage, Validator} from "../../../../share";
 import {Alert, Platform} from "react-native";
-import AppProvider from "../../../../share/context";
+import {useAppDispatch} from "../../../../redux/store";
+import {UpdateAccessToken} from "../../../../redux/reducers/auth";
 
 export const RegisterForm = () => {
-    const {dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
     const navigation = useNavigation();
     const route = useRoute()
     const {params} = route
@@ -87,10 +88,7 @@ export const RegisterForm = () => {
             // @ts-ignore
             const {jwt, user} = await SonkimApiService.Register({idToken: params.idToken, password, email})
 
-            dispatch({
-                type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
-                data: jwt
-            })
+            appDispatch(UpdateAccessToken(jwt))
             Alert.alert("Đăng ký thành công, vui lòng thiết lập tài khoản")
 
             //  remove register screen from stack

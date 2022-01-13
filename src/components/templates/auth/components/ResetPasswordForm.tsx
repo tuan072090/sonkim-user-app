@@ -1,16 +1,17 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Button, Heading, Input, KeyboardAvoidingView, Pressable, ScrollView, Text} from 'native-base'
 import {CommonActions, useNavigation, useRoute} from '@react-navigation/native';
 import {Formatter, ScreenName, SonkimApiService, useLocalStorage} from "../../../../share";
 import {Alert, Platform} from "react-native";
 import MyError from "../../../../share/services/error";
-import AppProvider from "../../../../share/context";
+import {useAppDispatch} from "../../../../redux/store";
+import {UpdateAccessToken} from "../../../../redux/reducers/auth";
 
 export const ResetPasswordForm = () => {
-    const {dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
     const navigation = useNavigation();
     const route = useRoute()
-    const {params} = route
+    const params: any = route.params
 
     const [phoneLocal] = useLocalStorage("phone", "")
     const [isProcessing, setProcessing] = useState(false)
@@ -67,12 +68,14 @@ export const ResetPasswordForm = () => {
         try {
             const {password, confirmPassword} = formRef.current
             // @ts-ignore
-            const {jwt, user} = SonkimApiService.ResetPassword({idToken: params.idToken, password, passwordConfirmation: confirmPassword})
-
-            dispatch({
-                type: AppProvider.actions.UPDATE_ACCESS_TOKEN,
-                data: jwt
+            const {jwt, user} = SonkimApiService.ResetPassword({
+                idToken: params.idToken,
+                password,
+                passwordConfirmation: confirmPassword
             })
+
+            appDispatch(UpdateAccessToken(jwt))
+
             Alert.alert("Lấy lại mật khẩu thành công")
 
             //  remove reset password screen from stack
@@ -139,7 +142,8 @@ export const ResetPasswordForm = () => {
                 />
 
 
-                <Button onPress={_submit} mt={10} mb={5} p={3} isLoading={isProcessing} rounded="xl" size="lg" bgColor="white"
+                <Button onPress={_submit} mt={10} mb={5} p={3} isLoading={isProcessing} rounded="xl" size="lg"
+                        bgColor="white"
                         _text={{color: "gray.500"}} opacity={70}>Xác nhận</Button>
 
                 <Pressable onPress={_goBack} flexDirection="row" alignItems="center" justifyContent="center">

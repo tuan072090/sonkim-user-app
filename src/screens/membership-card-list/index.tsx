@@ -1,25 +1,22 @@
-import React, {useContext, useEffect} from "react";
+import React, {useEffect} from "react";
 import {Box, FlatList} from "native-base";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {Colors, SonkimApiService, Translate, useLocalStorage} from "../../share";
 import {MainLayout, MembershipCard, PageProps, Typo} from "../../components";
 import {ActivityIndicator} from "react-native";
-import AppProvider from "../../share/context";
-import {useAppSelector} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
+import {UpdateMessage} from "../../redux/reducers/message";
 
 const UserListCard: React.FC<PageProps> = MainLayout(() => {
     const {language} = useAppSelector(state => state.settings)
     const [userCards, setUserCards] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
-    const {dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
 
     useEffect(() => {
         SonkimApiService.GetUserMembershipCards().then(data => {
             setUserCards(data)
         }).catch(err => {
-            dispatch({
-                type: AppProvider.actions.UPDATE_MESSAGE,
-                data: {message: err.message, status: "error"}
-            })
+            appDispatch(UpdateMessage({message: err.message, status: "error"}))
         })
     }, [])
 

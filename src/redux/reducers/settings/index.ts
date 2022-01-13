@@ -4,11 +4,13 @@ export type LanguageType = "vi" | "en"
 
 export type SettingsType = {
     language: LanguageType,
-    allowNotification: boolean
+    allowNotification: boolean,
+    showOnBoarding: boolean
 }
 const initialState: SettingsType = {
     language: 'vi',
-    allowNotification: false
+    allowNotification: false,
+    showOnBoarding: true
 }
 
 export const settingsSlice = createSlice({
@@ -20,10 +22,13 @@ export const settingsSlice = createSlice({
         },
         UpdateAllowNotification: (state, action) => {
             state.allowNotification = action.payload
+        },
+        UpdateShowOnBoarding: (state, action) => {
+            state.showOnBoarding = action.payload
         }
     }
 })
 
-export const {UpdateLanguage, UpdateAllowNotification} = settingsSlice.actions
+export const {UpdateLanguage, UpdateAllowNotification, UpdateShowOnBoarding} = settingsSlice.actions
 
 export default settingsSlice.reducer;

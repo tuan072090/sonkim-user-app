@@ -1,56 +1,47 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {extendTheme, NativeBaseProvider} from 'native-base';
 import AppNavigation from "./src/screens";
-import {Colors, FetchDataService, FirebaseService, LocalStorageService} from "./src/share";
-import AppProvider from "./src/share/context";
-import {Alert, Platform} from "react-native";
+import {Colors, FirebaseService} from "./src/share";
 import {FullScreenLoader, OnBoarding} from "./src/components";
-import SplashScreen from 'react-native-splash-screen'
 import {persistor, store} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react'
 import {Provider} from "react-redux";
+import {UpdateShowOnBoarding} from './src/redux/reducers/settings';
 
 const theme = extendTheme({
     colors: Colors
 });
 
 const App = () => {
-    const [isFirstOpen, setFirstOpen] = useState<boolean | null>(null)
+    const [isPersisted, setIsPersisted] = useState<boolean>(false)
+    const [showOnBoarding, setShowOnBoarding] = useState(false)
 
     useEffect(() => {
-        LocalStorageService.SynsData().then(async () => {
-
-            await FetchDataService.RefreshToken()
-
-            setFirstOpen(LocalStorageService.GetFirstOpen())
-
-            if(Platform.OS === 'android'){
-                SplashScreen.hide()
-            }
-
+        if (isPersisted) {
             //  check notification permission status
             FirebaseService.RequestNotificationPermission()
-        }).catch(err => {
-            Alert.alert("Có lỗi xảy ra", err.message)
-        })
-    }, [])
+            setShowOnBoarding(store.getState().settings.showOnBoarding)
+        }
 
-    const _finishOnboarding = () => {
-        LocalStorageService.SetFirstOpen("no")
-        setFirstOpen(false)
+    }, [isPersisted])
+
+    const _persistFinish = () => {
+        setIsPersisted(true)
+    }
+
+    const _finishOnBoarding = () => {
+        setShowOnBoarding(false)
+        store.dispatch(UpdateShowOnBoarding(false))
     }
 
     return (
         <NativeBaseProvider theme={theme}>
             <Provider store={store}>
-                <PersistGate loading={<FullScreenLoader/>} persistor={persistor}>
-                        {
-                            isFirstOpen === null ? <FullScreenLoader/>
-                                : isFirstOpen ? <OnBoarding finish={_finishOnboarding}/>
-                                : <AppProvider>
-                                    <AppNavigation/>
-                                </AppProvider>
-                        }
+                <PersistGate loading={<FullScreenLoader unMountCallback={_persistFinish}/>} persistor={persistor}>
+                    {
+                        showOnBoarding ? <OnBoarding finish={_finishOnBoarding}/>
+                            : <AppNavigation/>
+                    }
                 </PersistGate>
             </Provider>
         </NativeBaseProvider>

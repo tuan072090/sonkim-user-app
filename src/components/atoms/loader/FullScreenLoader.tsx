@@ -1,15 +1,26 @@
-import React, {useState} from "react";
-import {Text, View, StyleSheet, ActivityIndicator} from "react-native";
+import React, {useEffect} from "react";
+import {ActivityIndicator} from "react-native";
 import {Box} from 'native-base'
 import {Colors} from "../../../share";
 
-const FullScreenLoader = () => {
+type LoaderProps = {
+    unMountCallback?: () => void
+}
 
-  return (
-    <Box flex={1} justifyContent="center" alignItems="center">
-      <ActivityIndicator size="small" color={Colors.primary["500"]}/>
-    </Box>
-  )
+const FullScreenLoader: React.FC<LoaderProps> = ({unMountCallback}) => {
+
+    useEffect(() => {
+        return () => {
+            if(unMountCallback) unMountCallback()
+            return;
+        }
+    },[])
+
+    return (
+        <Box flex={1} justifyContent="center" alignItems="center">
+            <ActivityIndicator size="small" color={Colors.primary["500"]}/>
+        </Box>
+    )
 }
 
 export default FullScreenLoader

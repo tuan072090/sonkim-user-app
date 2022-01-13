@@ -1,14 +1,15 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import {Box} from 'native-base'
 import {SearchHeader} from "./components/SearchHeader";
 import {MapContent} from "./components/MapContent";
 import {ListStoreCard} from "./components/ListStoreCard";
 import {SonkimApiService, StoreTypes} from "../../share";
 import {Alert, StyleSheet} from "react-native";
-import AppProvider from "../../share/context";
+import {useAppDispatch} from "../../redux/store";
+import { UpdateMessage } from "../../redux/reducers/message";
 
 const NearByScreen = () => {
-    const {dispatch} = useContext(AppProvider.context)
+    const appDispatch = useAppDispatch()
     const [stores, setStores] = useState<StoreTypes[] | null>(null)
     const [filter, setFilter] = useState<any>({_limit: 30})
     const [indexFocused, setIndexFocused] = useState(0)
@@ -21,10 +22,7 @@ const NearByScreen = () => {
         try {
             const {count, data} = await SonkimApiService.GetStores(filter)
             if (count === 0) {
-                dispatch({
-                    type: AppProvider.actions.UPDATE_MESSAGE,
-                    data: {message: "Không có kết quả", status: "info"}
-                })
+                appDispatch(UpdateMessage({message: "Không có kết quả", status: "info"}))
             }
             setStores(data)
         } catch (err) {

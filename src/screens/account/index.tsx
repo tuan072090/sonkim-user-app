@@ -1,5 +1,5 @@
 import {Box, Button, ScrollView, Text} from "native-base";
-import React, {useContext} from "react";
+import React from "react";
 import {
     ChevronRightIcon,
     FriendIcon,
@@ -10,31 +10,33 @@ import {
 } from "../../components";
 import AccountHeader from "./components/AccountHeader";
 import AccountItem from "./components/AccountItem";
-import AppProvider from "../../share/context";
 import {Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
-import {APP_VERSION, FirebaseService, ScreenName, Translate, useLocalStorage} from "../../share";
-import {store, useAppSelector} from "../../redux/store";
+import {APP_VERSION, FetchDataService, FirebaseService, ScreenName, Translate} from "../../share";
+import {store, useAppDispatch, useAppSelector} from "../../redux/store";
 import {UpdateLanguage} from "../../redux/reducers/settings";
+import {Logout} from "../../redux/reducers/auth";
 
 const AccountScreen = () => {
-    const [notifPermissionStatus] = useLocalStorage(useLocalStorage.KEY_NOTIFICATION_PERMISSION_STATUS, "0")
-    const {dispatch, user} = useContext(AppProvider.context)
-    const {language} = useAppSelector(state => state.settings)
+    const appDispatch = useAppDispatch()
+    const {language, allowNotification} = useAppSelector(state => state.settings)
+    const {user} = useAppSelector(state => state.auth)
 
     const navigation = useNavigation();
 
     const _logout = () => {
-        dispatch({
-            type: AppProvider.actions.LOGOUT,
-            data: null
-        })
+        //  revoke token also
+        FetchDataService.POST('/firebase-auth/revoke', {
+            refresh_token: store.getState().auth.refreshToken
+        }).catch(err => {})
+
+        appDispatch(Logout())
         Alert.alert("Đăng xuất thành công")
     }
 
     const _toggleAllowNotification = (value: boolean) => {
         FirebaseService.RequestNotificationPermission().then(permission => {
-            console.log("permission noti is...", permission)
+            console.log("permission notification is...", permission)
         }).catch(err => {
 
         })
@@ -42,7 +44,7 @@ const AccountScreen = () => {
 
     const _toggleLanguage = () => {
         const newLang = language === "vi" ? "en" : "vi"
-        store.dispatch(UpdateLanguage(newLang))
+        appDispatch(UpdateLanguage(newLang))
     }
 
     const _navigateToHistory = () => {
@@ -55,7 +57,6 @@ const AccountScreen = () => {
         navigation.navigate(ScreenName.NOTIFICATION_SCREEN)
     }
 
-    const isNotificationAllow = notifPermissionStatus && parseInt(notifPermissionStatus) > 0
 
     return (
         <Box flex={1}>
@@ -82,7 +83,7 @@ const AccountScreen = () => {
                     <Box mb={4}>
                         <AccountItem title={Translate('notifications')} onPress={_navigateToNotification}
                                      startIcon={(<NotificationOutlineIcon size={6}/>)}
-                                     endIcon={(<MySwitch isChecked={isNotificationAllow}
+                                     endIcon={(<MySwitch isChecked={allowNotification}
                                                          onChangeValue={_toggleAllowNotification}/>)}/>
                     </Box>
                     {

@@ -1,16 +1,16 @@
 import {useNavigation} from '@react-navigation/core';
-import {Box, Button, HStack, Heading} from 'native-base'
-import React, {useContext, useEffect} from 'react'
+import {Box, Button, Heading, HStack} from 'native-base'
+import React, {useEffect} from 'react'
 import {ScreenName, SonkimApiService, Translate} from '../../../share';
-import AppProvider from "../../../share/context";
 import {Alert} from "react-native";
 import {MyButton} from "../../../components";
-import {useAppSelector} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {UpdateUser} from '../../../redux/reducers/auth';
 
 const AccountHeader = () => {
-    const {user, dispatch, accessToken} = useContext(AppProvider.context)
+    const dispatch = useAppDispatch()
+    const {user, accessToken} = useAppSelector(state => state.auth)
     const navigation = useNavigation();
-    const {language} = useAppSelector(state => state.settings)
 
     useEffect(() => {
         if (accessToken && accessToken.length > 0) {
@@ -21,10 +21,7 @@ const AccountHeader = () => {
     const _fetchProfile = async () => {
         try {
             const userInfo = await SonkimApiService.GetPersonalInfo()
-            dispatch({
-                type: AppProvider.actions.UPDATE_USER_INFO,
-                data: userInfo
-            })
+            dispatch(UpdateUser(userInfo))
         } catch (err) {
             Alert.alert("Không lấy được thông tin người dùng", err.message)
         }
@@ -55,14 +52,14 @@ const AccountHeader = () => {
 
                         <HStack space={4}>
                             <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
-                                    bgColor="rgba(255,255,255,0.5)"
-                                    onPress={_navigateUserListCard}>
+                                      bgColor="rgba(255,255,255,0.5)"
+                                      onPress={_navigateUserListCard}>
                                 {Translate('userListCard')}
                             </MyButton>
 
                             <MyButton flex={1} size="md" borderWidth="1" borderColor="white" _text={{color: "white",}}
-                                    bgColor="rgba(255,255,255,0.5)"
-                                    onPress={_navigateUserInfo}>
+                                      bgColor="rgba(255,255,255,0.5)"
+                                      onPress={_navigateUserInfo}>
                                 {Translate('userInfo')}
                             </MyButton>
                         </HStack>

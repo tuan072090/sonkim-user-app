@@ -1,39 +1,36 @@
-import React, {useContext, useEffect} from "react";
-import AppProvider from "../../../share/context";
-import {Box, HStack,CloseIcon} from "native-base";
+import React, {useEffect} from "react";
+import {Box, CloseIcon, HStack} from "native-base";
 import Image from "../../atoms/image";
 import {Typo} from "../../atoms/typo";
 import PressBox from "../../atoms/press-box";
-
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {UpdateInAppNotification} from "../../../redux/reducers/notification";
 
 const NotificationFloatMessage = () => {
-    const {notificationInApp, dispatch} = useContext(AppProvider.context)
+    const {inAppNotification} = useAppSelector(state => state.notification)
+    const appDispatch = useAppDispatch()
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            dispatch({
-                type: AppProvider.actions.UPDATE_NOTIFICATION_IN_APP,
-                data: null
-            })
+            appDispatch(UpdateInAppNotification(null))
         }, 3000)
 
         return () => clearTimeout(timeout)
-    }, [notificationInApp])
+    }, [inAppNotification])
 
-    if (!notificationInApp) return null
 
     const _notiPressHandler = () => {
-        dispatch({
-            type: AppProvider.actions.UPDATE_NOTIFICATION_IN_APP,
-            data: null
-        })
+        appDispatch(UpdateInAppNotification(null))
     }
 
-    const {data, notification} = notificationInApp
+    if (!inAppNotification) return null
+
+    const {data, notification} = inAppNotification
 
     return (
         <Box width="100%" p={3} pt={5} position="absolute" top={0} left={0} zIndex={10}>
-            <PressBox position="relative" onPress={_notiPressHandler} width="100%" flexDirection="row" alignItems="center" bgColor="white" p={3} borderRadius={16} shadow={9}>
+            <PressBox position="relative" onPress={_notiPressHandler} width="100%" flexDirection="row"
+                      alignItems="center" bgColor="white" p={3} borderRadius={16} shadow={9}>
                 <HStack>
                     <Image uri={data.fcm_options.image} width={16} height={16} borderRadius={10} resizeMode="contain"/>
 
