@@ -7,6 +7,8 @@ import {persistor, store} from './src/redux/store';
 import {PersistGate} from 'redux-persist/integration/react'
 import {Provider} from "react-redux";
 import {UpdateShowOnBoarding} from './src/redux/reducers/settings';
+import {Platform} from "react-native";
+import SplashScreen from 'react-native-splash-screen'
 
 const theme = extendTheme({
     colors: Colors
@@ -21,6 +23,9 @@ const App = () => {
             //  check notification permission status
             FirebaseService.RequestNotificationPermission()
             setShowOnBoarding(store.getState().settings.showOnBoarding)
+            if(Platform.OS === 'android'){
+                SplashScreen.hide()
+            }
         }
 
     }, [isPersisted])
