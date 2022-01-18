@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Alert} from "react-native";
+import {Alert, useWindowDimensions} from "react-native";
 import {FullScreenLoader, HTMLContent, Image, MainLayout} from "../../components";
 import {useRoute} from '@react-navigation/native';
 import {ScreenSize, SonkimApiService} from "../../share";
@@ -11,6 +11,7 @@ export const ArticleScreen = MainLayout(({navigation}) => {
     const route = useRoute();
     const {params} = route
     const [article, setArticle] = useState<any | null>(null)
+    const {width: screenWidth} = useWindowDimensions();
 
     useEffect(() => {
         //  @ts-ignore
@@ -44,10 +45,7 @@ export const ArticleScreen = MainLayout(({navigation}) => {
                                 <Text fontSize="2xl" my={3}>{article.title}</Text>
 
                                 <Box mt={4}>
-                                    <HTMLContent>
-                                        {article.body}
-                                    </HTMLContent>
-
+                                    <HTMLContent html={article.body} width={screenWidth-48}/>
                                 </Box>
                             </Box>
                         </Box>

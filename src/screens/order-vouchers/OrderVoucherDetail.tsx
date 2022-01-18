@@ -82,9 +82,9 @@ export const OrderVoucherDetail = () => {
                     <Box py={1} mt={5} mb={20}>
                         <Typo type="subtitle16" color="primary.500">Điều khoản áp dụng:</Typo>
 
-                        <HTMLContent>
-                            {promotion.description}
-                        </HTMLContent>
+                        <Box mt={3}>
+                            <HTMLContent html={promotion.description}/>
+                        </Box>
                     </Box>
                 </Box>
             </ScrollView>

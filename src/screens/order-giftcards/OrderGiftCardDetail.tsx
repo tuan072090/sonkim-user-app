@@ -92,7 +92,9 @@ export const OrderGiftCardDetail = () => {
                     <Box py={1} px={3}>
                         <Typo type="subtitle16" color="primary.500">Điều khoản áp dụng:</Typo>
 
-                        <HTMLContent>{gift_card.body}</HTMLContent>
+                        <Box mt={3}>
+                            <HTMLContent html={gift_card.body}/>
+                        </Box>
                     </Box>
                 </Box>
                 <Box py={7} px={4}>

@@ -1,13 +1,30 @@
 import React from "react";
-import Markdown from "react-native-markdown-display";
-import {Colors} from "../../../share";
+import RenderHtml from 'react-native-render-html';
+import {useWindowDimensions} from 'react-native';
 
-const HTMLContent: React.FC<any> = (props) => {
+interface HtmlContentProps extends React.PropsWithChildren<any> {
+    html: string,
+    width?: number
+}
+
+const renderersProps = {
+    img: {
+        enableExperimentalPercentWidth: true
+    }
+};
+const HTMLContent: React.FC<HtmlContentProps> = ({html = "", width}) => {
+    const {width: screenWidth} = useWindowDimensions();
+    const contentWidth = width || screenWidth
 
     return (
-        <Markdown style={{body: {color: 'black', fontSize: 14, lineHeight: 20}, heading1: {color: Colors.primary["500"]}}}>
-            {props.children}
-        </Markdown>
+        <RenderHtml
+            renderersProps={renderersProps}
+            contentWidth={contentWidth}
+            enableExperimentalBRCollapsing={true}
+            source={{
+                html: html
+            }}
+        />
     )
 }
 

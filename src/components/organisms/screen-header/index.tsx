@@ -11,18 +11,23 @@ const ScreenHeader: React.FC<ScreenHeaderTypes> = ({title, hasBackButton = true,
     return (
         <Box width="100%" flexDirection="row" alignContent="center" px={2} {...props} safeAreaTop={true}>
             {/* left content */}
-            <Box width={10}>
+            <Box flex={1}>
                 {hasBackButton && <PressBox onPress={() => navigation.goBack()} py={3} width="100%">
                     <ChevronLeftIcon size={6}/>
                 </PressBox>}
             </Box>
 
 
-            {title && <Text flexGrow={100} textAlign="center" color="white" fontSize="md" fontWeight="semibold"
+            {title && <Text flex={4}
+                            numberOfLines={1}
+                            textAlign="center"
+                            color="white"
+                            fontSize="md"
+                            fontWeight="semibold"
                             py={3}>{title}</Text>}
 
             {/* right content*/}
-            <Box width={10} justifyContent="center" alignItems="flex-end">
+            <Box flex={1} justifyContent="center" alignItems="flex-end">
                 {rightComponent}
             </Box>
         </Box>

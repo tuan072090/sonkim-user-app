@@ -81,9 +81,7 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
                     </Text>
 
                     <Box my={3}>
-                        <HTMLContent>
-                            {loyaltyProgram.body}
-                        </HTMLContent>
+                        <HTMLContent html={loyaltyProgram.body || ""}/>
                     </Box>
                 </Box>
             </ScrollView>

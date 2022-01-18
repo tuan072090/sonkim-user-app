@@ -63,7 +63,6 @@ export const MapContent: React.FC<MapContentType> = React.memo(({stores, indexFo
                         )
                     })
                 }
-
             </MapView>
         </Box>
     )

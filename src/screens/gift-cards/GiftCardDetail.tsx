@@ -86,9 +86,7 @@ const GiftCardDetail = ({navigation}) => {
                     <Box py={1} px={3} mb={20}>
                         <Typo type="subtitle16" color="primary.500">Điều khoản áp dụng:</Typo>
 
-                        <HTMLContent>
-                            {body}
-                        </HTMLContent>
+                        <HTMLContent html={body}/>
                     </Box>
                 </Box>
             </ScrollView>

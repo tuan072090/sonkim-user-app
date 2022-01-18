@@ -35,6 +35,8 @@ export const HomeSlider = () => {
 
     // @ts-ignore
     const _renderItem = ({item}) => {
+        if(!item.avatar) return null;
+
         return (
             <Pressable _pressed={{opacity: 0.8}} alignItems="center" width={sliderWidth} height={sliderWidth / 2.198}
                        onPress={() => _itemPress(item)}>

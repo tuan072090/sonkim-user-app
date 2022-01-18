@@ -93,9 +93,7 @@ const VoucherDetail = () => {
                     <Box py={1} mb={20}>
                         <Typo type="subtitle16" color="primary.500">Điều khoản áp dụng:</Typo>
 
-                        <HTMLContent>
-                            {description}
-                        </HTMLContent>
+                        <HTMLContent html={description}/>
                     </Box>
                 </Box>
             </ScrollView>
