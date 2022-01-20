@@ -14,12 +14,12 @@ const HomeScreen = () => {
     const isFocused = useIsFocused()
 
     useEffect(() => {
-        setTimeout(function () {
-            // @ts-ignore
-            // navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
-            // navigation.navigate(ScreenName.ORDER_GIFT_CARDS_SCREEN)
-            // setLanguage("en")
-        }, 500)
+        // setTimeout(function () {
+        //     // @ts-ignore
+        //     navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 1});
+        //     navigation.navigate(ScreenName.ORDER_GIFT_CARDS_SCREEN)
+        //     setLanguage("en")
+        // }, 500)
     }, [])
 
     return (
