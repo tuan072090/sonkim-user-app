@@ -1,7 +1,7 @@
 //  configs
 import {Colors} from "./configs/colors";
 import {Deeplink, ScreenName, ScreenTitle} from "./configs/routers";
-import {API_URI, APP_VERSION,APP_BUILD} from './configs/commonConfigs'
+import {API_URI, APP_VERSION, APP_BUILD} from './configs/commonConfigs'
 import {FontStyles} from './configs/fontStyles'
 
 import StaticImages from './static/images'
@@ -34,6 +34,8 @@ import {
     GetLoyaltyPrograms, GetUserMembershipCardDetail,
     GetUserMembershipCards, RegisterMemberShipCard, UpdateMemberShipCardInfo
 } from './services/sonkim-api/loyaltyPrograms'
+import {FindSkmAccount} from "./services/sonkim-api/BU-APIs/skm";
+
 import {
     BuyGiftCard,
     GetGiftCardDetail,
@@ -84,13 +86,14 @@ const SonkimApiService = {
     GetPointHistories,
     GetPointSwapHistories,
     GetPointSystems,
-    SwapPoint
+    SwapPoint,
+    FindSkmAccount
 }
 
 export {
     Colors,
     FontStyles,
-    ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION,APP_BUILD,
+    ScreenName, ScreenTitle, Deeplink, API_URI, APP_VERSION, APP_BUILD,
     StaticImages,
 
     //  utils

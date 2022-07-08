@@ -42,6 +42,7 @@ import VoucherCard from "./organisms/voucher-card";
 import GiftCard from './organisms/gift-card'
 import AvatarPicker from './organisms/avatar-picker'
 import Dialog from "./organisms/dialog/index";
+import SKMCard from "./organisms/membership-cards/SKM-card";
 
 //  templates
 import OnBoarding from './templates/onboarding'
@@ -59,6 +60,9 @@ import ListLoyaltyFilter from "./templates/list-loyalty-filter";
 import OrderVoucherList from "./templates/order-voucher-list";
 import OrderGiftCardCard from "./organisms/order-gift-card";
 import OrderGiftCardList from "./templates/order-giftcard-list";
+import GSShopCard from "./organisms/membership-cards/GSSHOP-card";
+import GS25Card from "./organisms/membership-cards/GS25-card";
+import WataminCard from "./organisms/membership-cards/WATAMI-card";
 
 export {
     //  Atoms
@@ -107,6 +111,10 @@ export {
     Dialog,
     OrderVoucherCard,
     OrderGiftCardCard,
+    SKMCard,
+    GSShopCard,
+    GS25Card,
+    WataminCard,
 
     //  Templates
     OnBoarding,

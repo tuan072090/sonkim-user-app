@@ -24,9 +24,9 @@ const AccountScreen = () => {
 
     const navigation = useNavigation();
 
-    const _logout = () => {
+    const _logout = async () => {
         //  revoke token also
-        FetchDataService.POST('/firebase-auth/revoke', {
+        await FetchDataService.POST('/firebase-auth/revoke', {
             refresh_token: store.getState().auth.refreshToken
         }).catch(err => {})
 
@@ -56,7 +56,6 @@ const AccountScreen = () => {
         // @ts-ignore
         navigation.navigate(ScreenName.NOTIFICATION_SCREEN)
     }
-
 
     return (
         <Box flex={1}>

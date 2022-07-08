@@ -6,9 +6,10 @@ import {DatePicker, Picker} from "../../../../../components";
 import {PersonalInfoType} from "../../../../../share/services/sonkim-api/user";
 import {Alert, Platform} from "react-native";
 
-interface RegisterFormType extends IBoxProps{
-    onFormChange:(formData:any) => void
+interface RegisterFormType extends IBoxProps {
+    onFormChange: (formData: any) => void
 }
+
 export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormChange, ...props}) => {
     const [phoneLocal, savePhoneLocal] = useLocalStorage("phone", "")
     const [phoneValue, setPhone] = useState("")
@@ -17,14 +18,12 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
         gender: "male",
         birthday: "",
         avatar: "",
-        address: ""
     });
-    const [{nameValid, genderValid, birthdayValid, avatarValid, addressValid}, setFormValid] = useState({
+    const [{nameValid, genderValid, birthdayValid, avatarValid}, setFormValid] = useState({
         nameValid: "",
         genderValid: "",
         birthdayValid: "",
         avatarValid: "",
-        addressValid: ""
     })
 
     useEffect(() => {
@@ -60,10 +59,10 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
         setPhone(text)
     }
 
-    const _onInputChange = (name: "name" | "gender" | "birthday" | "avatar" | "address", value: string) => {
+    const _onInputChange = (name: "name" | "gender" | "birthday" | "avatar", value: string) => {
         const form = {...formData, [name]: value}
         setFormData(form)
-        const formValid = {nameValid, genderValid, birthdayValid, avatarValid, addressValid};
+        const formValid = {nameValid, genderValid, birthdayValid, avatarValid};
         //@ts-ignore
         formValid[name + "Valid"] = "";
         setFormValid(formValid);
@@ -71,7 +70,7 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
     }
 
     const _onBirthdayChange = (date: Date) => {
-        _onInputChange("birthday", Formatter.FormatDateFromDate(date,"yyyy-MM-dd"))
+        _onInputChange("birthday", Formatter.FormatDateFromDate(date, "yyyy-MM-dd"))
     }
 
     const dateValue = formData.birthday.length > 0 ? Formatter.ParseStringToDate(formData.birthday) : new Date(1990, 0, 1)
@@ -79,58 +78,43 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
 
     return (
         <KeyboardAvoidingView keyboardVerticalOffset={keyboardVerticalOffset} behavior="position">
-        <Box {...props}>
-            <Text color="secondary.500" mb={1}>Số điện thoại</Text>
-            <Input
-                value={phoneValue}
-                onChangeText={_onPhoneChange}
-                keyboardType="phone-pad"
-                color="white"
-                fontSize="md"
-                placeholderTextColor="white"
-                bgColor="rgba(255,255,255,0.5)"
-                variant="filled"
-                p={3}
-                size="2xl"
-                rounded="xl"
-                placeholder="Nhập số điện thoại"
-            />
+            <Box {...props}>
+                <Text color="secondary.500" mb={1}>Số điện thoại</Text>
+                <Input
+                    value={phoneValue}
+                    onChangeText={_onPhoneChange}
+                    keyboardType="phone-pad"
+                    color="white"
+                    fontSize="md"
+                    placeholderTextColor="white"
+                    bgColor="rgba(255,255,255,0.5)"
+                    variant="filled"
+                    p={3}
+                    size="2xl"
+                    rounded="xl"
+                    placeholder="Nhập số điện thoại"
+                />
 
-            <Text color="secondary.500" mb={1} mt={4}>Giới tính</Text>
-            <Picker
-                placeholder="Chọn giới tính"
-                bgColor="rgba(255,255,255,0.5)"
-                pr={3}
-                rounded="xl"
-                items={GenderList}
-                value={formData.gender}
-                onChange={value => _onInputChange("gender", value)}/>
+                <Text color="secondary.500" mb={1} mt={4}>Giới tính</Text>
+                <Picker
+                    placeholder="Chọn giới tính"
+                    bgColor="rgba(255,255,255,0.5)"
+                    pr={3}
+                    rounded="xl"
+                    items={GenderList}
+                    value={formData.gender}
+                    onChange={value => _onInputChange("gender", value)}/>
 
-            <Text color="secondary.500" mb={1} mt={4}>Ngày sinh</Text>
-            <DatePicker
-                height={12}
-                width={ScreenSize.vw - 40}
-                p={3}
-                bgColor="rgba(255,255,255,0.5)"
-                rounded="xl"
-                value={dateValue}
-                onChange={_onBirthdayChange}/>
-
-            <Text color="secondary.500" mb={1} mt={4}>Địa chỉ</Text>
-            <Input
-                value={formData.address}
-                onChangeText={text => _onInputChange("address", text)}
-                color="white"
-                fontSize="md"
-                placeholderTextColor="white"
-                bgColor="rgba(255,255,255,0.5)"
-                variant="filled"
-                p={3}
-                size="2xl"
-                rounded="xl"
-                placeholder="Nhập địa chỉ của bạn"
-            />
-        </Box>
+                <Text color="secondary.500" mb={1} mt={4}>Ngày sinh</Text>
+                <DatePicker
+                    height={12}
+                    width={ScreenSize.vw - 40}
+                    p={3}
+                    bgColor="rgba(255,255,255,0.5)"
+                    rounded="xl"
+                    value={dateValue}
+                    onChange={_onBirthdayChange}/>
+            </Box>
         </KeyboardAvoidingView>
     )
 })

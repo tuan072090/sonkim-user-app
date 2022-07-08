@@ -8,3 +8,5 @@ export type LoyaltyProgramTypes = {
     business_unit: BusinessUnitType,
     levels: any[]
 }
+
+export type LoyaltyType = 'SKM' | 'GSSHOP' | 'GS25' | 'WATAMI' | 'JARDIN'

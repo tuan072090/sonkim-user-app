@@ -4,7 +4,6 @@ import {ScreenName, ScreenSize, StaticImages} from "../../../share";
 import {Box, Button} from "native-base";
 import {LoyaltyCardTypes} from "./loyaltyCard.types";
 import {useNavigation} from "@react-navigation/core";
-import Image from "../../atoms/image";
 
 /**
  *  Loyalty card is a card that only show information of loyalty program but not user
@@ -19,26 +18,15 @@ const LoyaltyCard: React.FC<LoyaltyCardTypes> = ({item, ...props}) => {
     };
 
     const cardBackground = levels[0]?.card_background?.url
-    const branchLogo = avatar ? avatar.url : business_unit.logo ? business_unit.logo.url : null
 
     return (
         <Box {...props}>
             <ImageBackground
                 source={cardBackground ? {uri: cardBackground} : StaticImages.frame4}
-                resizeMode="cover"
+                resizeMode="stretch"
                 style={styles.image}
             >
-                <Box alignItems="center" width="full" height="full" justifyContent="space-between">
-                    {
-                        branchLogo && <Image
-                            mt={2}
-                            mx={3}
-                            uri={branchLogo}
-                            width={20}
-                            height={10}
-                        />
-                    }
-
+                <Box alignItems="center" width="full" height="full" justifyContent="flex-end">
 
                     <Box p={3} flexDirection="row">
                         <Button

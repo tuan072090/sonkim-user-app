@@ -20,6 +20,7 @@ const StaticImages = {
     kyo_watamin: require("../../../static/imgs/brands/kyo_watamin.png"),
     vera: require("../../../static/imgs/brands/vera.png"),
     cgv: require("../../../static/imgs/brands/cgv.png"),
+    gsshop: require("../../../static/imgs/brands/gsshop.jpg"),
 
 
     //  Frames for membership card
@@ -28,6 +29,9 @@ const StaticImages = {
     frame3: require("../../../static/imgs/card_frame/frame3.png"),
     frame4: require("../../../static/imgs/card_frame/frame4.png"),
     frame5: require("../../../static/imgs/card_frame/frame5.png"),
+    skmBg: require("../../../static/imgs/card_frame/skm_bg.png"),
+    gsShopBg: require("../../../static/imgs/card_frame/gsshop_bg.jpg"),
+    gs25Bg: require("../../../static/imgs/card_frame/gs25_bg.png"),
 
     //  images for app
     logo_white: require("../../../static/imgs/logo_white.png"),

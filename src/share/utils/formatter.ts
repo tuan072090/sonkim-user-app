@@ -87,6 +87,15 @@ export const ParseStringToDate = (dateStr:string, defaultFormat = 'yyyy-MM-dd'):
     )
 }
 
+export function objectToQueryString(obj: any) {
+    const str = [];
+    for (const p in obj)
+        if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        }
+    return str.join("&");
+}
+
 const Formatter = {
     FormatPhoneNumber,
     FormatVND,

@@ -21,24 +21,13 @@ const MembershipCard: React.FC<MembershipCardTypes> = ({item, ...props}) => {
         navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: id});
     };
 
-    const nameOnCard = membership_info? membership_info.name : "User"
+    const nameOnCard = membership_info? membership_info.name : ""
     return (
-        <Pressable{...props} _pressed={{opacity: 0.5}} onPress={_navigateDetail}>
+        <Pressable {...props} _pressed={{opacity: 0.5}} onPress={_navigateDetail}>
             <ImageBackground
                 source={cardBackground ? {uri: cardBackground} : StaticImages.frame1}
-                resizeMode="cover"
+                resizeMode="stretch"
                 style={styles.image}>
-                <Image
-                    mt={2}
-                    mx={3}
-                    uri={loyalty_program.avatar.url}
-                    width={16}
-                    height={10}
-                />
-
-                <Typo px={4} color="white" type="body14">
-                    {label}
-                </Typo>
 
                 <Box py={3} px={4} flexDirection="row" justifyContent="space-between">
                     <Typo color="white" type="subtitle16" textTransform="uppercase">
@@ -62,6 +51,6 @@ const styles = StyleSheet.create({
         height: cardHeight,
         borderRadius: 20,
         overflow: "hidden",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
     },
 });

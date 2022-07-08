@@ -23,7 +23,10 @@ export const GetLoyaltyProgramDetail = async (id: number | string) => {
 
 export const RegisterMemberShipCard = async (id: number | string, memberInfo:any={}) => {
     try {
-        const data = await FetchDataService.POST("/user-api/membership-cards", {loyaltyProgramId: id, ...memberInfo})
+        const data = await FetchDataService.POST("/user-api/membership-cards", {
+            loyaltyProgramId: id,
+            ...memberInfo
+        })
 
         return data
     } catch (err) {
@@ -44,7 +47,7 @@ export const UpdateMemberShipCardInfo = async (id: string | number, payload: any
 export const GetUserMembershipCards = async (params = {_limit: 50}): Promise<UserMemberShipCardType[]> => {
     try {
         const {count, membership_cards} = await FetchDataService.GET("/user-api/membership-cards", params)
-
+        console.log('list membership_cards....', membership_cards)
         return membership_cards
     } catch (err) {
         throw err

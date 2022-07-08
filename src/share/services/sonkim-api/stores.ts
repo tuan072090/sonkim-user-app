@@ -8,7 +8,7 @@ export const GetStores = async (params = {_limit: 20}): Promise<{ count: number,
 
         return {count, data: stores}
     } catch (err) {
-        console.log("Login error.....", err)
+        console.log("GetStores error.....", err)
         throw err
     }
 }

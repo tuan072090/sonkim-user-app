@@ -38,8 +38,6 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
             //  register
             const card = await SonkimApiService.RegisterMemberShipCard(loyaltyProgram.id, formData)
 
-            console.log("card....", card)
-
             setCardInfo(card)
             setLoading(false)
         }catch (err) {
@@ -86,6 +84,10 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
                 </Box>
             </ScrollView>
 
+            <Box width="100%" pt={4} px={4} safeAreaBottom={true} shadow={9}>
+                <MyButton size="lg" isLoading={loading} w="100%" onPress={_submit}>Đăng ký thẻ</MyButton>
+            </Box>
+
             <Dialog
                 isOpen={!!cardInfo}
                 onClose={() => setCardInfo(null)}
@@ -102,10 +104,6 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
                 </Button.Group>
                 }
             />
-
-            <Box width="100%" pt={4} px={4} safeAreaBottom={true} shadow={9}>
-                <MyButton size="lg" isLoading={loading} w="100%" onPress={_submit}>Đăng ký thẻ</MyButton>
-            </Box>
         </Box>
     );
 };

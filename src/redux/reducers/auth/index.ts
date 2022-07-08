@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 import FetchDataService from "../../../share/services/fetch";
 
 export type AuthType = {
-    accessToken: string | null,
+    accessToken: string | null
     refreshToken: string | null
     user: any
 }
@@ -36,6 +36,6 @@ export const authSlice = createSlice({
     },
 })
 
-export const { UpdateAccessToken, UpdateRefreshToken, UpdateUser, Logout } = authSlice.actions
+export const {UpdateAccessToken, UpdateRefreshToken, UpdateUser, Logout} = authSlice.actions
 
 export default authSlice.reducer;

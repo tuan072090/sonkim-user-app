@@ -1,52 +1,16 @@
 import React, {useEffect} from "react";
 import {Box, Text} from "native-base";
-import {LoyaltyCard, MembershipCard} from "../../../components";
+import {LoyaltyCard, MembershipCard, SKMCard} from "../../../components";
 import {Colors, SonkimApiService, useLocalStorage} from "../../../share";
 import {ActivityIndicator, Alert} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import {useAppSelector} from "../../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import GSShopCard from "../../../components/organisms/membership-cards/GSSHOP-card";
+import GS25Card from "../../../components/organisms/membership-cards/GS25-card";
+import JardinCard from "../../../components/organisms/membership-cards/JARDIN-card";
+import WataminCard from "../../../components/organisms/membership-cards/WATAMI-card";
 
 export const MembershipCardList = () => {
-    const {accessToken} = useAppSelector(state => state.auth)
-    const navigation = useNavigation()
-    const [loyaltyPrograms, setLoyaltyPrograms] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
-    const [userMemberShipCards, setUserMembershipCars] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
-
-    let isMounted = false
-
-    useEffect(() => {
-        return navigation.addListener('focus', () => {
-            _fetchUserRegisteredCards()
-        });
-    }, [navigation]);
-
-    useEffect(() => {
-        isMounted = true
-        //  Fetch all available loyalty programs
-        _fetchLoyaltyPrograms()
-        return () => {
-            isMounted = false
-        }
-    }, [])
-
-    const _fetchLoyaltyPrograms = () => {
-        SonkimApiService.GetLoyaltyPrograms().then(data => {
-            if (isMounted) setLoyaltyPrograms(data)
-        }).catch(err => {
-            if (isMounted) setLoyaltyPrograms([])
-            Alert.alert(err.message)
-        })
-    }
-
-    const _fetchUserRegisteredCards = () => {
-        if (accessToken && accessToken.length > 0) {
-            SonkimApiService.GetUserMembershipCards().then(cards => {
-                if (isMounted) setUserMembershipCars(cards)
-            }).catch(err => {
-                if (isMounted) setUserMembershipCars([])
-            })
-        }
-    }
 
     return (
         <Box p={4} mt={4}>
@@ -54,28 +18,20 @@ export const MembershipCardList = () => {
                 Thẻ thành viên
             </Text>
             <Text fontSize="md" color="gray.500" mb={1}>
-                Danh sách thẻ thành viên của SKR
+                Danh sách thẻ thành viên của Sơn Kim
             </Text>
 
-            {
-                !loyaltyPrograms
-                    ? <Box p={5}><ActivityIndicator color={Colors.primary["500"]}/></Box>
-                    :     // @ts-ignore
-                    loyaltyPrograms.map((item, index) => {
-                        let registeredCard = null
-                        if (userMemberShipCards && userMemberShipCards.length > 0) {
-                            registeredCard = userMemberShipCards.find((card: any) => card.loyalty_program.id === item.id)
-                        }
+            <SKMCard type="jockey" mb={3}/>
 
-                        if (registeredCard)
-                            return <MembershipCard mt={4} item={registeredCard} key={index}/>
+            <SKMCard type="vera" mb={3}/>
 
-                        return (
-                            <LoyaltyCard item={item} mt={4} key={index}/>
-                        )
-                    })
+            <GSShopCard mb={3}/>
 
-            }
+            <GS25Card mb={3}/>
+
+            <JardinCard mb={3}/>
+
+            <WataminCard mb={3}/>
         </Box>
     );
 };
