@@ -48,9 +48,12 @@ const LinkMembershipForm = () => {
                     title={"Health Spa"}
                     bgColor="primary.500"
                 />
-                <Typo type="body16" color="gray.100" mb={6} px={4} textAlign="center">
-                    Điền thông tin để liên kết thẻ thành viên {BUName}
-                </Typo>
+
+                <Box width="100%" px={4}>
+                    <Typo type="body16" color="gray.100" mb={6} textAlign="center" numberOfLines={2}>
+                        Điền thông tin để liên kết thẻ thành viên {BUName}
+                    </Typo>
+                </Box>
 
                 <Box width="100%" alignItems="center">
                     <Image

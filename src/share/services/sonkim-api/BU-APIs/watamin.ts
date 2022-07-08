@@ -1,5 +1,5 @@
 import axios from "axios";
-import {JARDIN_GET_CUSTOMER, JARDIN_GET_TOKEN} from "../../../configs/commonConfigs";
+import {WATAMIN_CREATE_MEMBER, WATAMIN_GET_CUSTOMER, WATAMIN_GET_TOKEN} from "../../../configs/commonConfigs";
 import LocalStorageService from "../../local-storage";
 
 const GetTokenPayload = {
@@ -18,19 +18,19 @@ type CreateUpdateMemberPayload = {
 }
 let debounceTimer: NodeJS.Timeout;
 
-const JARDIN_ACCESS_TOKEN_KEY: string = "jardinAccessTokenKey"
+const WATAMIN_ACCESS_TOKEN_KEY: string = "wataminAccessTokenKey"
 
-const organizationId = "fdf89523-6073-11eb-8168-000c2966edd2"
+const organizationId = "7fb88635-b513-11ea-814e-000c2966edd2"
 
-const FetchJardinToken = async () => {
+const FetchWataminToken = async () => {
     try {
-        const {data: token} = await axios.get(JARDIN_GET_TOKEN, {
+        const {data: token} = await axios.get(WATAMIN_GET_TOKEN, {
             params: {
                 ...GetTokenPayload
             }
         })
 
-        await LocalStorageService.StoreData(JARDIN_ACCESS_TOKEN_KEY, token)
+        await LocalStorageService.StoreData(WATAMIN_ACCESS_TOKEN_KEY, token)
 
         return token
     } catch (err) {
@@ -39,26 +39,26 @@ const FetchJardinToken = async () => {
     }
 }
 
-export const getJardinAccessToken = async () => {
-    const jardinAccessToken = await LocalStorageService.GetData(JARDIN_ACCESS_TOKEN_KEY)
+export const getWataminAccessToken = async () => {
+    const wataminAccessToken = await LocalStorageService.GetData(WATAMIN_ACCESS_TOKEN_KEY)
 
-    if (!jardinAccessToken) {
-        return await FetchJardinToken()
+    if (!wataminAccessToken) {
+        return await FetchWataminToken()
     }
 
     //  update accessToken every 2 seconds
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(async () => {
         //  login
-        await FetchJardinToken()
+        await FetchWataminToken()
     }, 2000);
 
-    return jardinAccessToken
+    return wataminAccessToken
 }
 
 export const CreateOrUpdateMember = async (payload: CreateUpdateMemberPayload) => {
     try {
-        const {data: token} = await axios.post(JARDIN_GET_TOKEN, {
+        const {data: token} = await axios.post(WATAMIN_CREATE_MEMBER, {
             "customer": {
                 ...payload
             }
@@ -70,10 +70,10 @@ export const CreateOrUpdateMember = async (payload: CreateUpdateMemberPayload) =
     }
 }
 
-export const GetJardinMemberByPhone = async (phone: string) => {
+export const GetWataminMemberByPhone = async (phone: string) => {
     try {
-        const accessToken = await getJardinAccessToken()
-        const {data} = await axios.get(JARDIN_GET_CUSTOMER, {
+        const accessToken = await getWataminAccessToken()
+        const {data} = await axios.get(WATAMIN_GET_CUSTOMER, {
             params: {
                 access_token: accessToken,
                 organization: organizationId,
@@ -83,6 +83,6 @@ export const GetJardinMemberByPhone = async (phone: string) => {
 
         return data
     } catch (err) {
-        return null
+        throw err
     }
 }

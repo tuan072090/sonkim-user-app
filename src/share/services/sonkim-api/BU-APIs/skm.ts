@@ -35,14 +35,7 @@ export const getSkmAccessToken = async () => {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(async () => {
         //  login
-        const {data: loginRes} = await axios.post(SKM_LOGIN, {
-            username: "danhnb.wr",
-            password: "gcsvn123"
-        }, {
-            headers: {apikey: 'apikey'}
-        })
-
-        await LocalStorageService.StoreData(SKM_ACCESS_TOKEN_KEY, loginRes.rmsToken.token)
+        await loginSkm()
     }, 2000);
 
     return skmAccessToken

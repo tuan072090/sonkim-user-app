@@ -50,7 +50,7 @@ const GS25Card: React.FC<any> = (props) => {
                                 size="lg"
                                 rounded="lg"
                                 _text={{color: "primary.500"}}>
-                                Liên kết thẻ
+                                Đăng ký thẻ
                             </Button>
                         </Box>
                         : <Box py={3} px={4} flexDirection="row" flexGrow={1} justifyContent="flex-end">

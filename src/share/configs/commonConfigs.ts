@@ -14,3 +14,11 @@ export const SKM_GET_ACCOUNT = 'https://rms.sonkimmode.vn/api/customer/short/sea
 
 export const GSSHOP_CREATE_MEMBER = 'https://loyalty-staging.gsshop.vn/loyalty-api/account/registerNew'
 export const GSSHOP_GET_MEMBER = 'https://loyalty-staging.gsshop.vn/loyalty-api/account'
+
+export const JARDIN_GET_TOKEN = 'http://210.211.109.91:9900/api/0/auth/access_token'
+export const JARDIN_CREATE_MEMBER = 'http://210.211.109.91:9900/api/0/customers/create_or_update'
+export const JARDIN_GET_CUSTOMER = 'http://210.211.109.91:9900/api/0/customers/get_customer_by_phone'
+
+export const WATAMIN_GET_TOKEN = 'http://210.211.109.91:9900/api/0/auth/access_token'
+export const WATAMIN_CREATE_MEMBER = 'http://210.211.109.91:9900/api/0/customers/create_or_update'
+export const WATAMIN_GET_CUSTOMER = 'http://210.211.109.91:9900/api/0/customers/get_customer_by_phone'

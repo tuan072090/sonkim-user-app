@@ -5,6 +5,7 @@ import {Alert, ImageBackground, StyleSheet} from "react-native";
 import {Box, Button, Image, Pressable} from "native-base";
 import {ScreenSize, StaticImages} from "../../../../share";
 import {Typo} from "../../../atoms/typo";
+import {GetJardinMemberByPhone} from "../../../../share/services/sonkim-api/BU-APIs/jardin";
 
 const JardinCard: React.FC<any> = (props) => {
     const dispatch = useAppDispatch()
@@ -13,15 +14,14 @@ const JardinCard: React.FC<any> = (props) => {
 
     useEffect(() => {
         if (user) {
-            console.log('user',user)
-            const {name, gender, birthday} = user
             _getAccount(user.user.phone)
         }
     }, [user])
 
     const _getAccount = async (phone: string) => {
         try {
-            //UpdateJardinAccount
+            const memberData = await GetJardinMemberByPhone(phone)
+            dispatch(UpdateJardinAccount(memberData))
         } catch (err) {
             Alert.alert("Get Jardin account error", err.message)
         }
@@ -57,15 +57,15 @@ const JardinCard: React.FC<any> = (props) => {
                                 size="lg"
                                 rounded="lg"
                                 _text={{color: "primary.500"}}>
-                                Liên kết thẻ
+                                Đăng ký thẻ
                             </Button>
                         </Box>
-                        : <Box py={3} px={4} flexDirection="row" flexGrow={1} justifyContent="flex-end">
+                        : <Box py={3} px={4} flexDirection="row" w="100%" flexGrow={1} alignItems="flex-end" justifyContent="space-between">
                             <Typo color="white" type="subtitle16" textTransform="uppercase">
-                                {"card name"}
+                                {jardinAccount.name + " "+ (jardinAccount.surname || "")}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {123} điểm
+                                {jardinAccount.walletBalances[0].balance} ĐIỂM
                             </Typo>
                         </Box>
                 }

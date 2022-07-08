@@ -1,34 +1,37 @@
 import React, {useEffect, useState} from 'react'
 import {useAppDispatch, useAppSelector} from "../../../../redux/store";
-import {UpdateWataminAccount} from "../../../../redux/reducers/loyalty";
+import {UpdateJardinAccount, UpdateWataminAccount} from "../../../../redux/reducers/loyalty";
 import {Alert, ImageBackground, StyleSheet} from "react-native";
 import {Box, Button, Image, Pressable} from "native-base";
-import {ScreenSize, StaticImages} from "../../../../share";
+import {ScreenName, ScreenSize, StaticImages} from "../../../../share";
 import {Typo} from "../../../atoms/typo";
+import {GetWataminMemberByPhone} from "../../../../share/services/sonkim-api/BU-APIs/watamin";
+import {useNavigation} from "@react-navigation/core";
 
 const WataminCard: React.FC<any> = (props) => {
     const dispatch = useAppDispatch()
+    const navigation = useNavigation();
     const {user} = useAppSelector(state => state.auth)
     const {wataminAccount} = useAppSelector(state => state.loyalty)
 
     useEffect(() => {
         if (user) {
-            console.log('user',user)
-            const {name, gender, birthday} = user
             _getAccount(user.user.phone)
         }
     }, [user])
 
     const _getAccount = async (phone: string) => {
         try {
-            //UpdateJardinAccount
+            const memberData = await GetWataminMemberByPhone(phone)
+            dispatch(UpdateWataminAccount(memberData))
         } catch (err) {
             Alert.alert("Get Watamin account error", err.message)
         }
     }
 
     const _navigateDetail = () => {
-        console.warn("detail Watamin")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 22});
     }
 
     const _linkAccount = () => {
@@ -57,15 +60,15 @@ const WataminCard: React.FC<any> = (props) => {
                                 size="lg"
                                 rounded="lg"
                                 _text={{color: "primary.500"}}>
-                                Liên kết thẻ
+                                Đăng ký thẻ
                             </Button>
                         </Box>
-                        : <Box py={3} px={4} flexDirection="row" flexGrow={1} justifyContent="flex-end">
+                        : <Box py={3} px={4} flexDirection="row" w="100%" flexGrow={1} alignItems="flex-end" justifyContent="space-between">
                             <Typo color="white" type="subtitle16" textTransform="uppercase">
-                                {"card name"}
+                                {wataminAccount.name + " "+ (wataminAccount.surname || "")}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {123} điểm
+                                {wataminAccount.walletBalances[0].balance} ĐIỂM
                             </Typo>
                         </Box>
                 }

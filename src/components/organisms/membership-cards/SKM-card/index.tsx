@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Alert, ImageBackground, StyleSheet} from "react-native";
-import {ScreenSize, StaticImages, SonkimApiService} from "../../../../share";
+import {ScreenSize, StaticImages, SonkimApiService, ScreenName} from "../../../../share";
 import {Box, Pressable, Image, Button} from "native-base";
 import {Typo} from "../../../atoms/typo";
 import {useAppDispatch, useAppSelector} from "../../../../redux/store";
 import {UpdateSkmAccount} from "../../../../redux/reducers/loyalty";
+import {useNavigation} from "@react-navigation/native";
 
 /**
  * Card đã đăng ký và chưa đk
@@ -15,8 +16,12 @@ interface SKMCardProps extends React.PropsWithChildren<any> {
 
 const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
     const dispatch = useAppDispatch()
+    const navigation = useNavigation()
     const {user} = useAppSelector(state => state.auth)
     const {skmAccount} = useAppSelector(state => state.loyalty)
+
+    //  fix cừng tạm
+    const loyaltyProgramId = type === 'jockey' ? 10 : 9
 
     useEffect(() => {
         if (user) {
@@ -37,7 +42,8 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
     }
 
     const _linkAccount = () => {
-        console.warn("link SKM")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: loyaltyProgramId}, undefined, undefined);
     }
 
     return (
@@ -73,7 +79,7 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
                                 size="lg"
                                 rounded="lg"
                                 _text={{color: "primary.500"}}>
-                                Liên kết thẻ
+                                Đăng ký thẻ
                             </Button>
                         </Box>
                         : <Box py={3} px={4} flexDirection="row" justifyContent="space-between">
@@ -81,7 +87,7 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
                                 {"card name"}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {123} điểm
+                                {123} ĐIỂM
                             </Typo>
                         </Box>
                 }
