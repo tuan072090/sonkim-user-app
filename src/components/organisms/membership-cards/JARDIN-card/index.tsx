@@ -71,7 +71,7 @@ const JardinCard: React.FC<any> = (props) => {
                                 {jardinAccount.name + " " + (jardinAccount.surname || "")}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {jardinAccount.walletBalances[0].balance} ĐIỂM
+                                {jardinAccount.walletBalances.length > 0 ? jardinAccount.walletBalances[0].balance : 0} ĐIỂM
                             </Typo>
                         </Box>
                 }

@@ -70,7 +70,7 @@ const WataminCard: React.FC<any> = (props) => {
                                 {wataminAccount.name + " "+ (wataminAccount.surname || "")}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {wataminAccount.walletBalances[0].balance} ĐIỂM
+                                {wataminAccount.walletBalances.length > 0 ? wataminAccount.walletBalances[0].balance : 0} ĐIỂM
                             </Typo>
                         </Box>
                 }

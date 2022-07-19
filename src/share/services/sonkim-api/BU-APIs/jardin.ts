@@ -85,8 +85,6 @@ export const CreateOrUpdateJardinMember = async (payload: CreateUpdateMemberPayl
 
 export const GetJardinMemberByPhone = async (phone: string) => {
     try {
-        console.log('GetJardinMemberByPhone .....', phone)
-
         const accessToken = await getJardinAccessToken()
 
         const {data} = await axios.get(JARDIN_GET_CUSTOMER_BY_CARD, {
@@ -96,7 +94,7 @@ export const GetJardinMemberByPhone = async (phone: string) => {
                 card: phone
             }
         }).catch(err => ({data: null}))
-        
+
         return data
     } catch (err) {
         return null
@@ -108,7 +106,6 @@ function handleError(error: AxiosError | any) {
     let status = error.status || 502
     let code = 0
     if (error.response) {
-        console.log("jardin error response....", error.response)
         // message = error.response.data ? error.response.data.message : message
         status = error.response.data.status || status
     } else if (error.request) {

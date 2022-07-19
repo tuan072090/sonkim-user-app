@@ -1,7 +1,7 @@
 
 export const API_URI = "https://api.sonkim.upme.dev"
-export const APP_VERSION = "1.7.3"
-export const APP_BUILD = 12
+export const APP_VERSION = "1.7.4"
+export const APP_BUILD = 13
 
 //  account api
 export const SKR_API_URI = "https://user.api.skr.dev.meete.co"
