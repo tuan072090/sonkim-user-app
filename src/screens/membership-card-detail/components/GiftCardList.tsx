@@ -1,26 +1,31 @@
 import React, {useEffect, useState} from "react";
-import {Colors, GiftCardType, ScreenName, SonkimApiService, UserMemberShipCardType} from "../../../share";
+import {
+    Colors,
+    GiftCardType,
+    LoyaltyProgramTypes,
+    ScreenName,
+    SonkimApiService,
+    UserMemberShipCardType
+} from "../../../share";
 import {useNavigation} from "@react-navigation/core";
-import {Typo} from "../../../components/atoms/typo";
 import {Box} from "native-base";
 import {ActivityIndicator, Alert} from "react-native";
-import {GiftCard, MyButton, PressBox} from "../../../components";
+import {GiftCard, MyButton, PressBox, Typo} from "../../../components";
 
-export const GiftCardList: React.FC<{ membershipCard: UserMemberShipCardType }> = ({membershipCard}) => {
+export const GiftCardList: React.FC<{ loyaltyProgram: LoyaltyProgramTypes }> = ({loyaltyProgram}) => {
     const [giftCards, setGiftCards] = useState<GiftCardType[] | null>(null)
     const [total, setTotal] = useState<number | null>(null)
     const navigation = useNavigation();
-    const {loyalty_program} = membershipCard
 
     useEffect(() => {
-        if (membershipCard) {
+        if (loyaltyProgram) {
             _fetchGiftCards()
         }
-    }, [membershipCard])
+    }, [loyaltyProgram])
 
     const _fetchGiftCards = () => {
         //  filter by loyalty program unit
-        SonkimApiService.GetGiftCards({loyalty_program: loyalty_program.id, _limit: 2}).then(data => {
+        SonkimApiService.GetGiftCards({loyalty_program: loyaltyProgram.id, _limit: 2}).then(data => {
             const {count, gift_cards} = data;
             setGiftCards(gift_cards)
             setTotal(count)
@@ -36,7 +41,7 @@ export const GiftCardList: React.FC<{ membershipCard: UserMemberShipCardType }> 
             return
         }
         //  @ts-ignore
-        navigation.navigate(ScreenName.GIFT_CARD_LIST_SCREEN, {filter: {loyalty_program: loyalty_program.id}})
+        navigation.navigate(ScreenName.GIFT_CARD_LIST_SCREEN, {filter: {loyalty_program: loyaltyProgram.id}})
     }
 
     return (

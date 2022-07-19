@@ -7,7 +7,6 @@ const CartScreen: React.FC<PageProps> = MainLayout(() => {
     const [filter, setFilter] = useState<any>({display: "voucher"})
 
     const _onFilterChange = (filterData: any) => {
-        console.log("filter change...", filterData)
         setFilter(filterData)
     }
 

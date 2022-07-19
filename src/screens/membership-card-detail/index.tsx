@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Box, ScrollView} from "native-base";
-import {SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
+import {LoyaltyProgramTypes, SonkimApiService, Translate, UserMemberShipCardType} from "../../share";
 import {useNavigation, useRoute} from "@react-navigation/core";
 import ScreenHeader from "../../components/organisms/screen-header";
 import {FullScreenLoader, MainLayout, PageProps, PressBox, RefreshIcon} from "../../components";
@@ -10,32 +10,34 @@ import {CardCategories} from "./components/CardCategories";
 import {VoucherList} from "./components/VoucherList";
 import {GiftCardList} from "./components/GiftCardList";
 import {useAppSelector} from "../../redux/store";
+import {BuMapping} from "../../share/configs/commonConfigs";
+import {alignEnum} from "react-native-svg/lib/typescript/lib/extract/extractViewBox";
 
 const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
     const [cardDetail, setCardDetail] = useState<UserMemberShipCardType | null>(null)
+    const [loyaltyProgram, setLoyaltyProgram] = useState<null | LoyaltyProgramTypes>(null)
     const {language} = useAppSelector(state => state.settings)
     const navigation = useNavigation();
     const {params} = useRoute()
 
     useEffect(() => {
         if (params) {
+            console.log("params truyền vô.....", params)
+            //  @ts-ignore
             _fetchData()
         }
     }, [params])
 
-    const _fetchData = () => {
-        console.log("params....", params)
-        //  @ts-ignore
-        SonkimApiService.GetUserMembershipCardDetail(params.id).then(data => {
-            setCardDetail(data)
-        }).catch(err => {
-            Alert.alert(err.message)
-        })
+    const _fetchData = async () => {
+       try {
+           //  @ts-ignore
+           const loyaltyData = await SonkimApiService.GetLoyaltyProgramDetail(params.id)
+           setLoyaltyProgram(loyaltyData)
+       } catch (err){
+           Alert.alert(err.message)
+       }
     }
 
-    if (!cardDetail) return <FullScreenLoader/>
-
-    const {point, label, membership_info, loyalty_program, created_at} = cardDetail
 
     return (
         <Box flex={1} width={"100%"} alignContent="center" justifyContent="center">
@@ -47,13 +49,16 @@ const MemberShipCardDetailScreen: React.FC<PageProps> = MainLayout(() => {
             />
 
             <ScrollView bgColor="white">
-                <CardBanner membershipCard={cardDetail}/>
 
-                <CardCategories membershipCard={cardDetail}/>
+                {// @ts-ignore
+                    loyaltyProgram && <CardBanner bu={params.bu} loyaltyProgram={loyaltyProgram}/>
+                }
 
-                <VoucherList membershipCard={cardDetail}/>
+                <CardCategories/>
 
-                <GiftCardList membershipCard={cardDetail}/>
+                {loyaltyProgram && <VoucherList loyaltyProgram={loyaltyProgram}/>}
+
+                {loyaltyProgram && <GiftCardList loyaltyProgram={loyaltyProgram}/>}
                 <Box mb={50}/>
             </ScrollView>
         </Box>

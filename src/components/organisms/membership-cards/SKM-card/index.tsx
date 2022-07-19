@@ -6,6 +6,7 @@ import {Typo} from "../../../atoms/typo";
 import {useAppDispatch, useAppSelector} from "../../../../redux/store";
 import {UpdateSkmAccount} from "../../../../redux/reducers/loyalty";
 import {useNavigation} from "@react-navigation/native";
+import {BuMapping} from "../../../../share/configs/commonConfigs";
 
 /**
  * Card đã đăng ký và chưa đk
@@ -21,7 +22,7 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
     const {skmAccount} = useAppSelector(state => state.loyalty)
 
     //  fix cừng tạm
-    const loyaltyProgramId = type === 'jockey' ? 10 : 9
+    const loyaltyProgramId = BuMapping[type]
 
     useEffect(() => {
         if (user) {
@@ -33,17 +34,19 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
         SonkimApiService.FindSkmAccount(phone).then(res => {
             dispatch(UpdateSkmAccount(res.account))
         }).catch(err => {
-            Alert.alert("Get SKM account error", err.message)
+            console.log('err...', err)
+            //Alert.alert("Get SKM account error", err.message)
         })
     }
 
     const _navigateDetail = () => {
-        console.warn("detail SKM")
+        //  @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: loyaltyProgramId, bu: type}, undefined, undefined);
     }
 
     const _linkAccount = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: loyaltyProgramId}, undefined, undefined);
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: loyaltyProgramId, bu: type}, undefined, undefined);
     }
 
     return (
@@ -84,10 +87,10 @@ const SKMCard: React.FC<SKMCardProps> = ({type, ...props}) => {
                         </Box>
                         : <Box py={3} px={4} flexDirection="row" justifyContent="space-between">
                             <Typo color="white" type="subtitle16" textTransform="uppercase">
-                                {"card name"}
+                                {skmAccount.fullName}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {123} ĐIỂM
+                                {skmAccount.currentLevel.remainPoints} ĐIỂM
                             </Typo>
                         </Box>
                 }

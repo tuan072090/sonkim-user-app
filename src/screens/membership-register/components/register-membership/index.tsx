@@ -6,15 +6,24 @@ import {Dialog, HTMLContent, ImageStatic, MyButton} from "../../../../components
 import {RegisterMembershipForm} from "./register-membership-form";
 import {Alert, StyleSheet} from "react-native";
 import {useNavigation} from "@react-navigation/core";
+import {SonkimBuIdType} from "../../../../share/data-types/loyaltyProgram.types";
+import {useAppSelector} from "../../../../redux/store";
+import {CreateSkmCustomer} from "../../../../share/services/sonkim-api/BU-APIs/skm";
+import {GetOrCreateGsShopMember} from "../../../../share/services/sonkim-api/BU-APIs/gsshop";
+import {CreateOrUpdateJardinMember} from "../../../../share/services/sonkim-api/BU-APIs/jardin";
+import {CreateOrUpdateWataminMember} from "../../../../share/services/sonkim-api/BU-APIs/watamin";
+import {Gs25Login} from "../../../../share/services/sonkim-api/BU-APIs/gs25";
 
 type RegisterMembershipTypes = {
     loyaltyProgram: LoyaltyProgramTypes,
+    bu: SonkimBuIdType
 }
-const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram}) => {
+const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram, bu}) => {
     const [cardInfo, setCardInfo] = useState(null);
     const [formData, setFormData] = useState<any>()
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
+    const {user} = useAppSelector(state => state.auth)
 
     const _onFormChange = (data: any) => {
         setFormData(data)
@@ -32,16 +41,69 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram})
         setCardInfo(null)
     }
 
+    const _registerByBU = async () => {
+        switch (bu){
+            case 'jockey' || 'vera':
+                return await CreateSkmCustomer({
+                    "brandCode": bu.toUpperCase(),
+                    "firstName": user.firstName,
+                    "lastName": user.lastName,
+                    "gender": user.gender,
+                    "birthdayDay": '01',
+                    "birthdayMonth": '01',
+                    "birthdayYear": '1990',
+                    "username": user.user.phone,
+                    "password": "123456",
+                    "tel1": user.user.phone
+                })
+            case 'gsshop':
+                return await GetOrCreateGsShopMember({
+                    birthday: formData.birthday,    //  2000-03-03
+                    name: user.name,
+                    gendar: user.gender,
+                    phone: user.user.phone
+                })
+            case 'gs25':
+                return await Gs25Login()
+            case 'jardin':
+                return await CreateOrUpdateJardinMember({
+                    name: user.name,
+                    middleName: user.firstName || "",
+                    surName: user.lastName || "",
+                    birthday: formData.birthday,
+                    sex: formData.gender,
+                    phone: user.user.phone,
+                    magnetCardNumber: user.user.phone,
+                    magnetCardTrack: user.user.phone
+                })
+            case 'watamin':
+                return await CreateOrUpdateWataminMember({
+                    name: user.name,
+                    middleName: user.firstName,
+                    surName: user.lastName,
+                    birthday: formData.birthday,
+                    sex: formData.gender,
+                    phone: user.user.phone,
+                    magnetCardNumber: user.user.phone,
+                    magnetCardTrack: user.user.phone
+                })
+            default:
+                break
+        }
+    }
+
     const _submit = async () => {
         try {
             setLoading(true)
+
+            await _registerByBU()
+
             //  register
             const card = await SonkimApiService.RegisterMemberShipCard(loyaltyProgram.id, formData)
 
             setCardInfo(card)
             setLoading(false)
         }catch (err) {
-            console.log("err....", err)
             setCardInfo(null)
             setLoading(false)
             Alert.alert(err.message, err.status)

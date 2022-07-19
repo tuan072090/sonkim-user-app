@@ -1,6 +1,12 @@
-import axios from "axios";
-import {WATAMIN_CREATE_MEMBER, WATAMIN_GET_CUSTOMER, WATAMIN_GET_TOKEN} from "../../../configs/commonConfigs";
+import axios, {AxiosError} from "axios";
+import {
+    JARDIN_CREATE_MEMBER,
+    WATAMIN_CREATE_MEMBER,
+    WATAMIN_GET_CUSTOMER,
+    WATAMIN_GET_TOKEN
+} from "../../../configs/commonConfigs";
 import LocalStorageService from "../../local-storage";
+import MyError from "../../error";
 
 const GetTokenPayload = {
     user_id: "watami",
@@ -15,6 +21,8 @@ type CreateUpdateMemberPayload = {
     birthday?:string
     sex?: "1" | "2" | "0"
     phone: string
+    magnetCardNumber: string
+    magnetCardTrack: string
 }
 let debounceTimer: NodeJS.Timeout;
 
@@ -23,50 +31,53 @@ const WATAMIN_ACCESS_TOKEN_KEY: string = "wataminAccessTokenKey"
 const organizationId = "7fb88635-b513-11ea-814e-000c2966edd2"
 
 const FetchWataminToken = async () => {
-    try {
-        const {data: token} = await axios.get(WATAMIN_GET_TOKEN, {
-            params: {
-                ...GetTokenPayload
-            }
-        })
+    const {data: token} = await axios.get(WATAMIN_GET_TOKEN, {
+        params: {
+            ...GetTokenPayload
+        }
+    })
 
-        await LocalStorageService.StoreData(WATAMIN_ACCESS_TOKEN_KEY, token)
+    await LocalStorageService.StoreData(WATAMIN_ACCESS_TOKEN_KEY, token)
 
-        return token
-    } catch (err) {
-        console.log('err....', err)
-        throw err
-    }
+    return token
 }
 
 export const getWataminAccessToken = async () => {
-    const wataminAccessToken = await LocalStorageService.GetData(WATAMIN_ACCESS_TOKEN_KEY)
+    try {
+        const wataminAccessToken = await LocalStorageService.GetData(WATAMIN_ACCESS_TOKEN_KEY)
 
-    if (!wataminAccessToken) {
-        return await FetchWataminToken()
+        if (!wataminAccessToken) {
+            return await FetchWataminToken()
+        }
+
+        //  update accessToken every 2 seconds
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(async () => {
+            //  login
+            await FetchWataminToken()
+        }, 2000);
+
+        return wataminAccessToken
+    }catch (err){
+        handleError(err)
     }
-
-    //  update accessToken every 2 seconds
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(async () => {
-        //  login
-        await FetchWataminToken()
-    }, 2000);
-
-    return wataminAccessToken
 }
 
-export const CreateOrUpdateMember = async (payload: CreateUpdateMemberPayload) => {
+export const CreateOrUpdateWataminMember = async (payload: CreateUpdateMemberPayload) => {
     try {
-        const {data: token} = await axios.post(WATAMIN_CREATE_MEMBER, {
-            "customer": {
-                ...payload
+        const accessToken = await getWataminAccessToken()
+        const {data} = await axios.post(WATAMIN_CREATE_MEMBER, {
+            customer: {...payload}
+        }, {
+            params: {
+                access_token: accessToken,
+                organization: organizationId
             }
         })
 
-        return token
+        return data
     } catch (err) {
-        throw err
+        handleError(err)
     }
 }
 
@@ -83,6 +94,22 @@ export const GetWataminMemberByPhone = async (phone: string) => {
 
         return data
     } catch (err) {
-        throw err
+        return null
     }
 }
+
+
+function handleError(error: AxiosError | any) {
+    let message = error.message || "Watamin error"
+    let status = 502
+    let code = 0
+    if (error.response) {
+        // message = error.response.data ? error.response.data.message : message
+        status = error.response.status || status
+    } else if (error.request) {
+        //console.log(error.request);
+    }
+
+    throw new MyError(message, status, code)
+}
+

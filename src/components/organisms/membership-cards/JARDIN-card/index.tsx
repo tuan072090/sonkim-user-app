@@ -3,14 +3,17 @@ import {useAppDispatch, useAppSelector} from "../../../../redux/store";
 import {UpdateJardinAccount} from "../../../../redux/reducers/loyalty";
 import {Alert, ImageBackground, StyleSheet} from "react-native";
 import {Box, Button, Image, Pressable} from "native-base";
-import {ScreenSize, StaticImages} from "../../../../share";
+import {ScreenName, ScreenSize, StaticImages} from "../../../../share";
 import {Typo} from "../../../atoms/typo";
 import {GetJardinMemberByPhone} from "../../../../share/services/sonkim-api/BU-APIs/jardin";
+import {useNavigation} from "@react-navigation/native";
+import {BuMapping} from "../../../../share/configs/commonConfigs";
 
 const JardinCard: React.FC<any> = (props) => {
     const dispatch = useAppDispatch()
     const {user} = useAppSelector(state => state.auth)
     const {jardinAccount} = useAppSelector(state => state.loyalty)
+    const navigation = useNavigation()
 
     useEffect(() => {
         if (user) {
@@ -28,11 +31,13 @@ const JardinCard: React.FC<any> = (props) => {
     }
 
     const _navigateDetail = () => {
-        console.warn("detail Jardin")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: BuMapping["jardin"], bu: 'jardin'});
     }
 
     const _linkAccount = () => {
-        console.warn("link Jardin")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: BuMapping["jardin"], bu: 'jardin'}, undefined, undefined);
     }
 
     return (
@@ -60,9 +65,10 @@ const JardinCard: React.FC<any> = (props) => {
                                 Đăng ký thẻ
                             </Button>
                         </Box>
-                        : <Box py={3} px={4} flexDirection="row" w="100%" flexGrow={1} alignItems="flex-end" justifyContent="space-between">
+                        : <Box py={3} px={4} flexDirection="row" w="100%" flexGrow={1} alignItems="flex-end"
+                               justifyContent="space-between">
                             <Typo color="white" type="subtitle16" textTransform="uppercase">
-                                {jardinAccount.name + " "+ (jardinAccount.surname || "")}
+                                {jardinAccount.name + " " + (jardinAccount.surname || "")}
                             </Typo>
                             <Typo color="white" type="subtitle16">
                                 {jardinAccount.walletBalances[0].balance} ĐIỂM

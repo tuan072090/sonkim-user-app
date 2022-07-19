@@ -1,9 +1,8 @@
 import React from "react";
 import {Box, Stack} from "native-base";
 import {FeatureItems} from "../../../components";
-import {UserMemberShipCardType} from "../../../share";
 
-export const CardCategories:React.FC<{membershipCard: UserMemberShipCardType}> = ({membershipCard}) => {
+export const CardCategories:React.FC = () => {
 
     return (
         <>

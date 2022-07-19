@@ -66,7 +66,7 @@ export const HomeHeader: React.FC<any> = memo((props) => {
                                         size="sm"/>
                             }
 
-                            <Text ml={3} fontSize="lg" color="white">{Translate('hello') + " " + user.name}</Text>
+                            <Text ml={3} fontSize="lg" color="white">{Translate('hello') + " " + (user.name || "bạn")}</Text>
                         </>
                         :
                         <Text fontSize="lg"

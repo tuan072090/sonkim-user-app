@@ -18,7 +18,6 @@ export const OrderVoucherDetail = () => {
     useEffect(() => {
         if (params.id) {
             SonkimApiService.GetOrderPromotionDetail(params.id).then(data => {
-                console.log("promotion detail", data)
                 setOrder(data)
             }).catch(err => {
                 Alert.alert(err.message)

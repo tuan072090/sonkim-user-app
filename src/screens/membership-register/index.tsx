@@ -10,23 +10,13 @@ import {FullScreenLoader, MainLayout} from "../../components";
 
 const MembershipRegisterScreen: React.FC<any> = MainLayout(() => {
     const route = useRoute()
-    const navigation = useNavigation()
     const [loyaltyProgram, setLoyaltyProgram] = useState<null | LoyaltyProgramTypes>(null)
     const [type, setType] = useState<"register" | "link" | null>(null)
-    const [userMemberShipCards] = useLocalStorage(useLocalStorage.KEY_LOCAL_USER_CARDS, [])
 
     //  @ts-ignore
     const loyaltyProgramId = route.params?.id || null
-
-    useEffect(() => {
-        if(userMemberShipCards){
-            const isRegistered = userMemberShipCards.find((item:any) => item.loyalty_program.id === loyaltyProgramId)
-            if(isRegistered){
-                Alert.alert("Bạn đã là thành viên của "+isRegistered.loyalty_program.name + " rồi")
-                navigation.goBack()
-            }
-        }
-    },[userMemberShipCards])
+    //  @ts-ignore
+    const bu = route.params.bu
 
     useEffect(() => {
         if (loyaltyProgramId) {
@@ -49,7 +39,7 @@ const MembershipRegisterScreen: React.FC<any> = MainLayout(() => {
             {
                 !type ? <RedirectBox setType={setType} loyaltyProgram={loyaltyProgram}/>
                     : type === "link" ? <LinkMemberShip loyaltyProgram={loyaltyProgram}/>
-                    : type === "register" ? <RegisterMembership loyaltyProgram={loyaltyProgram}/> : null
+                    : type === "register" ? <RegisterMembership loyaltyProgram={loyaltyProgram} bu={bu}/> : null
             }
         </Box>
     )

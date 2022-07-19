@@ -1,4 +1,4 @@
-import { parse, format } from 'date-fns'
+import { parse, format, fromUnixTime } from 'date-fns'
 
 export const FormatVND = (pnumber:number) => {
     let result = "0"
@@ -79,6 +79,17 @@ export const FormatDateFromDate = (date:Date, defaultFormat = 'dd-MM-yyyy'):stri
     return format(date, defaultFormat)
 }
 
+//  input của SKM "20220708..."
+export const FormatDateFromDateString = (date:string):string => {
+    const year = date.substring(0, 4)
+    const month = date.substring(4, 6)
+    const day = date.substring(6, 8)
+    return `${day}-${month}-${year}`
+}
+export const FormatDateFromUnixTimestamp = (unixTime:number, defaultFormat = 'dd-MM-yyyy'):string => {
+    return format(fromUnixTime(unixTime), defaultFormat)
+}
+
 export const ParseStringToDate = (dateStr:string, defaultFormat = 'yyyy-MM-dd'):Date => {
     return parse(
         dateStr,
@@ -102,6 +113,8 @@ const Formatter = {
     ChangeToSlug,
     RemoveAscent,
     FormatDateFromDate,
+    FormatDateFromUnixTimestamp,
+    FormatDateFromDateString,
     ParseStringToDate
 }
 

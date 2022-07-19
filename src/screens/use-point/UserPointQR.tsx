@@ -13,6 +13,8 @@ const UsePointQR: React.FC<PageProps> = MainLayout(() => {
     const {language} = useAppSelector(state => state.settings)
     const [open, setOpen] = useState(false);
     const [loyaltyPrograms, setLoyaltyPrograms] = useLocalStorage(useLocalStorage.KEY_LOCAL_LOYALTY_PROGRAMS, [])
+    const {user, accessToken} = useAppSelector(state => state.auth)
+
     const {params}: any = useRoute()
 
     //  @ts-ignore
@@ -34,7 +36,7 @@ const UsePointQR: React.FC<PageProps> = MainLayout(() => {
                         <Text fontSize="lg" fontWeight="semibold" textAlign="center">
                             Mã thẻ:{" "}
                             <Text fontSize="lg" fontWeight="semibold" color="primary.500">
-                                X123X123
+                                {user.user.phone}
                             </Text>
                         </Text>
                         <Text fontSize="md" color="muted.400" textAlign="center">
@@ -42,7 +44,7 @@ const UsePointQR: React.FC<PageProps> = MainLayout(() => {
                         </Text>
                         <Box mt={20} alignContent="center">
                             <QrCode
-                                code={"Something"}
+                                code={user.user.phone}
                                 size={QrCodeSize}
                                 alignItems="center"
                                 logoUri={loyaltyProgram.avatar.url}

@@ -5,13 +5,14 @@ import {Formatter, GenderList, ScreenSize, SonkimApiService, useLocalStorage} fr
 import {DatePicker, Picker} from "../../../../../components";
 import {PersonalInfoType} from "../../../../../share/services/sonkim-api/user";
 import {Alert, Platform} from "react-native";
+import {useAppSelector} from "../../../../../redux/store";
 
 interface RegisterFormType extends IBoxProps {
     onFormChange: (formData: any) => void
 }
 
 export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormChange, ...props}) => {
-    const [phoneLocal, savePhoneLocal] = useLocalStorage("phone", "")
+    const {user} = useAppSelector(state => state.auth)
     const [phoneValue, setPhone] = useState("")
     const [formData, setFormData] = useState<PersonalInfoType>({
         name: "",
@@ -50,10 +51,11 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
     }, [])
 
     useEffect(() => {
-        if (phoneLocal !== null) {
-            setPhone(phoneLocal)
+        if (user) {
+            setPhone(user.user.phone)
+            onFormChange({...formData, phone: phoneValue})
         }
-    }, [phoneLocal])
+    }, [user])
 
     const _onPhoneChange = (text: string) => {
         setPhone(text)
@@ -82,8 +84,7 @@ export const RegisterMembershipForm: React.FC<RegisterFormType> = memo(({onFormC
                 <Text color="secondary.500" mb={1}>Số điện thoại</Text>
                 <Input
                     value={phoneValue}
-                    onChangeText={_onPhoneChange}
-                    keyboardType="phone-pad"
+                    isDisabled={true}
                     color="white"
                     fontSize="md"
                     placeholderTextColor="white"

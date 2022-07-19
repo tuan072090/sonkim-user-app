@@ -2,11 +2,11 @@ import { CustomError } from 'ts-custom-error'
 
 class MyError extends CustomError {
     public message:string;
-    public status: number;
-    public code = 0;
+    public status: number|string;
+    public code: number|string;
     public errors: any[] = []
 
-    constructor(message: string, status: number, code?: number, errors?: any[]) {
+    constructor(message: string, status: number|string, code?: number|string, errors?: any[]) {
         super(message)
         this.message = message
         this.status = status

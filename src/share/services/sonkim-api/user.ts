@@ -16,7 +16,6 @@ export const GetPersonalInfo = async () => {
 
         return personalInfo
     } catch (err) {
-        console.log("get personalInfo error.....", err)
         throw err
     }
 }
@@ -27,7 +26,6 @@ export const UpdatePersonalInfo = async (payload:PersonalInfoType) => {
 
         return personalInfo
     } catch (err) {
-        console.log("update personalInfo error.....", err)
         throw err
     }
 }

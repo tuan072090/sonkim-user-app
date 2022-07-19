@@ -34,17 +34,21 @@ class FetchData {
 
                 if (status === 401) {
 
-                    const newAccessToken = await this.RefreshToken()
-                    //  retry request
-                    const originalRequest = error.config
+                    // const newAccessToken = await this.RefreshToken()
+                    // //  retry request
+                    // const originalRequest = error.config
+                    //
+                    // if(originalRequest.data){
+                    //     originalRequest.data = JSON.parse(originalRequest.data)
+                    // }
+                    //
+                    // return this.axiosInstance.request({...originalRequest, headers:{
+                    //         Authorization: "Bearer "+newAccessToken
+                    //     }})
 
-                    if(originalRequest.data){
-                        originalRequest.data = JSON.parse(originalRequest.data)
-                    }
-
-                    return this.axiosInstance.request({...originalRequest, headers:{
-                            Authorization: "Bearer "+newAccessToken
-                        }})
+                    //  logout
+                    this.SetAccessToken("")
+                    store.dispatch(Logout())
                 }
 
                 return Promise.reject(error);

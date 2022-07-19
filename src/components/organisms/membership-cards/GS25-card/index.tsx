@@ -3,36 +3,41 @@ import {useAppDispatch, useAppSelector} from "../../../../redux/store";
 import {UpdateGS25Account} from "../../../../redux/reducers/loyalty";
 import {Alert, ImageBackground, StyleSheet} from "react-native";
 import {Box, Button, Pressable} from "native-base";
-import {ScreenSize, StaticImages} from "../../../../share";
+import {ScreenName, ScreenSize, StaticImages} from "../../../../share";
 import {Typo} from "../../../atoms/typo";
+import {useNavigation} from "@react-navigation/native";
+import {BuMapping} from "../../../../share/configs/commonConfigs";
+import {Gs25GetAccount, Gs25Login} from "../../../../share/services/sonkim-api/BU-APIs/gs25";
 
 const GS25Card: React.FC<any> = (props) => {
     const dispatch = useAppDispatch()
     const {user} = useAppSelector(state => state.auth)
     const {gs25Account} = useAppSelector(state => state.loyalty)
+    const navigation = useNavigation()
 
     useEffect(() => {
         if (user) {
-            console.log('user',user)
-            const {name, gender, birthday} = user
             _getAccount(user.user.phone)
         }
     }, [user])
 
     const _getAccount = async (phone: string) => {
         try {
-            //UpdateGS25Account
+            const data = await Gs25GetAccount(phone)
+            dispatch(UpdateGS25Account(data))
         } catch (err) {
-            Alert.alert("Get GS25 account error", err.message)
+            Alert.alert("GS25 get account error ", `#${err.status} - ${err.message}`)
         }
     }
 
     const _navigateDetail = () => {
-        console.warn("detail GSSHOP")
+        //  @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: BuMapping["gs25"], bu: 'gs25'}, undefined, undefined);
     }
 
     const _linkAccount = () => {
-        console.warn("link GSSHOP")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: BuMapping["gs25"], bu:'gs25'}, undefined, undefined);
     }
 
     return (
@@ -53,12 +58,12 @@ const GS25Card: React.FC<any> = (props) => {
                                 Đăng ký thẻ
                             </Button>
                         </Box>
-                        : <Box py={3} px={4} flexDirection="row" flexGrow={1} justifyContent="flex-end">
+                        : <Box py={3} px={4} flexDirection="row" flexGrow={1}  alignItems="flex-end" justifyContent="space-between">
                             <Typo color="white" type="subtitle16" textTransform="uppercase">
-                                {"card name"}
+                                {gs25Account.name || user.name || "GS25 member"}
                             </Typo>
                             <Typo color="white" type="subtitle16">
-                                {123} điểm
+                                {gs25Account.totalPoint} ĐIỂM
                             </Typo>
                         </Box>
                 }

@@ -8,7 +8,6 @@ export const GetUploadUrl = async (file_name:string, file_type:string) => {
 
         return {url, fileName, fileType, expiresIn}
     } catch (err) {
-        console.log("Lỗi get upload info", {...err})
         throw err
     }
 }
@@ -22,7 +21,6 @@ export const UploadImage = async (photo:any, url:string) => {
 
         return response
     }catch (err){
-        console.log("upload error...", {...err})
         throw new MyError("Hình không hợp lệ", 400)
     }
 }

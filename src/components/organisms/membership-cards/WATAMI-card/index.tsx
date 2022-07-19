@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {useAppDispatch, useAppSelector} from "../../../../redux/store";
-import {UpdateJardinAccount, UpdateWataminAccount} from "../../../../redux/reducers/loyalty";
+import {UpdateWataminAccount} from "../../../../redux/reducers/loyalty";
 import {Alert, ImageBackground, StyleSheet} from "react-native";
 import {Box, Button, Image, Pressable} from "native-base";
 import {ScreenName, ScreenSize, StaticImages} from "../../../../share";
 import {Typo} from "../../../atoms/typo";
 import {GetWataminMemberByPhone} from "../../../../share/services/sonkim-api/BU-APIs/watamin";
 import {useNavigation} from "@react-navigation/core";
+import {BuMapping} from "../../../../share/configs/commonConfigs";
 
 const WataminCard: React.FC<any> = (props) => {
     const dispatch = useAppDispatch()
@@ -31,11 +32,12 @@ const WataminCard: React.FC<any> = (props) => {
 
     const _navigateDetail = () => {
         // @ts-ignore
-        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: 22});
+        navigation.navigate(ScreenName.MEMBERSHIP_DETAIL_SCREEN, {id: BuMapping["watamin"], bu: 'watamin'});
     }
 
     const _linkAccount = () => {
-        console.warn("link Watamin")
+        // @ts-ignore
+        navigation.navigate(ScreenName.MEMBERSHIP_REGISTER_SCREEN, {id: BuMapping["watamin"], bu: 'watamin'}, undefined, undefined);
     }
 
     return (

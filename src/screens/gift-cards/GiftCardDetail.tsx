@@ -17,7 +17,6 @@ const GiftCardDetail = ({navigation}) => {
     useEffect(() => {
         if (params.id) {
             SonkimApiService.GetGiftCardDetail(params.id).then(data => {
-                console.log("gift card detail", data.id)
                 setGiftCard(data)
             }).catch(err => {
                 Alert.alert(err.message)

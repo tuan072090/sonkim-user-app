@@ -3,20 +3,15 @@ import {Box, Button, Heading, Input, Text} from "native-base";
 import {Colors, LoyaltyProgramTypes, ScreenName, StaticImages} from "../../../../share";
 import ScreenHeader from "../../../../components/organisms/screen-header";
 import {useNavigation} from "@react-navigation/core";
-import {Dialog, ImageStatic, MyButton} from "../../../../components";
+import {Dialog, Image, ImageStatic, MyButton} from "../../../../components";
 
 type LinkMemberShipTypes = {
     loyaltyProgram: LoyaltyProgramTypes,
 }
-export const LinkMemberShip: React.FC<LinkMemberShipTypes> = (props) => {
+export const LinkMemberShip: React.FC<LinkMemberShipTypes> = ({loyaltyProgram}) => {
 
     const navigation = useNavigation();
     const [open, setOpen] = useState(false);
-
-    const _navigateForm = () => {
-        // @ts-ignore
-        navigation.navigate(ScreenName.REGISTER_MEMBERSHIP_FORM);
-    };
 
     const listImgBU = [
         StaticImages.health_spa,
@@ -38,7 +33,7 @@ export const LinkMemberShip: React.FC<LinkMemberShipTypes> = (props) => {
             <Box flex={1} width="100%">
                 <ScreenHeader
                     hasBackButton={true}
-                    title={"Health Spa"}
+                    title={loyaltyProgram.name}
                     bgColor="primary.500"
                 />
                 <Heading
@@ -48,11 +43,11 @@ export const LinkMemberShip: React.FC<LinkMemberShipTypes> = (props) => {
                     mb={6}
                     textAlign="center"
                 >
-                    Điền thông tin để liên kết thẻ thành viên Health Spa
+                    Điền thông tin để liên kết thẻ thành viên
                 </Heading>
                 <Box width="100%" alignItems="center">
-                    <ImageStatic
-                        uri={StaticImages.health_spa}
+                    <Image
+                        uri={loyaltyProgram.avatar.url}
                         width={88}
                         height={88}
                         mb={8}
@@ -85,8 +80,8 @@ export const LinkMemberShip: React.FC<LinkMemberShipTypes> = (props) => {
                 isOpen={open}
                 onClose={() => setOpen(false)}
                 title="Liên kết thẻ thành viên thành công"
-                messenge="Chúc mừng bạn đã liên kết thành công
-                thẻ thành viên Health Spa"
+                messenge={`Chúc mừng bạn đã liên kết thành công
+                thẻ thành viên ${loyaltyProgram.name}`}
             />
 
             <Box width="100%" px={5} safeAreaTop={true}>

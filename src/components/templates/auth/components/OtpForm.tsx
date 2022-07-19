@@ -35,7 +35,6 @@ export const OtpForm = () => {
         return FirebaseService.SignInWithPhone(params.phone || "").then(confirm => {
             seConfirmation(confirm)
         }).catch(err => {
-            console.log("gửi mã lỗi....", err)
             Alert.alert(err.message)
         })
     }
@@ -48,10 +47,8 @@ export const OtpForm = () => {
             setProcessing(true)
 
             const response = await confirmation.confirm(otp)
-            console.log("credential response...", response)
 
             const idToken = await response?.user.getIdToken()
-            console.log("idToken....", idToken)
 
             if (params.action === "register") {
                 // @ts-ignore

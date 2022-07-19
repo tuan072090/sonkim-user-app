@@ -11,7 +11,6 @@ export const GetPromotions = async (params:any) => {
 
         return { count, promotions }
     } catch (err) {
-        console.log("promotions error.....", err)
         throw err
     }
 }
@@ -46,7 +45,6 @@ export const GetPromotionDetail = async (id:number|string) => {
 
         return promotion
     } catch (err) {
-        console.log("promotion detail error.....", err)
         throw err
     }
 }
@@ -59,7 +57,6 @@ export const BuyPromotion = async (id:number|string) => {
         })
         return data
     } catch (err) {
-        console.log("create promotion order error.....", err)
         throw err
     }
 }

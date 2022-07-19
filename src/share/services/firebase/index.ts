@@ -31,7 +31,6 @@ const RequestNotificationPermission = async () => {
 
         return isAllow
     } catch (err) {
-        console.log("request notification error.........", err)
     }
 }
 

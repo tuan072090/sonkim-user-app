@@ -31,7 +31,6 @@ const useLocalStorage = (key:string, initialValue:any) => {
             }
         } catch (error) {
             setStoredValue(initialValue)
-            console.log("syn local data error...", error)
         }
     }
 
@@ -55,7 +54,6 @@ const useLocalStorage = (key:string, initialValue:any) => {
 
             return valueToStore
         } catch (error) {
-            console.log("hook store data error", error)
             // A more advanced implementation would handle the error case
         }
     };

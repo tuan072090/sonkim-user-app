@@ -1,25 +1,30 @@
 import React, {useEffect, useState} from "react";
 import {Box} from "native-base";
-import {Colors, PromotionType, ScreenName, SonkimApiService, UserMemberShipCardType} from '../../../share'
+import {
+    Colors,
+    LoyaltyProgramTypes,
+    PromotionType,
+    ScreenName,
+    SonkimApiService,
+} from '../../../share'
 import {MyButton, PressBox, Typo, VoucherCard} from "../../../components";
 import {ActivityIndicator, Alert} from "react-native";
 import {useNavigation} from "@react-navigation/core";
 
-export const VoucherList: React.FC<{ membershipCard: UserMemberShipCardType }> = ({membershipCard}) => {
+export const VoucherList: React.FC<{ loyaltyProgram: LoyaltyProgramTypes }> = ({loyaltyProgram}) => {
     const [promotions, setPromotions] = useState<PromotionType[] | null>(null)
     const [total, setTotal] = useState<number|null>(null)
     const navigation = useNavigation();
-    const {loyalty_program} = membershipCard
 
     useEffect(() => {
-        if (membershipCard) {
+        if (loyaltyProgram) {
             _fetchPromotions()
         }
-    }, [membershipCard])
+    }, [loyaltyProgram])
 
     const _fetchPromotions = () => {
         //  filter by loyalty program unit
-        SonkimApiService.GetPromotions({loyalty_program: loyalty_program.id, _limit: 2}).then(data => {
+        SonkimApiService.GetPromotions({loyalty_program: loyaltyProgram.id, _limit: 2}).then(data => {
             const {count, promotions} = data;
             setPromotions(promotions)
             setTotal(count)
