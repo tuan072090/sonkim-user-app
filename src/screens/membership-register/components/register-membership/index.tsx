@@ -72,7 +72,7 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram, 
                     surName: user.lastName || "",
                     birthday: formData.birthday,
                     sex: formData.gender,
-                    phone: user.user.phone,
+                    phone: "+84"+parseInt(user.user.phone),
                     magnetCardNumber: user.user.phone,
                     magnetCardTrack: user.user.phone
                 })
@@ -83,7 +83,7 @@ const RegisterMembership: React.FC<RegisterMembershipTypes> = ({loyaltyProgram, 
                     surName: user.lastName,
                     birthday: formData.birthday,
                     sex: formData.gender,
-                    phone: user.user.phone,
+                    phone: "+84"+parseInt(user.user.phone),
                     magnetCardNumber: user.user.phone,
                     magnetCardTrack: user.user.phone
                 })

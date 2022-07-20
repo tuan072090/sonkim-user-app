@@ -2,7 +2,7 @@ import axios, {AxiosError} from "axios";
 import {
     JARDIN_CREATE_MEMBER,
     WATAMIN_CREATE_MEMBER,
-    WATAMIN_GET_CUSTOMER,
+    WATAMIN_GET_CUSTOMER, WATAMIN_GET_CUSTOMER_BY_CARD,
     WATAMIN_GET_TOKEN
 } from "../../../configs/commonConfigs";
 import LocalStorageService from "../../local-storage";
@@ -84,11 +84,11 @@ export const CreateOrUpdateWataminMember = async (payload: CreateUpdateMemberPay
 export const GetWataminMemberByPhone = async (phone: string) => {
     try {
         const accessToken = await getWataminAccessToken()
-        const {data} = await axios.get(WATAMIN_GET_CUSTOMER, {
+        const {data} = await axios.get(WATAMIN_GET_CUSTOMER_BY_CARD, {
             params: {
                 access_token: accessToken,
                 organization: organizationId,
-                phone: "84"+parseInt(phone)
+                card: phone
             }
         })
 
@@ -100,6 +100,7 @@ export const GetWataminMemberByPhone = async (phone: string) => {
 
 
 function handleError(error: AxiosError | any) {
+    console.log("handle Watamin error...", error)
     let message = error.message || "Watamin error"
     let status = 502
     let code = 0
